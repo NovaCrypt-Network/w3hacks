@@ -1,4 +1,4 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request, "admin/index.html")
+    return render(request, "staff/index.html")
