@@ -1,7 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 
 def index(request):
-    return JsonResponse({
-        "text": "Hello World!"
-    })
+    return HttpResponse("Welcome to the w3Hacks API!")
