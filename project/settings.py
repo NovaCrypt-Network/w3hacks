@@ -43,6 +43,12 @@ INSTALLED_APPS = [
 
     # External apps
     'landingpage',
+    'api',
+    'community',
+    'hackathon',
+    'links',
+    'main',
+    'staff',
 
     # Dependencies
     'storages', # AWS
