@@ -14,16 +14,16 @@ class Profile(models.Model):
     location = models.CharField(max_length=50, null=True, blank=True) # OPTIONAL: The area around where the user lives
     profile_picture = models.ImageField(null=True, blank=True) # OPTIONAL: A profile picture for the user
     skills = ArrayField(models.CharField(max_length=50), null=True, blank=True) # OPTIONAL: An array of the user's skills
-    social_links = models.ManyToManyField("SocialLink", null=True, blank=True) # OPTIONAL: A list of social links for the user
-    past_non_w3hacks_hackathons = models.ManyToManyField("PastHackathon", null=True, blank=True) # OPTIONAL: A list of past hackathons that the user has competed in outside of w3Hacks
-    past_hackathons = models.ManyToManyField("Hackathon", null=True, blank=True) # OPTIONAL: A lit of past w3Hacks hackathons that the user has competed in
-    projects = models.ManyToManyField("Project", null=True, blank=True) # List of projects created by user
-    # followers = models.ManyToManyField("Profile", null=True, blank=True) # OPTIONAL: A list of profiles that follow this user
-    # following = models.ManyToManyField("Profile", null=True, blank=True) # OPTIONAL: A list of profiles that this user follows
+    social_links = models.ManyToManyField("SocialLink", blank=True) # OPTIONAL: A list of social links for the user
+    past_non_w3hacks_hackathons = models.ManyToManyField("PastHackathon", blank=True) # OPTIONAL: A list of past hackathons that the user has competed in outside of w3Hacks
+    past_hackathons = models.ManyToManyField("Hackathon", blank=True) # OPTIONAL: A lit of past w3Hacks hackathons that the user has competed in
+    projects = models.ManyToManyField("Project", blank=True) # List of projects created by user
+    # followers = models.ManyToManyField("Profile", blank=True) # OPTIONAL: A list of profiles that follow self user
+    # following = models.ManyToManyField("Profile", blank=True) # OPTIONAL: A list of profiles that this user follows
     joined_date = models.DateField() # The date when the user joined w3Hacks
 
     def __str__(self):
-        return this.user.username
+        return self.user.username
 
 
 # Project model for each project
@@ -38,7 +38,7 @@ class Project(models.Model):
     extra_files = ArrayField(models.FileField(), null=True, blank=True) # OPTIONAL: Array of extra files to submit along with project
     creator = models.ForeignKey("Profile", on_delete=models.PROTECT) # Creator of project
     likes = models.IntegerField(null=True, blank=True) # OPTIONAL: Number of likes on project
-    comments = models.ManyToManyField("Comment", null=True, blank=True) # OPTIONAL: List of comments on project
+    comments = models.ManyToManyField("Comment", blank=True) # OPTIONAL: List of comments on project
 
     def __str__(self):
         return self.title
@@ -49,14 +49,14 @@ class Hackathon(models.Model):
     id = models.CharField(primary_key=True, max_length=8) # ID for display
     title = models.CharField(max_length=50) # Name of the hackathon
     description = models.TextField(max_length=300) # Description of the hackathon
-    themes = models.ManyToManyField("Theme") # List of themes for hackathon
-    awards = models.ManyToManyField("Award") # List of awards for hackathon
+    themes = models.ManyToManyField("Theme", blank=True) # List of themes for hackathon
+    awards = models.ManyToManyField("Award", blank=True) # List of awards for hackathon
     start_datetime = models.DateTimeField() # Starting datetime for the hackathon
     end_datetime = models.DateTimeField() # Ending datetime for the hackathon
-    schedule = models.ManyToManyField("ScheduleEvent") # List of ScheduleEvents for hackathon
-    resources = models.ManyToManyField("ResourceLink") # List of resource links for hackathon
-    competitors = models.ManyToManyField("Profile", null=True, blank=True) # List of competitor profiles; can be empty in beginning
-    submissions = models.ManyToManyField("Project", null=True, blank=True) # List of project submissions; can be empty in beginning
+    schedule = models.ManyToManyField("ScheduleEvent", blank=True) # List of ScheduleEvents for hackathon
+    resources = models.ManyToManyField("ResourceLink", blank=True) # List of resource links for hackathon
+    competitors = models.ManyToManyField("Profile", blank=True) # List of competitor profiles; can be empty in beginning
+    submissions = models.ManyToManyField("Project", blank=True) # List of project submissions; can be empty in beginning
 
     def __str__(self):
         return self.title
@@ -125,4 +125,4 @@ class Comment(models.Model):
     content = models.TextField(max_length=300) # Content of the comment
 
     def __str__(self):
-        return this.user.user.username
+        return self.user.user.username
