@@ -4,9 +4,13 @@ from django.db import models
 
 # ALL IDs MUST BE 8 CHARACTERS LONG
 
+# Making the default Django user's username and email unique
+User._meta.get_field('username')._unique = True
+User._meta.get_field('email')._unique = True
+
 # An extension off of the default User model
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE) # Extending from default User class
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile", unique=True) # Extending from default User class
     status = models.CharField(max_length=20, null=True, blank=True) # OPTIONAL: A quick status that the user may update
     biography = models.TextField(max_length=200, null=True, blank=True) # OPTIONAL: A description of the user
     birthday = models.DateField(null=True, blank=True) # OPTIONAL: The birthday of the user
@@ -28,7 +32,7 @@ class Profile(models.Model):
 
 # Project model for each project
 class Project(models.Model):
-    id = models.CharField(primary_key=True, max_length=8) # Unique ID for project
+    id = models.CharField(primary_key=True, max_length=8, unique=True) # Unique ID for project
     title = models.CharField(max_length=50) # Name of the project
     description = models.TextField(max_length=500) # Description of the project
     project_image = models.ImageField(null=True, blank=True) # OPTIONAL: Image of the project
@@ -46,7 +50,7 @@ class Project(models.Model):
 
 # Model for each hackathon, current or not
 class Hackathon(models.Model):
-    id = models.CharField(primary_key=True, max_length=8) # ID for display
+    id = models.CharField(primary_key=True, max_length=8, unique=True) # ID for display
     title = models.CharField(max_length=50) # Name of the hackathon
     description = models.TextField(max_length=300) # Description of the hackathon
     themes = models.ManyToManyField("Theme", blank=True) # List of themes for hackathon
@@ -74,7 +78,7 @@ class Theme(models.Model):
 # For 'Resources' section of Hackathon
 class ResourceLink(models.Model):
     title = models.CharField(max_length=50) # String to be shown on display
-    url_extension = models.CharField(max_length=50) # String for url extension
+    url_extension = models.CharField(max_length=50, unique=True) # String for url extension
     link = models.CharField(max_length=200) # Actual link URL
 
     def __str__(self):
