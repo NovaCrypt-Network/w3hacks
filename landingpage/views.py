@@ -8,3 +8,11 @@ from main import models
 
 def index(request):
     return render(request, "landingpage/index.html")
+
+
+def about(request):
+    return render(request, "landingpage/about.html")
+
+
+def contact(request):
+    return render(request, "landingpage/contact.html")
