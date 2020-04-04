@@ -1,4 +1,48 @@
 {% extends 'staff/base.html' %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'staff/edit-create-hackathon.css' %}">
+{% endblock %}
 {% block body %}
-  <h1>Edit Hackathon</h1>
+  <div class="container">
+    <h1>Edit Hackathon</h1>
+    <div class="row">
+      <div class="col">
+        <div class="form-input-group">
+          <label>Title:</label><br>
+          <input type="text" name="title" value="Title" placeholder="Title">
+        </div>
+        <div class="form-input-group">
+          <label>Themes:</label><br>
+          <input type="text" name="themes" value="Themes" placeholder="Themes">
+        </div>
+        <div class="form-input-group">
+          <label>Awards:</label><br>
+          <input type="text" name="awards" value="Awards" placeholder="Awards">
+        </div>
+        <div class="form-input-group">
+          <label>Schedule:</label><br>
+          <input type="text" name="schedule" value="Schedule" placeholder="Schedule">
+        </div>
+        <div class="form-input-group">
+          <label>Resources:</label><br>
+          <input type="text" name="resources" value="Resources" placeholder="Resources">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-input-group">
+          <label>Description:</label><br>
+          <textarea type="text" name="description" placeholder="Description">Description</textarea>
+        </div>
+        <div class="form-input-group">
+          <label>Start Time:</label><br>
+          <input type="datetime-local" name="start-time" placeholder="Start Time">
+        </div>
+        <div class="form-input-group">
+          <label>End Time:</label><br>
+          <input type="datetime-local" name="end-time" placeholder="End Time">
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

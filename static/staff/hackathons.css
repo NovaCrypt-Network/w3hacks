@@ -1,0 +1,19 @@
+.hackathons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-gap: 30px;
+}
+
+.hackathon {
+  background-color: blue;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.hackathon * {
+  color: white;
+}
+
+.hackathon *:hover {
+  text-decoration: none;
+}
