@@ -1,4 +1,51 @@
 {% extends 'hackathon/base.html' %}
 {% block body %}
-  <h1>Submit</h1>
+  <div class="heading-banner">
+    <div class="container">
+      <h1>Submit</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="form-input-group">
+          <label>Project Name:</label><br>
+          <input type="text" name="project-name" placeholder="Project Name">
+        </div>
+        <div class="form-input-group">
+          <label>Project Description:</label><br>
+          <textarea name="project-description" rows="5" placeholder="Project Description"></textarea>
+        </div>
+        <div class="form-input-group">
+          <label>Project Image:</label><br>
+          <input type="file" name="project-image" placeholder="Project Image">
+        </div>
+        <div class="form-input-group">
+          <label>Extra Files:</label><br>
+          <input type="file" multiple name="extra-files" placeholder="Extra Files">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-input-group">
+          <label>Technologies Used:</label><br>
+          <input type="text" name="technologies-used" placeholder="Technologies Used">
+        </div>
+        <div class="form-input-group">
+          <label>GitHub Link:</label><br>
+          <input type="url" name="github-link" placeholder="GitHub Link">
+        </div>
+        <div class="form-input-group">
+          <label>Project Link:</label><br>
+          <input type="url" name="project-link" placeholder="Project Link">
+        </div>
+        <div class="form-input-group">
+          <label>Video Link:</label><br>
+          <input type="url" name="video-link" placeholder="Video Link">
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

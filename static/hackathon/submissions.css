@@ -1,0 +1,27 @@
+.submissions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-gap: 15px;
+}
+
+.submission {
+  background-color: blue;
+  padding: 15px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.submission * {
+  color: white;
+}
+
+.submission-btns {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+}
+
+.submission-btn {
+  width: 30px;
+  margin-right: 5px;
+}

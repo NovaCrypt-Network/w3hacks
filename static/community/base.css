@@ -5,3 +5,11 @@ body {
 nav {
   background-color: blue;
 }
+
+.form-input-group {
+  padding: 15px 0;
+}
+
+.form-input-group input, textarea {
+  width: 100%;
+}

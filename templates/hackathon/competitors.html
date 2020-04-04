@@ -1,4 +1,55 @@
 {% extends 'hackathon/base.html' %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'hackathon/competitors.css' %}">
+{% endblock %}
 {% block body %}
-  <h1>Competitors</h1>
+  <div class="heading-banner">
+    <div class="container">
+      <h1>Competitors</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="competitors">
+      <div class="competitor">
+        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+        <h5>Competitor</h5>
+      </div>
+      <div class="competitor">
+        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+        <h5>Competitor</h5>
+      </div>
+      <div class="competitor">
+        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+        <h5>Competitor</h5>
+      </div>
+      <div class="competitor">
+        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+        <h5>Competitor</h5>
+      </div>
+      <div class="competitor">
+        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+        <h5>Competitor</h5>
+      </div>
+      <div class="competitor">
+        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+        <h5>Competitor</h5>
+      </div>
+      <div class="competitor">
+        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+        <h5>Competitor</h5>
+      </div>
+      <div class="competitor">
+        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+        <h5>Competitor</h5>
+      </div>
+      <div class="competitor">
+        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+        <h5>Competitor</h5>
+      </div>
+    </div>
+  </div>
 {% endblock %}
