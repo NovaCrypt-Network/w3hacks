@@ -1,0 +1,20 @@
+.past-hackathons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 15px;
+}
+
+.past-hackathon {
+  background-color: blue;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.past-hackathon * {
+  color: white;
+}
+
+.hackathon-statistics {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
