@@ -38,6 +38,7 @@ class Project(models.Model):
     project_image = models.ImageField(null=True, blank=True) # OPTIONAL: Image of the project
     technologies_used = ArrayField(models.CharField(max_length=30), null=True, blank=True) # OPTIONAL: Array of technologies used for the project
     github_link = models.CharField(max_length=200, null=True, blank=True) # OPTIONAL: Link to the project on GitHub
+    project_link = models.CharField(max_length=200, null=True, blank=True) # OPTIONAL: Link to the project if hosted on the app store or Internet
     video_link = models.CharField(max_length=200, null=True, blank=True) # OPTIONAL: Link to a video of project demo
     extra_files = ArrayField(models.FileField(), null=True, blank=True) # OPTIONAL: Array of extra files to submit along with project
     creator = models.ForeignKey("Profile", on_delete=models.PROTECT) # Creator of project
