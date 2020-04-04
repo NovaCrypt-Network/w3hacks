@@ -1,0 +1,12 @@
+body {
+  overflow-y: hidden;
+}
+
+.split-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.split-grid > * {
+  height: 100vh;
+}
