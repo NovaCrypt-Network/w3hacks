@@ -8,6 +8,10 @@ from django.db import models
 User._meta.get_field('username')._unique = True
 User._meta.get_field('email')._unique = True
 
+####################
+## GENERAL MODELS ##
+####################
+
 # An extension off of the default User model
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile", unique=True) # Extending from default User class
@@ -69,6 +73,7 @@ class Hackathon(models.Model):
         return self.title
 
 
+
 # For user profile social links
 class SocialLink(models.Model):
     social_network = models.CharField(max_length=50) # Name of social network
@@ -77,6 +82,10 @@ class SocialLink(models.Model):
     def __str__(self):
         return self.social_network
 
+
+####################
+## PROFILE MODELS ##
+####################
 
 # For user profile achievements
 class Achievement(models.Model):
@@ -98,7 +107,9 @@ class Theme(models.Model):
         return self.title
 
 
-# Exercises
+#####################
+## EXERCISE MODELS ##
+#####################
 
 class ProjectExercise(models.Model):
     name = models.CharField(max_length=50) # Name of the project
@@ -156,6 +167,10 @@ class ResourceLink(models.Model):
     def __str__(self):
         return self.title
 
+
+######################
+## HACKATHON MODELS ##
+######################
 
 # For each award for Hackathon
 class Award(models.Model):
