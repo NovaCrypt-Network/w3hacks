@@ -16,3 +16,11 @@ def about(request):
 
 def contact(request):
     return render(request, "landingpage/contact.html")
+
+
+def user_login(request):
+    return render(request, "landingpage/login.html")
+
+
+def register(request):
+    return render(request, "landingpage/register.html")
