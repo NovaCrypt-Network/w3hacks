@@ -24,11 +24,11 @@ class Profile(models.Model):
     # followers = models.ManyToManyField("Profile", blank=True) # OPTIONAL: A list of profiles that follow self user
     # following = models.ManyToManyField("Profile", blank=True) # OPTIONAL: A list of profiles that this user follows
     joined_date = models.DateField() # The date when the user joined w3Hacks
-    credits = models.IntegerField() # The number of credits the user has
-    overall_ranking_points = models.IntegerField() # The overall ranking points the user has
-    project_ranking_points = models.IntegerField() # The project ranking points the user has
-    quiz_ranking_points = models.IntegerField() # The quiz ranking points the user has
-    exercise_ranking_points = models.IntegerField() # The exercise ranking points the user has
+    credits = models.IntegerField(default=0) # The number of credits the user has
+    overall_ranking_points = models.IntegerField(default=0) # The overall ranking points the user has
+    project_ranking_points = models.IntegerField(default=0) # The project ranking points the user has
+    quiz_ranking_points = models.IntegerField(default=0) # The quiz ranking points the user has
+    exercise_ranking_points = models.IntegerField(default=0) # The exercise ranking points the user has
 
     def __str__(self):
         return self.user.username
@@ -46,7 +46,7 @@ class Project(models.Model):
     video_link = models.CharField(max_length=200, null=True, blank=True) # OPTIONAL: Link to a video of project demo
     extra_files = ArrayField(models.FileField(), null=True, blank=True) # OPTIONAL: Array of extra files to submit along with project
     creator = models.ForeignKey("Profile", on_delete=models.PROTECT) # Creator of project
-    likes = models.IntegerField(null=True, blank=True) # OPTIONAL: Number of likes on project
+    likes = models.IntegerField(null=True, default=0) # Number of likes on project
 
     def __str__(self):
         return self.title
