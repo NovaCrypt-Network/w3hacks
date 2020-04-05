@@ -3,15 +3,16 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'app/base.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'hackathon/base.css' %}">
     {% block head %}
     {% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm navbar-dark">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="/">w3Hacks Community</a>
+        <a class="navbar-brand" href="/">w3Hacks Hackathon</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-target">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,19 +22,19 @@
                   <a class="nav-link" href="/">Home</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/leaderboards/">Leaderboards</a>
+                  <a class="nav-link" href="/schedule/">Schedule</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/past-hackathons/">Past Hackathons</a>
+                  <a class="nav-link" href="/competitors/">Competitors</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/hackathon-schedule/">Hackathon Schedule</a>
+                  <a class="nav-link" href="/submissions/">Submissions</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="http://hackathon.w3hacks.com">Compete</a>
+                  <a class="nav-link" href="/submit/">Submit</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/profile/">User</a>
+                  <a class="nav-link" href="http://community.w3hacks.com/profile">User</a>
               </li>
           </ul>
         </div>
