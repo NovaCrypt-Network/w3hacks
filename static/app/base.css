@@ -2,3 +2,11 @@ body {
   background-color: #eee;
   min-height: 100vh;
 }
+
+nav {
+  background-color: blue;
+}
+
+.dropdown-toggle::after {
+  vertical-align: .06em !important;
+}

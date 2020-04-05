@@ -10,14 +10,14 @@
     {% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-dark">
       <div class="container">
         <a class="navbar-brand" href="/">w3Hacks</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-target">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-target">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto" style="display: flex; align-items: center;">
               <li class="nav-item">
                   <a class="nav-link" href="/">Home</a>
               </li>
@@ -46,8 +46,16 @@
                     <a href="http://hackathon.w3hacks.com" class="dropdown-item">Compete in the Hackathon!</a>
                   </div>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/profile/">User</a>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                    <img style="width: 35px" src="{% static 'img/user.png' %}" alt="">
+                  </a>
+                  <div class="dropdown-menu">
+                    <a href="/profile/" class="dropdown-item">View Profile</a>
+                    <a href="/edit-profile/" class="dropdown-item">Edit Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/logout/" class="dropdown-item">Log out</a>
+                  </div>
               </li>
           </ul>
         </div>
