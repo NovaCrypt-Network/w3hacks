@@ -2,8 +2,12 @@ from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 from django.db import models
 from datetime import date
+import random
+import string
 
 # ALL IDs MUST BE 8 CHARACTERS LONG
+def generate_id():
+    return ''.join([random.choice(string.ascii_letters + string.digits) for n in range(8)])
 
 # Making the default Django user's username and email unique
 User._meta.get_field('username')._unique = True
@@ -40,7 +44,7 @@ class Profile(models.Model):
 
 # Project model for each project
 class Project(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True) # Unique ID for project
+    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id()) # Unique ID for project
     title = models.CharField(max_length=50) # Name of the project
     description = models.TextField(max_length=500) # Description of the project
     project_image = models.ImageField(null=True, blank=True) # OPTIONAL: Image of the project
@@ -58,7 +62,7 @@ class Project(models.Model):
 
 # Model for each hackathon, current or not
 class Hackathon(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True) # ID for display
+    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id()) # ID for display
     title = models.CharField(max_length=50) # Name of the hackathon
     description = models.TextField(max_length=300) # Description of the hackathon
     themes = models.ManyToManyField("Theme", blank=True) # List of themes for hackathon
