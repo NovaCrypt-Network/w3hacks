@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url="http://www.w3hacks.com/login")
+
 def index(request):
     return render(request, "app/index.html")
 
