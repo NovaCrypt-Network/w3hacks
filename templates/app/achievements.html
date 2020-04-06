@@ -1,5 +1,48 @@
 {% extends 'app/base.html' %}
 {% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'app/achievements.css' %}">
+{% endblock %}
 {% block body %}
-  <h1>Achievements</h1>
+  <div class="container">
+    <h1>Achievements</h1>
+    <div>
+      <h3>My Achievements</h3>
+      <div class="achievements">
+        <small>No achievements achieved yet!</small>
+      </div>
+    </div>
+    <div>
+      <h3>Possible Achievements</h3>
+      <div class="achievements">
+        <div class="achievement">
+          <img src="{% static 'img/achievement.png' %}" alt="">
+          <div>
+            <h5>Achievement</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+        <div class="achievement">
+          <img src="{% static 'img/achievement.png' %}" alt="">
+          <div>
+            <h5>Achievement</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+        <div class="achievement">
+          <img src="{% static 'img/achievement.png' %}" alt="">
+          <div>
+            <h5>Achievement</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

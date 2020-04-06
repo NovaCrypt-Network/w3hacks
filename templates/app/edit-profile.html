@@ -1,5 +1,56 @@
 {% extends 'app/base.html' %}
 {% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'app/edit-profile.css' %}">
+{% endblock %}
 {% block body %}
-  <h1>Edit Profile</h1>
+  <div class="container">
+    <h1>Edit Profile</h1>
+    <div class="row">
+      <div class="col">
+        <div class="form-input-group">
+          <label>Name:</label><br>
+          <input type="text" name="name" value="Name" placeholder="Name">
+        </div>
+        <div class="form-input-group">
+          <label>Email:</label><br>
+          <input type="email" name="email" value="Email" placeholder="Email">
+        </div>
+        <div class="form-input-group">
+          <label>Username:</label><br>
+          <input type="text" name="username" value="Username" placeholder="Username">
+        </div>
+        <div class="form-input-group">
+          <label>Birthday:</label><br>
+          <input type="date" name="birthday" placeholder="Birthday">
+        </div>
+        <div class="form-input-group">
+          <label>Profile Picture:</label><br>
+          <input type="file" name="profile-picture" placeholder="Profile Picture">
+        </div>
+        <div class="form-input-group">
+          <label>Skills:</label><br>
+          <input type="text" name="skills" placeholder="Skills">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-input-group">
+          <label>Biography:</label><br>
+          <textarea type="text" name="biography" placeholder="Biography">Biography</textarea>
+        </div>
+        <div class="form-input-group">
+          <label>Education:</label><br>
+          <input type="text" name="education" value="Education" placeholder="Education">
+        </div>
+        <div class="form-input-group">
+          <label>Location:</label><br>
+          <input type="text" name="location" value="Location" placeholder="Location">
+        </div>
+        <div class="form-input-group">
+          <label>Social Links:</label><br>
+          <input type="text" name="social-links" placeholder="Social Links">
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

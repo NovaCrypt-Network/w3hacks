@@ -1,5 +1,45 @@
 {% extends 'app/base.html' %}
 {% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'app/activities.css' %}">
+{% endblock %}
 {% block body %}
-  <h1>Activites</h1>
+  <div class="container">
+    <h1>Activites</h1>
+    <div class="activities">
+      <div class="activity">
+        <div class="activity-img">
+          <img src="{% static 'img/no-image-available.png' %}" alt="">
+        </div>
+        <div class="activity-body">
+          <h5>Activity</h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="activity-img">
+          <img src="{% static 'img/no-image-available.png' %}" alt="">
+        </div>
+        <div class="activity-body">
+          <h5>Activity</h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="activity-img">
+          <img src="{% static 'img/no-image-available.png' %}" alt="">
+        </div>
+        <div class="activity-body">
+          <h5>Activity</h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -1,0 +1,34 @@
+.activities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+}
+
+.activity {
+  border-radius: 5px;
+  background-color: blue;
+  transition: all .3s;
+}
+
+.activity * {
+  color: white;
+}
+
+.activity:hover {
+  transform: rotate(5deg);
+}
+
+.activity-img img {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.activity-body {
+  padding: 10px;
+}
+
+.activity-body p {
+  line-height: 130%;
+  font-size: 15px;
+}
