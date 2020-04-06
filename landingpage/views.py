@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from main import models
 from datetime import date
@@ -31,7 +30,14 @@ def user_login(request):
             if user.is_active: # User is active
                 # Log the user in
                 login(request, user)
-                return HttpResponseRedirect("http://app.w3hacks.com") # Redirect to App
+
+                # Checking if redirect to login from certain URL
+                # If redirected, redirect back to original URL
+                next_url = request.GET.get("next")
+                if next_url:
+                    return HttpResponseRedirect(next_url) # Redirect to App
+                else:
+                    return HttpResponseRedirect("http://app.w3hacks.com") # Redirect to App
 
             else: # User has an inactive account
                 return HttpResponse("User account has been deactivated. Please register again.")
