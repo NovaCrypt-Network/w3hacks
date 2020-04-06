@@ -7,7 +7,7 @@ from main import models
 from datetime import date
 
 def index(request):
-    return render(request, "landingpage/index.html", context={"auth": request.user.is_authenticated})
+    return render(request, "landingpage/index.html")
 
 
 def about(request):

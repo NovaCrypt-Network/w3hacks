@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from main.models import Hackathon, Project, Profile
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def index(request, hackathon_id):
     print(request.user.is_authenticated)
     hackathon = Hackathon.objects.get(id=hackathon_id)
@@ -13,7 +13,7 @@ def index(request, hackathon_id):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def competitors(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -26,7 +26,7 @@ def competitors(request, hackathon_id):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def schedule(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -39,7 +39,7 @@ def schedule(request, hackathon_id):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def submissions(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -52,7 +52,7 @@ def submissions(request, hackathon_id):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def submit(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
