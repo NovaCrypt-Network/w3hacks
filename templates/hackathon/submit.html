@@ -9,6 +9,11 @@
     </div>
   </div>
   <div class="container">
+    {% if not allow_submit %}
+      <small>Submissions only open when hackathon is currently going on!</small>
+    {% elif user_already_submitted %}
+      <small>You can only submit a project once.</small>
+    {% else %}
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
       <div class="row">
@@ -51,5 +56,6 @@
       </div>
       <input type="submit" value="Submit">
     </form>
+    {% endif %}
   </div>
 {% endblock %}

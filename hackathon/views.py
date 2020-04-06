@@ -2,18 +2,36 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from main.models import Hackathon, Project, Profile
+from datetime import datetime
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def index(request, hackathon_id):
-    print(request.user.is_authenticated)
     hackathon = Hackathon.objects.get(id=hackathon_id)
+
+    # Checking to see if we should show themes now or now
+    show_themes = datetime.now().strftime("%d/%m/%Y %H:%M:%S") > hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S")
+
+    # Grabbing themes if hackathon has started or passed
+    themes = None
+    if show_themes:
+        themes = list(hackathon.themes.all())
+
+    # Grabbing awards
+    awards = list(hackathon.awards.all())
+
+    # Grabbing resource links
+    resource_links = list(hackathon.resources.all())
+
     return render(request, "hackathon/index.html", context={
-        "hackathon": hackathon
+        "hackathon": hackathon,
+        "themes": themes,
+        "awards": awards,
+        "resource_links": resource_links
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def competitors(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -26,7 +44,7 @@ def competitors(request, hackathon_id):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def schedule(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -39,7 +57,7 @@ def schedule(request, hackathon_id):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def submissions(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -52,7 +70,7 @@ def submissions(request, hackathon_id):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def submit(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -84,13 +102,24 @@ def submit(request, hackathon_id):
             project.project_image = request.FILES["extra-files"]
 
         # Setting creator to currently signed in user
-        print(request.user)
         project.creator = Profile.objects.get(user=request.user)
 
         project.save()
 
         return HttpResponseRedirect(f"/{hackathon.id}/submissions/")
 
+
+    # Define user_already_submitted -> only allow submission from user if the user hasn't submitted yet
+    user_already_submitted = False
+    for submission in list(hackathon.submissions.all()):
+        if Profile.objects.get(user=request.user) == submission.creator:  # This submission was submitted by current user
+            user_already_submitted = True
+
+    # Define allow_submit -> only allow submissions if right now is between hackathon start and end datetime
+    allow_submit = hackathon.end_datetime.strftime("%d/%m/%Y %H:%M:%S") > datetime.now().strftime("%d/%m/%Y %H:%M:%S") > hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S")
+
     return render(request, "hackathon/submit.html", context={
-        "hackathon": hackathon
+        "hackathon": hackathon,
+        "allow_submit": allow_submit,
+        "user_already_submitted": user_already_submitted
     })

@@ -1,4 +1,30 @@
 {% extends 'hackathon/base.html' %}
 {% block body %}
   <h1>Index</h1>
+  <h3>Themes</h3>
+  {% if themes %}
+    <ul>
+      {% for theme in themes %}
+        <li>{{ theme }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <small>Themes will show up when the hackathon starts!</small>
+  {% endif %}
+
+  <h3>Resources</h3>
+  <ul>
+    {% for link in resource_links %}
+      <li>
+        <a href="{{ link.link }}">{{ link.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h3>Awards</h3>
+  <ul>
+    {% for award in awards %}
+      <li>{{ award.title }}</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
