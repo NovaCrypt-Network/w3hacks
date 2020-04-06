@@ -1,14 +1,60 @@
 {% extends 'landingpage/base.html' %}
 {% block body %}
+<style>
+  input, textarea {
+    color: black;
+  }
+</style>
   <div class="container">
     <h1>Register</h1>
-    <form method="post">
+    <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
-      <input type="text" name="name" placeholder="name">
-      <input type="email" name="email" placeholder="Email">
-      <input type="text" name="username" placeholder="Username">
-      <input type="password" name="password" placeholder="Password">
-      <input type="submit" value="Login">
+
+      <!-- Django User fields -->
+      <div>
+        <label>First Name: *</label><br>
+        <input type="text" name="first-name" placeholder="First Name" required>
+      </div>
+      <div>
+        <label>Last Name: *</label><br>
+        <input type="text" name="last-name" placeholder="Last Name" required>
+      </div>
+      <div>
+        <label>Email: *</label><br>
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+      <div>
+        <label>Username: *</label><br>
+        <input type="text" name="username" placeholder="Username" required>
+      </div>
+      <div>
+        <label>Password: *</label><br>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+
+      <!-- Custom profile fields -->
+      <div>
+        <label>Biography:</label><br>
+        <textarea name="biography" rows="5" placeholder="Biography"></textarea>
+      </div>
+      <div>
+        <label>Birthday:</label><br>
+        <input type="date" name="birthday" placeholder="Birthday" max="{{today}}">
+      </div>
+      <div>
+        <label>Education:</label><br>
+        <input type="text" name="education" placeholder="Education">
+      </div>
+      <div>
+        <label>Profile Picture:</label><br>
+        <input type="file" name="profile-picture" placeholder="Profile Picture" accept="image/png, image/jpeg, image/jpg">
+      </div>
+      <div>
+        <label>Skills: (separate each by comma no space)</label><br>
+        <input type="text" name="skills" placeholder="Skills">
+      </div>
+
+      <input type="submit" value="Register">
     </form>
   </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 from django.db import models
+from datetime import date
 
 # ALL IDs MUST BE 8 CHARACTERS LONG
 
@@ -26,7 +27,7 @@ class Profile(models.Model):
     past_hackathons = models.ManyToManyField("Hackathon", blank=True) # OPTIONAL: A lit of past w3Hacks hackathons that the user has competed in
     projects = models.ManyToManyField("Project", blank=True) # List of projects created by user
     achievements = models.ManyToManyField("Achievement", blank=True) # List of achievements achieved by the user
-    joined_date = models.DateField() # The date when the user joined w3Hacks
+    joined_date = models.DateField(default=date.today()) # The date when the user joined w3Hacks
     credits = models.IntegerField(default=0) # The number of credits the user has
     overall_ranking_points = models.IntegerField(default=0) # The overall ranking points the user has
     project_ranking_points = models.IntegerField(default=0) # The project ranking points the user has
