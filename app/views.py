@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 
 # @login_required(login_url="http://www.w3hacks.com/login")
 def index(request):
-    return render(request, "app/index.html")
+    return render(request, "app/index.html", context={"auth": request.user.is_authenticated})
 
 
 # @login_required(login_url="http://www.w3hacks.com/login")

@@ -15,25 +15,19 @@
   <div class="container">
     <table>
       <tr>
-        <th>Company</th>
-        <th>Contact</th>
-        <th>Country</th>
+        <th>Event Title</th>
+        <th>Event Description</th>
+        <th>Link</th>
       </tr>
-      <tr>
-        <td>Alfreds Futterkiste</td>
-        <td>Maria Anders</td>
-        <td>Germany</td>
-      </tr>
-      <tr>
-        <td>Centro comercial Moctezuma</td>
-        <td>Francisco Chang</td>
-        <td>Mexico</td>
-      </tr>
-      <tr>
-        <td>Ernst Handel</td>
-        <td>Roland Mendel</td>
-        <td>Austria</td>
-      </tr>
+      {% for event in schedule_events %}
+        <tr>
+          <td>{{ event.title }}</td>
+          <td>{{ event.description}}</td>
+          <td>
+            <a href="{{ event.event_link.link }}">{{ event.event_link.title }}</a>
+          </td>
+        </tr>
+      {% endfor %}
     </table>
   </div>
 {% endblock %}

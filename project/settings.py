@@ -29,7 +29,7 @@ DEBUG = True
 # DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-
+SESSION_COOKIE_DOMAIN=".localhost:8000"
 
 # Application definition
 

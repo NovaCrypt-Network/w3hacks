@@ -12,29 +12,26 @@
   <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="/">w3Hacks Hackathon</a>
+        <a class="navbar-brand" href="/{{ hackathon.id }}/">w3Hacks Hackathon</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-target">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-target">
           <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
+                  <a class="nav-link" href="/{{ hackathon.id }}/">Home</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/schedule/">Schedule</a>
+                  <a class="nav-link" href="/{{ hackathon.id }}/schedule/">Schedule</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/competitors/">Competitors</a>
+                  <a class="nav-link" href="/{{ hackathon.id }}/competitors/">Competitors</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/submissions/">Submissions</a>
+                  <a class="nav-link" href="/{{ hackathon.id }}/submissions/">Submissions</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/submit/">Submit</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="http://community.w3hacks.com/profile">User</a>
+                  <a class="nav-link" href="/{{ hackathon.id }}/submit/">Submit</a>
               </li>
           </ul>
         </div>

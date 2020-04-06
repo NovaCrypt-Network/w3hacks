@@ -14,42 +14,12 @@
   </div>
   <div class="container">
     <div class="competitors">
-      <div class="competitor">
-        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-        <h5>Competitor</h5>
-      </div>
-      <div class="competitor">
-        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-        <h5>Competitor</h5>
-      </div>
-      <div class="competitor">
-        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-        <h5>Competitor</h5>
-      </div>
-      <div class="competitor">
-        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-        <h5>Competitor</h5>
-      </div>
-      <div class="competitor">
-        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-        <h5>Competitor</h5>
-      </div>
-      <div class="competitor">
-        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-        <h5>Competitor</h5>
-      </div>
-      <div class="competitor">
-        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-        <h5>Competitor</h5>
-      </div>
-      <div class="competitor">
-        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-        <h5>Competitor</h5>
-      </div>
-      <div class="competitor">
-        <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-        <h5>Competitor</h5>
-      </div>
+      {% for competitor in competitors %}
+        <div class="competitor">
+          <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+          <h5>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</h5>
+        </div>
+      {% endfor %}
     </div>
   </div>
 {% endblock %}
