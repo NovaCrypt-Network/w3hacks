@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.conf import settings
+from django.views.static import serve
 from . import views
 
 urlpatterns = [
@@ -9,3 +11,9 @@ urlpatterns = [
     url("^(?P<hackathon_id>[^/]+)/submissions/$", views.submissions, name="submissions"),
     url("^(?P<hackathon_id>[^/]+)/submit/$", views.submit, name="submit"),
 ]
+
+urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]

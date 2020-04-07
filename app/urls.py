@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.conf import settings
+from django.views.static import serve
 from . import views
 
 urlpatterns = [
@@ -23,3 +25,9 @@ urlpatterns = [
     url("^edit-profile/(?P<user_id>[^/]+)/$", views.edit_profile, name="edit_profile"),
     url("^logout/$", views.user_logout, name="logout"),
 ]
+
+urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]
