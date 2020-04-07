@@ -66,6 +66,64 @@
             <input type="text" name="location" placeholder="Location">
           {% endif %}
         </div>
+
+        <!-- Social Links -->
+        <div class="form-input-group">
+          <label>GitHub:</label><br>
+          {% if profile.github_profile %}
+            <input type="url" name="github-profile" value="{{ profile.github_profile }}" placeholder="GitHub Profile Link">
+          {% else %}
+            <input type="url" name="github-profile" placeholder="GitHub Profile Link">
+          {% endif %}
+        </div>
+        <div class="form-input-group">
+          <label>LinkedIn:</label><br>
+          {% if profile.linkedin_profile %}
+            <input type="url" name="linkedin-profile" value="{{ profile.linkedin_profile }}" placeholder="LinkedIn Profile Link">
+          {% else %}
+            <input type="url" name="linkedin-profile" placeholder="LinkedIn Profile Link">
+          {% endif %}
+        </div>
+        <div class="form-input-group">
+          <label>Twitter:</label><br>
+          {% if profile.twitter_profile %}
+            <input type="url" name="twitter-profile" value="{{ profile.twitter_profile }}" placeholder="Twitter Profile Link">
+          {% else %}
+            <input type="url" name="twitter-profile" placeholder="Twitter Profile Link">
+          {% endif %}
+        </div>
+        <div class="form-input-group">
+          <label>Instagram:</label><br>
+          {% if profile.instagram_profile %}
+            <input type="url" name="instagram-profile" value="{{ profile.instagram_profile }}" placeholder="Instagram Profile Link">
+          {% else %}
+            <input type="url" name="instagram-profile" placeholder="Instagram Profile Link">
+          {% endif %}
+        </div>
+        <div class="form-input-group">
+          <label>Facebook:</label><br>
+          {% if profile.facebook_profile %}
+            <input type="url" name="facebook-profile" value="{{ profile.facebook_profile }}" placeholder="Facebook Profile Link">
+          {% else %}
+            <input type="url" name="facebook-profile" placeholder="Facebook Profile Link">
+          {% endif %}
+        </div>
+        <div class="form-input-group">
+          <label>Twitch:</label><br>
+          {% if profile.twitch_profile %}
+            <input type="url" name="twitch-profile" value="{{ profile.twitch_profile }}" placeholder="Twitch Profile Link">
+          {% else %}
+            <input type="url" name="twitch-profile" placeholder="Twitch Profile Link">
+          {% endif %}
+        </div>
+        <div class="form-input-group">
+          <label>Personal Website:</label><br>
+          {% if profile.personal_website %}
+            <input type="url" name="personal-website" value="{{ profile.personal_website }}" placeholder="Personal Website">
+          {% else %}
+            <input type="url" name="personal-website" placeholder="Personal Website">
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
