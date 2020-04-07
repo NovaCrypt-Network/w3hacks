@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'app',
     'hackathon',
     'links',
-    'staff',
     'main',
 ]
 
