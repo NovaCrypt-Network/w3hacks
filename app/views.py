@@ -182,6 +182,10 @@ def edit_profile(request, user_id):
         profile.twitch_profile = twitch_profile
         profile.personal_website = personal_website
 
+        # Checking if they provided picture
+        if 'profile-picture' in request.FILES:
+            profile.profile_picture = request.FILES['profile-picture']
+
         user.save()
         profile.save()
 
