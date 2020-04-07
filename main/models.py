@@ -27,7 +27,15 @@ class Profile(models.Model):
     location = models.CharField(max_length=50, null=True, blank=True) # OPTIONAL: The area around where the user lives
     profile_picture = models.ImageField(null=True, blank=True) # OPTIONAL: A profile picture for the user
     skills = ArrayField(models.CharField(max_length=50), null=True, blank=True) # OPTIONAL: An array of the user's skills
-    social_links = models.ManyToManyField("SocialLink", blank=True) # OPTIONAL: A list of social links for the user
+
+    github_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's GitHub profile
+    linkedin_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's LinkedIn profile
+    twitter_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Twitter profile
+    instagram_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Instagram profile 
+    facebook_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Facebook profile
+    twitch_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Twitch profile
+    personal_website = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's personal website
+
     past_hackathons = models.ManyToManyField("Hackathon", blank=True) # OPTIONAL: A lit of past w3Hacks hackathons that the user has competed in
     projects = models.ManyToManyField("Project", blank=True) # List of projects created by user
     achievements = models.ManyToManyField("Achievement", blank=True) # List of achievements achieved by the user
@@ -76,16 +84,6 @@ class Hackathon(models.Model):
 
     def __str__(self):
         return self.title
-
-
-
-# For user profile social links
-class SocialLink(models.Model):
-    social_network = models.CharField(max_length=50) # Name of social network
-    link = models.CharField(max_length=200) # Actual social link URL
-
-    def __str__(self):
-        return self.social_network
 
 
 ####################
