@@ -25,13 +25,12 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 SECRET_KEY = 'vpa^(dpvtoxhs(pf&!by_j395a^ea8h6pnim0%hz&9&^_9i($$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
-if not DEBUG:
-    SESSION_COOKIE_DOMAIN = ".w3hacks.com"
+SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 # Application definition
 

@@ -5,6 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import FileSystemStorage
 from main import models
 from datetime import date, datetime
+import random
+import string
 
 
 def generate_id():
@@ -60,7 +62,6 @@ def register(request):
         biography = request.POST.get("biography")
         birthday = request.POST.get("birthday")
         education = request.POST.get("education")
-        profile_picture = request.FILES["profile-picture"]
         skills = request.POST.get("skills").split(",")
 
         # Social Links
@@ -74,7 +75,6 @@ def register(request):
 
         # Creating the user
         user = User(
-            id=generate_id(),
             first_name=first_name,
             last_name=last_name,
             email=email,
