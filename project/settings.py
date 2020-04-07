@@ -29,7 +29,9 @@ DEBUG = True
 # DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-SESSION_COOKIE_DOMAIN = ".w3hacks.com"
+
+if not DEBUG:
+    SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 # Application definition
 
@@ -108,20 +110,7 @@ DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+AUTH_PASSWORD_VALIDATORS = []
 
 
 # Internationalization
