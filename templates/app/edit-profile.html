@@ -18,41 +18,53 @@
         </div>
         <div class="form-input-group">
           <label>Email *:</label><br>
-          <input type="email" name="email" value="{{ profile.user.email }}" placeholder="Email">
+          <input type="email" name="email" value="{{ profile.user.email }}" placeholder="Email" required>
         </div>
         <div class="form-input-group">
-          <label>Username:</label><br>
-          <input type="text" name="username" value="Username" placeholder="Username">
+          <label>Username *:</label><br>
+          <input type="text" name="username" value="{{ profile.user.username }}" placeholder="Username" required>
         </div>
         <div class="form-input-group">
           <label>Birthday:</label><br>
-          <input type="date" name="birthday" placeholder="Birthday">
+          <input type="date" name="birthday" value="{{ profile.birthday }}" placeholder="Birthday">
         </div>
         <div class="form-input-group">
           <label>Profile Picture:</label><br>
-          <input type="file" name="profile-picture" placeholder="Profile Picture">
+          <input type="file" name="profile-picture" value="{{ profile.profile_picture }}" placeholder="Profile Picture">
         </div>
         <div class="form-input-group">
           <label>Skills:</label><br>
-          <input type="text" name="skills" placeholder="Skills">
+          {% if profile.skills %}
+            <input type="text" name="skills" value="{{ profile.skills }}" placeholder="Skills">
+          {% else %}
+            <input type="text" name="skills" placeholder="Skills">
+          {% endif %}
         </div>
       </div>
       <div class="col">
         <div class="form-input-group">
           <label>Biography:</label><br>
-          <textarea type="text" name="biography" placeholder="Biography">Biography</textarea>
+          {% if profile.biography %}
+            <textarea type="text" name="biography" placeholder="Biography">{{ profile.biography }}</textarea>
+          {% else %}
+            <textarea type="text" name="biography" placeholder="Biography"></textarea>
+          {% endif %}
         </div>
         <div class="form-input-group">
           <label>Education:</label><br>
-          <input type="text" name="education" value="Education" placeholder="Education">
+          {% if profile.education %}
+            <input type="text" name="education" value="{{ profile.education }}" placeholder="Education">
+          {% else %}
+            <input type="text" name="education" placeholder="Education">
+          {% endif %}
         </div>
         <div class="form-input-group">
           <label>Location:</label><br>
-          <input type="text" name="location" value="Location" placeholder="Location">
-        </div>
-        <div class="form-input-group">
-          <label>Social Links:</label><br>
-          <input type="text" name="social-links" placeholder="Social Links">
+          {% if profile.location %}
+            <input type="text" name="location" value="{{ profile.location }}" placeholder="Location">
+          {% else %}
+            <input type="text" name="location" placeholder="Location">
+          {% endif %}
         </div>
       </div>
     </div>
