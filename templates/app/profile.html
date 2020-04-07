@@ -8,84 +8,73 @@
     <div class="profile-header">
       <div class="profile-header-main">
         <div class="profile-header-main-left">
-          <img class="profile-picture" src="{% static 'img/user.png' %}" alt="">
+          {% if profile.profile_picture %}
+            <img class="profile-picture" src="{{ profile.profile_picture.url }}" alt="">
+          {% else %}
+            <img class="profile-picture" src="{% static 'img/user.png' %}" alt="">
+          {% endif %}
         </div>
         <div class="profile-header-main-right">
-          <h1>Profile</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
+          <h1>{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
+          <p>{{ profile.biography }}</p>
           <a class="btn btn-primary" href="#">Edit Profile</a>
         </div>
       </div>
       <div class="profile-header-right">
-        <h5>Education</h5>
-        <h5>Education</h5>
-        <h5>Education</h5>
-        <h5>Education</h5>
-        <h5>Education</h5>
-        <h5>Education</h5>
-        <h5>Education</h5>
-        <h5>Education</h5>
-        <h5>Education</h5>
+        {% if profile.education %}
+          <small>Education</small><br>
+          <p>{{ profile.education }}</p>
+        {% endif %}
+
+        {% if profile.birthday %}
+          <small>Birthday</small><br>
+          <p>{{ profile.birthday }}</p>
+        {% endif %}
+
+        {% if profile.skills %}
+          <small>Skills</small><br>
+          <p>{{ profile.skills }}</p>
+        {% endif %}
+
+        <small>Joined</small>
+        <p>{{ profile.joined_date }}</p>
       </div>
     </div>
     <div class="profile-body">
       <div class="achievement-container">
         <h1>Achievements</h1>
         <div class="achievements">
-          <div class="achievement">
-            <img src="{% static 'img/achievement.png' %}" alt="">
-            <div>
-              <h5>Achievement</h5>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
-          </div>
-          <div class="achievement">
-            <img src="{% static 'img/achievement.png' %}" alt="">
-            <div>
-              <h5>Achievement</h5>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
-          </div>
-          <div class="achievement">
-            <img src="{% static 'img/achievement.png' %}" alt="">
-            <div>
-              <h5>Achievement</h5>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
-          </div>
+          {% if achievements %}
+            {% for achievement in achievements %}
+              <div class="achievement">
+                <img src="{% static 'img/achievement.png' %}" alt="">
+                <div>
+                  <h5>{{ achievement.title }}</h5>
+                  <p>{{ achievement.description }}</p>
+                  <small>{{ achievement.credits }} credits</small>
+                  <small>{{ achievement.ranking_points }} ranking points</small>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <small>No achievements completed yet!</small>
+          {% endif %}
         </div>
       </div>
       <div class="hackathon-container">
         <h1>Hackathons</h1>
         <div class="hackathons">
-          <ul>
-            <li>
-              <a href="#">Hackathon</a>
-            </li>
-            <li>
-              <a href="#">Hackathon</a>
-            </li>
-            <li>
-              <a href="#">Hackathon</a>
-            </li>
-            <li>
-              <a href="#">Hackathon</a>
-            </li>
-            <li>
-              <a href="#">Hackathon</a>
-            </li>
-            <li>
-              <a href="#">Hackathon</a>
-            </li>
-          </ul>
+          {% if hackathons %}
+            <ul>
+              {% for hackathon in hackathons %}
+                <li>
+                  <a href="http://hackathon.w3hacks.com/{{ hackathon.id }}/">{{ hackathon.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <small>No hackathons competed in yet!</small>
+          {% endif %}
         </div>
       </div>
     </div>

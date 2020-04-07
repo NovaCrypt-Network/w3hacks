@@ -29,8 +29,7 @@ DEBUG = True
 # DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-# SESSION_COOKIE_DOMAIN=".w3hacks.com"
-SESSION_COOKIE_DOMAIN=".localhost:8000"
+SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 # Application definition
 
@@ -150,9 +149,8 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media Files
-MEDIA_DIR = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
-MEDIA_ROOT = MEDIA_DIR
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Email Information

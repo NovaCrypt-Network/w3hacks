@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="navbar-target">
           <ul class="navbar-nav ml-auto" style="display: flex; align-items: center;">
               <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
+                  <a class="nav-link" href="/">{{ request.user }}</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="/achievements/">Achievements</a>
@@ -51,7 +51,7 @@
                     <img style="width: 35px" src="{% static 'img/user.png' %}" alt="">
                   </a>
                   <div class="dropdown-menu">
-                    <a href="/profile/" class="dropdown-item">View Profile</a>
+                    <a href="/profile/{{ request.user.id }}" class="dropdown-item">View Profile</a>
                     <a href="/edit-profile/" class="dropdown-item">Edit Profile</a>
                     <div class="dropdown-divider"></div>
                     <a href="/logout/" class="dropdown-item">Log out</a>

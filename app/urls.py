@@ -19,7 +19,7 @@ urlpatterns = [
     url("^future-hackathons/$", views.future_hackathons, name="future_hackathons"),
 
     # Profile views
-    url("^profile/$", views.profile, name="profile"),
+    url("^profile/(?P<user_id>[^/]+)/$", views.profile, name="profile"),
     url("^edit-profile/$", views.edit_profile, name="edit_profile"),
     url("^logout/$", views.user_logout, name="logout"),
 ]
