@@ -7,54 +7,24 @@
   <div class="container">
     <h1>Future Hackathons</h1>
     <div class="hackathons">
-      <div class="hackathon">
-        <h3>Hackathon</h3>
-        <div>
-          <strong>Type:</strong> High School
-        </div>
-        <div>
-          <strong>Date:</strong> April 1, 2020 - April 3, 2020
-        </div>
-        <p>
-          <strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex e
-        </p>
-      </div>
-      <div class="hackathon">
-        <h3>Hackathon</h3>
-        <div>
-          <strong>Type:</strong> High School
-        </div>
-        <div>
-          <strong>Date:</strong> April 1, 2020 - April 3, 2020
-        </div>
-        <p>
-          <strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex e
-        </p>
-      </div>
-      <div class="hackathon">
-        <h3>Hackathon</h3>
-        <div>
-          <strong>Type:</strong> High School
-        </div>
-        <div>
-          <strong>Date:</strong> April 1, 2020 - April 3, 2020
-        </div>
-        Description:  <p>
-           strongLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex e
-        </p>
-      </div>
-      <div class="hackathon">
-        <h3>Hackathon</h3>
-        <div>
-          <strong>Type:</strong> High School
-        </div>
-        <div>
-          <strong>Date:</strong> April 1, 2020 - April 3, 2020
-        </div>
-        Description:  <p>
-           strongLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex e
-        </p>
-      </div>
+      {% if future_hackathons %}
+        {% for hackathon in future_hackathons %}
+          <div class="hackathon">
+            <h3>{{ hackathon.title }}</h3>
+            <div>
+              <strong>Type:</strong> {{ hackathon.type }}
+            </div>
+            <div>
+              <strong>Date:</strong> {{ hackathon.start_date }} - {{ hackathon.end_date }}
+            </div>
+            <p>
+              <strong>Description:</strong> {{ hackathon.description }}
+            </p>
+          </div>
+        {% endfor %}
+      {% else %}
+        <small>No future hackathons yet!</small>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

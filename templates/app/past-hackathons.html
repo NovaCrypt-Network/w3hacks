@@ -7,114 +7,24 @@
   <div class="container">
     <h1>Past Hackathons</h1>
     <div class="hackathons">
-      <div class="hackathon">
-        <h3>Hackathon</h3>
-        <div>
-          <strong>Type:</strong> High School
-        </div>
-        <div>
-          <strong>Date:</strong> April 1, 2020 - April 3, 2020
-        </div>
-        <div class="hackathon-statistics">
-          <div class="winners">
-            <h5>Winners</h5>
-            <ol>
-              <li>Winner 1</li>
-              <li>Winner 2</li>
-              <li>Winner 3</li>
-            </ol>
+      {% if past_hackathons %}
+        {% for hackathon in past_hackathons %}
+          <div class="hackathon">
+            <h3>{{ hackathon.title }}</h3>
+            <div>
+              <strong>Type:</strong> {{ hackathon.type }}
+            </div>
+            <div>
+              <strong>Date:</strong> {{ hackathon.start_date }} - {{ hackathon.end_date }}
+            </div>
+            <p>
+              <strong>Description:</strong> {{ hackathon.description }}
+            </p>
           </div>
-          <div class="themes">
-            <h5>Themes</h5>
-            <ul>
-              <li>Theme 1</li>
-              <li>Theme 2</li>
-              <li>Theme 3</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="hackathon">
-        <h3>Hackathon</h3>
-        <div>
-          <strong>Type:</strong> High School
-        </div>
-        <div>
-          <strong>Date:</strong> April 1, 2020 - April 3, 2020
-        </div>
-        <div class="hackathon-statistics">
-          <div class="winners">
-            <h5>Winners</h5>
-            <ol>
-              <li>Winner 1</li>
-              <li>Winner 2</li>
-              <li>Winner 3</li>
-            </ol>
-          </div>
-          <div class="themes">
-            <h5>Themes</h5>
-            <ul>
-              <li>Theme 1</li>
-              <li>Theme 2</li>
-              <li>Theme 3</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="hackathon">
-        <h3>Hackathon</h3>
-        <div>
-          <strong>Type:</strong> High School
-        </div>
-        <div>
-          <strong>Date:</strong> April 1, 2020 - April 3, 2020
-        </div>
-        <div class="hackathon-statistics">
-          <div class="winners">
-            <h5>Winners</h5>
-            <ol>
-              <li>Winner 1</li>
-              <li>Winner 2</li>
-              <li>Winner 3</li>
-            </ol>
-          </div>
-          <div class="themes">
-            <h5>Themes</h5>
-            <ul>
-              <li>Theme 1</li>
-              <li>Theme 2</li>
-              <li>Theme 3</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="hackathon">
-        <h3>Hackathon</h3>
-        <div>
-          <strong>Type:</strong> High School
-        </div>
-        <div>
-          <strong>Date:</strong> April 1, 2020 - April 3, 2020
-        </div>
-        <div class="hackathon-statistics">
-          <div class="winners">
-            <h5>Winners</h5>
-            <ol>
-              <li>Winner 1</li>
-              <li>Winner 2</li>
-              <li>Winner 3</li>
-            </ol>
-          </div>
-          <div class="themes">
-            <h5>Themes</h5>
-            <ul>
-              <li>Theme 1</li>
-              <li>Theme 2</li>
-              <li>Theme 3</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        {% endfor %}
+      {% else %}
+        <small>No past hackathons yet!</small>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

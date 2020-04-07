@@ -9,39 +9,41 @@
     <div>
       <h3>My Achievements</h3>
       <div class="achievements">
-        <small>No achievements achieved yet!</small>
+        {% if my_achievements %}
+          {% for achievement in my_achievements %}
+            <div class="achievement">
+              <img src="{% static 'img/achievement.png' %}" alt="">
+              <div>
+                <h5>{{ achievement.title }}</h5>
+                <p>
+                  {{ achievement.description }}
+                </p>
+                <small>{{ achievement.credits }} credits</small>
+                <small>{{ achievement.ranking_points }} ranking points</small>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <small>No achievements achieved yet!</small>
+        {% endif %}
       </div>
     </div>
     <div>
       <h3>Possible Achievements</h3>
       <div class="achievements">
-        <div class="achievement">
-          <img src="{% static 'img/achievement.png' %}" alt="">
-          <div>
-            <h5>Achievement</h5>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+        {% for achievement in achievements %}
+          <div class="achievement">
+            <img src="{% static 'img/achievement.png' %}" alt="">
+            <div>
+              <h5>{{ achievement.name }}</h5>
+              <p>
+                {{ achievement.requirement }}
+              </p>
+              <small>{{ achievement.credits }} credits</small>
+              <small>{{ achievement.ranking_points }} ranking points</small>
+            </div>
           </div>
-        </div>
-        <div class="achievement">
-          <img src="{% static 'img/achievement.png' %}" alt="">
-          <div>
-            <h5>Achievement</h5>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-        </div>
-        <div class="achievement">
-          <img src="{% static 'img/achievement.png' %}" alt="">
-          <div>
-            <h5>Achievement</h5>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>

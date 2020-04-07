@@ -31,7 +31,7 @@ class Profile(models.Model):
     github_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's GitHub profile
     linkedin_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's LinkedIn profile
     twitter_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Twitter profile
-    instagram_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Instagram profile 
+    instagram_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Instagram profile
     facebook_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Facebook profile
     twitch_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Twitch profile
     personal_website = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's personal website
@@ -52,7 +52,7 @@ class Profile(models.Model):
 
 # Project model for each project
 class Project(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id()) # Unique ID for project
+    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for project
     title = models.CharField(max_length=50) # Name of the project
     description = models.TextField(max_length=500) # Description of the project
     project_image = models.ImageField(null=True, blank=True) # OPTIONAL: Image of the project
@@ -70,9 +70,10 @@ class Project(models.Model):
 
 # Model for each hackathon, current or not
 class Hackathon(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id()) # ID for display
+    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # ID for display
     title = models.CharField(max_length=50) # Name of the hackathon
     description = models.TextField(max_length=300) # Description of the hackathon
+    # type = models.CharField(max_length=50, default="High School") # Type of hackathon
     themes = models.ManyToManyField("Theme", blank=True) # List of themes for hackathon
     awards = models.ManyToManyField("Award", blank=True) # List of awards for hackathon
     start_datetime = models.DateTimeField() # Starting datetime for the hackathon

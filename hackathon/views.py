@@ -5,6 +5,31 @@ from main.models import Hackathon, Project, Profile
 from datetime import datetime
 
 
+def index_redirect(request):
+    all_hackathons = Hackathon.objects.all()
+
+    # First, look for a current hackathon
+    current_hackathon = None
+    for hackathon in all_hackathons:
+        if hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S") < datetime.now().strftime("%d/%m/%Y %H:%M:%S") < hackathon.end_datetime.strftime("%d/%m/%Y %H:%M:%S"):
+            current_hackathon = hackathon
+            break
+
+    if not current_hackathon:
+        # Look for upcoming hackathon
+        for hackathon in all_hackathons:
+            # If current_hackathon is already initalized
+            if current_hackathon:
+                # Check if the hackathon starts after right now, but before the current hackathon making it earlier
+                if datetime.now().strftime("%d/%m/%Y %H:%M:%S") < hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S") < current_hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S"):
+                    current_hackathon = hackathon
+            else:
+                # Check if the hackathon starts after right now
+                if datetime.now().strftime("%d/%m/%Y %H:%M:%S") < hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S"):
+                    current_hackathon = hackathon
+
+    return HttpResponseRedirect("/" + current_hackathon.id)
+
 # @login_required(login_url="http://www.w3hacks.com/login")
 def index(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)

@@ -6,125 +6,130 @@
 {% block body %}
   <div class="container">
     <h1>Edit Profile</h1>
-    <div class="row">
-      <div class="col">
-        <div class="form-input-group">
-          <label>First Name *:</label><br>
-          <input type="text" name="first-name" value="{{ profile.user.first_name }}" placeholder="First Name" required>
-        </div>
-        <div class="form-input-group">
-          <label>Last Name *:</label><br>
-          <input type="text" name="last-name" value="{{ profile.user.last_name }}" placeholder="Last Name" required>
-        </div>
-        <div class="form-input-group">
-          <label>Email *:</label><br>
-          <input type="email" name="email" value="{{ profile.user.email }}" placeholder="Email" required>
-        </div>
-        <div class="form-input-group">
-          <label>Username *:</label><br>
-          <input type="text" name="username" value="{{ profile.user.username }}" placeholder="Username" required>
-        </div>
-        <div class="form-input-group">
-          <label>Birthday:</label><br>
-          <input type="date" name="birthday" value="{{ profile.birthday }}" placeholder="Birthday">
-        </div>
-        <div class="form-input-group">
-          <label>Profile Picture:</label><br>
-          <input type="file" name="profile-picture" value="{{ profile.profile_picture }}" placeholder="Profile Picture">
-        </div>
-        <div class="form-input-group">
-          <label>Skills:</label><br>
-          {% if profile.skills %}
-            <input type="text" name="skills" value="{{ profile.skills }}" placeholder="Skills">
-          {% else %}
-            <input type="text" name="skills" placeholder="Skills">
-          {% endif %}
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-input-group">
-          <label>Biography:</label><br>
-          {% if profile.biography %}
-            <textarea type="text" name="biography" placeholder="Biography">{{ profile.biography }}</textarea>
-          {% else %}
-            <textarea type="text" name="biography" placeholder="Biography"></textarea>
-          {% endif %}
-        </div>
-        <div class="form-input-group">
-          <label>Education:</label><br>
-          {% if profile.education %}
-            <input type="text" name="education" value="{{ profile.education }}" placeholder="Education">
-          {% else %}
-            <input type="text" name="education" placeholder="Education">
-          {% endif %}
-        </div>
-        <div class="form-input-group">
-          <label>Location:</label><br>
-          {% if profile.location %}
-            <input type="text" name="location" value="{{ profile.location }}" placeholder="Location">
-          {% else %}
-            <input type="text" name="location" placeholder="Location">
-          {% endif %}
-        </div>
+    <form enctype="multipart/form-data" method="post">
+      {% csrf_token %}
 
-        <!-- Social Links -->
-        <div class="form-input-group">
-          <label>GitHub:</label><br>
-          {% if profile.github_profile %}
-            <input type="url" name="github-profile" value="{{ profile.github_profile }}" placeholder="GitHub Profile Link">
-          {% else %}
-            <input type="url" name="github-profile" placeholder="GitHub Profile Link">
-          {% endif %}
+      <div class="row">
+        <div class="col">
+          <div class="form-input-group">
+            <label>First Name *:</label><br>
+            <input type="text" name="first-name" value="{{ profile.user.first_name }}" placeholder="First Name" required>
+          </div>
+          <div class="form-input-group">
+            <label>Last Name *:</label><br>
+            <input type="text" name="last-name" value="{{ profile.user.last_name }}" placeholder="Last Name" required>
+          </div>
+          <div class="form-input-group">
+            <label>Email *:</label><br>
+            <input type="email" name="email" value="{{ profile.user.email }}" placeholder="Email" required>
+          </div>
+          <div class="form-input-group">
+            <label>Username *:</label><br>
+            <input type="text" name="username" value="{{ profile.user.username }}" placeholder="Username" required>
+          </div>
+          <div class="form-input-group">
+            <label>Birthday:</label><br>
+            <input type="date" name="birthday" value="{{ profile.birthday }}" placeholder="Birthday">
+          </div>
+          <div class="form-input-group">
+            <label>Profile Picture:</label><br>
+            <input type="file" name="profile-picture" value="{{ profile.profile_picture }}" placeholder="Profile Picture">
+          </div>
+          <div class="form-input-group">
+            <label>Skills:</label><br>
+            {% if profile.skills %}
+              <input type="text" name="skills" value="{{ profile.skills }}" placeholder="Skills">
+            {% else %}
+              <input type="text" name="skills" placeholder="Skills">
+            {% endif %}
+          </div>
         </div>
-        <div class="form-input-group">
-          <label>LinkedIn:</label><br>
-          {% if profile.linkedin_profile %}
-            <input type="url" name="linkedin-profile" value="{{ profile.linkedin_profile }}" placeholder="LinkedIn Profile Link">
-          {% else %}
-            <input type="url" name="linkedin-profile" placeholder="LinkedIn Profile Link">
-          {% endif %}
-        </div>
-        <div class="form-input-group">
-          <label>Twitter:</label><br>
-          {% if profile.twitter_profile %}
-            <input type="url" name="twitter-profile" value="{{ profile.twitter_profile }}" placeholder="Twitter Profile Link">
-          {% else %}
-            <input type="url" name="twitter-profile" placeholder="Twitter Profile Link">
-          {% endif %}
-        </div>
-        <div class="form-input-group">
-          <label>Instagram:</label><br>
-          {% if profile.instagram_profile %}
-            <input type="url" name="instagram-profile" value="{{ profile.instagram_profile }}" placeholder="Instagram Profile Link">
-          {% else %}
-            <input type="url" name="instagram-profile" placeholder="Instagram Profile Link">
-          {% endif %}
-        </div>
-        <div class="form-input-group">
-          <label>Facebook:</label><br>
-          {% if profile.facebook_profile %}
-            <input type="url" name="facebook-profile" value="{{ profile.facebook_profile }}" placeholder="Facebook Profile Link">
-          {% else %}
-            <input type="url" name="facebook-profile" placeholder="Facebook Profile Link">
-          {% endif %}
-        </div>
-        <div class="form-input-group">
-          <label>Twitch:</label><br>
-          {% if profile.twitch_profile %}
-            <input type="url" name="twitch-profile" value="{{ profile.twitch_profile }}" placeholder="Twitch Profile Link">
-          {% else %}
-            <input type="url" name="twitch-profile" placeholder="Twitch Profile Link">
-          {% endif %}
-        </div>
-        <div class="form-input-group">
-          <label>Personal Website:</label><br>
-          {% if profile.personal_website %}
-            <input type="url" name="personal-website" value="{{ profile.personal_website }}" placeholder="Personal Website">
-          {% else %}
-            <input type="url" name="personal-website" placeholder="Personal Website">
-          {% endif %}
+        <div class="col">
+          <div class="form-input-group">
+            <label>Biography:</label><br>
+            {% if profile.biography %}
+              <textarea type="text" name="biography" placeholder="Biography">{{ profile.biography }}</textarea>
+            {% else %}
+              <textarea type="text" name="biography" placeholder="Biography"></textarea>
+            {% endif %}
+          </div>
+          <div class="form-input-group">
+            <label>Education:</label><br>
+            {% if profile.education %}
+              <input type="text" name="education" value="{{ profile.education }}" placeholder="Education">
+            {% else %}
+              <input type="text" name="education" placeholder="Education">
+            {% endif %}
+          </div>
+          <div class="form-input-group">
+            <label>Location:</label><br>
+            {% if profile.location %}
+              <input type="text" name="location" value="{{ profile.location }}" placeholder="Location">
+            {% else %}
+              <input type="text" name="location" placeholder="Location">
+            {% endif %}
+          </div>
+
+          <!-- Social Links -->
+          <div class="form-input-group">
+            <label>GitHub:</label><br>
+            {% if profile.github_profile %}
+              <input type="url" name="github-profile" value="{{ profile.github_profile }}" placeholder="GitHub Profile Link">
+            {% else %}
+              <input type="url" name="github-profile" placeholder="GitHub Profile Link">
+            {% endif %}
+          </div>
+          <div class="form-input-group">
+            <label>LinkedIn:</label><br>
+            {% if profile.linkedin_profile %}
+              <input type="url" name="linkedin-profile" value="{{ profile.linkedin_profile }}" placeholder="LinkedIn Profile Link">
+            {% else %}
+              <input type="url" name="linkedin-profile" placeholder="LinkedIn Profile Link">
+            {% endif %}
+          </div>
+          <div class="form-input-group">
+            <label>Twitter:</label><br>
+            {% if profile.twitter_profile %}
+              <input type="url" name="twitter-profile" value="{{ profile.twitter_profile }}" placeholder="Twitter Profile Link">
+            {% else %}
+              <input type="url" name="twitter-profile" placeholder="Twitter Profile Link">
+            {% endif %}
+          </div>
+          <div class="form-input-group">
+            <label>Instagram:</label><br>
+            {% if profile.instagram_profile %}
+              <input type="url" name="instagram-profile" value="{{ profile.instagram_profile }}" placeholder="Instagram Profile Link">
+            {% else %}
+              <input type="url" name="instagram-profile" placeholder="Instagram Profile Link">
+            {% endif %}
+          </div>
+          <div class="form-input-group">
+            <label>Facebook:</label><br>
+            {% if profile.facebook_profile %}
+              <input type="url" name="facebook-profile" value="{{ profile.facebook_profile }}" placeholder="Facebook Profile Link">
+            {% else %}
+              <input type="url" name="facebook-profile" placeholder="Facebook Profile Link">
+            {% endif %}
+          </div>
+          <div class="form-input-group">
+            <label>Twitch:</label><br>
+            {% if profile.twitch_profile %}
+              <input type="url" name="twitch-profile" value="{{ profile.twitch_profile }}" placeholder="Twitch Profile Link">
+            {% else %}
+              <input type="url" name="twitch-profile" placeholder="Twitch Profile Link">
+            {% endif %}
+          </div>
+          <div class="form-input-group">
+            <label>Personal Website:</label><br>
+            {% if profile.personal_website %}
+              <input type="url" name="personal-website" value="{{ profile.personal_website }}" placeholder="Personal Website">
+            {% else %}
+              <input type="url" name="personal-website" placeholder="Personal Website">
+            {% endif %}
+          </div>
         </div>
       </div>
-    </div>
+      <input type="submit" value="Update!">
+    </form>
   </div>
 {% endblock %}

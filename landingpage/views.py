@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import FileSystemStorage
 from main import models
-from datetime import date
+from datetime import date, datetime
 
 
 def generate_id():
@@ -63,6 +63,15 @@ def register(request):
         profile_picture = request.FILES["profile-picture"]
         skills = request.POST.get("skills").split(",")
 
+        # Social Links
+        github_profile = request.POST.get("github-profile")
+        linkedin_profile = request.POST.get("linkedin-profile")
+        twitter_profile = request.POST.get("twitter-profile")
+        instagram_profile = request.POST.get("instagram-profile")
+        facebook_profile = request.POST.get("facebook-profile")
+        twitch_profile = request.POST.get("twitch-profile")
+        personal_website = request.POST.get("personal-website")
+
         # Creating the user
         user = User(
             id=generate_id(),
@@ -78,7 +87,14 @@ def register(request):
             user=user,
             biography=biography,
             education=education,
-            skills=skills
+            skills=skills,
+            github_profile=github_profile,
+            linkedin_profile=linkedin_profile,
+            twitter_profile=twitter_profile,
+            instagram_profile=instagram_profile,
+            facebook_profile=facebook_profile,
+            twitch_profile=twitch_profile,
+            personal_website=personal_website
         )
 
         # To avoid 'Invalid Date Format' error for empty birthday
@@ -99,110 +115,6 @@ def register(request):
 
         return HttpResponseRedirect("http://app.w3hacks.com")
 
-    print(str(date.today()))
     return render(request, "landingpage/register.html", context={
         "today": str(date.today())
     })
-
-
-
-# FOR DEVELOPMENT ONLY
-# @login_required(login_url="http://www.w3hacks.com/login")
-def index(request):
-    return render(request, "app/index.html")
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-def achievements(request):
-    return render(request, "app/achievements.html")
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-def leaderboards(request):
-    return render(request, "app/leaderboards.html")
-
-
-# Activities views
-# @login_required(login_url="http://www.w3hacks.com/login")
-def activites(request):
-    return render(request, "app/activites.html")
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-def project_exercises(request):
-    return render(request, "app/project-exercises.html")
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-def quiz_exercises(request):
-    return render(request, "app/quiz-exercises.html")
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-def mini_exercises(request):
-    return render(request, "app/mini-exercises.html")
-
-
-# Hackathon views
-# @login_required(login_url="http://www.w3hacks.com/login")
-def hackathon(request):
-    return render(request, "app/hackathon.html")
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-def about_the_hackathon(request):
-    return render(request, "app/about-the-hackathon.html")
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-def past_hackathons(request):
-    return render(request, "app/past-hackathons.html")
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-def future_hackathons(request):
-    return render(request, "app/future-hackathons.html")
-
-
-# Profile views
-# @login_required(login_url="http://www.w3hacks.com/login")
-def profile(request, user_id):
-    # Getting current user
-    if User.objects.filter(id=user_id).exists():
-        user = User.objects.get(id=user_id)
-    else:
-        return HttpResponse("User does not exist.")
-
-    # Getting profile from current user
-    profile = models.Profile.objects.get(user=user)
-
-    return render(request, "app/profile.html", context={
-        "profile": profile
-    })
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-def edit_profile(request, user_id):
-    # Getting current user
-    if User.objects.filter(id=user_id).exists():
-        user = User.objects.get(id=user_id)
-    else:
-        return HttpResponse("User does not exist.")
-
-    # Getting profile from current user
-    profile = models.Profile.objects.get(user=user)
-
-    # Checking to see if current user is the one editing profile
-    if user == request.user:
-        pass
-    else:
-        return HttpResponse("You do not have permission to modify this profile.")
-
-    return render(request, "app/edit-profile.html", context={
-        "profile": profile
-    })
-
-
-def user_logout(request):
-    logout(request)
-    return HttpResponse("Logout")
