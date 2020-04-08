@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-# SESSION_COOKIE_DOMAIN = ".w3hacks.com"
+SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 # Application definition
 
@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = []
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'US/Pacific'
 
 USE_I18N = True
 
