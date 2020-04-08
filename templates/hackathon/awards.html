@@ -14,5 +14,10 @@
   </div>
   <div class="container">
     Awards
+    {% if show_winners %}
+      <h1>Show Winners!</h1>
+    {% else %}
+      <small>Winners have not been announced yet!</small>
+    {% endif %}
   </div>
 {% endblock %}

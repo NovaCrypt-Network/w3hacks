@@ -159,6 +159,9 @@ def submit(request, hackathon_id):
 def awards(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
+    show_winners = datetime.now().strftime("%d/%m/%Y %H:%M:%S") > hackathon.winners_announced.strftime("%d/%m/%Y %H:%M:%S")
+
     return render(request, "hackathon/awards.html", context={
-        "hackathon": hackathon
+        "hackathon": hackathon,
+        "show_winners": show_winners
     })
