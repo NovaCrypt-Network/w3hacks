@@ -1,7 +1,7 @@
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 from django.db import models
-from datetime import date
+from datetime import date, datetime
 import random
 import string
 
@@ -73,12 +73,14 @@ class Hackathon(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # ID for display
     title = models.CharField(max_length=50) # Name of the hackathon
     description = models.TextField(max_length=300) # Description of the hackathon
-    # type = models.CharField(max_length=50, default="High School") # Type of hackathon
-    themes = models.ManyToManyField("Theme", blank=True) # List of themes for hackathon
-    awards = models.ManyToManyField("Award", blank=True) # List of awards for hackathon
     start_datetime = models.DateTimeField() # Starting datetime for the hackathon
     end_datetime = models.DateTimeField() # Ending datetime for the hackathon
+    submissions_open_datetime = models.DateTimeField() # Opening datetime for the submissions
+    submissions_close_datetime = models.DateTimeField() # Closing datetime for the submissions
+    winners_announced = models.DateTimeField() # Datetime to announce winners
     schedule = models.ManyToManyField("ScheduleEvent", blank=True) # List of ScheduleEvents for hackathon
+    themes = models.ManyToManyField("Theme", blank=True) # List of themes for hackathon
+    awards = models.ManyToManyField("Award", blank=True) # List of awards for hackathon
     resources = models.ManyToManyField("ResourceLink", blank=True) # List of resource links for hackathon
     competitors = models.ManyToManyField("Profile", blank=True) # List of competitor profiles; can be empty in beginning
     submissions = models.ManyToManyField("Project", blank=True) # List of project submissions; can be empty in beginning
