@@ -9,53 +9,57 @@
     </div>
   </div>
   <div class="container">
-    {% if not allow_submit %}
-      <small>Submissions only open when hackathon is currently going on!</small>
-    {% elif user_already_submitted %}
-      <small>You can only submit a project once.</small>
+    {% if profile in competitors %}
+      {% if not allow_submit %}
+        <small>Submissions only open when hackathon is currently going on!</small>
+      {% elif user_already_submitted %}
+        <small>You can only submit a project once.</small>
+      {% else %}
+      <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col">
+            <div class="form-input-group">
+              <label>Project Name *:</label><br>
+              <input type="text" name="title" placeholder="Project Name" required>
+            </div>
+            <div class="form-input-group">
+              <label>Project Description *:</label><br>
+              <textarea name="description" rows="5" placeholder="Project Description" required></textarea>
+            </div>
+            <div class="form-input-group">
+              <label>Project Image:</label><br>
+              <input type="file" name="project-image" placeholder="Project Image" accept="image/png, image/jpeg, image/jpg">
+            </div>
+            <div class="form-input-group">
+              <label>Extra Files:</label><br>
+              <input type="file" multiple name="extra-files" placeholder="Extra Files">
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-input-group">
+              <label>Technologies Used: (separate by commas, no spaces)</label><br>
+              <input type="text" name="technologies-used" placeholder="Technologies Used">
+            </div>
+            <div class="form-input-group">
+              <label>GitHub Link:</label><br>
+              <input type="url" name="github-link" placeholder="GitHub Link">
+            </div>
+            <div class="form-input-group">
+              <label>Project Link:</label><br>
+              <input type="url" name="project-link" placeholder="Project Link">
+            </div>
+            <div class="form-input-group">
+              <label>Video Link:</label><br>
+              <input type="url" name="video-link" placeholder="Video Link">
+            </div>
+          </div>
+        </div>
+        <input type="submit" value="Submit">
+      </form>
+      {% endif %}
     {% else %}
-    <form enctype="multipart/form-data" method="post">
-      {% csrf_token %}
-      <div class="row">
-        <div class="col">
-          <div class="form-input-group">
-            <label>Project Name *:</label><br>
-            <input type="text" name="title" placeholder="Project Name" required>
-          </div>
-          <div class="form-input-group">
-            <label>Project Description *:</label><br>
-            <textarea name="description" rows="5" placeholder="Project Description" required></textarea>
-          </div>
-          <div class="form-input-group">
-            <label>Project Image:</label><br>
-            <input type="file" name="project-image" placeholder="Project Image" accept="image/png, image/jpeg, image/jpg">
-          </div>
-          <div class="form-input-group">
-            <label>Extra Files:</label><br>
-            <input type="file" multiple name="extra-files" placeholder="Extra Files">
-          </div>
-        </div>
-        <div class="col">
-          <div class="form-input-group">
-            <label>Technologies Used: (separate by commas, no spaces)</label><br>
-            <input type="text" name="technologies-used" placeholder="Technologies Used">
-          </div>
-          <div class="form-input-group">
-            <label>GitHub Link:</label><br>
-            <input type="url" name="github-link" placeholder="GitHub Link">
-          </div>
-          <div class="form-input-group">
-            <label>Project Link:</label><br>
-            <input type="url" name="project-link" placeholder="Project Link">
-          </div>
-          <div class="form-input-group">
-            <label>Video Link:</label><br>
-            <input type="url" name="video-link" placeholder="Video Link">
-          </div>
-        </div>
-      </div>
-      <input type="submit" value="Submit">
-    </form>
+      <small>Only competitors can submit projects.</small>
     {% endif %}
   </div>
 {% endblock %}

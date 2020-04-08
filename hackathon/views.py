@@ -141,12 +141,18 @@ def submit(request, hackathon_id):
             user_already_submitted = True
 
     # Define allow_submit -> only allow submissions if right now is between hackathon start and end datetime
-    allow_submit = hackathon.end_datetime.strftime("%d/%m/%Y %H:%M:%S") > datetime.now().strftime("%d/%m/%Y %H:%M:%S") > hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S")
+    allow_submit = hackathon.submissions_open_datetime.strftime("%d/%m/%Y %H:%M:%S") > datetime.now().strftime("%d/%m/%Y %H:%M:%S") > hackathon.submissions_close_datetime.strftime("%d/%m/%Y %H:%M:%S")
+
+    # Define profile and competitors
+    profile = Profile.objects.get(user=request.user)
+    competitors = list(hackathon.competitors.all())
 
     return render(request, "hackathon/submit.html", context={
         "hackathon": hackathon,
         "allow_submit": allow_submit,
-        "user_already_submitted": user_already_submitted
+        "user_already_submitted": user_already_submitted,
+        "profile": profile,
+        "competitors": competitors
     })
 
 
