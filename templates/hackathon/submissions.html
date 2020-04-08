@@ -13,19 +13,23 @@
     </div>
   </div>
   <div class="container">
-    <div class="submissions">
-      {% for submission in submissions %}
-        <div class="submission">
-          <h3>{{ submission.title }}</h3>
-          <div class="submission-btns">
-            <img class="submission-btn" src="{% static 'img/github.png' %}" alt="">
-            <img class="submission-btn" src="{% static 'img/out.png' %}" alt="">
+    {% if submissions %}
+      <div class="submissions">
+        {% for submission in submissions %}
+          <div class="submission">
+            <h3>{{ submission.title }}</h3>
+            <div class="submission-btns">
+              <img class="submission-btn" src="{% static 'img/github.png' %}" alt="">
+              <img class="submission-btn" src="{% static 'img/out.png' %}" alt="">
+            </div>
+            <p>
+              {{ submission.description }}
+            </p>
           </div>
-          <p>
-            {{ submission.description }}
-          </p>
-        </div>
-      {% endfor %}
-    </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <small>No submissions yet!</small>
+    {% endif %}
   </div>
 {% endblock %}

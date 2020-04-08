@@ -10,6 +10,7 @@ urlpatterns = [
     url("^(?P<hackathon_id>[^/]+)/schedule/$", views.schedule, name="schedule"),
     url("^(?P<hackathon_id>[^/]+)/submissions/$", views.submissions, name="submissions"),
     url("^(?P<hackathon_id>[^/]+)/submit/$", views.submit, name="submit"),
+    url("^(?P<hackathon_id>[^/]+)/awards/$", views.awards, name="awards"),
 ]
 
 urlpatterns += [

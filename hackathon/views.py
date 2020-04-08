@@ -148,3 +148,11 @@ def submit(request, hackathon_id):
         "allow_submit": allow_submit,
         "user_already_submitted": user_already_submitted
     })
+
+
+def awards(request, hackathon_id):
+    hackathon = Hackathon.objects.get(id=hackathon_id)
+
+    return render(request, "hackathon/awards.html", context={
+        "hackathon": hackathon
+    })

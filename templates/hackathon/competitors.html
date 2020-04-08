@@ -13,13 +13,17 @@
     </div>
   </div>
   <div class="container">
-    <div class="competitors">
-      {% for competitor in competitors %}
-        <div class="competitor">
-          <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
-          <h5>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</h5>
-        </div>
-      {% endfor %}
-    </div>
+    {% if competitors %}
+      <div class="competitors">
+        {% for competitor in competitors %}
+          <div class="competitor">
+            <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+            <h5>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</h5>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <small>No competitors yet!</small>
+    {% endif %}
   </div>
 {% endblock %}
