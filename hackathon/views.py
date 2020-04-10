@@ -114,14 +114,14 @@ def submissions(request, hackathon_id):
     if request.method == "POST":
         # Grab project
         project_id = request.GET.get("project_id")
+        project = Profile.objects.get(id=project_id)
 
         # If the creator of the project is equal to the one deleting it you can delete it
         if project.creator.user == request.user:
             # Delete the project
-            Profile.objects.get(id=project_id).delete()
+            hackathon.submissions.remove(project)
 
-            # Remove project from hackathon submissions
-            # hackathon.
+        project.delete()
 
 
     return render(request, "hackathon/submissions.html", context={
