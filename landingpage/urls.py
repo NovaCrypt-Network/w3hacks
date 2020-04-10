@@ -14,12 +14,12 @@ urlpatterns = [
     url("^register/$", views.register, name="register"),
 
 
-    url("^(?P<hackathon_id>[^/]+)/$", hackathonViews.index, name="index"),
-    url("^(?P<hackathon_id>[^/]+)/competitors/$", hackathonViews.competitors, name="competitors"),
-    url("^(?P<hackathon_id>[^/]+)/schedule/$", hackathonViews.schedule, name="schedule"),
-    url("^(?P<hackathon_id>[^/]+)/submissions/$", hackathonViews.submissions, name="submissions"),
-    url("^(?P<hackathon_id>[^/]+)/submit/$", hackathonViews.submit, name="submit"),
-    url("^(?P<hackathon_id>[^/]+)/awards/$", hackathonViews.awards, name="awards"),
+    # url("^(?P<hackathon_id>[^/]+)/$", hackathonViews.index, name="index"),
+    # url("^(?P<hackathon_id>[^/]+)/competitors/$", hackathonViews.competitors, name="competitors"),
+    # url("^(?P<hackathon_id>[^/]+)/schedule/$", hackathonViews.schedule, name="schedule"),
+    # url("^(?P<hackathon_id>[^/]+)/submissions/$", hackathonViews.submissions, name="submissions"),
+    # url("^(?P<hackathon_id>[^/]+)/submit/$", hackathonViews.submit, name="submit"),
+    # url("^(?P<hackathon_id>[^/]+)/awards/$", hackathonViews.awards, name="awards"),
 ]
 
 urlpatterns += [
