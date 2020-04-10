@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from main.models import Hackathon, Project, Profile
 from datetime import datetime
+from pytz import timezone
 
 
 def index_redirect(request):
@@ -11,7 +12,7 @@ def index_redirect(request):
     # First, look for a current hackathon
     current_hackathon = None
     for hackathon in all_hackathons:
-        if hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S") < datetime.now().strftime("%d/%m/%Y %H:%M:%S") < hackathon.end_datetime.strftime("%d/%m/%Y %H:%M:%S"):
+        if hackathon.start_datetime.strftime("%m/%d/%Y %H:%M:%S") < datetime.now().strftime("%m/%d/%Y %H:%M:%S") < hackathon.end_datetime.strftime("%m/%d/%Y %H:%M:%S"):
             current_hackathon = hackathon
             break
 
@@ -21,11 +22,11 @@ def index_redirect(request):
             # If current_hackathon is already initalized
             if current_hackathon:
                 # Check if the hackathon starts after right now, but before the current hackathon making it earlier
-                if datetime.now().strftime("%d/%m/%Y %H:%M:%S") < hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S") < current_hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S"):
+                if datetime.now().strftime("%m/%d/%Y %H:%M:%S") < hackathon.start_datetime.strftime("%m/%d/%Y %H:%M:%S") < current_hackathon.start_datetime.strftime("%m/%d/%Y %H:%M:%S"):
                     current_hackathon = hackathon
             else:
                 # Check if the hackathon starts after right now
-                if datetime.now().strftime("%d/%m/%Y %H:%M:%S") < hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S"):
+                if datetime.now().strftime("%m/%d/%Y %H:%M:%S") < hackathon.start_datetime.strftime("%m/%d/%Y %H:%M:%S"):
                     current_hackathon = hackathon
 
     return HttpResponseRedirect("/" + current_hackathon.id)
@@ -34,13 +35,8 @@ def index_redirect(request):
 def index(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
-    # Checking to see if we should show themes now or now
-    show_themes = datetime.now().strftime("%d/%m/%Y %H:%M:%S") > hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S")
-
-    # Grabbing themes if hackathon has started or passed
-    themes = None
-    if show_themes:
-        themes = list(hackathon.themes.all())
+    # Grabbing themes
+    themes = list(hackathon.themes.all())
 
     # Grabbing awards
     awards = list(hackathon.awards.all())
@@ -48,11 +44,27 @@ def index(request, hackathon_id):
     # Grabbing resource links
     resource_links = list(hackathon.resources.all())
 
+    # Grabbing user's profile
+    profile = Profile.objects.get(user=request.user)
+
+    # Checking if user is a competitor
+    user_is_competitor = profile in list(hackathon.competitors.all())
+
+    # Getting hackathon starting datetime and converting from UTC to PST
+    start_datetime = hackathon.start_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S")
+
+    # Variable to show if the hackathon started already
+    hackathon_already_started = datetime.now().strftime("%m/%d/%Y %H:%M:%S") > start_datetime
+
     return render(request, "hackathon/index.html", context={
         "hackathon": hackathon,
         "themes": themes,
         "awards": awards,
-        "resource_links": resource_links
+        "resource_links": resource_links,
+        "profile": profile,
+        "user_is_competitor": user_is_competitor,
+        "hackathon_already_started": hackathon_already_started,
+        "start_datetime": start_datetime
     })
 
 
@@ -141,7 +153,7 @@ def submit(request, hackathon_id):
             user_already_submitted = True
 
     # Define allow_submit -> only allow submissions if right now is between hackathon start and end datetime
-    allow_submit = hackathon.submissions_open_datetime.strftime("%d/%m/%Y %H:%M:%S") > datetime.now().strftime("%d/%m/%Y %H:%M:%S") > hackathon.submissions_close_datetime.strftime("%d/%m/%Y %H:%M:%S")
+    allow_submit = hackathon.submissions_open_datetime.strftime("%m/%d/%Y %H:%M:%S") > datetime.now().strftime("%m/%d/%Y %H:%M:%S") > hackathon.submissions_close_datetime.strftime("%m/%d/%Y %H:%M:%S")
 
     # Define profile and competitors
     profile = Profile.objects.get(user=request.user)
@@ -159,7 +171,7 @@ def submit(request, hackathon_id):
 def awards(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
-    show_winners = datetime.now().strftime("%d/%m/%Y %H:%M:%S") > hackathon.winners_announced.strftime("%d/%m/%Y %H:%M:%S")
+    show_winners = datetime.now().strftime("%m/%d/%Y %H:%M:%S") > hackathon.winners_announced.strftime("%m/%d/%Y %H:%M:%S")
 
     return render(request, "hackathon/awards.html", context={
         "hackathon": hackathon,

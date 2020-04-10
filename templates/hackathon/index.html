@@ -2,24 +2,36 @@
 {% block body %}
   <h1>Index</h1>
   <h3>Themes</h3>
-  {% if themes %}
-    <ul>
-      {% for theme in themes %}
-        <li>{{ theme }}</li>
-      {% endfor %}
-    </ul>
+  {% if hackathon_already_started %}
+    {% if themes %}
+      <ul>
+        {% for theme in themes %}
+          <li>{{ theme }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <small>No themes provided!</small>
+    {% endif %}
   {% else %}
-    <small>Themes will show up when the hackathon starts!</small>
+    <small>Themes will show up once the hackathon starts!</small>
   {% endif %}
 
   <h3>Resources</h3>
-  <ul>
-    {% for link in resource_links %}
-      <li>
-        <a href="{{ link.link }}">{{ link.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+  {% if hackathon_already_started %}
+    {% if resource_links %}
+      <ul>
+        {% for link in resource_links %}
+          <li>
+            <a href="{{ link.link }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <small>No resources provided!</small>
+    {% endif %}
+  {% else %}
+    <small>Resources will show up once the hackathon starts!</small>
+  {% endif %}
 
   <h3>Awards</h3>
   <ul>
@@ -27,4 +39,50 @@
       <li>{{ award.title }}</li>
     {% endfor %}
   </ul>
+
+  <div>
+    {% if not hackathon_already_started %}
+      <strong>Hackathon starts in:</strong> <span id="pageTimer"></span>
+    {% else %}
+      <strong>Hackathon already started!</strong>
+    {% endif %}
+  </div>
+
+  {% if not hackathon_already_started %}
+    {% if not user_is_competitor %}
+      <button id="joinButton" onclick="addCompetitor('{{ hackathon.id }}', '{{ profile.id }}')">Join the Hackathon!</button>
+    {% else %}
+      <small>You already joined this hackathon!</small>
+    {% endif %}
+  {% else %}
+    <small>You can't join the hackathon once it started.</small>
+  {% endif %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js" charset="utf-8"></script>
+  <script>
+    function addCompetitor(hackathon_id, user_id) {
+      fetch("http://api.localhost:8000/add-competitor-to-hackathon/?hackathon_id=" + hackathon_id + "&user_id=" + user_id, {
+        method: "GET"
+      });
+
+      // Make button looked like joined
+      var button = document.getElementById("joinButton");
+      button.disabled = true;
+      button.innerHTML = "Joined!";
+    }
+
+    // Countdown timer
+    setInterval(function() {
+      var timerId =
+        countdown(
+          Date.parse("{{ start_datetime }}"),
+          function(ts) {
+            document.getElementById('pageTimer').innerHTML = ts.toHTML("strong");
+          },
+          countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
+
+      // later on this timer may be stopped
+      window.clearInterval(timerId);
+    }, 1000);
+  </script>
 {% endblock %}
