@@ -12,7 +12,7 @@ def index_redirect(request):
     # First, look for a current hackathon
     current_hackathon = None
     for hackathon in all_hackathons:
-        if hackathon.start_datetime.strftime("%m/%d/%Y %H:%M:%S") < datetime.now().strftime("%m/%d/%Y %H:%M:%S") < hackathon.end_datetime.strftime("%m/%d/%Y %H:%M:%S"):
+        if hackathon.start_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") < datetime.now().astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") < hackathon.end_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S"):
             current_hackathon = hackathon
             break
 
@@ -22,11 +22,11 @@ def index_redirect(request):
             # If current_hackathon is already initalized
             if current_hackathon:
                 # Check if the hackathon starts after right now, but before the current hackathon making it earlier
-                if datetime.now().strftime("%m/%d/%Y %H:%M:%S") < hackathon.start_datetime.strftime("%m/%d/%Y %H:%M:%S") < current_hackathon.start_datetime.strftime("%m/%d/%Y %H:%M:%S"):
+                if datetime.now().astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") < hackathon.start_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") < current_hackathon.start_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S"):
                     current_hackathon = hackathon
             else:
                 # Check if the hackathon starts after right now
-                if datetime.now().strftime("%m/%d/%Y %H:%M:%S") < hackathon.start_datetime.strftime("%m/%d/%Y %H:%M:%S"):
+                if datetime.now().astimezone(timezone('US/Pacific')).astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") < hackathon.start_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S"):
                     current_hackathon = hackathon
 
     return HttpResponseRedirect("/" + current_hackathon.id)
@@ -54,7 +54,7 @@ def index(request, hackathon_id):
     start_datetime = hackathon.start_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S")
 
     # Variable to show if the hackathon started already
-    hackathon_already_started = datetime.now().strftime("%m/%d/%Y %H:%M:%S") > start_datetime
+    hackathon_already_started = datetime.now().astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") > start_datetime
 
     return render(request, "hackathon/index.html", context={
         "hackathon": hackathon,
@@ -101,9 +101,16 @@ def submissions(request, hackathon_id):
     # Grabbing submissions
     submissions = list(hackathon.submissions.all())
 
+    # Grabbing current user's submission from submissions if it exists
+    user_submission = None
+    for submission in submissions:
+        if submission.creator == Profile.objects.get(user=request.user):
+            user_submission = submission
+
     return render(request, "hackathon/submissions.html", context={
         "hackathon": hackathon,
-        "submissions": submissions
+        "submissions": submissions,
+        "user_submission": user_submission
     })
 
 
@@ -152,8 +159,13 @@ def submit(request, hackathon_id):
         if Profile.objects.get(user=request.user) == submission.creator:  # This submission was submitted by current user
             user_already_submitted = True
 
-    # Define allow_submit -> only allow submissions if right now is between hackathon start and end datetime
-    allow_submit = hackathon.submissions_open_datetime.strftime("%m/%d/%Y %H:%M:%S") > datetime.now().strftime("%m/%d/%Y %H:%M:%S") > hackathon.submissions_close_datetime.strftime("%m/%d/%Y %H:%M:%S")
+    # Define too_early and too_late -> defines if the user is too early or too late to submit
+    too_early = hackathon.submissions_open_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") > datetime.now().astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S")
+    too_late = hackathon.submissions_close_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") < datetime.now().astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S")
+
+    # Getting opening and closing submissions datetimes
+    submissions_open_datetime = hackathon.submissions_open_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S")
+    submissions_close_datetime = hackathon.submissions_close_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S")
 
     # Define profile and competitors
     profile = Profile.objects.get(user=request.user)
@@ -161,17 +173,20 @@ def submit(request, hackathon_id):
 
     return render(request, "hackathon/submit.html", context={
         "hackathon": hackathon,
-        "allow_submit": allow_submit,
+        "too_early": too_early,
+        "too_late": too_late,
         "user_already_submitted": user_already_submitted,
         "profile": profile,
-        "competitors": competitors
+        "competitors": competitors,
+        "submissions_open_datetime": submissions_open_datetime,
+        "submissions_close_datetime": submissions_close_datetime
     })
 
 
 def awards(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
-    show_winners = datetime.now().strftime("%m/%d/%Y %H:%M:%S") > hackathon.winners_announced.strftime("%m/%d/%Y %H:%M:%S")
+    show_winners = datetime.now().astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") > hackathon.winners_announced.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S")
 
     return render(request, "hackathon/awards.html", context={
         "hackathon": hackathon,

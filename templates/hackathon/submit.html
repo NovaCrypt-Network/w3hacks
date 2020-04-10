@@ -10,8 +10,10 @@
   </div>
   <div class="container">
     {% if profile in competitors %}
-      {% if not allow_submit %}
-        <small>Submissions only open when hackathon is currently going on!</small>
+      {% if too_early %}
+        <small>Submissions open in: <span id="pageTimer"></span> @ {{ submissions_open_datetime }}</small>
+      {% elif too_late %}
+        <small>Submissions closed on <strong>{{ submissions_close_datetime }}</strong></small>
       {% elif user_already_submitted %}
         <small>You can only submit a project once.</small>
       {% else %}
@@ -62,4 +64,21 @@
       <small>Only competitors can submit projects.</small>
     {% endif %}
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js" charset="utf-8"></script>
+  <script>
+    // Countdown timer
+    setInterval(function() {
+      var timerId =
+        countdown(
+          Date.parse("{{ submissions_open_datetime }}"),
+          function(ts) {
+            document.getElementById('pageTimer').innerHTML = ts.toHTML("strong");
+          },
+          countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
+
+      // later on this timer may be stopped
+      window.clearInterval(timerId);
+    }, 1000);
+  </script>
 {% endblock %}
