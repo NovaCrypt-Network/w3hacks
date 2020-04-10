@@ -14,16 +14,21 @@
   </div>
   <div class="container">
     {% if user_submission %}
-      <h3>My Submission</h3>
-      <div class="submission">
-        <h3>{{ user_submission.title }}</h3>
-        <div class="submission-btns">
-          <img class="submission-btn" src="{% static 'img/github.png' %}" alt="">
-          <img class="submission-btn" src="{% static 'img/out.png' %}" alt="">
+      <div class="user-submission">
+        <h3>My Submission</h3>
+        <div class="submissions">
+          <div class="submission">
+            <h3>{{ user_submission.title }}</h3>
+            <div class="submission-btns">
+              <img class="submission-btn" src="{% static 'img/github.png' %}" alt="">
+              <img class="submission-btn" src="{% static 'img/out.png' %}" alt="">
+              <button onclick="deleteUserSubmission()">&times;</button>
+            </div>
+            <p>
+              {{ user_submission.description }}
+            </p>
+          </div>
         </div>
-        <p>
-          {{ user_submission.description }}
-        </p>
       </div>
     {% endif %}
 
@@ -44,7 +49,26 @@
         {% endfor %}
       </div>
     {% else %}
-      <small>No submissions yet!</small>
+      <small>No other submissions yet!</small>
     {% endif %}
   </div>
+
+  <script>
+    function deleteUserSubmission() {
+      alertify.confirm("Are you sure you want to delete your submission?",
+        function(){
+          // Send off alert
+          alertify.success('Your submission has successfully been deleted.');
+
+          // Hide the submission
+          document.querySelector(".user-submission").style.display = "none";
+
+          // Delete the submission asynchronously
+          fetch("/{{ hackathon.id }}/submissions/?project_id={{ user_submission.id }}", {
+            method: "GET"
+          });
+        }
+      );
+    }
+  </script>
 {% endblock %}

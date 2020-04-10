@@ -103,9 +103,26 @@ def submissions(request, hackathon_id):
 
     # Grabbing current user's submission from submissions if it exists
     user_submission = None
-    for submission in submissions:
+    for i in range(len(submissions)):
+        submission = submissions[i]
         if submission.creator == Profile.objects.get(user=request.user):
-            user_submission = submission
+            user_submission = submission # Setting user_submission to the user's submission
+            submissions.pop(i) # Removing user's submission from the other submissions
+            break
+
+
+    if request.method == "POST":
+        # Grab project
+        project_id = request.GET.get("project_id")
+
+        # If the creator of the project is equal to the one deleting it you can delete it
+        if project.creator.user == request.user:
+            # Delete the project
+            Profile.objects.get(id=project_id).delete()
+
+            # Remove project from hackathon submissions
+            # hackathon.
+
 
     return render(request, "hackathon/submissions.html", context={
         "hackathon": hackathon,
@@ -149,6 +166,10 @@ def submit(request, hackathon_id):
         project.creator = Profile.objects.get(user=request.user)
 
         project.save()
+
+        # Adding project to submissions
+        hackathon.submissions.add(project)
+        hackathon.save()
 
         return HttpResponseRedirect(f"/{hackathon.id}/submissions/")
 
