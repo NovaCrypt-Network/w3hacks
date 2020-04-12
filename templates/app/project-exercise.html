@@ -3,5 +3,10 @@
 {% block body %}
   <div class="container">
     <h1>Project Exercise: {{ exercise.name }}</h1>
+    <form enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+      <input type="url" name="github-link" placeholder="GitHub Link">
+      <input type="submit" value="Submit project">
+    </form>
   </div>
 {% endblock %}

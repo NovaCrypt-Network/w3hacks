@@ -76,7 +76,15 @@ def project_exercises(request):
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def project_exercise(request):
-    project_exercise = models.ProjectExercise(id=request.GET.get("id"))
+    if request.method == "POST":
+        github_link = request.POST.get("github-link")
+        print(github_link)
+
+    project_id = request.GET.get("id")
+    if project_id:
+        project_exercise = models.ProjectExercise.objects.get(id=project_id)
+    else:
+        return HttpResponse("You must provide a project ID.")
 
     return render(request, "app/project-exercise.html", context={
         "exercise": project_exercise
