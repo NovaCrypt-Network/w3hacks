@@ -53,7 +53,7 @@ def project_exercises(request):
     topics = models.Topic.objects.all()
     project_exercises = models.ProjectExercise.objects.all()
     topic_object = None
-    
+
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
 
@@ -71,6 +71,15 @@ def project_exercises(request):
         "topics": topics,
         "exercises": project_exercises,
         "topic": topic_object
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
+def project_exercise(request):
+    project_exercise = models.ProjectExercise(id=request.GET.get("id"))
+
+    return render(request, "app/project-exercise.html", context={
+        "exercise": project_exercise
     })
 
 

@@ -7,9 +7,11 @@
       {% if exercises %}
         <div class="exercises">
           {% for exercise in exercises %}
-          <div class="exercise">
-            <h3>{{ exercise.name }}</h3>
-          </div>
+            <a href="exercise/?id={{ exercise.id }}">
+              <div class="exercise">
+                <h3>{{ exercise.name }}</h3>
+              </div>
+            </a>
           {% endfor %}
         </div>
       {% else %}
@@ -20,7 +22,7 @@
       {% if topics %}
         <div class="topics">
           {% for topic in topics %}
-            <a href="/exercises/project-exercises/?topic={{ topic.searchable_name }}">
+            <a href="?topic={{ topic.searchable_name }}">
               <div class="topic">
                 <img src="{{ topic.image.url }}" alt="">
                 <h3>{{ topic.name }}</h3>

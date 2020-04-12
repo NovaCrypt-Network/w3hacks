@@ -29,6 +29,7 @@ urlpatterns = [
     # Activities URL routes
     url("^exercises/$", appViews.exercises, name="exercises"),
     url("^exercises/project-exercises/$", appViews.project_exercises, name="project_exercises"),
+    url("^exercises/project-exercises/exercise/$", appViews.project_exercise, name="project_exercise"),
     url("^exercises/quiz-exercises/$", appViews.quiz_exercises, name="quiz_exercises"),
     url("^exercises/mini-exercises/$", appViews.mini_exercises, name="mini_exercises"),
 
