@@ -6,6 +6,7 @@ from datetime import datetime
 from pytz import timezone
 
 
+@login_required(login_url="http://www.w3hacks.com/login")
 def index_redirect(request):
     all_hackathons = Hackathon.objects.all()
 
@@ -31,7 +32,7 @@ def index_redirect(request):
 
     return HttpResponseRedirect("/" + current_hackathon.id)
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def index(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -68,7 +69,7 @@ def index(request, hackathon_id):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def competitors(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -81,7 +82,7 @@ def competitors(request, hackathon_id):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def schedule(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -94,7 +95,7 @@ def schedule(request, hackathon_id):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def submissions(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -131,7 +132,7 @@ def submissions(request, hackathon_id):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def submit(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 

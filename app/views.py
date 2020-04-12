@@ -7,12 +7,12 @@ from django.contrib.auth import authenticate, login
 from main import models
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def index(request):
     return render(request, "app/index.html")
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def achievements(request):
     achievements = models.Achievement.objects.all()
 
@@ -24,7 +24,7 @@ def achievements(request):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def leaderboards(request):
     all_profiles = models.Profile.objects.all()
 
@@ -42,38 +42,38 @@ def leaderboards(request):
 
 
 # Activities views
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def activites(request):
     return render(request, "app/activites.html")
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def project_exercises(request):
     return render(request, "app/project-exercises.html")
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def quiz_exercises(request):
     return render(request, "app/quiz-exercises.html")
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def mini_exercises(request):
     return render(request, "app/mini-exercises.html")
 
 
 # Hackathon views
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def hackathon(request):
     return render(request, "app/hackathon.html")
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def about_the_hackathon(request):
     return render(request, "app/about-the-hackathon.html")
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def past_hackathons(request):
     all_hackathons = models.Hackathon.objects.all()
 
@@ -88,7 +88,7 @@ def past_hackathons(request):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def future_hackathons(request):
     all_hackathons = models.Hackathon.objects.all()
 
@@ -104,7 +104,7 @@ def future_hackathons(request):
 
 
 # Profile views
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def profile(request, user_id):
     # Getting current user
     if User.objects.filter(id=user_id).exists():
@@ -120,7 +120,7 @@ def profile(request, user_id):
     })
 
 
-# @login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="http://www.w3hacks.com/login")
 def edit_profile(request, user_id):
     # Getting current user
     if User.objects.filter(id=user_id).exists():
