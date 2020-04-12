@@ -50,7 +50,28 @@ def exercises(request):
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def project_exercises(request):
-    return render(request, "app/project-exercises.html")
+    topics = models.Topic.objects.all()
+    project_exercises = models.ProjectExercise.objects.all()
+    topic_object = None
+    
+    if request.GET.get("topic"):
+        topic = request.GET.get("topic")
+
+        # Iterating through project exercises to find ones that are in the topic
+        iterable_project_exercises = project_exercises
+        project_exercises = []
+        for project_exercise in iterable_project_exercises:
+            if project_exercise.topic.searchable_name == topic:
+                project_exercises.append(project_exercise)
+
+        # Topic object to pass into template
+        topic_object = models.Topic.objects.get(searchable_name=topic)
+
+    return render(request, "app/project-exercises.html", context={
+        "topics": topics,
+        "exercises": project_exercises,
+        "topic": topic_object
+    })
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
