@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'app/exercises.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="container">
+    <h1>Exercises</h1>
+    <div class="exercises">
+      <a href="/project-exercises/">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Project Exercises</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="/quiz-exercises">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Quiz Exercises</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="/mini-exercises">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Mini Exercises</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+{% endblock %}

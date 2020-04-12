@@ -118,11 +118,20 @@ class Theme(models.Model):
 ## EXERCISE MODELS ##
 #####################
 
+class Topic(models.Model):
+    name = models.CharField(max_length=50) # Name of the topic
+    searchable_name = models.CharField(max_length=50) # Name of the topic that will be added into the url extension OR query parameter
+    image = models.ImageField() # Image for the topic
+
+    def __str__(self):
+        return self.name
+
+
 class ProjectExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for project exercises
     name = models.CharField(max_length=50) # Name of the project
     description = models.TextField() # Description of the project
-    topic = models.CharField(max_length=50) # The topic, programming language, or framework the project is based on
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise 
     difficulty = models.CharField(max_length=10) # The difficulty of the exercise (easy, medium, hard)
     prerequisites = ArrayField(models.CharField(max_length=50)) # List of string prerequisites needed for this project
     resources = models.ManyToManyField("ResourceLink") # Resources for this project

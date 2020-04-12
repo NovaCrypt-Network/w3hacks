@@ -1,34 +1,34 @@
-.activities {
+.exercises {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 50px;
 }
 
-.activity {
+.exercise {
   border-radius: 5px;
   background-color: blue;
   transition: all .3s;
 }
 
-.activity * {
+.exercise * {
   color: white;
 }
 
-.activity:hover {
+.exercise:hover {
   transform: rotate(5deg);
 }
 
-.activity-img img {
+.exercise-img img {
   width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.activity-body {
+.exercise-body {
   padding: 10px;
 }
 
-.activity-body p {
+.exercise-body p {
   line-height: 130%;
   font-size: 15px;
 }
