@@ -48,7 +48,11 @@
               </li>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                    <img style="width: 35px" src="{% static 'img/user.png' %}" alt="">
+                    {% if request.user.profile.profile_picture %}
+                      <img style="width: 35px" src="{{ profile.profile_picture.url }}" alt="">
+                    {% else %}
+                      <img style="width: 35px" src="{% static 'img/user.png' %}" alt="">
+                    {% endif %}
                   </a>
                   <div class="dropdown-menu">
                     <a href="/profile/{{ request.user.id }}" class="dropdown-item">View Profile</a>
