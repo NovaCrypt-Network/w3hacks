@@ -51,11 +51,15 @@ def index(request, hackathon_id):
     # Checking if user is a competitor
     user_is_competitor = profile in list(hackathon.competitors.all())
 
-    # Getting hackathon starting datetime and converting from UTC to PST
+    # Getting hackathon starting and ending datetime and converting from UTC to PST
     start_datetime = hackathon.start_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S")
+    end_datetime = hackathon.end_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S")
 
     # Variable to show if the hackathon started already
     hackathon_already_started = datetime.now().astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") > start_datetime
+
+    # Variable to show if the hackathon ended already
+    hackathon_already_ended = datetime.now().astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") > end_datetime
 
     return render(request, "hackathon/index.html", context={
         "hackathon": hackathon,
@@ -65,6 +69,7 @@ def index(request, hackathon_id):
         "profile": profile,
         "user_is_competitor": user_is_competitor,
         "hackathon_already_started": hackathon_already_started,
+        "hackathon_already_ended": hackathon_already_ended,
         "start_datetime": start_datetime
     })
 

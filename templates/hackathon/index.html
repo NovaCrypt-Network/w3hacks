@@ -40,22 +40,26 @@
     {% endfor %}
   </ul>
 
-  <div>
+  {% if not hackathon_already_ended %}
+    <div>
+      {% if not hackathon_already_started %}
+        <strong>Hackathon starts in:</strong> <span id="pageTimer"></span>
+      {% else %}
+        <strong>Hackathon already started!</strong>
+      {% endif %}
+    </div>
+    
     {% if not hackathon_already_started %}
-      <strong>Hackathon starts in:</strong> <span id="pageTimer"></span>
+      {% if not user_is_competitor %}
+        <button id="joinButton" onclick="addCompetitor('{{ hackathon.id }}', '{{ profile.id }}')">Join the Hackathon!</button>
+      {% else %}
+        <small>You already joined this hackathon!</small>
+      {% endif %}
     {% else %}
-      <strong>Hackathon already started!</strong>
-    {% endif %}
-  </div>
-
-  {% if not hackathon_already_started %}
-    {% if not user_is_competitor %}
-      <button id="joinButton" onclick="addCompetitor('{{ hackathon.id }}', '{{ profile.id }}')">Join the Hackathon!</button>
-    {% else %}
-      <small>You already joined this hackathon!</small>
+      <small>Hackathon already started!</small>
     {% endif %}
   {% else %}
-    <small>You can't join the hackathon once it started.</small>
+    <small>Hackathon already ended!</small>
   {% endif %}
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js" charset="utf-8"></script>
