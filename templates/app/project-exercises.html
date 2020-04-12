@@ -1,5 +1,24 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block body %}
-  <h1>Project Exercises</h1>
+  <div class="container">
+    <h1>Project Exercises</h1>
+    <div class="topics">
+      {% for topic in topics %}
+        <a href="/exercises/project-exercises/?topic={{ topic.searchable_name }}">
+          <div class="topic">
+            <img src="{{ topic.image }}" alt="">
+            <h3>{{ topic.name }}</h3>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    <div class="exercises">
+      {% for exercise in exercises %}
+      <div class="exercise">
+        <h3>{{ exercise.name }}</h3>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

@@ -28,9 +28,9 @@ urlpatterns = [
 
     # Activities URL routes
     url("^exercises/$", appViews.exercises, name="exercises"),
-    url("^project-exercises/$", appViews.project_exercises, name="project_exercises"),
-    url("^quiz-exercises/$", appViews.quiz_exercises, name="quiz_exercises"),
-    url("^mini-exercises/$", appViews.mini_exercises, name="mini_exercises"),
+    url("^exercises/project-exercises/$", appViews.project_exercises, name="project_exercises"),
+    url("^exercises/quiz-exercises/$", appViews.quiz_exercises, name="quiz_exercises"),
+    url("^exercises/mini-exercises/$", appViews.mini_exercises, name="mini_exercises"),
 
     # Hackathon views
     url("^hackathon/$", appViews.hackathon, name="hackathon"),
