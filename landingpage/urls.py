@@ -31,7 +31,9 @@ urlpatterns = [
     url("^exercises/project-exercises/$", appViews.project_exercises, name="project_exercises"),
     url("^exercises/project-exercises/exercise/$", appViews.project_exercise, name="project_exercise"),
     url("^exercises/quiz-exercises/$", appViews.quiz_exercises, name="quiz_exercises"),
+    url("^exercises/quiz-exercises/exercise/$", appViews.quiz_exercise, name="quiz_exercise"),
     url("^exercises/mini-exercises/$", appViews.mini_exercises, name="mini_exercises"),
+    url("^exercises/mini-exercises/exercise/$", appViews.mini_exercise, name="mini_exercise"),
 
     # Hackathon views
     url("^hackathon/$", appViews.hackathon, name="hackathon"),

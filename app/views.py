@@ -83,7 +83,10 @@ def project_exercise(request):
 
     project_id = request.GET.get("id")
     if project_id:
-        project_exercise = models.ProjectExercise.objects.get(id=project_id)
+        if models.ProjectExercise.objects.filter(id=project_id).exists():
+            project_exercise = models.ProjectExercise.objects.get(id=project_id)
+        else:
+            return HttpResponse("Invalid project exercise ID.")
     else:
         return HttpResponse("You must provide a project ID.")
 
@@ -119,6 +122,22 @@ def quiz_exercises(request):
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
+def quiz_exercise(request):
+    quiz_id = request.GET.get("id")
+    if quiz_id:
+        if models.QuizExercise.objects.filter(id=quiz_id).exists():
+            quiz_exercise = models.QuizExercise.objects.get(id=quiz_id)
+        else:
+            return HttpResponse("Invalid quiz exercise ID.")
+    else:
+        return HttpResponse("You must provide a quiz ID.")
+
+    return render(request, "app/quiz-exercise.html", context={
+        "exercise": quiz_exercise
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
 def mini_exercises(request):
     topics = models.Topic.objects.all()
     mini_exercises = models.MiniExercise.objects.all()
@@ -141,6 +160,22 @@ def mini_exercises(request):
         "topics": topics,
         "exercises": mini_exercises,
         "topic": topic_object
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
+def mini_exercise(request):
+    mini_id = request.GET.get("id")
+    if mini_id:
+        if models.MiniExercise.objects.filter(id=mini_id).exists():
+            mini_exercise = models.MiniExercise.objects.get(id=mini_id)
+        else:
+            return HttpResponse("Invalid mini exercise ID.")
+    else:
+        return HttpResponse("You must provide a mini ID.")
+
+    return render(request, "app/mini-exercise.html", context={
+        "exercise": mini_exercise
     })
 
 
