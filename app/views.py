@@ -76,6 +76,7 @@ def project_exercises(request):
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def project_exercise(request):
+    # Receiving the submitted github link for the exercise
     if request.method == "POST":
         github_link = request.POST.get("github-link")
         print(github_link)
@@ -93,12 +94,54 @@ def project_exercise(request):
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def quiz_exercises(request):
-    return render(request, "app/quiz-exercises.html")
+    topics = models.Topic.objects.all()
+    quiz_exercises = models.QuizExercise.objects.all()
+    topic_object = None
+
+    if request.GET.get("topic"):
+        topic = request.GET.get("topic")
+
+        # Iterating through project exercises to find ones that are in the topic
+        iterable_quiz_exercises = quiz_exercises
+        quiz_exercises = []
+        for quiz_exercise in iterable_quiz_exercises:
+            if quiz_exercise.topic.searchable_name == topic:
+                quiz_exercises.append(quiz_exercise)
+
+        # Topic object to pass into template
+        topic_object = models.Topic.objects.get(searchable_name=topic)
+
+    return render(request, "app/quiz-exercises.html", context={
+        "topics": topics,
+        "exercises": quiz_exercises,
+        "topic": topic_object
+    })
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def mini_exercises(request):
-    return render(request, "app/mini-exercises.html")
+    topics = models.Topic.objects.all()
+    mini_exercises = models.MiniExercise.objects.all()
+    topic_object = None
+
+    if request.GET.get("topic"):
+        topic = request.GET.get("topic")
+
+        # Iterating through project exercises to find ones that are in the topic
+        iterable_mini_exercises = mini_exercises
+        mini_exercises = []
+        for mini_exercise in iterable_mini_exercises:
+            if mini_exercise.topic.searchable_name == topic:
+                mini_exercises.append(mini_exercise)
+
+        # Topic object to pass into template
+        topic_object = models.Topic.objects.get(searchable_name=topic)
+
+    return render(request, "app/mini-exercises.html", context={
+        "topics": topics,
+        "exercises": mini_exercises,
+        "topic": topic_object
+    })
 
 
 # Hackathon views
