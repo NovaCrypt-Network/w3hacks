@@ -120,8 +120,16 @@ class Theme(models.Model):
 
 class Topic(models.Model):
     name = models.CharField(max_length=50) # Name of the topic
-    searchable_name = models.CharField(max_length=50) # Name of the topic that will be added into the url extension OR query parameter
+    searchable_name = models.CharField(max_length=50) # Name of the topic that will be added into the query parameter
     image = models.ImageField() # Image for the topic
+
+    def __str__(self):
+        return self.name
+
+
+class DifficultyLevel(models.Model):
+    name = models.CharField(max_length=50) # Name of the difficulty level (easy, medium, hard)
+    searchable_name = models.CharField(max_length=50) # Name of the difficulty level that will be added into the query parameter
 
     def __str__(self):
         return self.name
