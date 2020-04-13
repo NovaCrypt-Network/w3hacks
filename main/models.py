@@ -144,7 +144,7 @@ class QuizExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for quiz exercise
     name = models.CharField(max_length=50) # Name of the quiz
     description = models.TextField() # Description of the quiz
-    topic = models.CharField(max_length=50) # The topic, programming language, or framework the quiz is based on
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
     difficulty = models.CharField(max_length=10) # The difficulty of the quiz (easy, medium, hard)
     prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this quiz
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this quiz
@@ -158,7 +158,7 @@ class MiniExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for mini-exercise
     name = models.CharField(max_length=50) # Name of the mini exercise
     description = models.TextField() # Description of the mini exercise
-    topic = models.CharField(max_length=50) # The topic, programming language, or framework the mini exercise  is based on
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
     difficulty = models.CharField(max_length=10) # The difficulty of the mini exercise  (easy, medium, hard)
     prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
