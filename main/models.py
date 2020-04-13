@@ -140,7 +140,7 @@ class ProjectExercise(models.Model):
     name = models.CharField(max_length=50) # Name of the project
     description = models.TextField() # Description of the project
     topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
-    difficulty = models.CharField(max_length=10) # The difficulty of the exercise (easy, medium, hard)
+    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
     prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this project
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this project
 
@@ -153,7 +153,7 @@ class QuizExercise(models.Model):
     name = models.CharField(max_length=50) # Name of the quiz
     description = models.TextField() # Description of the quiz
     topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
-    difficulty = models.CharField(max_length=10) # The difficulty of the quiz (easy, medium, hard)
+    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
     prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this quiz
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this quiz
     questions = models.ManyToManyField("QuizQuestion") # Questions for this quiz
@@ -167,7 +167,8 @@ class MiniExercise(models.Model):
     name = models.CharField(max_length=50) # Name of the mini exercise
     description = models.TextField() # Description of the mini exercise
     topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
-    difficulty = models.CharField(max_length=10) # The difficulty of the mini exercise  (easy, medium, hard)
+    # difficulty = models.CharField(max_length=10) # The difficulty of the mini exercise  (easy, medium, hard)
+    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
     prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
 
