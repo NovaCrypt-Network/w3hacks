@@ -131,10 +131,10 @@ class ProjectExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for project exercises
     name = models.CharField(max_length=50) # Name of the project
     description = models.TextField() # Description of the project
-    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise 
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
     difficulty = models.CharField(max_length=10) # The difficulty of the exercise (easy, medium, hard)
-    prerequisites = ArrayField(models.CharField(max_length=50)) # List of string prerequisites needed for this project
-    resources = models.ManyToManyField("ResourceLink") # Resources for this project
+    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this project
+    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this project
 
     def __str__(self):
         return self.name
@@ -146,8 +146,8 @@ class QuizExercise(models.Model):
     description = models.TextField() # Description of the quiz
     topic = models.CharField(max_length=50) # The topic, programming language, or framework the quiz is based on
     difficulty = models.CharField(max_length=10) # The difficulty of the quiz (easy, medium, hard)
-    prerequisites = ArrayField(models.CharField(max_length=50)) # List of string prerequisites needed for this quiz
-    resources = models.ManyToManyField("ResourceLink") # Resources for this quiz
+    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this quiz
+    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this quiz
     questions = models.ManyToManyField("QuizQuestion") # Questions for this quiz
 
     def __str__(self):
@@ -160,8 +160,8 @@ class MiniExercise(models.Model):
     description = models.TextField() # Description of the mini exercise
     topic = models.CharField(max_length=50) # The topic, programming language, or framework the mini exercise  is based on
     difficulty = models.CharField(max_length=10) # The difficulty of the mini exercise  (easy, medium, hard)
-    prerequisites = ArrayField(models.CharField(max_length=50)) # List of string prerequisites needed for this mini exercise
-    resources = models.ManyToManyField("ResourceLink") # Resources for this mini exercise
+    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
+    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
 
     def __str__(self):
         return self.name
