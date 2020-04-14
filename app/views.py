@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from main import models
 from datetime import datetime
+import json
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -134,6 +135,33 @@ def quiz_exercise(request):
 
     return render(request, "app/quiz-exercise.html", context={
         "exercise": quiz_exercise
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
+def take_quiz(request):
+    quiz_id = request.GET.get("id")
+    if quiz_id:
+        if models.QuizExercise.objects.filter(id=quiz_id).exists():
+            quiz_exercise = models.QuizExercise.objects.get(id=quiz_id)
+        else:
+            return HttpResponse("Invalid quiz exercise ID.")
+    else:
+        return HttpResponse("You must provide a quiz ID.")
+
+    # Formatting questions with question and answers
+    questions = []
+    for question in list(quiz_exercise.questions.all()):
+        questions.append({
+            "question": question.question,
+            "answers": question.answers
+        })
+
+    questions = json.dumps(questions)
+
+    return render(request, "app/take-quiz.html", context={
+        "quiz": quiz_exercise,
+        "questions": questions
     })
 
 

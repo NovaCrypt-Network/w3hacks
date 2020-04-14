@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from main.models import Hackathon, Project, Profile
 from datetime import datetime
 from pytz import timezone
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def index_redirect(request):
     all_hackathons = Hackathon.objects.all()
 
@@ -30,9 +30,15 @@ def index_redirect(request):
                 if datetime.now().astimezone(timezone('US/Pacific')).astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S") < hackathon.start_datetime.astimezone(timezone('US/Pacific')).strftime("%m/%d/%Y %H:%M:%S"):
                     current_hackathon = hackathon
 
-    return HttpResponseRedirect("/" + current_hackathon.id)
+    # If there's an upcoming/current hackathon
+    if current_hackathon:
+        return HttpResponseRedirect("/" + current_hackathon.id)
 
-@login_required(login_url="http://www.w3hacks.com/login")
+    # If there isn't
+    else:
+        return HttpResponse("No current or future hackathons going on!")
+
+# @login_required(login_url="http://www.w3hacks.com/login")
 def index(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -74,7 +80,7 @@ def index(request, hackathon_id):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def competitors(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -87,7 +93,7 @@ def competitors(request, hackathon_id):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def schedule(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -100,7 +106,7 @@ def schedule(request, hackathon_id):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def submissions(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
@@ -137,7 +143,7 @@ def submissions(request, hackathon_id):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def submit(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
