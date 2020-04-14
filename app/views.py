@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
 from main import models
 from datetime import datetime
 import json
@@ -159,9 +160,17 @@ def take_quiz(request):
 
     questions = json.dumps(questions)
 
+    # Checking to see if user already took this quiz
+    user_already_taken_quiz = False
+    for completed_quiz_exercise in list(request.user.profile.completed_quiz_exercises.all()):
+        if completed_quiz_exercise.quiz_exercise == quiz_exercise:
+            user_already_taken_quiz = True
+
+
     return render(request, "app/take-quiz.html", context={
         "quiz": quiz_exercise,
-        "questions": questions
+        "questions": questions,
+        "user_already_taken_quiz": user_already_taken_quiz
     })
 
 
@@ -345,3 +354,25 @@ def edit_profile(request, user_id):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect("http://w3hacks.com")
+
+
+
+# API VIEWS
+@csrf_exempt
+def create_completed_quiz_exercise(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        quiz_exercise_id = data["quiz_exercise_id"]
+        quiz_exercise = models.QuizExercise.objects.get(id=quiz_exercise_id)
+        answers = data["answers"]
+
+        # Creating completed quiz exercise
+        completed_quiz_exercise = models.CompletedQuizExercise(quiz_exercise=quiz_exercise, answers=answers)
+        completed_quiz_exercise.save()
+
+        # Adding completed quiz exercise to user profile
+        profile = request.user.profile
+        profile.completed_quiz_exercises.add(completed_quiz_exercise)
+        profile.save()
+
+        return HttpResponse("hi")

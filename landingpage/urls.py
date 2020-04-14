@@ -46,6 +46,9 @@ urlpatterns = [
     url("^profile/(?P<user_id>[^/]+)/$", appViews.profile, name="profile"),
     url("^edit-profile/(?P<user_id>[^/]+)/$", appViews.edit_profile, name="edit_profile"),
     url("^logout/$", appViews.user_logout, name="logout"),
+
+    # API views
+    url("create-completed-quiz-exercise/$", appViews.create_completed_quiz_exercise, name="create_completed_quiz_exercise"),
 ]
 
 urlpatterns += [

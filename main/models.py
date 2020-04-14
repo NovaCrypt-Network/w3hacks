@@ -38,6 +38,7 @@ class Profile(models.Model):
 
     past_hackathons = models.ManyToManyField("Hackathon", blank=True) # OPTIONAL: A lit of past w3Hacks hackathons that the user has competed in
     projects = models.ManyToManyField("Project", blank=True) # List of projects created by user
+    completed_quiz_exercises = models.ManyToManyField("CompletedQuizExercise", blank=True) # List of completed quiz exercises
     achievements = models.ManyToManyField("Achievement", blank=True) # List of achievements achieved by the user
     joined_date = models.DateField(default=date.today()) # The date when the user joined w3Hacks
     credits = models.IntegerField(default=0) # The number of credits the user has
@@ -162,6 +163,24 @@ class QuizExercise(models.Model):
         return self.name
 
 
+# For the QuizExercise model
+class QuizQuestion(models.Model):
+    question = models.CharField(max_length=100) # The question
+    answers = ArrayField(models.CharField(max_length=100)) # Array of possible answers
+    correct_answer_index = models.IntegerField() # Index of the correct answer in 'answers' field of this model
+
+    def __str__(self):
+        return self.question
+
+
+class CompletedQuizExercise(models.Model):
+    quiz_exercise = models.ForeignKey("QuizExercise", on_delete=models.PROTECT) # The quiz taken
+    answers = ArrayField(models.CharField(max_length=100)) # Answers provided by the user
+
+    def __str__(self):
+        return "Completed Quiz Exercise: " + self.quiz_exercise.name
+
+
 class MiniExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for mini-exercise
     name = models.CharField(max_length=50) # Name of the mini exercise
@@ -174,16 +193,6 @@ class MiniExercise(models.Model):
 
     def __str__(self):
         return self.name
-
-
-# For the QuizExercise model
-class QuizQuestion(models.Model):
-    question = models.CharField(max_length=100) # The question
-    answers = ArrayField(models.CharField(max_length=100)) # Array of possible answers
-    correct_answer_index = models.IntegerField() # Index of the correct answer in 'answers' field of this model
-
-    def __str__(self):
-        return self.question
 
 
 # For 'Resources' section of Hackathon
