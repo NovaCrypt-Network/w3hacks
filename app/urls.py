@@ -32,7 +32,7 @@ urlpatterns = [
     url("^logout/$", views.user_logout, name="logout"),
 
     # API views
-    url("create-completed-quiz-exercise/$", appViews.create_completed_quiz_exercise, name="create_completed_quiz_exercise"),
+    url("create-completed-quiz-exercise/$", views.create_completed_quiz_exercise, name="create_completed_quiz_exercise"),
 ]
 
 urlpatterns += [
