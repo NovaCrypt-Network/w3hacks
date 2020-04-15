@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block body %}
+  <div class="container">
+    <h1>Completed Quiz Results: {{ quiz_exercise.name }}</h1>
+    <h3>Results</h3>
+
+    <!-- STATISTICS -->
+    <h3>Statistics</h3>
+    <strong>Score: </strong> {{ completed_quiz_exercise.number_of_correct_answers }}/{{ completed_quiz_exercise.number_of_questions }}
+
+    <!-- QUESTIONS -->
+    <h3>Questions</h3>
+    {% for result in results %}
+      <div class="result">
+        <h5>
+          {{ result.question }}
+          {% if result.got_this_correct %}
+            (1 points)
+          {% else %}
+            (0 points)
+          {% endif %}
+        </h5>
+        {% for answer in result.answers %}
+          <!-- You chose the correct answer -->
+          {% if result.correct_answer == result.user_answer == answer %}
+            <li>{{ answer }} ----- &#9989;</li>
+
+          <!-- This is the correct answer -->
+          {% elif result.correct_answer == answer %}
+            <li>{{ answer }} ----- &#9989;</li>
+
+          <!-- This is your answer -->
+          {% elif result.user_answer == answer %}
+            <li>{{ answer }} ----- 	&#10060;</li>
+
+          <!-- This is just an answer -->
+          {% else %}
+            <li>{{ answer }}</li>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+  <script>
+    console.log("{{ results|safe }}")
+  </script>
+{% endblock %}

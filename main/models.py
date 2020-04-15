@@ -176,6 +176,8 @@ class QuizQuestion(models.Model):
 class CompletedQuizExercise(models.Model):
     quiz_exercise = models.ForeignKey("QuizExercise", on_delete=models.PROTECT) # The quiz taken
     answers = ArrayField(models.CharField(max_length=100)) # Answers provided by the user
+    number_of_correct_answers = models.IntegerField() # Number of questions the user got correct
+    number_of_questions = models.IntegerField() # Number of questions in the quiz
 
     def __str__(self):
         return "Completed Quiz Exercise: " + self.quiz_exercise.name

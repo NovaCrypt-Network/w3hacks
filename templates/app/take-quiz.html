@@ -20,7 +20,7 @@
 
     <script>
       // Quiz Variables
-      let answers = [];
+      let userAnswers = [];
       let questions = {{ questions|safe }};
       let questionIndex = 0;
       let quizLength = questions.length;
@@ -40,7 +40,9 @@
 
           // If the user selected an answer
           if (answer) {
-            answers.push(answer.value); // Add the answer to answers
+            userAnswers.push(answer.value); // Add the answer to answers
+            console.log(answer.value)
+            console.log(userAnswers)
           }
           // If the user selected an answer
           else {
@@ -53,14 +55,14 @@
 
         // End of quiz
         if (question == undefined) {
-          quizContainer.innerHTML = "<div><strong>Quiz finished!</strong></div>";
+          quizContainer.innerHTML = "<div><strong>Quiz finished!</strong></div><div><a href='../quiz-results/?id={{ quiz.id }}'>See Results</a></div>";
 
           // Creating completed quiz exercise
           fetch("/create-completed-quiz-exercise/", {
             method: "POST",
             body: JSON.stringify({
               quiz_exercise_id: "{{ quiz.id }}",
-              answers: answers
+              userAnswers: userAnswers
             })
           })
 

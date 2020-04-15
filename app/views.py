@@ -192,9 +192,28 @@ def quiz_results(request):
     else:
         return HttpResponse("You haven't completed this quiz yet.")
 
+    # Organizing questions and answers for easy access
+    quiz_questions = list(quiz_exercise.questions.all())
+    user_answers = completed_quiz_exercise.answers
+    results = []
+    for i in range(len(quiz_questions)):
+        result = {}
+        current_question = quiz_questions[i]
+
+        result["got_this_correct"] = (current_question.answers[current_question.correct_answer_index] == user_answers[i])
+        result["question"] = current_question.question
+        result["answers"] = current_question.answers
+        result["correct_answer"] = current_question.answers[current_question.correct_answer_index]
+        result["user_answer"] = user_answers[i]
+
+        results.append(result)
+
+    # results = json.dumps(results)
+
     return render(request, "app/quiz-results.html", context={
         "quiz_exercise": quiz_exercise,
-        "completed_quiz_exercise": completed_quiz_exercise
+        "completed_quiz_exercise": completed_quiz_exercise,
+        "results": results
     })
 
 
@@ -385,13 +404,37 @@ def user_logout(request):
 @csrf_exempt
 def create_completed_quiz_exercise(request):
     if request.method == "POST":
-        data = json.loads(request.body)
+        data = json.loads(request.body) # Grabbing post data
+
+        # Grabbing quiz exercise from ID
         quiz_exercise_id = data["quiz_exercise_id"]
         quiz_exercise = models.QuizExercise.objects.get(id=quiz_exercise_id)
-        answers = data["answers"]
+        questions = list(quiz_exercise.questions.all())
+
+        # Grabbing answers
+        user_answers = data["userAnswers"]
+
+        # Grabbing length of questions
+        number_of_questions = len(questions)
+
+        # Determining number of correct answers
+        number_of_correct_answers = 0
+        print(range(len(questions)))
+        for i in range(len(questions)):
+            question = questions[i].question # Grabbing question
+            answers = questions[i].answers # Grabbing question answers
+            correct_answer = answers[questions[i].correct_answer_index]
+            user_answer = user_answers[i] # Grabbing user's answer
+            print(correct_answer)
+            print(user_answer)
+
+            # Determining if the answer is correct
+            if correct_answer == user_answer:
+                 number_of_correct_answers += 1
+
 
         # Creating completed quiz exercise
-        completed_quiz_exercise = models.CompletedQuizExercise(quiz_exercise=quiz_exercise, answers=answers)
+        completed_quiz_exercise = models.CompletedQuizExercise(quiz_exercise=quiz_exercise, answers=user_answers, number_of_questions=number_of_questions, number_of_correct_answers=number_of_correct_answers)
         completed_quiz_exercise.save()
 
         # Adding completed quiz exercise to user profile
@@ -399,4 +442,4 @@ def create_completed_quiz_exercise(request):
         profile.completed_quiz_exercises.add(completed_quiz_exercise)
         profile.save()
 
-        return HttpResponse("hi")
+        return HttpResponse("Created CompletedQuizExercise object.")
