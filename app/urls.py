@@ -15,6 +15,7 @@ urlpatterns = [
 
     url("^exercises/quiz-exercises/$", views.quiz_exercises, name="quiz_exercises"),
     url("^exercises/quiz-exercises/exercise/$", views.quiz_exercise, name="quiz_exercise"),
+    url("^exercises/quiz-exercises/exercise/take-quiz/$", views.take_quiz, name="take_quiz"),
     url("^exercises/quiz-exercises/exercise/quiz-results/$", views.quiz_results, name="quiz_results"),
 
     url("^exercises/mini-exercises/$", views.mini_exercises, name="mini_exercises"),
