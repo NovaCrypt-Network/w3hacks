@@ -12,8 +12,11 @@ urlpatterns = [
     url("^exercises/$", views.exercises, name="exercises"),
     url("^exercises/project-exercises/$", views.project_exercises, name="project_exercises"),
     url("^exercises/project-exercises/exercise/$", views.project_exercise, name="project_exercise"),
+
     url("^exercises/quiz-exercises/$", views.quiz_exercises, name="quiz_exercises"),
     url("^exercises/quiz-exercises/exercise/$", views.quiz_exercise, name="quiz_exercise"),
+    url("^exercises/quiz-exercises/exercise/quiz-results/$", views.quiz_results, name="quiz_results"),
+
     url("^exercises/mini-exercises/$", views.mini_exercises, name="mini_exercises"),
     url("^exercises/mini-exercises/exercise/$", views.mini_exercise, name="mini_exercise"),
 

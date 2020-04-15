@@ -175,6 +175,30 @@ def take_quiz(request):
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
+def quiz_results(request):
+    # Grabbing quiz from query parameters
+    quiz_id = request.GET.get("id")
+    if quiz_id:
+        if models.QuizExercise.objects.filter(id=quiz_id).exists():
+            quiz_exercise = models.QuizExercise.objects.get(id=quiz_id)
+        else:
+            return HttpResponse("Invalid quiz exercise ID.")
+    else:
+        return HttpResponse("You must provide a quiz ID.")
+
+    # Grabbing completed quiz exercise
+    if models.CompletedQuizExercise.objects.filter(quiz_exercise=quiz_exercise).exists():
+        completed_quiz_exercise = models.CompletedQuizExercise.objects.get(quiz_exercise=quiz_exercise)
+    else:
+        return HttpResponse("You haven't completed this quiz yet.")
+
+    return render(request, "app/quiz-results.html", context={
+        "quiz_exercise": quiz_exercise,
+        "completed_quiz_exercise": completed_quiz_exercise
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
 def mini_exercises(request):
     topics = models.Topic.objects.all()
     mini_exercises = models.MiniExercise.objects.all()
