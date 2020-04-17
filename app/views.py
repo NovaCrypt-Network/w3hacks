@@ -78,11 +78,7 @@ def project_exercises(request):
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def project_exercise(request):
-    # Receiving the submitted github link for the exercise
-    if request.method == "POST":
-        github_link = request.POST.get("github-link")
-        print(github_link)
-
+    message = None
     project_id = request.GET.get("id")
     if project_id:
         if models.ProjectExercise.objects.filter(id=project_id).exists():
@@ -92,8 +88,40 @@ def project_exercise(request):
     else:
         return HttpResponse("You must provide a project ID.")
 
+
+    # Sending in completed project exercise in case user already completed it
+    completed_project_exercise = None
+
+
+    # Receiving the submitted github link for the exercise
+    if request.method == "POST":
+        github_link = request.POST.get("github-link")
+
+        # Creating completed project exercise with no score
+        completed_project_exercise = models.CompletedProjectExercise(project_exercise=project_exercise, github_link=github_link)
+        completed_project_exercise.save()
+
+        # Adding completed project to user
+        current_user_profile = request.user.profile
+        current_user_profile.completed_project_exercises.add(completed_project_exercise)
+        current_user_profile.save()
+
+        # Sending user a message
+        message = "Project submitted successfully!"
+
+
+    # Checking if user already completed project
+    user_already_completed_project = False
+    for completed_project_exercise in list(request.user.profile.completed_project_exercises.all()):
+        if completed_project_exercise.project_exercise == project_exercise:
+            user_already_completed_project = True
+
+
     return render(request, "app/project-exercise.html", context={
-        "exercise": project_exercise
+        "exercise": project_exercise,
+        "user_already_completed_project": user_already_completed_project,
+        "completed_project_exercise": completed_project_exercise,
+        "message": message
     })
 
 
@@ -425,8 +453,6 @@ def create_completed_quiz_exercise(request):
             answers = questions[i].answers # Grabbing question answers
             correct_answer = answers[questions[i].correct_answer_index]
             user_answer = user_answers[i] # Grabbing user's answer
-            print(correct_answer)
-            print(user_answer)
 
             # Determining if the answer is correct
             if correct_answer == user_answer:

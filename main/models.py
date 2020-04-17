@@ -39,6 +39,7 @@ class Profile(models.Model):
     past_hackathons = models.ManyToManyField("Hackathon", blank=True) # OPTIONAL: A lit of past w3Hacks hackathons that the user has competed in
     projects = models.ManyToManyField("Project", blank=True) # List of projects created by user
     completed_quiz_exercises = models.ManyToManyField("CompletedQuizExercise", blank=True) # List of completed quiz exercises
+    completed_project_exercises = models.ManyToManyField("CompletedProjectExercise", blank=True) # List of completed project exercises
     achievements = models.ManyToManyField("Achievement", blank=True) # List of achievements achieved by the user
     joined_date = models.DateField(default=date.today()) # The date when the user joined w3Hacks
     credits = models.IntegerField(default=0) # The number of credits the user has
@@ -147,6 +148,15 @@ class ProjectExercise(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CompletedProjectExercise(models.Model):
+    project_exercise = models.ForeignKey("ProjectExercise", on_delete=models.PROTECT) # The project completed
+    github_link = models.CharField(max_length=100) # Link to GitHub repo
+    score = models.IntegerField(null=True, blank=True) # Score for how good the project is from 1-10
+
+    def __str__(self):
+        return "Completed Project Exercise: " + self.project_exercise.name
 
 
 class QuizExercise(models.Model):
