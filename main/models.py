@@ -178,6 +178,7 @@ class QuizQuestion(models.Model):
     question = models.CharField(max_length=100) # The question
     answers = ArrayField(models.CharField(max_length=100)) # Array of possible answers
     correct_answer_index = models.IntegerField() # Index of the correct answer in 'answers' field of this model
+    question_image = models.ImageField(null=True, blank=True) # Image for the question
 
     def __str__(self):
         return self.question
