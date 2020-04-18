@@ -198,11 +198,11 @@ class CompletedQuizExercise(models.Model):
 
 class MiniExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for mini-exercise
-    name = models.CharField(max_length=50) # Name of the mini exercise
-    description = models.TextField() # Description of the mini exercise
-    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
+    name = models.CharField(max_length=50, null=True, blank=True) # Name of the mini exercise
+    description = models.TextField(null=True, blank=True) # Description of the mini exercise
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT, null=True, blank=True) # The topic of the exercise
     # difficulty = models.CharField(max_length=10) # The difficulty of the mini exercise  (easy, medium, hard)
-    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
+    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT, null=True, blank=True) # The difficulty level of the exercise
     prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
 
