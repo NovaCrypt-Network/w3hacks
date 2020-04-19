@@ -1,0 +1,55 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'app/wildcard-exercises.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="container">
+    {% if topic %}
+      <h1>{{ topic.name }} GitHub Mini-Exercises</h1>
+      {% if exercises %}
+        <div class="exercises">
+          {% for exercise in exercises %}
+            <a href="exercise/?id={{ exercise.id }}">
+              <div class="exercise">
+                <h3>{{ exercise.name }}</h3>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <small>No GitHub mini-exercises yet!</small>
+      {% endif %}
+    {% else %}
+      <h1>GitHub Mini-Exercises</h1>
+      {% if topics %}
+        <div class="topics">
+          {% for topic in topics %}
+            <a href="?topic={{ topic.searchable_name }}">
+              <div class="topic">
+                <!-- <img src="{{ topic.image.url }}" alt=""> -->
+                <h3>{{ topic.name }}</h3>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <small>No topics yet!</small>
+      {% endif %}
+      <br>
+      {% if exercises %}
+        <div class="exercises">
+          {% for exercise in exercises %}
+            <a href="exercise/?id={{ exercise.id }}">
+              <div class="exercise">
+                <h3>{{ exercise.name }}</h3>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <small>No GitHub mini-exercises yet!</small>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}

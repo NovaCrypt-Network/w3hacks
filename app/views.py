@@ -413,6 +413,62 @@ def teaching_exercises(request):
     return render(request, "app/teaching-exercises.html")
 
 
+@login_required(login_url="http://www.w3hacks.com/login")
+def github_exercises(request):
+    topics = models.Topic.objects.all()
+    github_exercises = models.VisualizationExercise.objects.all()
+    specific_topic = None
+
+    if request.GET.get("topic"):
+        topic = request.GET.get("topic")
+
+        # Iterating through project exercises to find ones that are in the topic
+        iterable_github_exercises = github_exercises
+        github_exercises = []
+        for github_exercise in iterable_github_exercises:
+            if github_exercise.topic.searchable_name == topic:
+                github_exercises.append(github_exercise)
+
+        # Topic object to pass into template
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
+
+    return render(request, "app/github-exercises.html", context={
+        "topics": topics,
+        "exercises": github_exercises,
+        "topic": specific_topic
+    })
+
+    return render(request, "app/github-exercises.html")
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
+def research_exercises(request):
+    topics = models.Topic.objects.all()
+    research_exercises = models.VisualizationExercise.objects.all()
+    specific_topic = None
+
+    if request.GET.get("topic"):
+        topic = request.GET.get("topic")
+
+        # Iterating through project exercises to find ones that are in the topic
+        iterable_research_exercises = research_exercises
+        research_exercises = []
+        for research_exercise in iterable_research_exercises:
+            if research_exercise.topic.searchable_name == topic:
+                research_exercises.append(research_exercise)
+
+        # Topic object to pass into template
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
+
+    return render(request, "app/research-exercises.html", context={
+        "topics": topics,
+        "exercises": research_exercises,
+        "topic": specific_topic
+    })
+
+    return render(request, "app/research-exercises.html")
+
+
 # @login_required(login_url="http://www.w3hacks.com/login")
 # def mini_exercise(request):
 #     mini_id = request.GET.get("id")
