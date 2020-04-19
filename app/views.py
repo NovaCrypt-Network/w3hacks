@@ -54,7 +54,7 @@ def exercises(request):
 def project_exercises(request):
     topics = models.Topic.objects.all()
     project_exercises = models.ProjectExercise.objects.all()
-    topic_object = None
+    specific_topic = None
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
@@ -67,12 +67,12 @@ def project_exercises(request):
                 project_exercises.append(project_exercise)
 
         # Topic object to pass into template
-        topic_object = models.Topic.objects.get(searchable_name=topic)
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
 
     return render(request, "app/project-exercises.html", context={
         "topics": topics,
         "exercises": project_exercises,
-        "topic": topic_object
+        "topic": specific_topic
     })
 
 
@@ -129,7 +129,7 @@ def project_exercise(request):
 def quiz_exercises(request):
     topics = models.Topic.objects.all()
     quiz_exercises = models.QuizExercise.objects.all()
-    topic_object = None
+    specific_topic = None
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
@@ -142,12 +142,12 @@ def quiz_exercises(request):
                 quiz_exercises.append(quiz_exercise)
 
         # Topic object to pass into template
-        topic_object = models.Topic.objects.get(searchable_name=topic)
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
 
     return render(request, "app/quiz-exercises.html", context={
         "topics": topics,
         "exercises": quiz_exercises,
-        "topic": topic_object
+        "topic": specific_topic
     })
 
 
@@ -247,44 +247,186 @@ def quiz_results(request):
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def mini_exercises(request):
+    # topics = models.Topic.objects.all()
+    # mini_exercises = models.MiniExercise.objects.all()
+    # specific_topic = None
+
+    # if request.GET.get("topic"):
+    #     topic = request.GET.get("topic")
+    #
+    #     # Iterating through project exercises to find ones that are in the topic
+    #     iterable_mini_exercises = mini_exercises
+    #     mini_exercises = []
+    #     for mini_exercise in iterable_mini_exercises:
+    #         if mini_exercise.topic.searchable_name == topic:
+    #             mini_exercises.append(mini_exercise)
+    #
+    #     # Topic object to pass into template
+    #     specific_topic = models.Topic.objects.get(searchable_name=topic)
+
+    # return render(request, "app/mini-exercises.html", context={
+    #     "topics": topics,
+    #     "exercises": mini_exercises,
+    #     "topic": specific_topic
+    # })
+
+    return render(request, "app/mini-exercises.html")
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
+def fix_the_code_exercises(request):
     topics = models.Topic.objects.all()
-    mini_exercises = models.MiniExercise.objects.all()
-    topic_object = None
+    fix_the_code_exercises = models.FixTheCodeExercise.objects.all()
+    specific_topic = None
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
 
         # Iterating through project exercises to find ones that are in the topic
-        iterable_mini_exercises = mini_exercises
-        mini_exercises = []
-        for mini_exercise in iterable_mini_exercises:
-            if mini_exercise.topic.searchable_name == topic:
-                mini_exercises.append(mini_exercise)
+        iterable_fix_the_code_exercises = fix_the_code_exercises
+        fix_the_code_exercises = []
+        for fix_the_code_exercise in iterable_fix_the_code_exercises:
+            if fix_the_code_exercise.topic.searchable_name == topic:
+                fix_the_code_exercises.append(fix_the_code_exercise)
 
         # Topic object to pass into template
-        topic_object = models.Topic.objects.get(searchable_name=topic)
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
 
-    return render(request, "app/mini-exercises.html", context={
+    return render(request, "app/fix-the-code-exercises.html", context={
         "topics": topics,
-        "exercises": mini_exercises,
-        "topic": topic_object
+        "exercises": fix_the_code_exercises,
+        "topic": specific_topic
     })
+
+    return render(request, "app/fix-the-code-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
-def mini_exercise(request):
-    mini_id = request.GET.get("id")
-    if mini_id:
-        if models.MiniExercise.objects.filter(id=mini_id).exists():
-            mini_exercise = models.MiniExercise.objects.get(id=mini_id)
-        else:
-            return HttpResponse("Invalid mini exercise ID.")
-    else:
-        return HttpResponse("You must provide a mini ID.")
+def brainteaser_exercises(request):
+    topics = models.Topic.objects.all()
+    brainteaser_exercises = models.BrainTeaserExercise.objects.all()
+    specific_topic = None
 
-    return render(request, "app/mini-exercise.html", context={
-        "exercise": mini_exercise
+    if request.GET.get("topic"):
+        topic = request.GET.get("topic")
+
+        # Iterating through project exercises to find ones that are in the topic
+        iterable_brainteaser_exercises = brainteaser_exercises
+        brainteaser_exercises = []
+        for brainteaser_exercise in iterable_brainteaser_exercises:
+            if brainteaser_exercise.topic.searchable_name == topic:
+                brainteaser_exercises.append(brainteaser_exercise)
+
+        # Topic object to pass into template
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
+
+    return render(request, "app/brainteaser-exercises.html", context={
+        "topics": topics,
+        "exercises": brainteaser_exercises,
+        "topic": specific_topic
     })
+
+    return render(request, "app/brainteaser-exercises.html")
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
+def visualization_exercises(request):
+    topics = models.Topic.objects.all()
+    visualization_exercises = models.VisualizationExercise.objects.all()
+    specific_topic = None
+
+    if request.GET.get("topic"):
+        topic = request.GET.get("topic")
+
+        # Iterating through project exercises to find ones that are in the topic
+        iterable_visualization_exercises = visualization_exercises
+        visualization_exercises = []
+        for visualization_exercise in iterable_visualization_exercises:
+            if visualization_exercise.topic.searchable_name == topic:
+                visualization_exercises.append(visualization_exercise)
+
+        # Topic object to pass into template
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
+
+    return render(request, "app/visualization-exercises.html", context={
+        "topics": topics,
+        "exercises": visualization_exercises,
+        "topic": specific_topic
+    })
+
+    return render(request, "app/visualization-exercises.html")
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
+def refactor_exercises(request):
+    topics = models.Topic.objects.all()
+    refactor_exercises = models.VisualizationExercise.objects.all()
+    specific_topic = None
+
+    if request.GET.get("topic"):
+        topic = request.GET.get("topic")
+
+        # Iterating through project exercises to find ones that are in the topic
+        iterable_refactor_exercises = refactor_exercises
+        refactor_exercises = []
+        for refactor_exercise in iterable_refactor_exercises:
+            if refactor_exercise.topic.searchable_name == topic:
+                refactor_exercises.append(refactor_exercise)
+
+        # Topic object to pass into template
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
+
+    return render(request, "app/refactor-exercises.html", context={
+        "topics": topics,
+        "exercises": refactor_exercises,
+        "topic": specific_topic
+    })
+
+    return render(request, "app/refactor-exercises.html")
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
+def teaching_exercises(request):
+    topics = models.Topic.objects.all()
+    teaching_exercises = models.VisualizationExercise.objects.all()
+    specific_topic = None
+
+    if request.GET.get("topic"):
+        topic = request.GET.get("topic")
+
+        # Iterating through project exercises to find ones that are in the topic
+        iterable_teaching_exercises = teaching_exercises
+        teaching_exercises = []
+        for teaching_exercise in iterable_teaching_exercises:
+            if teaching_exercise.topic.searchable_name == topic:
+                teaching_exercises.append(teaching_exercise)
+
+        # Topic object to pass into template
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
+
+    return render(request, "app/teaching-exercises.html", context={
+        "topics": topics,
+        "exercises": teaching_exercises,
+        "topic": specific_topic
+    })
+
+    return render(request, "app/teaching-exercises.html")
+
+
+# @login_required(login_url="http://www.w3hacks.com/login")
+# def mini_exercise(request):
+#     mini_id = request.GET.get("id")
+#     if mini_id:
+#         if models.MiniExercise.objects.filter(id=mini_id).exists():
+#             mini_exercise = models.MiniExercise.objects.get(id=mini_id)
+#         else:
+#             return HttpResponse("Invalid mini exercise ID.")
+#     else:
+#         return HttpResponse("You must provide a mini ID.")
+#
+#     return render(request, "app/mini-exercise.html", context={
+#         "exercise": mini_exercise
+#     })
 
 
 # Hackathon views

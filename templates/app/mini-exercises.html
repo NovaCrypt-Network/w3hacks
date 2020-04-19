@@ -5,7 +5,7 @@
 {% endblock %}
 {% block body %}
   <div class="container">
-    {% if topic %}
+    <!-- {% if topic %}
       <h1>{{ topic.name }} Mini Exercises</h1>
       {% if exercises %}
         <div class="exercises">
@@ -27,7 +27,6 @@
           {% for topic in topics %}
             <a href="?topic={{ topic.searchable_name }}">
               <div class="topic">
-                <!-- <img src="{{ topic.image.url }}" alt=""> -->
                 <h3>{{ topic.name }}</h3>
               </div>
             </a>
@@ -50,6 +49,65 @@
       {% else %}
         <small>No mini exercises yet!</small>
       {% endif %}
-    {% endif %}
+    {% endif %} -->
+
+    <div class="mini-exercises">
+      <a href="fix-the-code-exercises/">
+        <div class="mini-exercise">
+          <h3>Fix the Code!</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </a>
+      <a href="brainteaser-exercises/">
+        <div class="mini-exercise">
+          <h3>Brain Teasers</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </a>
+      <a href="visualization-exercises/">
+        <div class="mini-exercise">
+          <h3>Visualize it!</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </a>
+      <a href="refactor-exercises/">
+        <div class="mini-exercise">
+          <h3>Refactoring Exercises</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </a>
+      <a href="teaching-exercises/">
+        <div class="mini-exercise">
+          <h3>Teaching Exercises</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </a>
+      <a href="github-exercises/">
+        <div class="mini-exercise">
+          <h3>Git/GitHub Exercises</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </a>
+      <a href="research-exercises/">
+        <div class="mini-exercise">
+          <h3>Research Exercises</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </a>
+    </div>
   </div>
 {% endblock %}
