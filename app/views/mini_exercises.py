@@ -6,7 +6,7 @@ from main import models
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def mini_exercises(request):
-    return render(request, "app/mini-exercises.html")
+    return render(request, "app/exercises/mini-exercises/mini-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -29,13 +29,13 @@ def fix_the_code_exercises(request):
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
 
-    return render(request, "app/fix-the-code-exercises.html", context={
+    return render(request, "app/exercises/mini-exercises/fix-the-code-exercises.html", context={
         "topics": topics,
         "exercises": fix_the_code_exercises,
         "topic": specific_topic
     })
 
-    return render(request, "app/fix-the-code-exercises.html")
+    return render(request, "app/exercises/mini-exercises/fix-the-code-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -78,7 +78,7 @@ def fix_the_code_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/fix-the-code-exercise.html", context={
+    return render(request, "app/exercises/mini-exercises/fix-the-code-exercise.html", context={
         "exercise": fix_the_code_exercise,
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_fix_the_code_exercise": completed_fix_the_code_exercise,
@@ -105,13 +105,13 @@ def brainteaser_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
-    return render(request, "app/brainteaser-exercises.html", context={
+    return render(request, "app/exercises/mini-exercises/brainteaser-exercises.html", context={
         "topics": topics,
         "exercises": brainteaser_exercises,
         "topic": specific_topic
     })
 
-    return render(request, "app/brainteaser-exercises.html")
+    return render(request, "app/exercises/mini-exercises/brainteaser-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -153,7 +153,7 @@ def brainteaser_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/brainteaser-exercise.html", context={
+    return render(request, "app/exercises/mini-exercises/brainteaser-exercise.html", context={
         "exercise": brainteaser_exercise,
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_brainteaser_exercise": completed_brainteaser_exercise,
@@ -180,13 +180,13 @@ def visualization_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
-    return render(request, "app/visualization-exercises.html", context={
+    return render(request, "app/exercises/mini-exercises/visualization-exercises.html", context={
         "topics": topics,
         "exercises": visualization_exercises,
         "topic": specific_topic
     })
 
-    return render(request, "app/visualization-exercises.html")
+    return render(request, "app/exercises/mini-exercises/visualization-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -227,7 +227,7 @@ def visualization_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/visualization-exercise.html", context={
+    return render(request, "app/exercises/mini-exercises/visualization-exercise.html", context={
         "exercise": visualization_exercise,
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_visualization_exercise": completed_visualization_exercise,
@@ -254,13 +254,13 @@ def refactor_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
-    return render(request, "app/refactor-exercises.html", context={
+    return render(request, "app/exercises/mini-exercises/refactor-exercises.html", context={
         "topics": topics,
         "exercises": refactor_exercises,
         "topic": specific_topic
     })
 
-    return render(request, "app/refactor-exercises.html")
+    return render(request, "app/exercises/mini-exercises/refactor-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -302,7 +302,7 @@ def refactor_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/refactor-exercise.html", context={
+    return render(request, "app/exercises/mini-exercises/refactor-exercise.html", context={
         "exercise": refactor_exercise,
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_refactor_exercise": completed_refactor_exercise,
@@ -329,13 +329,13 @@ def teaching_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
-    return render(request, "app/teaching-exercises.html", context={
+    return render(request, "app/exercises/mini-exercises/teaching-exercises.html", context={
         "topics": topics,
         "exercises": teaching_exercises,
         "topic": specific_topic
     })
 
-    return render(request, "app/teaching-exercises.html")
+    return render(request, "app/exercises/mini-exercises/teaching-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -377,7 +377,7 @@ def teaching_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/teaching-exercise.html", context={
+    return render(request, "app/exercises/mini-exercises/teaching-exercise.html", context={
         "exercise": teaching_exercise,
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_teaching_exercise": completed_teaching_exercise,
@@ -404,13 +404,13 @@ def github_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
-    return render(request, "app/github-exercises.html", context={
+    return render(request, "app/exercises/mini-exercises/github-exercises.html", context={
         "topics": topics,
         "exercises": github_exercises,
         "topic": specific_topic
     })
 
-    return render(request, "app/github-exercises.html")
+    return render(request, "app/exercises/mini-exercises/github-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -452,7 +452,7 @@ def github_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/github-exercise.html", context={
+    return render(request, "app/exercises/mini-exercises/github-exercise.html", context={
         "exercise": github_exercise,
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_github_exercise": completed_github_exercise,
@@ -479,13 +479,13 @@ def research_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
-    return render(request, "app/research-exercises.html", context={
+    return render(request, "app/exercises/mini-exercises/research-exercises.html", context={
         "topics": topics,
         "exercises": research_exercises,
         "topic": specific_topic
     })
 
-    return render(request, "app/research-exercises.html")
+    return render(request, "app/exercises/mini-exercises/research-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -527,7 +527,7 @@ def research_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/research-exercise.html", context={
+    return render(request, "app/exercises/mini-exercises/research-exercise.html", context={
         "exercise": research_exercise,
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_research_exercise": completed_research_exercise,

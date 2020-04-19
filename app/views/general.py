@@ -46,7 +46,7 @@ def leaderboards(request):
 # Activities views
 @login_required(login_url="http://www.w3hacks.com/login")
 def exercises(request):
-    return render(request, "app/exercises.html")
+    return render(request, "app/exercises/exercises.html")
 
 
 # Hackathon views

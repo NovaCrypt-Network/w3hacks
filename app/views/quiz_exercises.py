@@ -24,7 +24,7 @@ def quiz_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
-    return render(request, "app/quiz-exercises.html", context={
+    return render(request, "app/exercises/quiz-exercises/quiz-exercises.html", context={
         "topics": topics,
         "exercises": quiz_exercises,
         "topic": specific_topic
@@ -42,7 +42,7 @@ def quiz_exercise(request):
     else:
         return HttpResponse("You must provide a quiz ID.")
 
-    return render(request, "app/quiz-exercise.html", context={
+    return render(request, "app/exercises/quiz-exercises/quiz-exercise.html", context={
         "exercise": quiz_exercise
     })
 
@@ -75,7 +75,7 @@ def take_quiz(request):
             user_already_taken_quiz = True
 
 
-    return render(request, "app/take-quiz.html", context={
+    return render(request, "app/exercises/quiz-exercises/take-quiz.html", context={
         "quiz": quiz_exercise,
         "questions": questions,
         "user_already_taken_quiz": user_already_taken_quiz
@@ -118,7 +118,7 @@ def quiz_results(request):
 
     # results = json.dumps(results)
 
-    return render(request, "app/quiz-results.html", context={
+    return render(request, "app/exercises/quiz-exercises/quiz-results.html", context={
         "quiz_exercise": quiz_exercise,
         "completed_quiz_exercise": completed_quiz_exercise,
         "results": results
