@@ -40,8 +40,17 @@ class Profile(models.Model):
 
     past_hackathons = models.ManyToManyField("Hackathon", blank=True) # OPTIONAL: A lit of past w3Hacks hackathons that the user has competed in
     projects = models.ManyToManyField("Project", blank=True) # List of projects created by user
-    completed_quiz_exercises = models.ManyToManyField("CompletedQuizExercise", blank=True) # List of completed quiz exercises
+
     completed_project_exercises = models.ManyToManyField("CompletedProjectExercise", blank=True) # List of completed project exercises
+    completed_quiz_exercises = models.ManyToManyField("CompletedQuizExercise", blank=True) # List of completed quiz exercises
+    completed_fix_the_code_exercises = models.ManyToManyField("CompletedFixTheCodeExercise", blank=True) # List of completed fix_the_code exercises
+    completed_brainteaser_exercises = models.ManyToManyField("CompletedBrainTeaserExercise", blank=True) # List of completed brainteaser exercises
+    completed_visualization_exercises = models.ManyToManyField("CompletedVisualizationExercise", blank=True) # List of completed visualization exercises
+    completed_refactor_exercises = models.ManyToManyField("CompletedRefactorExercise", blank=True) # List of completed refactor exercises
+    completed_teaching_exercises = models.ManyToManyField("CompletedTeachingExercise", blank=True) # List of completed teaching exercises
+    completed_github_exercises = models.ManyToManyField("CompletedGitHubExercise", blank=True) # List of completed github exercises
+    completed_research_exercises = models.ManyToManyField("CompletedResearchExercise", blank=True) # List of completed research exercises
+
     achievements = models.ManyToManyField("Achievement", blank=True) # List of achievements achieved by the user
     joined_date = models.DateField(default=date.today()) # The date when the user joined w3Hacks
     credits = models.IntegerField(default=0) # The number of credits the user has

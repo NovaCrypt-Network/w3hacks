@@ -247,29 +247,6 @@ def quiz_results(request):
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def mini_exercises(request):
-    # topics = models.Topic.objects.all()
-    # mini_exercises = models.MiniExercise.objects.all()
-    # specific_topic = None
-
-    # if request.GET.get("topic"):
-    #     topic = request.GET.get("topic")
-    #
-    #     # Iterating through project exercises to find ones that are in the topic
-    #     iterable_mini_exercises = mini_exercises
-    #     mini_exercises = []
-    #     for mini_exercise in iterable_mini_exercises:
-    #         if mini_exercise.topic.searchable_name == topic:
-    #             mini_exercises.append(mini_exercise)
-    #
-    #     # Topic object to pass into template
-    #     specific_topic = models.Topic.objects.get(searchable_name=topic)
-
-    # return render(request, "app/mini-exercises.html", context={
-    #     "topics": topics,
-    #     "exercises": mini_exercises,
-    #     "topic": specific_topic
-    # })
-
     return render(request, "app/mini-exercises.html")
 
 
@@ -292,6 +269,7 @@ def fix_the_code_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+
     return render(request, "app/fix-the-code-exercises.html", context={
         "topics": topics,
         "exercises": fix_the_code_exercises,
@@ -311,6 +289,34 @@ def fix_the_code_exercise(request):
             return HttpResponse("Invalid exercise ID.")
     else:
         return HttpResponse("You must provide an exercise ID.")
+
+
+    # Sending in completed project exercise in case user already completed it
+    completed_fix_the_code_exercise = None
+
+    # Receiving the submitted github link for the exercise
+    if request.method == "POST":
+        repl_link = request.POST.get("repl-link")
+
+        # Creating completed project exercise with no score
+        completed_fix_the_code_exercise = models.CompletedFixTheCodeExercise(fix_the_code_exercise=fix_the_code_exercise, repl_link=repl_link)
+        completed_fix_the_code_exercise.save()
+
+        # Adding completed project to user
+        current_user_profile = request.user.profile
+        current_user_profile.completed_project_exercises.add(completed_project_exercise)
+        current_user_profile.save()
+
+        # Sending user a message
+        message = "Project submitted successfully!"
+
+
+    # Checking if user already completed project
+    user_already_completed_project = False
+    for completed_project_exercise in list(request.user.profile.completed_project_exercises.all()):
+        if completed_project_exercise.project_exercise == project_exercise:
+            user_already_completed_project = True
+
 
     return render(request, "app/fix-the-code-exercise.html", context={
         "exercise": fix_the_code_exercise
