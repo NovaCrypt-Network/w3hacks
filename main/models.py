@@ -323,6 +323,51 @@ class CompletedTeachingExercise(models.Model):
         return "Completed Teaching Exercise: " + self.teaching_exercise.name
 
 
+class GitHubExercise(models.Model):
+    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for the mini-exercise
+    name = models.CharField(max_length=50) # Name of the mini exercise
+    description = models.TextField() # Description of the mini exercise
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
+    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
+    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
+    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
+
+    def __str__(self):
+        return self.name
+
+
+class CompletedGitHubExercise(models.Model):
+    github_exercise = models.ForeignKey("GitHubExercise", on_delete=models.PROTECT) # The mini exercise taken
+    github_exercise_link = models.CharField(max_length=200) # Link to completed exercise (PR or Issue link)
+    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
+
+    def __str__(self):
+        return "Completed GitHub Exercise: " + self.github_exercise.name
+
+
+class ResearchExercise(models.Model):
+    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for the mini-exercise
+    name = models.CharField(max_length=50) # Name of the mini exercise
+    description = models.TextField() # Description of the mini exercise
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
+    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
+    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
+    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
+    error = models.TextField(null=True, blank=True) # OPTIONAL: Error to research about
+
+    def __str__(self):
+        return self.name
+
+
+class CompletedResearchExercise(models.Model):
+    research_exercise = models.ForeignKey("ResearchExercise", on_delete=models.PROTECT) # The mini exercise taken
+    research_link = models.CharField(max_length=200) # Link to completed exercise (StackOverflow or documentation link)
+    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
+
+    def __str__(self):
+        return "Completed Research Exercise: " + self.research_exercise.name
+
+
 # For 'Resources' section of Hackathon
 class ResourceLink(models.Model):
     title = models.CharField(max_length=50) # String to be shown on display
