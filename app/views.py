@@ -346,6 +346,22 @@ def brainteaser_exercises(request):
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
+def brainteaser_exercise(request):
+    brainteaser_exercise_id = request.GET.get("id")
+    if brainteaser_exercise_id:
+        if models.BrainTeaserExercise.objects.filter(id=brainteaser_exercise_id).exists():
+            brainteaser_exercise = models.BrainTeaserExercise.objects.get(id=brainteaser_exercise_id)
+        else:
+            return HttpResponse("Invalid exercise ID.")
+    else:
+        return HttpResponse("You must provide an exercise ID.")
+
+    return render(request, "app/brainteaser-exercise.html", context={
+        "exercise": brainteaser_exercise
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
 def visualization_exercises(request):
     topics = models.Topic.objects.all()
     visualization_exercises = models.VisualizationExercise.objects.all()
@@ -374,9 +390,25 @@ def visualization_exercises(request):
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
+def visualization_exercise(request):
+    visualization_exercise_id = request.GET.get("id")
+    if visualization_exercise_id:
+        if models.VisualizationExercise.objects.filter(id=visualization_exercise_id).exists():
+            visualization_exercise = models.VisualizationExercise.objects.get(id=visualization_exercise_id)
+        else:
+            return HttpResponse("Invalid exercise ID.")
+    else:
+        return HttpResponse("You must provide an exercise ID.")
+
+    return render(request, "app/visualization-exercise.html", context={
+        "exercise": visualization_exercise
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
 def refactor_exercises(request):
     topics = models.Topic.objects.all()
-    refactor_exercises = models.VisualizationExercise.objects.all()
+    refactor_exercises = models.RefactorExercise.objects.all()
     specific_topic = None
 
     if request.GET.get("topic"):
@@ -402,9 +434,25 @@ def refactor_exercises(request):
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
+def refactor_exercise(request):
+    refactor_exercise_id = request.GET.get("id")
+    if refactor_exercise_id:
+        if models.RefactorExercise.objects.filter(id=refactor_exercise_id).exists():
+            refactor_exercise = models.RefactorExercise.objects.get(id=refactor_exercise_id)
+        else:
+            return HttpResponse("Invalid exercise ID.")
+    else:
+        return HttpResponse("You must provide an exercise ID.")
+
+    return render(request, "app/refactor-exercise.html", context={
+        "exercise": refactor_exercise
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
 def teaching_exercises(request):
     topics = models.Topic.objects.all()
-    teaching_exercises = models.VisualizationExercise.objects.all()
+    teaching_exercises = models.TeachingExercise.objects.all()
     specific_topic = None
 
     if request.GET.get("topic"):
@@ -430,9 +478,25 @@ def teaching_exercises(request):
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
+def teaching_exercise(request):
+    teaching_exercise_id = request.GET.get("id")
+    if teaching_exercise_id:
+        if models.TeachingExercise.objects.filter(id=teaching_exercise_id).exists():
+            teaching_exercise = models.TeachingExercise.objects.get(id=teaching_exercise_id)
+        else:
+            return HttpResponse("Invalid exercise ID.")
+    else:
+        return HttpResponse("You must provide an exercise ID.")
+
+    return render(request, "app/teaching-exercise.html", context={
+        "exercise": teaching_exercise
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
 def github_exercises(request):
     topics = models.Topic.objects.all()
-    github_exercises = models.VisualizationExercise.objects.all()
+    github_exercises = models.GitHubExercise.objects.all()
     specific_topic = None
 
     if request.GET.get("topic"):
@@ -458,9 +522,25 @@ def github_exercises(request):
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
+def github_exercise(request):
+    github_exercise_id = request.GET.get("id")
+    if github_exercise_id:
+        if models.GitHubExercise.objects.filter(id=github_exercise_id).exists():
+            github_exercise = models.GitHubExercise.objects.get(id=github_exercise_id)
+        else:
+            return HttpResponse("Invalid exercise ID.")
+    else:
+        return HttpResponse("You must provide an exercise ID.")
+
+    return render(request, "app/github-exercise.html", context={
+        "exercise": github_exercise
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
 def research_exercises(request):
     topics = models.Topic.objects.all()
-    research_exercises = models.VisualizationExercise.objects.all()
+    research_exercises = models.ResearchExercise.objects.all()
     specific_topic = None
 
     if request.GET.get("topic"):
@@ -483,6 +563,22 @@ def research_exercises(request):
     })
 
     return render(request, "app/research-exercises.html")
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
+def research_exercise(request):
+    research_exercise_id = request.GET.get("id")
+    if research_exercise_id:
+        if models.ResearchExercise.objects.filter(id=research_exercise_id).exists():
+            research_exercise = models.ResearchExercise.objects.get(id=research_exercise_id)
+        else:
+            return HttpResponse("Invalid exercise ID.")
+    else:
+        return HttpResponse("You must provide an exercise ID.")
+
+    return render(request, "app/research-exercise.html", context={
+        "exercise": research_exercise
+    })
 
 
 # @login_required(login_url="http://www.w3hacks.com/login")

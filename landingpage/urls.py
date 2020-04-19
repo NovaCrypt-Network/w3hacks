@@ -40,11 +40,17 @@ urlpatterns = [
     url("^exercises/mini-exercises/fix-the-code-exercises/$", appViews.fix_the_code_exercises),
     url("^exercises/mini-exercises/fix-the-code-exercises/exercise/$", appViews.fix_the_code_exercise, name="fix_the_code_exercise"),
     url("^exercises/mini-exercises/brainteaser-exercises/$", appViews.brainteaser_exercises, name="brainteaser_exercises"),
+    url("^exercises/mini-exercises/brainteaser-exercises/exercise/$", appViews.brainteaser_exercise, name="brainteaser_exercise"),
     url("^exercises/mini-exercises/visualization-exercises/$", appViews.visualization_exercises, name="visualization_exercises"),
+    url("^exercises/mini-exercises/visualization-exercises/exercise/$", appViews.visualization_exercise, name="visualization_exercise"),
     url("^exercises/mini-exercises/refactor-exercises/$", appViews.refactor_exercises, name="refactor_exercises"),
+    url("^exercises/mini-exercises/refactor-exercises/exercise/$", appViews.refactor_exercise, name="refactor_exercise"),
     url("^exercises/mini-exercises/teaching-exercises/$", appViews.teaching_exercises, name="teaching_exercises"),
+    url("^exercises/mini-exercises/teaching-exercises/exercise/$", appViews.teaching_exercise, name="teaching_exercise"),
     url("^exercises/mini-exercises/github-exercises/$", appViews.github_exercises, name="github_exercises"),
+    url("^exercises/mini-exercises/github-exercises/exercise/$", appViews.github_exercise, name="github_exercise"),
     url("^exercises/mini-exercises/research-exercises/$", appViews.research_exercises, name="research_exercises"),
+    url("^exercises/mini-exercises/research-exercises/exercise/$", appViews.research_exercise, name="research_exercise"),
     # url("^exercises/mini-exercises/exercise/$", appViews.mini_exercise, name="mini_exercise"),
 
     # Hackathon views
