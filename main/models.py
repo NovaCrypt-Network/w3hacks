@@ -198,16 +198,38 @@ class CompletedQuizExercise(models.Model):
 
 class MiniExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for mini-exercise
-    name = models.CharField(max_length=50, null=True, blank=True) # Name of the mini exercise
-    description = models.TextField(null=True, blank=True) # Description of the mini exercise
-    topic = models.ForeignKey("Topic", on_delete=models.PROTECT, null=True, blank=True) # The topic of the exercise
-    # difficulty = models.CharField(max_length=10) # The difficulty of the mini exercise  (easy, medium, hard)
-    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT, null=True, blank=True) # The difficulty level of the exercise
+    name = models.CharField(max_length=50) # Name of the mini exercise
+    description = models.TextField() # Description of the mini exercise
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
+    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
     prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
 
     def __str__(self):
         return self.name
+
+
+class FixTheCodeExercise(models.Model):
+    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for fix the code mini-exercise
+    name = models.CharField(max_length=50) # Name of the fix the code mini exercise
+    description = models.TextField() # Description of the fix the code mini exercise
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
+    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
+    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this fix the code mini exercise
+    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this fix the code mini exercise
+    repl_link = models.CharField(max_length=100) # Link to repl.it the user will use
+
+    def __str__(self):
+        return self.name
+
+
+class CompletedFixTheCodeExercise(models.Model):
+    fix_the_code_exercise = models.ForeignKey("FixTheCodeExercise", on_delete=models.PROTECT) # The mini exercise taken
+    repl_link = models.CharField(max_length=100) # Link to completed repl 
+    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
+
+    def __str__(self):
+        return "Completed Fix the Code Exercise: " + self.fix_the_code_exercise.name
 
 
 # For 'Resources' section of Hackathon
