@@ -2,10 +2,10 @@
 {% load static %}
 {% block body %}
   <div class="container">
+    <h1>Fix The Code Exercise: {{ exercise.name }}</h1>
     {% if user_already_completed_mini_exercise %}
       <strong>Mini Exercise already completed!</strong>
     {% else %}
-      <h1>Fix The Code Exercise: {{ exercise.name }}</h1>
       <p>
         <strong>Description:</strong> {{ exercise.description }}
       </p>

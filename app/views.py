@@ -366,8 +366,39 @@ def brainteaser_exercise(request):
     else:
         return HttpResponse("You must provide an exercise ID.")
 
+    # Sending in completed project exercise in case user already completed it
+    completed_brainteaser_exercise = None
+    message = None
+
+    # Receiving the submitted github link for the exercise
+    if request.method == "POST":
+        repl_link = request.POST.get("repl-link")
+
+        # Creating completed project exercise with no score
+        completed_brainteaser_exercise = models.CompletedBrainTeaserExercise(brainteaser_exercise=brainteaser_exercise, repl_link=repl_link)
+        completed_brainteaser_exercise.save()
+
+        # Adding completed project to user
+        current_user_profile = request.user.profile
+        current_user_profile.completed_brainteaser_exercises.add(completed_brainteaser_exercise)
+        current_user_profile.save()
+
+        # Sending user a message
+        message = "BrainTeaser Mini Exercise submitted successfully!"
+
+
+    # Checking if user already completed project
+    user_already_completed_mini_exercise = False
+    for completed_brainteaser_exercise in list(request.user.profile.completed_brainteaser_exercises.all()):
+        if completed_brainteaser_exercise.brainteaser_exercise == brainteaser_exercise:
+            user_already_completed_mini_exercise = True
+
+
     return render(request, "app/brainteaser-exercise.html", context={
-        "exercise": brainteaser_exercise
+        "exercise": brainteaser_exercise,
+        "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
+        "completed_brainteaser_exercise": completed_brainteaser_exercise,
+        "message": message
     })
 
 
@@ -410,8 +441,38 @@ def visualization_exercise(request):
     else:
         return HttpResponse("You must provide an exercise ID.")
 
+    # Sending in completed project exercise in case user already completed it
+    completed_visualization_exercise = None
+    message = None
+
+    # Receiving the submitted github link for the exercise
+    if request.method == "POST":
+        # Creating completed project exercise with no score
+        completed_visualization_exercise = models.CompletedVisualizationExercise(visualization_exercise=visualization_exercise)
+        completed_visualization_exercise.visualization_file = request.FILES["visualization-file"] # Setting visualization file to visualization exercise
+        completed_visualization_exercise.save()
+
+        # Adding completed project to user
+        current_user_profile = request.user.profile
+        current_user_profile.completed_visualization_exercises.add(completed_visualization_exercise)
+        current_user_profile.save()
+
+        # Sending user a message
+        message = "Visualization Mini Exercise submitted successfully!"
+
+
+    # Checking if user already completed project
+    user_already_completed_mini_exercise = False
+    for completed_visualization_exercise in list(request.user.profile.completed_visualization_exercises.all()):
+        if completed_visualization_exercise.visualization_exercise == visualization_exercise:
+            user_already_completed_mini_exercise = True
+
+
     return render(request, "app/visualization-exercise.html", context={
-        "exercise": visualization_exercise
+        "exercise": visualization_exercise,
+        "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
+        "completed_visualization_exercise": completed_visualization_exercise,
+        "message": message
     })
 
 
@@ -454,8 +515,39 @@ def refactor_exercise(request):
     else:
         return HttpResponse("You must provide an exercise ID.")
 
+    # Sending in completed project exercise in case user already completed it
+    completed_refactor_exercise = None
+    message = None
+
+    # Receiving the submitted github link for the exercise
+    if request.method == "POST":
+        repl_link = request.POST.get("repl-link")
+
+        # Creating completed project exercise with no score
+        completed_refactor_exercise = models.CompletedRefactorExercise(refactor_exercise=refactor_exercise, repl_link=repl_link)
+        completed_refactor_exercise.save()
+
+        # Adding completed project to user
+        current_user_profile = request.user.profile
+        current_user_profile.completed_refactor_exercises.add(completed_refactor_exercise)
+        current_user_profile.save()
+
+        # Sending user a message
+        message = "Refactor Mini Exercise submitted successfully!"
+
+
+    # Checking if user already completed project
+    user_already_completed_mini_exercise = False
+    for completed_refactor_exercise in list(request.user.profile.completed_refactor_exercises.all()):
+        if completed_refactor_exercise.refactor_exercise == refactor_exercise:
+            user_already_completed_mini_exercise = True
+
+
     return render(request, "app/refactor-exercise.html", context={
-        "exercise": refactor_exercise
+        "exercise": refactor_exercise,
+        "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
+        "completed_refactor_exercise": completed_refactor_exercise,
+        "message": message
     })
 
 
@@ -498,8 +590,39 @@ def teaching_exercise(request):
     else:
         return HttpResponse("You must provide an exercise ID.")
 
+    # Sending in completed project exercise in case user already completed it
+    completed_teaching_exercise = None
+    message = None
+
+    # Receiving the submitted github link for the exercise
+    if request.method == "POST":
+        teaching_exercise_link = request.POST.get("teaching-exercise-link")
+
+        # Creating completed project exercise with no score
+        completed_teaching_exercise = models.CompletedTeachingExercise(teaching_exercise=teaching_exercise, teaching_exercise_link=teaching_exercise_link)
+        completed_teaching_exercise.save()
+
+        # Adding completed project to user
+        current_user_profile = request.user.profile
+        current_user_profile.completed_teaching_exercises.add(completed_teaching_exercise)
+        current_user_profile.save()
+
+        # Sending user a message
+        message = "Teaching Mini Exercise submitted successfully!"
+
+
+    # Checking if user already completed project
+    user_already_completed_mini_exercise = False
+    for completed_teaching_exercise in list(request.user.profile.completed_teaching_exercises.all()):
+        if completed_teaching_exercise.teaching_exercise == teaching_exercise:
+            user_already_completed_mini_exercise = True
+
+
     return render(request, "app/teaching-exercise.html", context={
-        "exercise": teaching_exercise
+        "exercise": teaching_exercise,
+        "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
+        "completed_teaching_exercise": completed_teaching_exercise,
+        "message": message
     })
 
 
@@ -542,8 +665,39 @@ def github_exercise(request):
     else:
         return HttpResponse("You must provide an exercise ID.")
 
+    # Sending in completed project exercise in case user already completed it
+    completed_github_exercise = None
+    message = None
+
+    # Receiving the submitted github link for the exercise
+    if request.method == "POST":
+        github_exercise_link = request.POST.get("github-exercise-link")
+
+        # Creating completed project exercise with no score
+        completed_github_exercise = models.CompletedGitHubExercise(github_exercise=github_exercise, github_exercise_link=github_exercise_link)
+        completed_github_exercise.save()
+
+        # Adding completed project to user
+        current_user_profile = request.user.profile
+        current_user_profile.completed_github_exercises.add(completed_github_exercise)
+        current_user_profile.save()
+
+        # Sending user a message
+        message = "GitHub Mini Exercise submitted successfully!"
+
+
+    # Checking if user already completed project
+    user_already_completed_mini_exercise = False
+    for completed_github_exercise in list(request.user.profile.completed_github_exercises.all()):
+        if completed_github_exercise.github_exercise == github_exercise:
+            user_already_completed_mini_exercise = True
+
+
     return render(request, "app/github-exercise.html", context={
-        "exercise": github_exercise
+        "exercise": github_exercise,
+        "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
+        "completed_github_exercise": completed_github_exercise,
+        "message": message
     })
 
 
@@ -586,25 +740,40 @@ def research_exercise(request):
     else:
         return HttpResponse("You must provide an exercise ID.")
 
+    # Sending in completed project exercise in case user already completed it
+    completed_research_exercise = None
+    message = None
+
+    # Receiving the submitted github link for the exercise
+    if request.method == "POST":
+        research_link = request.POST.get("research-link")
+
+        # Creating completed project exercise with no score
+        completed_research_exercise = models.CompletedResearchExercise(research_exercise=research_exercise, research_link=research_link)
+        completed_research_exercise.save()
+
+        # Adding completed project to user
+        current_user_profile = request.user.profile
+        current_user_profile.completed_research_exercises.add(completed_research_exercise)
+        current_user_profile.save()
+
+        # Sending user a message
+        message = "Research Mini Exercise submitted successfully!"
+
+
+    # Checking if user already completed project
+    user_already_completed_mini_exercise = False
+    for completed_research_exercise in list(request.user.profile.completed_research_exercises.all()):
+        if completed_research_exercise.research_exercise == research_exercise:
+            user_already_completed_mini_exercise = True
+
+
     return render(request, "app/research-exercise.html", context={
-        "exercise": research_exercise
+        "exercise": research_exercise,
+        "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
+        "completed_research_exercise": completed_research_exercise,
+        "message": message
     })
-
-
-# @login_required(login_url="http://www.w3hacks.com/login")
-# def mini_exercise(request):
-#     mini_id = request.GET.get("id")
-#     if mini_id:
-#         if models.MiniExercise.objects.filter(id=mini_id).exists():
-#             mini_exercise = models.MiniExercise.objects.get(id=mini_id)
-#         else:
-#             return HttpResponse("Invalid mini exercise ID.")
-#     else:
-#         return HttpResponse("You must provide a mini ID.")
-#
-#     return render(request, "app/mini-exercise.html", context={
-#         "exercise": mini_exercise
-#     })
 
 
 # Hackathon views
