@@ -293,6 +293,7 @@ def fix_the_code_exercise(request):
 
     # Sending in completed project exercise in case user already completed it
     completed_fix_the_code_exercise = None
+    message = None
 
     # Receiving the submitted github link for the exercise
     if request.method == "POST":
@@ -319,7 +320,10 @@ def fix_the_code_exercise(request):
 
 
     return render(request, "app/fix-the-code-exercise.html", context={
-        "exercise": fix_the_code_exercise
+        "exercise": fix_the_code_exercise,
+        "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
+        "completed_fix_the_code_exercise": completed_fix_the_code_exercise,
+        "message": message
     })
 
 
