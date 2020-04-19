@@ -306,6 +306,7 @@ class TeachingExercise(models.Model):
     description = models.TextField() # Description of the mini exercise
     topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
     difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
+    formats = ArrayField(models.CharField(max_length=50), null=True, blank=True) # The formats available to submit (Video, Document)
     prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
 
@@ -315,7 +316,6 @@ class TeachingExercise(models.Model):
 
 class CompletedTeachingExercise(models.Model):
     teaching_exercise = models.ForeignKey("TeachingExercise", on_delete=models.PROTECT) # The mini exercise taken
-    formats = ArrayField(models.CharField(max_length=50)) # The formats available to submit (Video, Document)
     teaching_exercise_link = models.CharField(max_length=200) # Link to completed exercise (YouTube video, Google Docs link)
     score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
 

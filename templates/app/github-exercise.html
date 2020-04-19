@@ -3,5 +3,36 @@
 {% block body %}
   <div class="container">
     <h1>GitHub Exercise: {{ exercise.name }}</h1>
+    <p>
+      <strong>Description:</strong> {{ exercise.description }}
+    </p>
+    <p>
+      <strong>Topic:</strong> {{ exercise.topic.name }}
+    </p>
+    <p>
+      <strong>Difficulty Level:</strong> {{ exercise.difficulty_level.name }}
+    </p>
+    {% if prerequisites %}
+      <h5>Pre-Requisites</h5>
+      <ul>
+        {% for prerequisite in prerequisites %}
+          <li>{{ prerequisite }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if resources %}
+      <h5>Resources</h5>
+      <ul>
+        {% for resource in resources %}
+          <li><a href="{{ resource.link }}" target="_">{{ resource.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <form enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+      <input type="url" name="github-exercise-link" placeholder="Finished GitHub Exercise Link">
+      <input type="submit" value="Submit">
+    </form>
   </div>
 {% endblock %}
