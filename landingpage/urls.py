@@ -37,14 +37,15 @@ urlpatterns = [
     url("^exercises/quiz-exercises/exercise/quiz-results/$", appViews.quiz_results, name="quiz_results"),
 
     url("^exercises/mini-exercises/$", appViews.mini_exercises, name="mini_exercises"),
-    url("^exercises/mini-exercises/fix-the-code-exercises/$", appViews.fix_the_code_exercises, name="fix_the_code_exercises"),
+    url("^exercises/mini-exercises/fix-the-code-exercises/$", appViews.fix_the_code_exercises),
+    url("^exercises/mini-exercises/fix-the-code-exercises/exercise/$", appViews.fix_the_code_exercise, name="fix_the_code_exercise"),
     url("^exercises/mini-exercises/brainteaser-exercises/$", appViews.brainteaser_exercises, name="brainteaser_exercises"),
     url("^exercises/mini-exercises/visualization-exercises/$", appViews.visualization_exercises, name="visualization_exercises"),
     url("^exercises/mini-exercises/refactor-exercises/$", appViews.refactor_exercises, name="refactor_exercises"),
     url("^exercises/mini-exercises/teaching-exercises/$", appViews.teaching_exercises, name="teaching_exercises"),
     url("^exercises/mini-exercises/github-exercises/$", appViews.github_exercises, name="github_exercises"),
     url("^exercises/mini-exercises/research-exercises/$", appViews.research_exercises, name="research_exercises"),
-    url("^exercises/mini-exercises/exercise/$", appViews.mini_exercise, name="mini_exercise"),
+    # url("^exercises/mini-exercises/exercise/$", appViews.mini_exercise, name="mini_exercise"),
 
     # Hackathon views
     url("^hackathon/$", appViews.hackathon, name="hackathon"),

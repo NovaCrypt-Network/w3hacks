@@ -302,6 +302,22 @@ def fix_the_code_exercises(request):
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
+def fix_the_code_exercise(request):
+    fix_the_code_exercise_id = request.GET.get("id")
+    if fix_the_code_exercise_id:
+        if models.FixTheCodeExercise.objects.filter(id=fix_the_code_exercise_id).exists():
+            fix_the_code_exercise = models.FixTheCodeExercise.objects.get(id=fix_the_code_exercise_id)
+        else:
+            return HttpResponse("Invalid exercise ID.")
+    else:
+        return HttpResponse("You must provide an exercise ID.")
+
+    return render(request, "app/fix-the-code-exercise.html", context={
+        "exercise": fix_the_code_exercise
+    })
+
+
+@login_required(login_url="http://www.w3hacks.com/login")
 def brainteaser_exercises(request):
     topics = models.Topic.objects.all()
     brainteaser_exercises = models.BrainTeaserExercise.objects.all()
