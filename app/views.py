@@ -304,18 +304,18 @@ def fix_the_code_exercise(request):
 
         # Adding completed project to user
         current_user_profile = request.user.profile
-        current_user_profile.completed_project_exercises.add(completed_project_exercise)
+        current_user_profile.completed_fix_the_code_exercises.add(completed_fix_the_code_exercise)
         current_user_profile.save()
 
         # Sending user a message
-        message = "Project submitted successfully!"
+        message = "Fix The Code Mini Exercise submitted successfully!"
 
 
     # Checking if user already completed project
-    user_already_completed_project = False
-    for completed_project_exercise in list(request.user.profile.completed_project_exercises.all()):
-        if completed_project_exercise.project_exercise == project_exercise:
-            user_already_completed_project = True
+    user_already_completed_mini_exercise = False
+    for completed_fix_the_code_exercise in list(request.user.profile.completed_fix_the_code_exercises.all()):
+        if completed_fix_the_code_exercise.fix_the_code_exercise == fix_the_code_exercise:
+            user_already_completed_mini_exercise = True
 
 
     return render(request, "app/fix-the-code-exercise.html", context={
