@@ -278,6 +278,28 @@ class CompletedRefactorExercise(models.Model):
         return "Completed Brain Teaser Exercise: " + self.refactor_exercise.name
 
 
+class VisualizationExercise(models.Model):
+    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for the mini-exercise
+    name = models.CharField(max_length=50) # Name of the mini exercise
+    description = models.TextField() # Description of the mini exercise
+    topic = models.ForeignKey("Topic", on_delete=models.PROTECT) # The topic of the exercise
+    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
+    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
+    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
+
+    def __str__(self):
+        return self.name
+
+
+class CompletedVisualizationExercise(models.Model):
+    visualization_exercise = models.ForeignKey("VisualizationExercise", on_delete=models.PROTECT) # The mini exercise taken
+    visualization_file = models.FileField() # File for draw.io visualization
+    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
+
+    def __str__(self):
+        return "Completed Brain Teaser Exercise: " + self.visualization_exercise.name
+
+
 # For 'Resources' section of Hackathon
 class ResourceLink(models.Model):
     title = models.CharField(max_length=50) # String to be shown on display
