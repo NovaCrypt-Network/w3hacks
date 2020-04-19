@@ -1,6 +1,4 @@
 from django.contrib.postgres.fields import ArrayField
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.db import models
 from datetime import date, datetime
@@ -14,6 +12,8 @@ def generate_id():
 # Making the default Django user's username and email unique
 User._meta.get_field('username')._unique = True
 User._meta.get_field('email')._unique = True
+
+
 
 ####################
 ## GENERAL MODELS ##
@@ -103,6 +103,9 @@ class Hackathon(models.Model):
         return self.title
 
 
+#############################################################################################################################
+
+
 ####################
 ## PROFILE MODELS ##
 ####################
@@ -127,6 +130,9 @@ class Theme(models.Model):
         return self.title
 
 
+#############################################################################################################################
+
+
 #####################
 ## EXERCISE MODELS ##
 #####################
@@ -147,6 +153,10 @@ class DifficultyLevel(models.Model):
     def __str__(self):
         return self.name
 
+
+####################
+## PROJECT MODELS ##
+####################
 
 class ProjectExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for project exercises
@@ -169,6 +179,10 @@ class CompletedProjectExercise(models.Model):
     def __str__(self):
         return "Completed Project Exercise: " + self.project_exercise.name
 
+
+#################
+## QUIZ MODELS ##
+#################
 
 class QuizExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for quiz exercise
@@ -204,6 +218,10 @@ class CompletedQuizExercise(models.Model):
     def __str__(self):
         return "Completed Quiz Exercise: " + self.quiz_exercise.name
 
+
+##########################
+## MINI-EXERCISE MODELS ##
+##########################
 
 class MiniExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for mini-exercise
@@ -385,6 +403,9 @@ class ResourceLink(models.Model):
 
     def __str__(self):
         return self.title
+
+
+#############################################################################################################################
 
 
 ######################

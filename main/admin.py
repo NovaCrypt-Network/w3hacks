@@ -9,7 +9,7 @@ for model in models:
     # Register the model
     try:
         admin.site.register(model)
-        
+
     # Pass if model is already registered
     except admin.sites.AlreadyRegistered:
         pass
