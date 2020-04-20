@@ -35,7 +35,6 @@ urlpatterns = [
     url("^exercises/mini-exercises/research-exercises/exercise/$", views.research_exercise, name="research_exercise"),
 
     # Hackathon views
-    url("^hackathon/$", views.hackathon, name="hackathon"),
     url("^about-the-hackathon/$", views.about_the_hackathon, name="about_the_hackathon"),
     url("^past-hackathons/$", views.past_hackathons, name="past_hackathons"),
     url("^future-hackathons/$", views.future_hackathons, name="future_hackathons"),

@@ -54,7 +54,6 @@ urlpatterns = [
     url("^exercises/mini-exercises/research-exercises/exercise/$", appViews.research_exercise, name="research_exercise"),
 
     # Hackathon views
-    url("^hackathon/$", appViews.hackathon, name="hackathon"),
     url("^about-the-hackathon/$", appViews.about_the_hackathon, name="about_the_hackathon"),
     url("^past-hackathons/$", appViews.past_hackathons, name="past_hackathons"),
     url("^future-hackathons/$", appViews.future_hackathons, name="future_hackathons"),

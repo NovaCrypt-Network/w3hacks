@@ -51,13 +51,8 @@ def exercises(request):
 
 # Hackathon views
 @login_required(login_url="http://www.w3hacks.com/login")
-def hackathon(request):
-    return render(request, "app/hackathon.html")
-
-
-@login_required(login_url="http://www.w3hacks.com/login")
 def about_the_hackathon(request):
-    return render(request, "app/about-the-hackathon.html")
+    return render(request, "app/hackathon/about-the-hackathon.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -70,7 +65,7 @@ def past_hackathons(request):
         if hackathon.end_datetime.strftime("%d/%m/%Y %H:%M:%S") < datetime.now().strftime("%d/%m/%Y %H:%M:%S"):
             past_hackathons.append(hackathon)
 
-    return render(request, "app/past-hackathons.html", context={
+    return render(request, "app/hackathon/past-hackathons.html", context={
         "past_hackathons": past_hackathons
     })
 
@@ -85,7 +80,7 @@ def future_hackathons(request):
         if hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S") > datetime.now().strftime("%d/%m/%Y %H:%M:%S"):
             future_hackathons.append(hackathon)
 
-    return render(request, "app/future-hackathons.html", context={
+    return render(request, "app/hackathon/future-hackathons.html", context={
         "future_hackathons": future_hackathons
     })
 

@@ -1,14 +1,14 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block head %}
-  <link rel="stylesheet" href="{% static 'app/past-future-hackathons.css' %}">
+  <link rel="stylesheet" href="{% static 'app/hackathon/past-future-hackathons.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="container">
-    <h1>Past Hackathons</h1>
-    <div class="hackathons">
-      {% if past_hackathons %}
-        {% for hackathon in past_hackathons %}
+  <div class="body-container container">
+    <h1 class="heading-secondary">Future Hackathons</h1>
+    {% if future_hackathons %}
+      <div class="hackathons mt-4">
+        {% for hackathon in future_hackathons %}
           <div class="hackathon">
             <h3>{{ hackathon.title }}</h3>
             <div>
@@ -22,9 +22,11 @@
             </p>
           </div>
         {% endfor %}
-      {% else %}
-        <small>No past hackathons yet!</small>
-      {% endif %}
-    </div>
+      </div>
+    {% else %}
+      <div class="text-center mt-4">
+        <small>No future hackathons yet!</small>
+      </div>
+    {% endif %}
   </div>
 {% endblock %}
