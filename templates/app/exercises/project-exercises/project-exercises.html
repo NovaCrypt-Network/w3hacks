@@ -32,7 +32,7 @@
       <h1 class="heading-secondary">Project Exercises</h1>
       {% if topics %}
         <h3 class="heading-tertiary">Topics</h3>
-        <div class="topics mt-4">
+        <div class="topics">
           {% for topic in topics %}
             <a class="topic-link" href="?topic={{ topic.searchable_name }}">
               <div class="topic">
@@ -49,7 +49,7 @@
       <br>
       {% if exercises %}
         <h3 class="heading-tertiary">Exercises</h3>
-        <div class="exercises mt-4">
+        <div class="exercises">
           {% for exercise in exercises %}
             <a class="exercise-link" href="exercise/?id={{ exercise.id }}">
               <div class="exercise">

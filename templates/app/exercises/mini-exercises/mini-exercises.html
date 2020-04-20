@@ -1,111 +1,101 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block head %}
-  <link rel="stylesheet" href="{% static 'app/wildcard-exercises.css' %}">
+  <link rel="stylesheet" href="{% static 'app/exercises/exercises.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="container">
-    <!-- {% if topic %}
-      <h1>{{ topic.name }} Mini Exercises</h1>
-      {% if exercises %}
-        <div class="exercises">
-          {% for exercise in exercises %}
-            <a href="exercise/?id={{ exercise.id }}">
-              <div class="exercise">
-                <h3>{{ exercise.name }}</h3>
-              </div>
-            </a>
-          {% endfor %}
-        </div>
-      {% else %}
-        <small>No mini exercises yet!</small>
-      {% endif %}
-    {% else %}
-      <h1>Mini Exercises</h1>
-      {% if topics %}
-        <div class="topics">
-          {% for topic in topics %}
-            <a href="?topic={{ topic.searchable_name }}">
-              <div class="topic">
-                <h3>{{ topic.name }}</h3>
-              </div>
-            </a>
-          {% endfor %}
-        </div>
-      {% else %}
-        <small>No topics yet!</small>
-      {% endif %}
-      <br>
-      {% if exercises %}
-        <div class="exercises">
-          {% for exercise in exercises %}
-            <a href="exercise/?id={{ exercise.id }}">
-              <div class="exercise">
-                <h3>{{ exercise.name }}</h3>
-              </div>
-            </a>
-          {% endfor %}
-        </div>
-      {% else %}
-        <small>No mini exercises yet!</small>
-      {% endif %}
-    {% endif %} -->
-
-    <div class="mini-exercises">
-      <a href="fix-the-code-exercises/">
-        <div class="mini-exercise">
-          <h3>Fix the Code!</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+  <div class="body-container container">
+    <h1 class="heading-secondary">Mini Exercises</h1>
+    <div class="exercises mt-4">
+      <a class="exercise-link" href="fix-the-code-exercises/">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Fix the Code!</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
         </div>
       </a>
-      <a href="brainteaser-exercises/">
-        <div class="mini-exercise">
-          <h3>Brain Teasers</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+      <a class="exercise-link" href="brainteaser-exercises/">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Brain Teasers</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
         </div>
       </a>
-      <a href="visualization-exercises/">
-        <div class="mini-exercise">
-          <h3>Visualize it!</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+      <a class="exercise-link" href="visualization-exercises/">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Visualize it!</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
         </div>
       </a>
-      <a href="refactor-exercises/">
-        <div class="mini-exercise">
-          <h3>Refactoring Exercises</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+      <a class="exercise-link" href="refactor-exercises/">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Refactoring Exercises</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
         </div>
       </a>
-      <a href="teaching-exercises/">
-        <div class="mini-exercise">
-          <h3>Teaching Exercises</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+      <a class="exercise-link" href="teaching-exercises/">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Teaching Exercises</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
         </div>
       </a>
-      <a href="github-exercises/">
-        <div class="mini-exercise">
-          <h3>Git/GitHub Exercises</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+      <a class="exercise-link" href="github-exercises/">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Git/GitHub Exercises</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
         </div>
       </a>
-      <a href="research-exercises/">
-        <div class="mini-exercise">
-          <h3>Research Exercises</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+      <a class="exercise-link" href="research-exercises/">
+        <div class="exercise">
+          <div class="exercise-img">
+            <img src="{% static 'img/no-image-available.png' %}" alt="">
+          </div>
+          <div class="exercise-body">
+            <h5>Research Exercises</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
         </div>
       </a>
     </div>
