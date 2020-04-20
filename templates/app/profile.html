@@ -15,29 +15,44 @@
           {% endif %}
         </div>
         <div class="profile-header-main-right">
-          <h1>{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
-          <p>{{ profile.biography }}</p>
-          <a class="btn btn-primary" href="#">Edit Profile</a>
+          <h1>
+            <span>{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
+            <a style="float: right;" href="/edit-profile/{{ request.user.id }}/">
+              <img style="width: 25px;" src="{% static 'img/edit.png' %}" alt="">
+            </a>
+          </h1>
+          <!-- <a class="solid-cta-button" href="/edit-profile/{{ request.user.id }}/">Edit Profile</a> -->
+          <p class="profile-description mt-3">
+            <i>{{ profile.biography }}</i>
+          </p>
         </div>
       </div>
       <div class="profile-header-right">
-        {% if profile.education %}
-          <small>Education</small><br>
-          <p>{{ profile.education }}</p>
-        {% endif %}
+        <div class="profile-element">
+          {% if profile.education %}
+            <small>Education</small><br>
+            <p>{{ profile.education }}</p>
+          {% endif %}
+        </div>
 
-        {% if profile.birthday %}
-          <small>Birthday</small><br>
-          <p>{{ profile.birthday }}</p>
-        {% endif %}
+        <div class="profile-element">
+          {% if profile.birthday %}
+            <small>Birthday</small><br>
+            <p>{{ profile.birthday }}</p>
+          {% endif %}
+        </div>
 
-        {% if profile.skills %}
-          <small>Skills</small><br>
-          <p>{{ profile.skills }}</p>
-        {% endif %}
+        <div class="profile-element">
+          {% if profile.skills %}
+            <small>Skills</small><br>
+            <p>{{ profile.skills }}</p>
+          {% endif %}
+        </div>
 
-        <small>Joined</small>
-        <p>{{ profile.joined_date }}</p>
+        <div class="profile-element">
+          <small>Joined</small>
+          <p>{{ profile.joined_date }}</p>
+        </div>
       </div>
     </div>
     <div class="profile-body">
