@@ -4,10 +4,10 @@
   <link rel="stylesheet" href="{% static 'app/achievements.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="container">
-    <h1>Achievements</h1>
-    <div>
-      <h3>My Achievements</h3>
+  <div class="body-container container">
+    <h1 class="heading-secondary">Achievements</h1>
+    <div class="mt-4">
+      <h3 class="heading-fourth">My Achievements</h3>
       <div class="achievements">
         {% if my_achievements %}
           {% for achievement in my_achievements %}
@@ -28,8 +28,8 @@
         {% endif %}
       </div>
     </div>
-    <div>
-      <h3>Possible Achievements</h3>
+    <div class="mt-4">
+      <h3 class="heading-fourth">Possible Achievements</h3>
       <div class="achievements">
         {% for achievement in achievements %}
           <div class="achievement">

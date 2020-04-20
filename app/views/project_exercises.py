@@ -73,6 +73,7 @@ def project_exercise(request):
 
     return render(request, "app/exercises/project-exercises/project-exercise.html", context={
         "exercise": project_exercise,
+        "resources": list(project_exercise.resources.all()),
         "user_already_completed_project": user_already_completed_project,
         "completed_project_exercise": completed_project_exercise,
         "message": message
