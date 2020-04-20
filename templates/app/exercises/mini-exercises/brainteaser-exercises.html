@@ -1,34 +1,38 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block head %}
-  <link rel="stylesheet" href="{% static 'app/wildcard-exercises.css' %}">
+  <link rel="stylesheet" href="{% static 'app/exercises/global-exercise-styles.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="container">
+  <div class="body-container container">
     {% if topic %}
-      <h1>{{ topic.name }} BrainTeaser Mini-Exercises</h1>
+      <h1 class="heading-secondary">{{ topic.name }} BrainTeaser Mini-Exercises</h1>
       {% if exercises %}
         <div class="exercises">
           {% for exercise in exercises %}
-            <a href="exercise/?id={{ exercise.id }}">
-              <div class="exercise">
-                <h3>{{ exercise.name }}</h3>
+          <a class="exercise-link" href="exercise/?id={{ exercise.id }}">
+            <div class="exercise">
+              <img class="exercise-icon" src="{% static 'img/project.png' %}" alt="">
+              <div class="exercise-info">
+                <h5>{{ exercise.name }}</h5>
+                <p>{{ exercise.description }}</p>
               </div>
-            </a>
+            </div>
+          </a>
           {% endfor %}
         </div>
       {% else %}
         <small>No brainteaser mini-exercises yet!</small>
       {% endif %}
     {% else %}
-      <h1>BrainTeaser Mini-Exercises</h1>
+      <h1 class="heading-secondary">BrainTeaser Mini-Exercises</h1>
       {% if topics %}
+        <h3 class="heading-tertiary">Topics</h3>
         <div class="topics">
           {% for topic in topics %}
-            <a href="?topic={{ topic.searchable_name }}">
+            <a class="topic-link" href="?topic={{ topic.searchable_name }}">
               <div class="topic">
-                <!-- <img src="{{ topic.image.url }}" alt=""> -->
-                <h3>{{ topic.name }}</h3>
+                <span class="topic-name">{{ topic.name }}</span>
               </div>
             </a>
           {% endfor %}
@@ -38,13 +42,18 @@
       {% endif %}
       <br>
       {% if exercises %}
+        <h3 class="heading-tertiary">Exercises</h3>
         <div class="exercises">
           {% for exercise in exercises %}
-            <a href="exercise/?id={{ exercise.id }}">
-              <div class="exercise">
-                <h3>{{ exercise.name }}</h3>
+          <a class="exercise-link" href="exercise/?id={{ exercise.id }}">
+            <div class="exercise">
+              <img class="exercise-icon" src="{% static 'img/project.png' %}" alt="">
+              <div class="exercise-info">
+                <h5>{{ exercise.name }}</h5>
+                <p>{{ exercise.description }}</p>
               </div>
-            </a>
+            </div>
+          </a>
           {% endfor %}
         </div>
       {% else %}
