@@ -1,48 +1,61 @@
 {% extends 'app/base.html' %}
 {% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'app/exercises/quiz-exercises/quiz-results.css' %}">
+{% endblock %}
 {% block body %}
-  <div class="container">
-    <h1>Completed Quiz Results: {{ quiz_exercise.name }}</h1>
-    <h3>Results</h3>
+  <div class="body-container container">
+    <h1 class="heading-tertiary">Quiz Results: {{ quiz_exercise.name }}</h1>
 
     <!-- STATISTICS -->
-    <h3>Statistics</h3>
-    <strong>Score: </strong> {{ completed_quiz_exercise.number_of_correct_answers }}/{{ completed_quiz_exercise.number_of_questions }}
+    <div class="statistics mt-4">
+      <h3 class="heading-fourth">Statistics</h3>
+      <strong>Score: </strong> {{ completed_quiz_exercise.number_of_correct_answers }}/{{ completed_quiz_exercise.number_of_questions }}
+    </div>
 
     <!-- QUESTIONS -->
-    <h3>Questions</h3>
-    {% for result in results %}
-      <div class="result">
-        <h5>
-          {{ result.question }}
-          {% if result.got_this_correct %}
-            (1 points)
-          {% else %}
-            (0 points)
-          {% endif %}
-        </h5>
-        {% for answer in result.answers %}
-          <!-- You chose the correct answer -->
-          {% if result.correct_answer == result.user_answer == answer %}
-            <li>{{ answer }} ----- &#9989;</li>
+    <div class="results mt-4">
+      <h3 class="heading-fourth">Questions</h3>
+      {% for result in results %}
+        <div class="result mt-3">
+          <h5>
+            {{ result.question }}
+            {% if result.got_this_correct %}
+              <small>(1 point)</small>
+            {% else %}
+              <small>(0 points)</small>
+            {% endif %}
+          </h5>
+          <div class="results-answers">
+            {% for answer in result.answers %}
+              <!-- You chose the correct answer -->
+              {% if result.correct_answer == result.user_answer == answer %}
+                <div class="answer">
+                  <img class="quiz-result-icon" src="{% static 'img/correct.png' %}" alt=""> <span>{{ answer }}</span>
+                </div>
 
-          <!-- This is the correct answer -->
-          {% elif result.correct_answer == answer %}
-            <li>{{ answer }} ----- &#9989;</li>
+              <!-- This is the correct answer -->
+              {% elif result.correct_answer == answer %}
+                <div class="answer">
+                  <img class="quiz-result-icon" src="{% static 'img/correct.png' %}" alt=""> <span>{{ answer }}</span>
+                </div>
 
-          <!-- This is your answer -->
-          {% elif result.user_answer == answer %}
-            <li>{{ answer }} ----- 	&#10060;</li>
+              <!-- This is your answer -->
+              {% elif result.user_answer == answer %}
+                <div class="answer">
+                  <img class="quiz-result-icon" src="{% static 'img/incorrect.png' %}" alt=""> <span>{{ answer }}</span>
+                </div>
 
-          <!-- This is just an answer -->
-          {% else %}
-            <li>{{ answer }}</li>
-          {% endif %}
-        {% endfor %}
-      </div>
-    {% endfor %}
+              <!-- This is just an answer -->
+              {% else %}
+                <div class="answer">
+                  <input type="radio" disabled> <span>{{ answer }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
-  <script>
-    console.log("{{ results|safe }}")
-  </script>
 {% endblock %}

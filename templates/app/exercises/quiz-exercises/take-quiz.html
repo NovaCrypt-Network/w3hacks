@@ -1,90 +1,38 @@
 {% extends 'app/base.html' %}
 {% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'app/exercises/quiz-exercises/take-quiz.css' %}">
+  <link rel="stylesheet" href="{% static 'external/loading-bar.css' %}">
+  <script src="{% static 'external/loading-bar.js' %}" charset="utf-8"></script>
+{% endblock %}
 {% block body %}
-  {% if user_already_taken_quiz %}
-    <div class="container">
-      <h1>{{ quiz.name }}</h1>
-      <strong>You have already taken this quiz.</strong>
-    </div>
-  {% else %}
-    <div class="container">
+  <div class="body-container container">
+    {% if user_already_taken_quiz %}
+      <h1 class="heading-tertiary">{{ quiz.name }}</h1>
+      <div class="mb-4">
+        <strong>You have already taken this quiz.</strong>
+      </div>
+      <a href="../quiz-results/?id={{ quiz.id }}" class="solid-cta-button">See Results</a>
+    {% else %}
       <h1>{{ quiz.name }}</h1>
       <div id="quiz-container">
-        <h3 id="question-count"></h3>
         <p><strong id="question"></strong></p>
         <ul id="answers"></ul>
 
-        <button onclick="getQuestion(false)">Next Question</button>
+        <button class="solid-cta-button" onclick="getQuestion(false)">Next Question</button>
+
+        <div class="mt-2">
+          <small id="question-count"></small>
+        </div>
       </div>
-    </div>
 
-    <script>
-      // Quiz Variables
-      let userAnswers = [];
-      let questions = {{ questions|safe }};
-      let questionIndex = 0;
-      let quizLength = questions.length;
-
-      // HTML Tags
-      const quizContainer = document.getElementById("quiz-container");
-      const questionCountTag = document.getElementById("question-count");
-      const questionTag = document.getElementById("question");
-      const answersTag = document.getElementById("answers");
-
-      // onInit -> boolean -> true if function was called on initalization
-      function getQuestion(onInit) {
-        // If this was called from submitting an answer
-        if (!onInit) {
-          // Get input node
-          let answer = document.querySelector("input[type='radio']:checked");
-
-          // If the user selected an answer
-          if (answer) {
-            userAnswers.push(answer.value); // Add the answer to answers
-            console.log(answer.value)
-            console.log(userAnswers)
-          }
-          // If the user selected an answer
-          else {
-            alert("You must select a question."); // Alert an error
-            return; // Don't move to the next question
-          }
-        }
-
-        let question = questions[questionIndex];
-
-        // End of quiz
-        if (question == undefined) {
-          quizContainer.innerHTML = "<div><strong>Quiz finished!</strong></div><div><a href='../quiz-results/?id={{ quiz.id }}'>See Results</a></div>";
-
-          // Creating completed quiz exercise
-          fetch("/create-completed-quiz-exercise/", {
-            method: "POST",
-            body: JSON.stringify({
-              quiz_exercise_id: "{{ quiz.id }}",
-              userAnswers: userAnswers
-            })
-          })
-
-          return;
-        }
-
-        // Setting question counter to current question count
-        questionCountTag.innerHTML = "Question " + (questionIndex + 1).toString() + "/" + quizLength.toString();
-
-        // Displaying question on HTML
-        questionTag.innerHTML = question.question;
-
-        // Adding each answer to HTML though iteration
-        answersTag.innerHTML = ""; // Clearing answers before adding again
-        for (answer of question.answers) {
-          answersTag.innerHTML += "<li><input type='radio' name='answer' value='" + answer + "'>" + answer + "</li>";
-        }
-
-        questionIndex++;
-      }
-
-      getQuestion(true); // To start things off
-    </script>
-  {% endif %}
+      <script>
+        // Initalizing variables passed from server here for external JS
+        let questions = {{ questions|safe }};
+        const quiz_id = "{{ quiz.id }}";
+        console.log(quiz_id);
+      </script>
+      <script src="{% static 'js/take-quiz.js' %}" charset="utf-8"></script>
+    {% endif %}
+  </div>
 {% endblock %}

@@ -80,6 +80,7 @@ def fix_the_code_exercise(request):
 
     return render(request, "app/exercises/mini-exercises/fix-the-code-exercise.html", context={
         "exercise": fix_the_code_exercise,
+        "resources": list(fix_the_code_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_fix_the_code_exercise": completed_fix_the_code_exercise,
         "message": message
@@ -155,6 +156,7 @@ def brainteaser_exercise(request):
 
     return render(request, "app/exercises/mini-exercises/brainteaser-exercise.html", context={
         "exercise": brainteaser_exercise,
+        "resources": list(brainteaser_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_brainteaser_exercise": completed_brainteaser_exercise,
         "message": message
@@ -229,6 +231,7 @@ def visualization_exercise(request):
 
     return render(request, "app/exercises/mini-exercises/visualization-exercise.html", context={
         "exercise": visualization_exercise,
+        "resources": list(visualization_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_visualization_exercise": completed_visualization_exercise,
         "message": message
@@ -304,6 +307,7 @@ def refactor_exercise(request):
 
     return render(request, "app/exercises/mini-exercises/refactor-exercise.html", context={
         "exercise": refactor_exercise,
+        "resources": list(refactor_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_refactor_exercise": completed_refactor_exercise,
         "message": message
@@ -379,6 +383,7 @@ def teaching_exercise(request):
 
     return render(request, "app/exercises/mini-exercises/teaching-exercise.html", context={
         "exercise": teaching_exercise,
+        "resources": list(teaching_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_teaching_exercise": completed_teaching_exercise,
         "message": message
@@ -454,6 +459,7 @@ def github_exercise(request):
 
     return render(request, "app/exercises/mini-exercises/github-exercise.html", context={
         "exercise": github_exercise,
+        "resources": list(github_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_github_exercise": completed_github_exercise,
         "message": message
@@ -529,6 +535,7 @@ def research_exercise(request):
 
     return render(request, "app/exercises/mini-exercises/research-exercise.html", context={
         "exercise": research_exercise,
+        "resources": list(research_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_research_exercise": completed_research_exercise,
         "message": message

@@ -43,7 +43,8 @@ def quiz_exercise(request):
         return HttpResponse("You must provide a quiz ID.")
 
     return render(request, "app/exercises/quiz-exercises/quiz-exercise.html", context={
-        "exercise": quiz_exercise
+        "exercise": quiz_exercise,
+        "resources": list(quiz_exercise.resources.all()),
     })
 
 
