@@ -1,0 +1,38 @@
+.exercises {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 50px;
+}
+
+.exercise-link:hover {
+  text-decoration: none;
+}
+
+.exercise {
+  border-radius: 5px;
+  background-color: var(--color-primary);
+  transition: all .3s;
+}
+
+.exercise * {
+  color: white;
+}
+
+.exercise:hover {
+  transform: rotate(5deg);
+}
+
+.exercise-img img {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.exercise-body {
+  padding: 10px;
+}
+
+.exercise-body p {
+  line-height: 130%;
+  font-size: 15px;
+}

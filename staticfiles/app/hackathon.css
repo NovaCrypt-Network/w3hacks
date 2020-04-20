@@ -1,0 +1,34 @@
+.options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
+}
+
+.option {
+  border-radius: 5px;
+  background-color: blue;
+  transition: all .3s;
+}
+
+.option * {
+  color: white;
+}
+
+.option:hover {
+  transform: rotate(5deg);
+}
+
+.option-img img {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.option-body {
+  padding: 10px;
+}
+
+.option-body p {
+  line-height: 130%;
+  font-size: 15px;
+}
