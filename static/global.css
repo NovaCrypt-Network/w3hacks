@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+p {
+  margin-bottom: 0 !important;
+}
+
 .ghost-cta-button {
   border: 2px solid white;
   background-color: transparent;
@@ -48,6 +52,18 @@
 }
 
 .heading-primary {
+  text-align: center;
   font-size: 65px;
+  font-weight: bold;
+}
+
+.heading-secondary {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.heading-tertiary {
+  font-size: 40px;
   font-weight: bold;
 }

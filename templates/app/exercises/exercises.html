@@ -4,10 +4,10 @@
   <link rel="stylesheet" href="{% static 'app/exercises/exercises.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="container">
-    <h1>Exercises</h1>
-    <div class="exercises">
-      <a href="/exercises/project-exercises/">
+  <div class="container body-container">
+    <h1 class="heading-secondary">Exercises</h1>
+    <div class="exercises mt-4">
+      <a class="exercise-link" href="/exercises/project-exercises/">
         <div class="exercise">
           <div class="exercise-img">
             <img src="{% static 'img/no-image-available.png' %}" alt="">
@@ -20,7 +20,7 @@
           </div>
         </div>
       </a>
-      <a href="/exercises/quiz-exercises">
+      <a class="exercise-link" href="/exercises/quiz-exercises">
         <div class="exercise">
           <div class="exercise-img">
             <img src="{% static 'img/no-image-available.png' %}" alt="">
@@ -33,7 +33,7 @@
           </div>
         </div>
       </a>
-      <a href="/exercises/mini-exercises">
+      <a class="exercise-link" href="/exercises/mini-exercises">
         <div class="exercise">
           <div class="exercise-img">
             <img src="{% static 'img/no-image-available.png' %}" alt="">
