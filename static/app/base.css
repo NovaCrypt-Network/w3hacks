@@ -4,7 +4,7 @@ body {
 }
 
 nav {
-  background-color: blue;
+  background-color: var(--color-primary);
 }
 
 .dropdown-toggle::after {
