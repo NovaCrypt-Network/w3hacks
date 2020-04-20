@@ -18,7 +18,15 @@ def add_competitor_to_hackathon(request):
     profile = models.Profile.objects.get(user=user)
 
     # Making sure that the user isn't a competitor already and the person making the request is logged in to the respective user's account
-    if not profile in list(hackathon.competitors.all()) and user == request.user:
+    # if not profile in list(hackathon.competitors.all()) and user == request.user:
+    #     hackathon.competitors.add(profile)
+    #     hackathon.save()
+    #
+    # return JsonResponse({
+    #     "status": 200
+    # })
+
+    if not profile in list(hackathon.competitors.all()):
         hackathon.competitors.add(profile)
         hackathon.save()
 

@@ -1,92 +1,129 @@
 {% extends 'hackathon/base.html' %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'hackathon/index.css' %}">
+{% endblock %}
 {% block body %}
-  <h1>Index</h1>
-  <h3>Themes</h3>
-  {% if hackathon_already_started %}
-    {% if themes %}
-      <ul>
-        {% for theme in themes %}
-          <li>{{ theme }}</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <small>No themes provided!</small>
-    {% endif %}
-  {% else %}
-    <small>Themes will show up once the hackathon starts!</small>
-  {% endif %}
+  <div class="body-container container">
+    <h1 class="heading-secondary">{{ hackathon.title }}</h1>
 
-  <h3>Resources</h3>
-  {% if hackathon_already_started %}
-    {% if resource_links %}
-      <ul>
-        {% for link in resource_links %}
-          <li>
-            <a href="{{ link.link }}">{{ link.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <small>No resources provided!</small>
-    {% endif %}
-  {% else %}
-    <small>Resources will show up once the hackathon starts!</small>
-  {% endif %}
+    <div class="row">
+      <div class="col mt-4">
+        <div class="themes-container">
+          <h3 class="heading-fourth">Themes</h3>
+          {% if hackathon_already_started %}
+            {% if themes %}
+              <div class="themes">
+                {% for theme in themes %}
+                  <div class="theme">
+                    <h5>{{ theme.title }}</h5>
+                    <p>{{ theme.description }}</p>
+                  </div>
+                {% endfor %}
+              </div>
+            {% else %}
+              <small>No themes provided!</small>
+            {% endif %}
+          {% else %}
+            <small>Themes will show up once the hackathon starts!</small>
+          {% endif %}
+        </div>
 
-  <h3>Awards</h3>
-  <ul>
-    {% for award in awards %}
-      <li>{{ award.title }}</li>
-    {% endfor %}
-  </ul>
+        <div class="resources-container mt-4">
+          <h3 class="heading-fourth">Resources</h3>
+          {% if hackathon_already_started %}
+            {% if resource_links %}
+              <ul class="ml-4">
+                {% for link in resource_links %}
+                  <li>
+                    <a href="{{ link.link }}" target="_">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <small>No resources provided!</small>
+            {% endif %}
+          {% else %}
+            <small>Resources will show up once the hackathon starts!</small>
+          {% endif %}
+        </div>
 
-  {% if not hackathon_already_ended %}
-    <div>
-      {% if not hackathon_already_started %}
-        <strong>Hackathon starts in:</strong> <span id="pageTimer"></span>
-      {% else %}
-        <strong>Hackathon already started!</strong>
-      {% endif %}
+        <div class="awards-container mt-4">
+          <h3 class="heading-fourth">Awards</h3>
+          {% if hackathon_already_started %}
+            <div class="awards">
+              {% for award in awards %}
+                <div class="award">
+                  <h5>{{ award.title }}</h5>
+                  <p>{{ award.description }}</p>
+                  <small>{{ award.prize }}</small>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>Awards will show up once the hackathon starts!</small>
+          {% endif %}
+        </div>
+      </div>
+      <div class="right col mt-4">
+        <div class="info-box">
+          {% if not hackathon_already_ended %}
+            {% if not hackathon_already_started %}
+              {% if not user_is_competitor %}
+                <button class="ghost-cta-button w-100" id="joinButton" onclick="addCompetitor('{{ hackathon.id }}', '{{ profile.id }}')">Join the Hackathon!</button>
+              {% else %}
+                <button class="ghost-cta-button w-100" disabled>Joined!</button>
+              {% endif %}
+            {% else %}
+              <small>Hackathon already started!</small>
+            {% endif %}
+          {% else %}
+            <small>Hackathon already ended!</small>
+          {% endif %}
+
+          <p>
+            <strong>Hackathon Start Date:</strong> <span id="start-date"></span>
+          </p>
+          <p>
+            <strong>Hackathon End Date:</strong> <span id="end-date"></span>
+          </p>
+          <p>
+            <strong>Hackathon starts in:</strong> <span id="pageTimer"></span>
+          </p>
+        </div>
+      </div>
     </div>
-    
-    {% if not hackathon_already_started %}
-      {% if not user_is_competitor %}
-        <button id="joinButton" onclick="addCompetitor('{{ hackathon.id }}', '{{ profile.id }}')">Join the Hackathon!</button>
-      {% else %}
-        <small>You already joined this hackathon!</small>
-      {% endif %}
-    {% else %}
-      <small>Hackathon already started!</small>
-    {% endif %}
-  {% else %}
-    <small>Hackathon already ended!</small>
-  {% endif %}
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js" charset="utf-8"></script>
-  <script>
-    function addCompetitor(hackathon_id, user_id) {
-      fetch("http://api.localhost:8000/add-competitor-to-hackathon/?hackathon_id=" + hackathon_id + "&user_id=" + user_id, {
-        method: "GET"
-      });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js" charset="utf-8"></script>
+    <script>
+      function addCompetitor(hackathon_id, user_id) {
+        fetch("http://api.localhost:8000/add-competitor-to-hackathon/?hackathon_id=" + hackathon_id + "&user_id=" + user_id, {
+          method: "GET"
+        });
 
-      // Make button looked like joined
-      var button = document.getElementById("joinButton");
-      button.disabled = true;
-      button.innerHTML = "Joined!";
-    }
+        // Make button looked like joined
+        var button = document.getElementById("joinButton");
+        button.disabled = true;
+        button.innerHTML = "Joined!";
+      }
 
-    // Countdown timer
-    setInterval(function() {
-      var timerId =
-        countdown(
-          Date.parse("{{ start_datetime }}"),
-          function(ts) {
-            document.getElementById('pageTimer').innerHTML = ts.toHTML("strong");
-          },
-          countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
+      // Setting dates to readable strings
+      document.getElementById("start-date").innerHTML = new Date("{{ start_datetime }}");
+      document.getElementById("end-date").innerHTML = new Date("{{ end_datetime }}");
 
-      // later on this timer may be stopped
-      window.clearInterval(timerId);
-    }, 1000);
-  </script>
+      // Countdown timer
+      setInterval(function() {
+        var timerId =
+          countdown(
+            Date.parse("{{ start_datetime }}"),
+            function(ts) {
+              document.getElementById('pageTimer').innerHTML = ts.toHTML("strong");
+            },
+            countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
+
+        // later on this timer may be stopped
+        window.clearInterval(timerId);
+      }, 1000);
+    </script>
+  </div>
 {% endblock %}

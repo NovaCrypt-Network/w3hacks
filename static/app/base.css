@@ -10,7 +10,3 @@ nav {
 .dropdown-toggle::after {
   vertical-align: .06em !important;
 }
-
-.body-container {
-  padding: 30px 0;
-}

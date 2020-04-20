@@ -44,6 +44,10 @@ p {
   color: white;
 }
 
+.body-container {
+  padding: 30px 0;
+}
+
 .center-container {
   position: absolute;
   top: 50%;

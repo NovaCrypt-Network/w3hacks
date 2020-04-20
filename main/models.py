@@ -427,7 +427,7 @@ class Award(models.Model):
 class ScheduleEvent(models.Model):
     title = models.CharField(max_length=50) # Name of the event
     description = models.TextField(max_length=300) # Description of the event
-    event_link = models.ForeignKey("ResourceLink", on_delete=models.CASCADE) # OPTIONAL: Link for the event
+    event_link = models.ForeignKey("ResourceLink", on_delete=models.CASCADE, null=True, blank=True) # OPTIONAL: Link for the event
 
     def __str__(self):
         return self.title
