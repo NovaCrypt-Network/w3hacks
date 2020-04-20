@@ -43,6 +43,13 @@
         </div>
 
         <div class="profile-element">
+          {% if profile.location %}
+            <small>Location</small><br>
+            <p>{{ profile.location }}</p>
+          {% endif %}
+        </div>
+
+        <div class="profile-element">
           {% if profile.skills %}
             <small>Skills</small><br>
             <p>{{ profile.skills }}</p>
