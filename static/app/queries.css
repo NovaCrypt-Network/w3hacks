@@ -4,7 +4,7 @@
   .center-container {
     position: static !important;
     transform: none !important;
-    margin-top: 200px;
+    padding: 50px 0;
   }
 
   /* Fixing CTA buttons */
