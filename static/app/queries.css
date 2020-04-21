@@ -1,0 +1,9 @@
+@media (max-width: 600px) {
+  /* INDEX PAGE */
+  /* Making center container statically positioned */
+  .center-container {
+    position: static !important;
+    transform: none !important;
+    margin-top: 200px;
+  }
+}
