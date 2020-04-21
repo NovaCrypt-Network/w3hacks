@@ -133,3 +133,10 @@ p {
   font-size: 30px;
   font-weight: bold;
 }
+
+
+@media (max-width: 800px) {
+  .body-container {
+    padding: 30px 10px 10px 10px !important;
+  }
+}

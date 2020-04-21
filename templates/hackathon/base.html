@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'hackathon/queries.css' %}">
     <link rel="stylesheet" href="{% static 'global/global.css' %}">
     <link rel="stylesheet" href="{% static 'hackathon/base.css' %}">
 
@@ -18,7 +19,7 @@
     {% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="/{{ hackathon.id }}/">w3Hacks Hackathon</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-target">

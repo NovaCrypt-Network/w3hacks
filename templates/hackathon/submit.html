@@ -1,6 +1,8 @@
 {% extends 'hackathon/base.html' %}
+{% load static %}
 {% block head %}
   <title>w3Hacks Hackathon - Submit your Project</title>
+  <link rel="stylesheet" href="{% static 'hackathon/submit.css' %}">
 {% endblock %}
 {% block body %}
   <div class="heading-banner">
@@ -28,8 +30,8 @@
       {% else %}
       <form enctype="multipart/form-data" method="post">
         {% csrf_token %}
-        <div class="row">
-          <div class="col">
+        <div class="submit-grid">
+          <div>
             <div class="form-input-group">
               <label>Project Name *:</label><br>
               <input class="form-control" type="text" name="title" placeholder="Project Name" required>
@@ -47,7 +49,7 @@
               <input type="file" multiple name="extra-files" placeholder="Extra Files">
             </div>
           </div>
-          <div class="col">
+          <div>
             <div class="form-input-group">
               <label>Technologies Used: (separate by commas, no spaces)</label><br>
               <input class="form-control" type="text" name="technologies-used" placeholder="Technologies Used">
