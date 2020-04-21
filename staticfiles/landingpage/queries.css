@@ -1,0 +1,9 @@
+h1 {
+  color: blue !important;
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    color: red !important;
+  }
+}

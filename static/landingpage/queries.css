@@ -1,0 +1,59 @@
+@media (max-width: 1250px) {
+  /* Fixing the header (getting rid of image and grid) */
+  header {
+    height: 50vh !important;
+  }
+
+  .header-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+    width: 100%;
+  }
+
+  .header-image {
+    display: none;
+  }
+}
+
+
+@media (max-width: 100px) {
+  /* Shortening waves height */
+  .waves {
+    height: 150px !important;
+  }
+}
+
+
+@media (max-width: 800px) {
+  /* Shortening waves height */
+  .waves {
+    height: 100px !important;
+  }
+
+  /* Making contact grid collapsable */
+  .contact-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
+    grid-gap: 30px !important;
+  }
+
+  .contact-info {
+    text-align: left !important;
+  }
+}
+
+
+@media (max-width: 600px) {
+  /* Removing padding from sections  */
+  section {
+    padding: 0 !important;
+  }
+
+  /* Fixing overflowing about grid */
+  .questions {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
+  }
+
+  /* Adding padding to bottom of contact section */
+  .contact {
+    padding-bottom: 40px !important;
+  }
+}
