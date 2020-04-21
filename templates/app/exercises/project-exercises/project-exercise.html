@@ -7,13 +7,15 @@
   <div class="body-container container">
     <h1 class="heading-tertiary">Project Exercise: {{ exercise.name }}</h1>
     {% if user_already_completed_project %}
-      <strong>You already completed this project!</strong>
-      <p>GitHub Link: <a href="{{ completed_project_exercise.github_link }}" target="_">{{ completed_project_exercise.github_link }}</a> (check this for updates on your project!)</p>
-      {% if completed_project_exercise.score %}
-        <p>Score: {{ completed_project_exercise.score }}/10</p>
-      {% else %}
-        <p><strong>This project hasn't been scored yet!</strong></p>
-      {% endif %}
+      <div class="completed-container">
+        <strong>You already completed this project!</strong>
+        <p>GitHub Link: <a href="{{ completed_project_exercise.github_link }}" target="_">{{ completed_project_exercise.github_link }}</a> (check this for updates on your project!)</p>
+        {% if completed_project_exercise.score %}
+          <p>Score: {{ completed_project_exercise.score }}/10</p>
+        {% else %}
+          <p><strong>This project hasn't been scored yet!</strong></p>
+        {% endif %}
+      </div>
     {% else %}
       <div class="information mt-4">
         <h3 class="heading-fourth">Exercise Information</h3>
