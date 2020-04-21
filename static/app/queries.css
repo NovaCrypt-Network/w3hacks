@@ -6,4 +6,19 @@
     transform: none !important;
     margin-top: 200px;
   }
+
+  /* Fixing CTA buttons */
+  .cta-buttons {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
+  }
+
+  /* Fixing centered collapsed navbar */
+  .navbar-nav {
+    display: block !important;
+  }
+
+  /* Collapsing edit profile grid */
+  .edit-profile-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
+  }
 }

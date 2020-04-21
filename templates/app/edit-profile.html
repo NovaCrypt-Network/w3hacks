@@ -10,8 +10,8 @@
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
 
-      <div class="row">
-        <div class="col">
+      <div class="edit-profile-grid">
+        <div>
           <div class="form-input-group">
             <label>First Name *:</label><br>
             <input class="form-control" type="text" name="first-name" value="{{ profile.user.first_name }}" placeholder="First Name" required>
@@ -62,7 +62,7 @@
             {% endif %}
           </div>
         </div>
-        <div class="col">
+        <div>
           <div class="form-input-group">
             <label>Education:</label><br>
             {% if profile.education %}
