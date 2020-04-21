@@ -1,3 +1,7 @@
+body {
+  background-color: #eee;
+}
+
 .waves {
   position: relative;
   height: 250px;
