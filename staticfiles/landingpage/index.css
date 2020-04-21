@@ -31,13 +31,6 @@ section {
   color: white;
 }
 
-.cta-buttons {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 7.5px;
-}
-
 .right {
   position: relative;
 }

@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-# SESSION_COOKIE_DOMAIN = ".w3hacks.com"
+SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 # Application definition
 
@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media Files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

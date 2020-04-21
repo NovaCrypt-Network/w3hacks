@@ -5,3 +5,9 @@ input, textarea {
 .form-input-group {
   margin-top: 15px;
 }
+
+.edit-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+}
