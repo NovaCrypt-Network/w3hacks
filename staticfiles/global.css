@@ -20,6 +20,7 @@ p {
   border-radius: 4px;
   color: white;
   transition: all .2s;
+  text-align: center;
 }
 
 .ghost-cta-button:hover {
@@ -35,6 +36,7 @@ p {
   border-radius: 4px;
   color: white;
   transition: all .2s;
+  text-align: center;
 }
 
 .solid-cta-button:hover {
@@ -42,6 +44,61 @@ p {
   border: 2px solid var(--color-primary);
   background-color: var(--color-primary);
   color: white;
+}
+
+.solid-cta-button-light {
+  border: 2px solid white;
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  color: black !important;
+  transition: all .2s;
+  text-align: center;
+}
+
+.solid-cta-button-light:hover {
+  text-decoration: none;
+  border: 2px solid #ccc;
+  background-color: #ccc;
+}
+
+.ghost-input-light {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 4px;
+  padding: 10px 15px;
+  transition: all .2s;
+}
+
+.ghost-input-light::placeholder {
+  color: white;
+}
+
+.ghost-input-light:focus {
+  outline: none;
+  background-color: rgba(255,255,255,.2);
+}
+
+.ghost-input-dark {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid var(--color-primary-light);
+  border-radius: 4px;
+  padding: 10px 15px;
+  transition: all .2s;
+}
+
+.ghost-input-dark::placeholder {
+  color: var(--color-primary-light);
+}
+
+.ghost-input-dark:focus {
+  outline: none;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
 }
 
 .body-container {

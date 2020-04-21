@@ -10,3 +10,7 @@ nav {
 .dropdown-toggle::after {
   vertical-align: .06em !important;
 }
+
+.completed-container, .completed-container > * {
+  margin-top: 15px;
+}
