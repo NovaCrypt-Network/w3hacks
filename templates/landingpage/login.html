@@ -1,14 +1,21 @@
 {% extends 'landingpage/base.html' %}
-{% block body %}
+{% load static %}
 {% block head %}
   <title>w3Hacks - Login to our Portal!</title>
+  <link rel="stylesheet" href="{% static 'landingpage/login-register.css' %}">
 {% endblock %}
+{% block body %}
 <style>
   input, textarea {
     color: black;
   }
 </style>
-  <div class="container">
+  <div class="waves">
+    <img class="wave flip" src="{% static 'img/waves/wave6.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave5.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave4.svg' %}" alt="">
+  </div>
+  <div class="body-container container">
     <h1>Login</h1>
     <form method="post">
       {% csrf_token %}

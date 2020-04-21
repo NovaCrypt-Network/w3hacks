@@ -1,1 +1,17 @@
+.waves {
+  position: relative;
+  height: 250px;
+}
 
+.flip {
+  transform: rotate(180deg);
+  top: -5px;
+}
+
+.no-flip {
+  bottom: 0;
+}
+
+.wave {
+  position: absolute;
+}

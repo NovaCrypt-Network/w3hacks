@@ -20,6 +20,7 @@ p {
   border-radius: 4px;
   color: white;
   transition: all .2s;
+  text-align: center;
 }
 
 .ghost-cta-button:hover {
@@ -35,6 +36,7 @@ p {
   border-radius: 4px;
   color: white;
   transition: all .2s;
+  text-align: center;
 }
 
 .solid-cta-button:hover {
@@ -51,6 +53,7 @@ p {
   border-radius: 4px;
   color: black !important;
   transition: all .2s;
+  text-align: center;
 }
 
 .solid-cta-button-light:hover {

@@ -17,8 +17,7 @@ header {
 }
 
 section {
-  padding: 30px;
-  height: 70vh;
+  padding: 50px;
 }
 
 .header-grid {
@@ -31,6 +30,13 @@ section {
 
 .header-grid * {
   color: white;
+}
+
+.cta-buttons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 7.5px;
 }
 
 .right {
@@ -57,26 +63,8 @@ section {
   background-image: url("../img/blobs/blob2.svg"), url("../img/blobs/blob1.svg"), url("../img/blobs/blob3.svg");
 }
 
-.waves {
-  position: relative;
-  height: 250px;
-}
-
 .container {
   height: 100%;
-}
-
-.flip {
-  transform: rotate(180deg);
-  top: -5px;
-}
-
-.no-flip {
-  bottom: 0;
-}
-
-.wave {
-  position: absolute;
 }
 
 .questions {
