@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import FileSystemStorage
+from django.core.mail.message import EmailMessage
 from main import models
 from datetime import date, datetime
 import random
@@ -14,6 +15,14 @@ def generate_id():
 
 
 def index(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        message = request.POST.get("message")
+
+        email_body = f"From: {name}\nEmail: {email}\n\n{message}"
+
+        EmailMessage("w3Hacks Contact Us", email_body, to=["calix.huang1@gmail.com"]).send()
     return render(request, "landingpage/index.html")
 
 
