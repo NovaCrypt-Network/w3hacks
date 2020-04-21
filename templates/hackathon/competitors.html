@@ -6,24 +6,30 @@
 {% block body %}
   <div class="heading-banner">
     <div class="container">
-      <h1>Competitors</h1>
+      <h1 class="heading-tertiary">Competitors</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Here are all of the competitors competing in this hackathon!
       </p>
     </div>
   </div>
-  <div class="container">
+  <div class="body-container container">
     {% if competitors %}
       <div class="competitors">
         {% for competitor in competitors %}
           <div class="competitor">
-            <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+            {% if competitor.profile_picture %}
+              <img src="{{ competitor.profile_picture.url }}" alt="" class="competitor-img">
+            {% else %}
+              <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+            {% endif %}
             <h5>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</h5>
           </div>
         {% endfor %}
       </div>
     {% else %}
-      <small>No competitors yet!</small>
+      <div class="text-center">
+        <small>No competitors yet!</small>
+      </div>
     {% endif %}
   </div>
 {% endblock %}

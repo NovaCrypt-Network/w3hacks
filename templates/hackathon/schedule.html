@@ -6,13 +6,13 @@
 {% block body %}
   <div class="heading-banner">
     <div class="container">
-      <h1>Schedule</h1>
+      <h1 class="heading-tertiary">Schedule</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Here's the schedule for this hackathon!
       </p>
     </div>
   </div>
-  <div class="container">
+  <div class="body-container container">
     <table>
       <tr>
         <th>Event Title</th>
@@ -24,7 +24,11 @@
           <td>{{ event.title }}</td>
           <td>{{ event.description}}</td>
           <td>
-            <a href="{{ event.event_link.link }}">{{ event.event_link.title }}</a>
+            {% if event.link %}
+              <a href="{{ event.event_link.link }}">{{ event.event_link.title }}</a>
+            {% else %}
+              <p>None</p>
+            {% endif %}
           </td>
         </tr>
       {% endfor %}

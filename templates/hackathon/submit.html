@@ -2,20 +2,26 @@
 {% block body %}
   <div class="heading-banner">
     <div class="container">
-      <h1>Submit</h1>
+      <h1 class="heading-tertiary">Submit</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Submit your project for the hackathon! Remember, you can only submit a project once.
       </p>
     </div>
   </div>
-  <div class="container">
+  <div class="body-container container">
     {% if profile in competitors %}
       {% if too_early %}
-        <small>Submissions open in: <span id="pageTimer"></span> @ {{ submissions_open_datetime }}</small>
+        <div class="text-center">
+          <small>Submissions open in: <span id="pageTimer"></span> @ {{ submissions_open_datetime }}</small>
+        </div>
       {% elif too_late %}
-        <small>Submissions closed on <strong>{{ submissions_close_datetime }}</strong></small>
+        <div class="text-center">
+          <small>Submissions closed on <strong>{{ submissions_close_datetime }}</strong></small>
+        </div>
       {% elif user_already_submitted %}
-        <small>You can only submit a project once.</small>
+        <div class="text-center">
+          <small>You can only submit a project once.</small>
+        </div>
       {% else %}
       <form enctype="multipart/form-data" method="post">
         {% csrf_token %}
@@ -23,11 +29,11 @@
           <div class="col">
             <div class="form-input-group">
               <label>Project Name *:</label><br>
-              <input type="text" name="title" placeholder="Project Name" required>
+              <input class="form-control" type="text" name="title" placeholder="Project Name" required>
             </div>
             <div class="form-input-group">
               <label>Project Description *:</label><br>
-              <textarea name="description" rows="5" placeholder="Project Description" required></textarea>
+              <textarea class="form-control" name="description" rows="5" placeholder="Project Description" required></textarea>
             </div>
             <div class="form-input-group">
               <label>Project Image:</label><br>
@@ -41,27 +47,32 @@
           <div class="col">
             <div class="form-input-group">
               <label>Technologies Used: (separate by commas, no spaces)</label><br>
-              <input type="text" name="technologies-used" placeholder="Technologies Used">
+              <input class="form-control" type="text" name="technologies-used" placeholder="Technologies Used">
             </div>
             <div class="form-input-group">
               <label>GitHub Link:</label><br>
-              <input type="url" name="github-link" placeholder="GitHub Link">
+              <input class="form-control" type="url" name="github-link" placeholder="GitHub Link">
             </div>
             <div class="form-input-group">
               <label>Project Link:</label><br>
-              <input type="url" name="project-link" placeholder="Project Link">
+              <input class="form-control" type="url" name="project-link" placeholder="Project Link">
             </div>
             <div class="form-input-group">
               <label>Video Link:</label><br>
-              <input type="url" name="video-link" placeholder="Video Link">
+              <input class="form-control" type="url" name="video-link" placeholder="Video Link">
             </div>
           </div>
         </div>
-        <input type="submit" value="Submit">
+
+        <div class="text-center mt-4">
+          <input class="solid-cta-button w-50 m-auto" type="submit" value="Submit">
+        </div>
       </form>
       {% endif %}
     {% else %}
-      <small>Only competitors can submit projects.</small>
+      <div class="text-center">
+        <small>Only competitors can submit projects.</small>
+      </div>
     {% endif %}
   </div>
 

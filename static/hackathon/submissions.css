@@ -1,11 +1,11 @@
 .submissions {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 15px;
 }
 
 .submission {
-  background-color: blue;
+  background-color: var(--color-primary-light);
   padding: 15px;
   border-radius: 5px;
   position: relative;
@@ -22,6 +22,14 @@
 }
 
 .submission-btn {
-  width: 30px;
+  width: 25px;
   margin-right: 5px;
+}
+
+.x {
+  width: 25px;
+}
+
+.x:hover {
+  cursor: pointer;
 }

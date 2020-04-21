@@ -6,23 +6,36 @@
 {% block body %}
   <div class="heading-banner">
     <div class="container">
-      <h1>Submissions</h1>
+      <h1 class="heading-tertiary">Submissions</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Here are all of the submissions submitted by this hackathon's competitors!
       </p>
     </div>
   </div>
-  <div class="container">
+  <div class="body-container container">
+    <h3 class="heading-fourth mt-4">My Submission</h3>
     {% if user_submission %}
       <div class="user-submission">
-        <h3>My Submission</h3>
         <div class="submissions">
           <div class="submission">
             <h3>{{ user_submission.title }}</h3>
             <div class="submission-btns">
-              <img class="submission-btn" src="{% static 'img/github.png' %}" alt="">
-              <img class="submission-btn" src="{% static 'img/out.png' %}" alt="">
-              <button onclick="deleteUserSubmission()">&times;</button>
+              {% if user_submission.video_link %}
+                <a href="{{ user_submission.video_link }}" target="_">
+                  <img class="submission-btn" src="{% static 'img/video.png' %}" alt="">
+                </a>
+              {% endif %}
+              {% if user_submission.github_link %}
+                <a href="{{ user_submission.github_link }}" target="_">
+                  <img class="submission-btn" src="{% static 'img/github.png' %}" alt="">
+                </a>
+              {% endif %}
+              {% if user_submission.project_link %}
+                <a href="{{ user_submission.project_link }}" target="_">
+                  <img class="submission-btn" src="{% static 'img/out.png' %}" alt="">
+                </a>
+              {% endif %}
+              <img class="x" onclick="deleteUserSubmission()" src="{% static 'img/incorrect-white.png'%}" alt="">
             </div>
             <p>
               {{ user_submission.description }}
@@ -30,17 +43,34 @@
           </div>
         </div>
       </div>
+    {% else %}
+      <div>
+        <small>You haven't submitted a project yet!</small>
+      </div>
     {% endif %}
 
+    <h3 class="heading-fourth mt-4">Submissions</h3>
     {% if submissions %}
-      <h3>Submissions</h3>
       <div class="submissions">
         {% for submission in submissions %}
           <div class="submission">
             <h3>{{ submission.title }}</h3>
             <div class="submission-btns">
-              <img class="submission-btn" src="{% static 'img/github.png' %}" alt="">
-              <img class="submission-btn" src="{% static 'img/out.png' %}" alt="">
+              {% if submission.video_link %}
+                <a href="{{ submission.video_link }}" target="_">
+                  <img class="submission-btn" src="{% static 'img/video.png' %}" alt="">
+                </a>
+              {% endif %}
+              {% if submission.github_link %}
+                <a href="{{ submission.github_link }}" target="_">
+                  <img class="submission-btn" src="{% static 'img/github.png' %}" alt="">
+                </a>
+              {% endif %}
+              {% if submission.project_link %}
+                <a href="{{ submission.project_link }}" target="_">
+                  <img class="submission-btn" src="{% static 'img/out.png' %}" alt="">
+                </a>
+              {% endif %}
             </div>
             <p>
               {{ submission.description }}
@@ -49,7 +79,9 @@
         {% endfor %}
       </div>
     {% else %}
-      <small>No other submissions yet!</small>
+      <div>
+        <small>No submissions yet!</small>
+      </div>
     {% endif %}
   </div>
 
