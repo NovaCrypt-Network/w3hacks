@@ -1,13 +1,90 @@
 {% extends 'landingpage/base.html' %}
+{% load static %}
 {% block head %}
   <title>w3Hacks</title>
+  <link rel="stylesheet" href="{% static 'landingpage/index.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="container">
-    <h1>
-      You love hackathons. <br>
-      We love hackathons. <br>
-      This is our community.
-    </h1>
+  <header>
+    <div class="container">
+      <div class="header-grid">
+        <div class="text-left">
+          <h1 class="heading-primary text-left">Learn by doing.</h1>
+          <h4>w3Hacks is a platform where anyone can learn to code through real-world practices.</h4>
+          <div class="cta-buttons">
+            <a class="ghost-cta-button" href="#about">Learn More</a>
+            <a class="solid-cta-button-light" href="/register/">Start Learning!</a>
+          </div>
+        </div>
+        <img class="header-image" src="{% static 'img/index-image.png' %}" alt="">
+      </div>
+    </div>
+  </header>
+  <div class="waves">
+    <img class="wave flip" src="{% static 'img/waves/wave3.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave2.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave1.svg' %}" alt="">
+  </div>
+  <section class="about">
+    <div class="container">
+      <h1 class="heading-secondary text-left">About</h1>
+      <div class="questions">
+        <div class="question">
+          <h3>What is w3Hacks?</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </div>
+        <div class="question">
+          <h3>What is w3Hacks?</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </div>
+        <div class="question">
+          <h3>What is w3Hacks?</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </div>
+        <div class="question">
+          <h3>What is w3Hacks?</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="waves">
+    <img class="wave no-flip" src="{% static 'img/waves/wave3.svg' %}" alt="">
+    <img class="wave no-flip" src="{% static 'img/waves/wave2.svg' %}" alt="">
+    <img class="wave no-flip" src="{% static 'img/waves/wave1.svg' %}" alt="">
+  </div>
+  <section class="contact">
+    <div class="container">
+      <h1 class="heading-secondary text-left">Contact</h1>
+      <div class="contact-grid">
+        <div class="contact-form">
+          <h3 class="heading-fourth">Send us a message!</h3>
+          <form class="mt-3" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <input class="ghost-input mb-3" type="text" name="name" placeholder="Name">
+            <input class="ghost-input mb-3" type="email" name="email" placeholder="Email">
+            <textarea class="ghost-input mb-3" name="message" rows="5" placeholder="Message"></textarea>
+            <input class="solid-cta-button-light" type="submit" value="Contact Us!">
+          </form>
+        </div>
+        <div class="contact-info">
+          <h3 class="heading-fourth">Other contact information</h3>
+          <p>
+            Please feel free to reach out to us at any time! We try to respond to all emails and messages within 24-48 hours.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="text-center copyright">
+    <small>&copy; Created by Calix Huang. All rights reserved.</small>
   </div>
 {% endblock %}
