@@ -21,8 +21,12 @@ def index(request):
         message = request.POST.get("message")
 
         email_body = f"From: {name}\nEmail: {email}\n\n{message}"
-
         EmailMessage("w3Hacks Contact Us", email_body, to=["calix.huang1@gmail.com"]).send()
+
+        return render(request, "landingpage/index.html", context={
+            "message": "Message sent!"
+        })
+
     return render(request, "landingpage/index.html")
 
 

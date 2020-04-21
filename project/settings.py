@@ -140,12 +140,11 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
 # Email Information
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'hackcollab@gmail.com'
-EMAIL_HOST_PASSWORD = 'iloveCalix8'
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = "HackCollab Team <hackcollab@gmail.com>"
+DEFAULT_FROM_EMAIL = "HackCollab Official <hackcollab@gmail.com>"
