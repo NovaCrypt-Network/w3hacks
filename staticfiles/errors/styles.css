@@ -21,3 +21,14 @@ body {
   top: 15px;
   left: 15px;
 }
+
+@media (max-width: 500px) {
+  .message {
+    width: 90% !important;
+  }
+
+  .content-body {
+    height: auto !important;
+    padding-bottom: 50px !important;
+  }
+}

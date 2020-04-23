@@ -6,3 +6,9 @@ form {
   width: 300px;
   margin: auto;
 }
+
+@media (max-width: 500px) {
+  form {
+    width: 90% !important;
+  }
+}
