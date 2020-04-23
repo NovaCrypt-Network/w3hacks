@@ -1,6 +1,21 @@
 {% extends 'errors/base.html' %}
 {% load static %}
-
+{% block head %}
+  <title>w3hacks - 500 Internal Server Error</title>
+{% endblock %}
 {% block body %}
-  <h1>500 idiot</h1>
+  <div class="body-container container">
+    <div class="message">
+      <h1 class="heading-secondary text-left">500 - Internal Server Error</h1>
+      <p class="my-4">
+        We're sorry, but our servers have run into an issue! Our developers are currently working hard to get this fixed.
+        <br><br>
+        If you really think this is an issue that hasn't been addressed, please feel free to <a href="http://www.w3hacks.com/contact/">contact us</a> and we will get back to you within 24-48 hours!
+        <br><br>
+        Sorry for the inconvenience.
+      </p>
+
+      <a href="http://www.w3hacks.com/" class="solid-cta-button-light w-100 d-block">Back to w3Hacks home</a>
+    </div>
+  </div>
 {% endblock %}
