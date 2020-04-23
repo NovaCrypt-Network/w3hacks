@@ -22,6 +22,10 @@ def add_competitor_to_hackathon(request):
         hackathon.competitors.add(profile)
         hackathon.save()
 
+        # Adding hackathon to past hackathons for user
+        profile.past_hackathons.add(hackathon)
+        profile.save()
+
     return JsonResponse({
         "status": 200
     })

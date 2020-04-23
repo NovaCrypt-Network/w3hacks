@@ -144,6 +144,9 @@ def profile(request, user_id):
     # Grabbing all past hackathons for current user
     past_hackathons = list(profile.past_hackathons.all())
 
+    # Grabbing all completed achievements
+    achievements = list(profile.achievements.all())
+
     # Grabbing all completed exercises
     completed_project_exercises = list(profile.completed_project_exercises.all())
     completed_quiz_exercises = list(profile.completed_quiz_exercises.all())
@@ -157,6 +160,8 @@ def profile(request, user_id):
 
     return render(request, "app/profile.html", context={
         "profile": profile,
+        "past_hackathons": past_hackathons,
+        "achievements": achievements,
         "completed_project_exercises": completed_project_exercises,
         "completed_quiz_exercises": completed_quiz_exercises,
         "completed_fix_the_code_exercises": completed_fix_the_code_exercises,
