@@ -57,8 +57,8 @@ def project_exercise(request):
         return HttpResponse("You must provide a project ID.")
 
 
+    # Grabbing topic for breadcrumbs
     topic = project_exercise.topic
-
 
     # Creating breadcrumbs
     breadcrumbs = [

@@ -11,6 +11,12 @@ def quiz_exercises(request):
     quiz_exercises = models.QuizExercise.objects.all()
     specific_topic = None
 
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" }
+    ]
+
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
 
@@ -24,10 +30,20 @@ def quiz_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+        # Topic object to pass into template
+        specific_topic = models.Topic.objects.get(searchable_name=topic)
+
+        # Adding topic breadcrumb if exists
+        breadcrumbs.append({
+            "text": specific_topic.name,
+            "link": None
+        })
+
     return render(request, "app/exercises/quiz-exercises/quiz-exercises.html", context={
         "topics": topics,
         "exercises": quiz_exercises,
-        "topic": specific_topic
+        "topic": specific_topic,
+        "breadcrumbs": breadcrumbs
     })
 
 
@@ -42,9 +58,22 @@ def quiz_exercise(request):
     else:
         return HttpResponse("You must provide a quiz ID.")
 
+
+    # Grabbing topic for breadcrumbs
+    topic = quiz_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" },
+        { "text": topic.name, "link": "/exercises/quiz-exercises/?topic=" + topic.searchable_name },
+        { "text": quiz_exercise.name, "link": None }
+    ]
+
     return render(request, "app/exercises/quiz-exercises/quiz-exercise.html", context={
         "exercise": quiz_exercise,
         "resources": list(quiz_exercise.resources.all()),
+        "breadcrumbs": breadcrumbs
     })
 
 
@@ -58,6 +87,18 @@ def take_quiz(request):
             return HttpResponse("Invalid quiz exercise ID.")
     else:
         return HttpResponse("You must provide a quiz ID.")
+
+    # Grabbing topic for breadcrumbs
+    topic = quiz_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" },
+        { "text": topic.name, "link": "/exercises/quiz-exercises/?topic=" + topic.searchable_name },
+        { "text": quiz_exercise.name, "link": "/exercises/quiz-exercises/exercise/?id=" + quiz_exercise.id },
+        { "text": "Take Quiz", "link": None }
+    ]
 
     # Formatting questions with question and answers
     questions = []
@@ -78,6 +119,7 @@ def take_quiz(request):
 
     return render(request, "app/exercises/quiz-exercises/take-quiz.html", context={
         "quiz": quiz_exercise,
+        "breadcrumbs": breadcrumbs,
         "questions": questions,
         "user_already_taken_quiz": user_already_taken_quiz
     })
@@ -94,6 +136,18 @@ def quiz_results(request):
             return HttpResponse("Invalid quiz exercise ID.")
     else:
         return HttpResponse("You must provide a quiz ID.")
+
+    # Grabbing topic for breadcrumbs
+    topic = quiz_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" },
+        { "text": topic.name, "link": "/exercises/quiz-exercises/?topic=" + topic.searchable_name },
+        { "text": quiz_exercise.name, "link": "/exercises/quiz-exercises/exercise/?id=" + quiz_exercise.id },
+        { "text": "Quiz Results", "link": None }
+    ]
 
     # Grabbing completed quiz exercise
     if models.CompletedQuizExercise.objects.filter(quiz_exercise=quiz_exercise).exists():
@@ -122,5 +176,6 @@ def quiz_results(request):
     return render(request, "app/exercises/quiz-exercises/quiz-results.html", context={
         "quiz_exercise": quiz_exercise,
         "completed_quiz_exercise": completed_quiz_exercise,
+        "breadcrumbs": breadcrumbs,
         "results": results
     })
