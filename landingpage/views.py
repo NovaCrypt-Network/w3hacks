@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import FileSystemStorage
 from django.core.mail.message import EmailMessage
 from django.db import IntegrityError
+from django.template import RequestContext
 from main import models
 from datetime import date, datetime
 import random
@@ -29,14 +30,6 @@ def index(request):
         })
 
     return render(request, "landingpage/index.html")
-
-
-def about(request):
-    return render(request, "landingpage/about.html")
-
-
-def contact(request):
-    return render(request, "landingpage/contact.html")
 
 
 def user_login(request):
@@ -147,3 +140,45 @@ def register(request):
     return render(request, "landingpage/register.html", context={
         "today": str(date.today())
     })
+
+
+# def handler404(request, *args, **argv):
+#     response = render('errors/404.html', {},
+#                                   context_instance=RequestContext(request))
+#     response.status_code = 404
+#     return response
+#
+#
+# def handler500(request, *args, **argv):
+#     response = render('errors/500.html', {},
+#                                   context_instance=RequestContext(request))
+#     response.status_code = 500
+#     return response
+
+# def handler404(request, exception):
+#     return render(request, 'errors/404.html', status=404)
+#
+# def handler500(request):
+#     return render(request, 'errors/500.html', status=500)
+
+def handler404(request, *args, **argv):
+    return render(request, "errors/404.html")
+
+def handler500(request, *args, **argv):
+    return render(request, "errors/500.html")
+
+# def handler404(request, exception, template_name="errors/404.html"):
+#     response = render(template_name)
+#     response.status_code = 404
+#     return response
+#
+# def handler500(request, exception, template_name="errors/500.html"):
+#     response = render(template_name)
+#     response.status_code = 500
+#     return response
+
+# def handler404(request):
+#     return render(request, "errors/404.html")
+#
+# def handler500(request):
+#     return render(request, "errors/500.html")
