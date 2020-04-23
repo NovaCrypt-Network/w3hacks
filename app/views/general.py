@@ -141,8 +141,31 @@ def profile(request, user_id):
     # Getting profile from current user
     profile = models.Profile.objects.get(user=user)
 
+    # Grabbing all past hackathons for current user
+    past_hackathons = list(profile.past_hackathons.all())
+
+    # Grabbing all completed exercises
+    completed_project_exercises = list(profile.completed_project_exercises.all())
+    completed_quiz_exercises = list(profile.completed_quiz_exercises.all())
+    completed_fix_the_code_exercises = list(profile.completed_fix_the_code_exercises.all())
+    completed_brainteaser_exercises = list(profile.completed_brainteaser_exercises.all())
+    completed_visualization_exercises = list(profile.completed_visualization_exercises.all())
+    completed_refactor_exercises = list(profile.completed_refactor_exercises.all())
+    completed_teaching_exercises = list(profile.completed_teaching_exercises.all())
+    completed_github_exercises = list(profile.completed_github_exercises.all())
+    completed_research_exercises = list(profile.completed_research_exercises.all())
+
     return render(request, "app/profile.html", context={
-        "profile": profile
+        "profile": profile,
+        "completed_project_exercises": completed_project_exercises,
+        "completed_quiz_exercises": completed_quiz_exercises,
+        "completed_fix_the_code_exercises": completed_fix_the_code_exercises,
+        "completed_brainteaser_exercises": completed_brainteaser_exercises,
+        "completed_visualization_exercises": completed_visualization_exercises,
+        "completed_refactor_exercises": completed_refactor_exercises,
+        "completed_teaching_exercises": completed_teaching_exercises,
+        "completed_github_exercises": completed_github_exercises,
+        "completed_research_exercises": completed_research_exercises,
     })
 
 
