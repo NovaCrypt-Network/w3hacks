@@ -84,7 +84,11 @@
 
     <script>
       {% if message %}
-        alertify.success("{{ message }}");
+        {% if status == "good" %}
+          alertify.success("{{ message }}");
+        {% elif status == "bad" %}
+          alertify.error("{{ message }}");
+        {% endif %}
       {% endif %}
     </script>
   </body>
