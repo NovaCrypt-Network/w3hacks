@@ -54,8 +54,8 @@
         <h3 class="heading-fourth">Submit</h3>
         <form enctype="multipart/form-data" method="post">
           {% csrf_token %}
-          <input type="url" name="github-link" placeholder="GitHub Link">
-          <input type="submit" value="Submit project">
+          <input class="ghost-input-dark d-inline-block w-auto" type="url" name="github-link" placeholder="GitHub Link">
+          <input class="solid-cta-button" type="submit" value="Submit project">
         </form>
       </div>
     {% endif %}

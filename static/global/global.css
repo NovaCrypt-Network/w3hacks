@@ -82,7 +82,7 @@ p {
 }
 
 .ghost-input-light::placeholder {
-  color: white;
+  color: #ddd;
 }
 
 .ghost-input-light:focus {
@@ -148,6 +148,42 @@ p {
 .heading-fourth {
   font-size: 30px;
   font-weight: bold;
+}
+
+
+/* FILE UPLOAD */
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: var(--color-primary);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 4px;
+    transition: all .2s;
+}
+
+.file-upload-icon {
+  margin-right: 5px;
+  transform: translateY(-1px);
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: var(--color-primary-light);
+}
+
+.inputfile + label {
+  cursor: pointer; /* "hand" cursor */
 }
 
 
