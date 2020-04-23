@@ -8,17 +8,17 @@ from app import views as appViews
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    # url("^$", views.index, name="index"),
+    url("^$", views.index, name="index"),
     url("^login/$", views.user_login, name="login"),
     url("^register/$", views.register, name="register"),
 
-    # Hackathon views
-    url("^(?P<hackathon_id>[^/]+)/$", hackathonViews.index, name="index"),
-    url("^(?P<hackathon_id>[^/]+)/competitors/$", hackathonViews.competitors, name="competitors"),
-    url("^(?P<hackathon_id>[^/]+)/schedule/$", hackathonViews.schedule, name="schedule"),
-    url("^(?P<hackathon_id>[^/]+)/submissions/$", hackathonViews.submissions, name="submissions"),
-    url("^(?P<hackathon_id>[^/]+)/submit/$", hackathonViews.submit, name="submit"),
-    url("^(?P<hackathon_id>[^/]+)/awards/$", hackathonViews.awards, name="awards"),
+    # # Hackathon views
+    # url("^(?P<hackathon_id>[^/]+)/$", hackathonViews.index, name="index"),
+    # url("^(?P<hackathon_id>[^/]+)/competitors/$", hackathonViews.competitors, name="competitors"),
+    # url("^(?P<hackathon_id>[^/]+)/schedule/$", hackathonViews.schedule, name="schedule"),
+    # url("^(?P<hackathon_id>[^/]+)/submissions/$", hackathonViews.submissions, name="submissions"),
+    # url("^(?P<hackathon_id>[^/]+)/submit/$", hackathonViews.submit, name="submit"),
+    # url("^(?P<hackathon_id>[^/]+)/awards/$", hackathonViews.awards, name="awards"),
 
     # # App views
     # url("^$", appViews.index, name="index"),
