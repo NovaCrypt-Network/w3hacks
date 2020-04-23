@@ -1,0 +1,23 @@
+* {
+  color: white;
+}
+
+body {
+  position: relative;
+}
+
+.content-body {
+  height: 70vh;
+  background-color: var(--color-primary);
+}
+
+.message {
+  width: 300px;
+  margin: auto;
+}
+
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}

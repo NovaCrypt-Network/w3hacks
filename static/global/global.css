@@ -21,6 +21,7 @@ p {
   color: white;
   transition: all .2s;
   text-align: center;
+  text-decoration: none;
 }
 
 .ghost-cta-button:hover {
@@ -37,6 +38,7 @@ p {
   color: white;
   transition: all .2s;
   text-align: center;
+  text-decoration: none;
 }
 
 .solid-cta-button:hover {
@@ -54,6 +56,7 @@ p {
   color: black !important;
   transition: all .2s;
   text-align: center;
+  text-decoration: none;
 }
 
 .solid-cta-button-light:hover {
