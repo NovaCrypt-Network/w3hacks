@@ -28,8 +28,12 @@ def quiz_exercises(request):
             if quiz_exercise.topic.searchable_name == topic:
                 quiz_exercises.append(quiz_exercise)
 
-        # Topic object to pass into template
-        specific_topic = models.Topic.objects.get(searchable_name=topic)
+        # Check to see if topic exists
+        if models.Topic.objects.filter(searchable_name=topic).exists():
+            # Topic object to pass into template
+            specific_topic = models.Topic.objects.get(searchable_name=topic)
+        else:
+            return render(request, "errors/topic-does-not-exist.html")
 
         # Adding topic breadcrumb if exists
         breadcrumbs.append({
@@ -52,9 +56,9 @@ def quiz_exercise(request):
         if models.QuizExercise.objects.filter(id=quiz_id).exists():
             quiz_exercise = models.QuizExercise.objects.get(id=quiz_id)
         else:
-            return HttpResponse("Invalid quiz exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide a quiz ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
 
     # Grabbing topic for breadcrumbs
@@ -83,9 +87,9 @@ def take_quiz(request):
         if models.QuizExercise.objects.filter(id=quiz_id).exists():
             quiz_exercise = models.QuizExercise.objects.get(id=quiz_id)
         else:
-            return HttpResponse("Invalid quiz exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide a quiz ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
     # Grabbing topic for breadcrumbs
     topic = quiz_exercise.topic
@@ -133,9 +137,9 @@ def quiz_results(request):
         if models.QuizExercise.objects.filter(id=quiz_id).exists():
             quiz_exercise = models.QuizExercise.objects.get(id=quiz_id)
         else:
-            return HttpResponse("Invalid quiz exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide a quiz ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
     # Grabbing topic for breadcrumbs
     topic = quiz_exercise.topic

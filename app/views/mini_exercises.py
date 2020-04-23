@@ -42,8 +42,12 @@ def fix_the_code_exercises(request):
             if fix_the_code_exercise.topic.searchable_name == topic:
                 fix_the_code_exercises.append(fix_the_code_exercise)
 
-        # Topic object to pass into template
-        specific_topic = models.Topic.objects.get(searchable_name=topic)
+        # Check to see if topic exists
+        if models.Topic.objects.filter(searchable_name=topic).exists():
+            # Topic object to pass into template
+            specific_topic = models.Topic.objects.get(searchable_name=topic)
+        else:
+            return render(request, "errors/topic-does-not-exist.html")
 
         # Adding topic breadcrumb if exists
         breadcrumbs.append({
@@ -69,9 +73,9 @@ def fix_the_code_exercise(request):
         if models.FixTheCodeExercise.objects.filter(id=fix_the_code_exercise_id).exists():
             fix_the_code_exercise = models.FixTheCodeExercise.objects.get(id=fix_the_code_exercise_id)
         else:
-            return HttpResponse("Invalid exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide an exercise ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
 
     # Grabbing topic for breadcrumbs
@@ -149,8 +153,12 @@ def brainteaser_exercises(request):
             if brainteaser_exercise.topic.searchable_name == topic:
                 brainteaser_exercises.append(brainteaser_exercise)
 
-        # Topic object to pass into template
-        specific_topic = models.Topic.objects.get(searchable_name=topic)
+        # Check to see if topic exists
+        if models.Topic.objects.filter(searchable_name=topic).exists():
+            # Topic object to pass into template
+            specific_topic = models.Topic.objects.get(searchable_name=topic)
+        else:
+            return render(request, "errors/topic-does-not-exist.html")
 
         # Adding topic breadcrumb if exists
         breadcrumbs.append({
@@ -175,9 +183,9 @@ def brainteaser_exercise(request):
         if models.BrainTeaserExercise.objects.filter(id=brainteaser_exercise_id).exists():
             brainteaser_exercise = models.BrainTeaserExercise.objects.get(id=brainteaser_exercise_id)
         else:
-            return HttpResponse("Invalid exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide an exercise ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
 
     # Grabbing topic for breadcrumbs
@@ -255,8 +263,12 @@ def visualization_exercises(request):
             if visualization_exercise.topic.searchable_name == topic:
                 visualization_exercises.append(visualization_exercise)
 
-        # Topic object to pass into template
-        specific_topic = models.Topic.objects.get(searchable_name=topic)
+        # Check to see if topic exists
+        if models.Topic.objects.filter(searchable_name=topic).exists():
+            # Topic object to pass into template
+            specific_topic = models.Topic.objects.get(searchable_name=topic)
+        else:
+            return render(request, "errors/topic-does-not-exist.html")
 
         # Adding topic breadcrumb if exists
         breadcrumbs.append({
@@ -281,9 +293,9 @@ def visualization_exercise(request):
         if models.VisualizationExercise.objects.filter(id=visualization_exercise_id).exists():
             visualization_exercise = models.VisualizationExercise.objects.get(id=visualization_exercise_id)
         else:
-            return HttpResponse("Invalid exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide an exercise ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
 
     # Grabbing topic for breadcrumbs
@@ -361,8 +373,12 @@ def refactor_exercises(request):
             if refactor_exercise.topic.searchable_name == topic:
                 refactor_exercises.append(refactor_exercise)
 
-        # Topic object to pass into template
-        specific_topic = models.Topic.objects.get(searchable_name=topic)
+        # Check to see if topic exists
+        if models.Topic.objects.filter(searchable_name=topic).exists():
+            # Topic object to pass into template
+            specific_topic = models.Topic.objects.get(searchable_name=topic)
+        else:
+            return render(request, "errors/topic-does-not-exist.html")
 
         # Adding topic breadcrumb if exists
         breadcrumbs.append({
@@ -387,9 +403,9 @@ def refactor_exercise(request):
         if models.RefactorExercise.objects.filter(id=refactor_exercise_id).exists():
             refactor_exercise = models.RefactorExercise.objects.get(id=refactor_exercise_id)
         else:
-            return HttpResponse("Invalid exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide an exercise ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
 
     # Grabbing topic for breadcrumbs
@@ -468,8 +484,12 @@ def teaching_exercises(request):
             if teaching_exercise.topic.searchable_name == topic:
                 teaching_exercises.append(teaching_exercise)
 
-        # Topic object to pass into template
-        specific_topic = models.Topic.objects.get(searchable_name=topic)
+        # Check to see if topic exists
+        if models.Topic.objects.filter(searchable_name=topic).exists():
+            # Topic object to pass into template
+            specific_topic = models.Topic.objects.get(searchable_name=topic)
+        else:
+            return render(request, "errors/topic-does-not-exist.html")
 
         # Adding topic breadcrumb if exists
         breadcrumbs.append({
@@ -492,9 +512,9 @@ def teaching_exercise(request):
         if models.TeachingExercise.objects.filter(id=teaching_exercise_id).exists():
             teaching_exercise = models.TeachingExercise.objects.get(id=teaching_exercise_id)
         else:
-            return HttpResponse("Invalid exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide an exercise ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
 
     # Grabbing topic for breadcrumbs
@@ -573,8 +593,12 @@ def github_exercises(request):
             if github_exercise.topic.searchable_name == topic:
                 github_exercises.append(github_exercise)
 
-        # Topic object to pass into template
-        specific_topic = models.Topic.objects.get(searchable_name=topic)
+        # Check to see if topic exists
+        if models.Topic.objects.filter(searchable_name=topic).exists():
+            # Topic object to pass into template
+            specific_topic = models.Topic.objects.get(searchable_name=topic)
+        else:
+            return render(request, "errors/topic-does-not-exist.html")
 
         # Adding topic breadcrumb if exists
         breadcrumbs.append({
@@ -599,9 +623,9 @@ def github_exercise(request):
         if models.GitHubExercise.objects.filter(id=github_exercise_id).exists():
             github_exercise = models.GitHubExercise.objects.get(id=github_exercise_id)
         else:
-            return HttpResponse("Invalid exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide an exercise ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
 
     # Grabbing topic for breadcrumbs
@@ -680,8 +704,12 @@ def research_exercises(request):
             if research_exercise.topic.searchable_name == topic:
                 research_exercises.append(research_exercise)
 
-        # Topic object to pass into template
-        specific_topic = models.Topic.objects.get(searchable_name=topic)
+        # Check to see if topic exists
+        if models.Topic.objects.filter(searchable_name=topic).exists():
+            # Topic object to pass into template
+            specific_topic = models.Topic.objects.get(searchable_name=topic)
+        else:
+            return render(request, "errors/topic-does-not-exist.html")
 
         # Adding topic breadcrumb if exists
         breadcrumbs.append({
@@ -706,9 +734,9 @@ def research_exercise(request):
         if models.ResearchExercise.objects.filter(id=research_exercise_id).exists():
             research_exercise = models.ResearchExercise.objects.get(id=research_exercise_id)
         else:
-            return HttpResponse("Invalid exercise ID.")
+            return render(request, "errors/exercise-does-not-exist.html")
     else:
-        return HttpResponse("You must provide an exercise ID.")
+        return render(request, "errors/exercise-does-not-exist.html")
 
 
     # Grabbing topic for breadcrumbs
