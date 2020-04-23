@@ -10,6 +10,12 @@ def project_exercises(request):
     project_exercises = models.ProjectExercise.objects.all()
     specific_topic = None
 
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Project Exercises", "link": "/exercises/project-exercises/" }
+    ]
+
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
 
@@ -23,10 +29,18 @@ def project_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+        # Adding topic breadcrumb if exists
+        breadcrumbs.append({
+            "text": specific_topic.name,
+            "link": None
+        })
+
+
     return render(request, "app/exercises/project-exercises/project-exercises.html", context={
         "topics": topics,
         "exercises": project_exercises,
-        "topic": specific_topic
+        "topic": specific_topic,
+        "breadcrumbs": breadcrumbs
     })
 
 
@@ -41,6 +55,18 @@ def project_exercise(request):
             return HttpResponse("Invalid project exercise ID.")
     else:
         return HttpResponse("You must provide a project ID.")
+
+
+    topic = project_exercise.topic
+
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Project Exercises", "link": "/exercises/project-exercises/" },
+        { "text": topic.name, "link": "/exercises/project-exercises/?topic=" + topic.searchable_name },
+        { "text": project_exercise.name, "link": None }
+    ]
 
 
     # Sending in completed project exercise in case user already completed it
@@ -76,5 +102,6 @@ def project_exercise(request):
         "resources": list(project_exercise.resources.all()),
         "user_already_completed_project": user_already_completed_project,
         "completed_project_exercise": completed_project_exercise,
-        "message": message
+        "breadcrumbs": breadcrumbs,
+        "message": message,
     })

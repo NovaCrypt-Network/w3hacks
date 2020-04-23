@@ -20,9 +20,16 @@ def achievements(request):
 
     my_achievements = list(models.Profile.objects.get(user=request.user).achievements.all())
 
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Achievements", "link": "/achievements/"}
+    ]
+
     return render(request, "app/achievements.html", context={
         "achievements": achievements,
-        "my_achievements": my_achievements
+        "my_achievements": my_achievements,
+        "breadcrumbs": breadcrumbs
     })
 
 
@@ -35,24 +42,47 @@ def leaderboards(request):
     quiz_rankings = sorted(all_profiles, key=lambda x: x.quiz_ranking_points)
     exercise_rankings = sorted(all_profiles, key=lambda x: x.exercise_ranking_points)
 
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Leaderboards", "link": "/leaderboards/"}
+    ]
+
     return render(request, "app/leaderboards.html", context={
         "overall_rankings": overall_rankings,
         "project_rankings": project_rankings,
         "quiz_rankings": quiz_rankings,
-        "exercise_rankings": exercise_rankings
+        "exercise_rankings": exercise_rankings,
+        "breadcrumbs": breadcrumbs
     })
 
 
 # Activities views
 @login_required(login_url="http://www.w3hacks.com/login")
 def exercises(request):
-    return render(request, "app/exercises/exercises.html")
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/"}
+    ]
+
+    return render(request, "app/exercises/exercises.html", context={
+        "breadcrumbs": breadcrumbs
+    })
 
 
 # Hackathon views
 @login_required(login_url="http://www.w3hacks.com/login")
 def about_the_hackathon(request):
-    return render(request, "app/hackathon/about-the-hackathon.html")
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "About The Hackathon", "link": "/about-the-hackathon/"}
+    ]
+
+    return render(request, "app/hackathon/about-the-hackathon.html", context={
+        "breadcrumbs": breadcrumbs
+    })
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -65,8 +95,15 @@ def past_hackathons(request):
         if hackathon.end_datetime.strftime("%d/%m/%Y %H:%M:%S") < datetime.now().strftime("%d/%m/%Y %H:%M:%S"):
             past_hackathons.append(hackathon)
 
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Past Hackathons", "link": "/past-hackathons/"}
+    ]
+
     return render(request, "app/hackathon/past-hackathons.html", context={
-        "past_hackathons": past_hackathons
+        "past_hackathons": past_hackathons,
+        "breadcrumbs": breadcrumbs
     })
 
 
@@ -80,8 +117,15 @@ def future_hackathons(request):
         if hackathon.start_datetime.strftime("%d/%m/%Y %H:%M:%S") > datetime.now().strftime("%d/%m/%Y %H:%M:%S"):
             future_hackathons.append(hackathon)
 
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Future Hackathons", "link": "/future-hackathons/"}
+    ]
+
     return render(request, "app/hackathon/future-hackathons.html", context={
-        "future_hackathons": future_hackathons
+        "future_hackathons": future_hackathons,
+        "breadcrumbs": breadcrumbs
     })
 
 

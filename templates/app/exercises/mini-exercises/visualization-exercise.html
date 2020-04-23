@@ -58,7 +58,7 @@
         <h3 class="heading-fourth">Submit</h3>
         <form enctype="multipart/form-data" method="post">
           {% csrf_token %}
-          <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+          <input type="file" name="visualization-file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple required/>
           <label for="file">
             <img class="file-upload-icon" src="{% static 'img/file-upload.svg' %}" alt="">
             <span>Choose a file</span>
