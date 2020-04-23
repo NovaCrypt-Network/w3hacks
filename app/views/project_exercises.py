@@ -13,6 +13,7 @@ def project_exercises(request):
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
         { "text": "Project Exercises", "link": "/exercises/project-exercises/" }
     ]
 
@@ -63,6 +64,7 @@ def project_exercise(request):
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
         { "text": "Project Exercises", "link": "/exercises/project-exercises/" },
         { "text": topic.name, "link": "/exercises/project-exercises/?topic=" + topic.searchable_name },
         { "text": project_exercise.name, "link": None }

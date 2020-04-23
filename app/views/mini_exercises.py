@@ -6,7 +6,16 @@ from main import models
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def mini_exercises(request):
-    return render(request, "app/exercises/mini-exercises/mini-exercises.html")
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": None }
+    ]
+
+    return render(request, "app/exercises/mini-exercises/mini-exercises.html", context={
+        "breadcrumbs": breadcrumbs
+    })
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -14,6 +23,14 @@ def fix_the_code_exercises(request):
     topics = models.Topic.objects.all()
     fix_the_code_exercises = models.FixTheCodeExercise.objects.all()
     specific_topic = None
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Fix The Code", "link": "/exercises/mini-exercises/fix-the-code-exercises/" }
+    ]
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
@@ -28,9 +45,16 @@ def fix_the_code_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+        # Adding topic breadcrumb if exists
+        breadcrumbs.append({
+            "text": specific_topic.name,
+            "link": None
+        })
+
 
     return render(request, "app/exercises/mini-exercises/fix-the-code-exercises.html", context={
         "topics": topics,
+        "breadcrumbs": breadcrumbs,
         "exercises": fix_the_code_exercises,
         "topic": specific_topic
     })
@@ -49,6 +73,19 @@ def fix_the_code_exercise(request):
     else:
         return HttpResponse("You must provide an exercise ID.")
 
+
+    # Grabbing topic for breadcrumbs
+    topic = fix_the_code_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Fix The Code", "link": "/exercises/mini-exercises/fix-the-code-exercises/" },
+        { "text": topic.name, "link": "/exercises/mini-exercises/fix-the-code-exercises/?topic=" + topic.searchable_name },
+        { "text": fix_the_code_exercise.name, "link": None }
+    ]
 
     # Sending in completed project exercise in case user already completed it
     completed_fix_the_code_exercise = None
@@ -83,6 +120,7 @@ def fix_the_code_exercise(request):
         "resources": list(fix_the_code_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_fix_the_code_exercise": completed_fix_the_code_exercise,
+        "breadcrumbs": breadcrumbs,
         "message": message
     })
 
@@ -92,6 +130,14 @@ def brainteaser_exercises(request):
     topics = models.Topic.objects.all()
     brainteaser_exercises = models.BrainTeaserExercise.objects.all()
     specific_topic = None
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Brain Teaser", "link": "/exercises/mini-exercises/brainteaser-exercises/" }
+    ]
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
@@ -106,9 +152,16 @@ def brainteaser_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+        # Adding topic breadcrumb if exists
+        breadcrumbs.append({
+            "text": specific_topic.name,
+            "link": None
+        })
+
     return render(request, "app/exercises/mini-exercises/brainteaser-exercises.html", context={
         "topics": topics,
         "exercises": brainteaser_exercises,
+        "breadcrumbs": breadcrumbs,
         "topic": specific_topic
     })
 
@@ -125,6 +178,20 @@ def brainteaser_exercise(request):
             return HttpResponse("Invalid exercise ID.")
     else:
         return HttpResponse("You must provide an exercise ID.")
+
+
+    # Grabbing topic for breadcrumbs
+    topic = brainteaser_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Brain Teaser", "link": "/exercises/mini-exercises/brainteaser-exercises/" },
+        { "text": topic.name, "link": "/exercises/mini-exercises/brainteaser-exercises/?topic=" + topic.searchable_name },
+        { "text": brainteaser_exercise.name, "link": None }
+    ]
 
     # Sending in completed project exercise in case user already completed it
     completed_brainteaser_exercise = None
@@ -159,6 +226,7 @@ def brainteaser_exercise(request):
         "resources": list(brainteaser_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_brainteaser_exercise": completed_brainteaser_exercise,
+        "breadcrumbs": breadcrumbs,
         "message": message
     })
 
@@ -168,6 +236,14 @@ def visualization_exercises(request):
     topics = models.Topic.objects.all()
     visualization_exercises = models.VisualizationExercise.objects.all()
     specific_topic = None
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Visualize It!", "link": "/exercises/mini-exercises/visualization-exercises/" }
+    ]
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
@@ -182,9 +258,16 @@ def visualization_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+        # Adding topic breadcrumb if exists
+        breadcrumbs.append({
+            "text": specific_topic.name,
+            "link": None,
+        })
+
     return render(request, "app/exercises/mini-exercises/visualization-exercises.html", context={
         "topics": topics,
         "exercises": visualization_exercises,
+        "breadcrumbs": breadcrumbs,
         "topic": specific_topic
     })
 
@@ -201,6 +284,21 @@ def visualization_exercise(request):
             return HttpResponse("Invalid exercise ID.")
     else:
         return HttpResponse("You must provide an exercise ID.")
+
+
+    # Grabbing topic for breadcrumbs
+    topic = visualization_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Visualize It!", "link": "/exercises/mini-exercises/visualization-exercises/" },
+        { "text": topic.name, "link": "/exercises/mini-exercises/visualization-exercises/?topic=" + topic.searchable_name },
+        { "text": visualization_exercise.name, "link": None }
+    ]
+
 
     # Sending in completed project exercise in case user already completed it
     completed_visualization_exercise = None
@@ -234,6 +332,7 @@ def visualization_exercise(request):
         "resources": list(visualization_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_visualization_exercise": completed_visualization_exercise,
+        "breadcrumbs": breadcrumbs,
         "message": message
     })
 
@@ -243,6 +342,14 @@ def refactor_exercises(request):
     topics = models.Topic.objects.all()
     refactor_exercises = models.RefactorExercise.objects.all()
     specific_topic = None
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Refactor It!", "link": "/exercises/mini-exercises/refactor-exercises/" }
+    ]
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
@@ -257,10 +364,17 @@ def refactor_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+        # Adding topic breadcrumb if exists
+        breadcrumbs.append({
+            "text": specific_topic.name,
+            "link": None
+        })
+
     return render(request, "app/exercises/mini-exercises/refactor-exercises.html", context={
         "topics": topics,
         "exercises": refactor_exercises,
-        "topic": specific_topic
+        "topic": specific_topic,
+        "breadcrumbs": breadcrumbs
     })
 
     return render(request, "app/exercises/mini-exercises/refactor-exercises.html")
@@ -276,6 +390,21 @@ def refactor_exercise(request):
             return HttpResponse("Invalid exercise ID.")
     else:
         return HttpResponse("You must provide an exercise ID.")
+
+
+    # Grabbing topic for breadcrumbs
+    topic = refactor_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Refactor It!", "link": "/exercises/mini-exercises/refactor-exercises/" },
+        { "text": topic.name, "link": "/exercises/mini-exercises/refactor-exercises/?topic=" + topic.searchable_name },
+        { "text": refactor_exercise.name, "link": None }
+    ]
+
 
     # Sending in completed project exercise in case user already completed it
     completed_refactor_exercise = None
@@ -310,6 +439,7 @@ def refactor_exercise(request):
         "resources": list(refactor_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_refactor_exercise": completed_refactor_exercise,
+        "breadcrumbs": breadcrumbs,
         "message": message
     })
 
@@ -319,6 +449,14 @@ def teaching_exercises(request):
     topics = models.Topic.objects.all()
     teaching_exercises = models.TeachingExercise.objects.all()
     specific_topic = None
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Teach It!", "link": "/exercises/mini-exercises/teaching-exercises/" }
+    ]
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
@@ -333,13 +471,18 @@ def teaching_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+        # Adding topic breadcrumb if exists
+        breadcrumbs.append({
+            "text": specific_topic.name,
+            "link": None
+        })
+
     return render(request, "app/exercises/mini-exercises/teaching-exercises.html", context={
         "topics": topics,
         "exercises": teaching_exercises,
-        "topic": specific_topic
+        "topic": specific_topic,
+        "breadcrumbs": breadcrumbs,
     })
-
-    return render(request, "app/exercises/mini-exercises/teaching-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -352,6 +495,21 @@ def teaching_exercise(request):
             return HttpResponse("Invalid exercise ID.")
     else:
         return HttpResponse("You must provide an exercise ID.")
+
+
+    # Grabbing topic for breadcrumbs
+    topic = teaching_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Teach It!", "link": "/exercises/mini-exercises/teaching-exercises/" },
+        { "text": topic.name, "link": "/exercises/mini-exercises/teaching-exercises/?topic=" + topic.searchable_name },
+        { "text": teaching_exercise.name, "link": None }
+    ]
+
 
     # Sending in completed project exercise in case user already completed it
     completed_teaching_exercise = None
@@ -386,6 +544,7 @@ def teaching_exercise(request):
         "resources": list(teaching_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_teaching_exercise": completed_teaching_exercise,
+        "breadcrumbs": breadcrumbs,
         "message": message
     })
 
@@ -395,6 +554,14 @@ def github_exercises(request):
     topics = models.Topic.objects.all()
     github_exercises = models.GitHubExercise.objects.all()
     specific_topic = None
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Git/GitHub", "link": "/exercises/mini-exercises/github-exercises/" }
+    ]
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
@@ -409,9 +576,16 @@ def github_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+        # Adding topic breadcrumb if exists
+        breadcrumbs.append({
+            "text": specific_topic.name,
+            "link": None
+        })
+
     return render(request, "app/exercises/mini-exercises/github-exercises.html", context={
         "topics": topics,
         "exercises": github_exercises,
+        "breadcrumbs": breadcrumbs,
         "topic": specific_topic
     })
 
@@ -428,6 +602,21 @@ def github_exercise(request):
             return HttpResponse("Invalid exercise ID.")
     else:
         return HttpResponse("You must provide an exercise ID.")
+
+
+    # Grabbing topic for breadcrumbs
+    topic = github_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Git/GitHub", "link": "/exercises/mini-exercises/github-exercises/" },
+        { "text": topic.name, "link": "/exercises/mini-exercises/github-exercises/?topic=" + topic.searchable_name },
+        { "text": github_exercise.name, "link": None }
+    ]
+
 
     # Sending in completed project exercise in case user already completed it
     completed_github_exercise = None
@@ -462,6 +651,7 @@ def github_exercise(request):
         "resources": list(github_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_github_exercise": completed_github_exercise,
+        "breadcrumbs": breadcrumbs,
         "message": message
     })
 
@@ -471,6 +661,14 @@ def research_exercises(request):
     topics = models.Topic.objects.all()
     research_exercises = models.ResearchExercise.objects.all()
     specific_topic = None
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Research It!", "link": "/exercises/mini-exercises/research-exercises/" }
+    ]
 
     if request.GET.get("topic"):
         topic = request.GET.get("topic")
@@ -485,9 +683,16 @@ def research_exercises(request):
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
 
+        # Adding topic breadcrumb if exists
+        breadcrumbs.append({
+            "text": specific_topic.name,
+            "link": None
+        })
+
     return render(request, "app/exercises/mini-exercises/research-exercises.html", context={
         "topics": topics,
         "exercises": research_exercises,
+        "breadcrumbs": breadcrumbs,
         "topic": specific_topic
     })
 
@@ -504,6 +709,21 @@ def research_exercise(request):
             return HttpResponse("Invalid exercise ID.")
     else:
         return HttpResponse("You must provide an exercise ID.")
+
+
+    # Grabbing topic for breadcrumbs
+    topic = research_exercise.topic
+
+    # Creating breadcrumbs
+    breadcrumbs = [
+        { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
+        { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
+        { "text": "Research It!", "link": "/exercises/mini-exercises/research-exercises/" },
+        { "text": topic.name, "link": "/exercises/mini-exercises/research-exercises/?topic=" + topic.searchable_name },
+        { "text": research_exercise.name, "link": None }
+    ]
+
 
     # Sending in completed project exercise in case user already completed it
     completed_research_exercise = None
@@ -538,5 +758,6 @@ def research_exercise(request):
         "resources": list(research_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
         "completed_research_exercise": completed_research_exercise,
+        "breadcrumbs": breadcrumbs,
         "message": message
     })

@@ -14,6 +14,7 @@ def quiz_exercises(request):
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
         { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" }
     ]
 
@@ -26,9 +27,6 @@ def quiz_exercises(request):
         for quiz_exercise in iterable_quiz_exercises:
             if quiz_exercise.topic.searchable_name == topic:
                 quiz_exercises.append(quiz_exercise)
-
-        # Topic object to pass into template
-        specific_topic = models.Topic.objects.get(searchable_name=topic)
 
         # Topic object to pass into template
         specific_topic = models.Topic.objects.get(searchable_name=topic)
@@ -65,6 +63,7 @@ def quiz_exercise(request):
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
         { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" },
         { "text": topic.name, "link": "/exercises/quiz-exercises/?topic=" + topic.searchable_name },
         { "text": quiz_exercise.name, "link": None }
@@ -94,6 +93,7 @@ def take_quiz(request):
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
         { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" },
         { "text": topic.name, "link": "/exercises/quiz-exercises/?topic=" + topic.searchable_name },
         { "text": quiz_exercise.name, "link": "/exercises/quiz-exercises/exercise/?id=" + quiz_exercise.id },
@@ -143,6 +143,7 @@ def quiz_results(request):
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
+        { "text": "Exercises", "link": "/exercises/" },
         { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" },
         { "text": topic.name, "link": "/exercises/quiz-exercises/?topic=" + topic.searchable_name },
         { "text": quiz_exercise.name, "link": "/exercises/quiz-exercises/exercise/?id=" + quiz_exercise.id },
