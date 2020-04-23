@@ -136,7 +136,7 @@ def profile(request, user_id):
     if User.objects.filter(id=user_id).exists():
         user = User.objects.get(id=user_id)
     else:
-        return HttpResponse("User does not exist.")
+        return render(request, "errors/user-does-not-exist.html")
 
     # Getting profile from current user
     profile = models.Profile.objects.get(user=user)
@@ -152,7 +152,7 @@ def edit_profile(request, user_id):
     if User.objects.filter(id=user_id).exists():
         user = User.objects.get(id=user_id)
     else:
-        return HttpResponse("User does not exist.")
+        return render(request, "errors/user-does-not-exist.html")
 
     # Getting profile from current user
     profile = models.Profile.objects.get(user=user)
