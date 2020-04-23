@@ -1,0 +1,21 @@
+{% extends 'errors/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3hacks - No upcoming hackathons!</title>
+{% endblock %}
+{% block body %}
+  <div class="body-container container">
+    <div class="message">
+      <h1 class="heading-secondary text-left">No upcoming hackathons!</h1>
+      <p class="my-4">
+        There are no current/upcoming hackathons to participate in! If you'd like, you can check out some of the <a href="http://app.w3hacks.com/past-hackathons">past hackathons</a> to see the results or competitors.
+        <br><br>
+        Also, you can check out our <a href="http://app.w3hacks.com/future-hackathons">future hackathons</a> to be updated on when future hackathons will be scheduled!
+        <br><br>
+        Please feel free to <a href="http://www.w3hacks.com/contact/">contact us</a> if you have any questions and we will get back to you within 24-48 hours!
+      </p>
+
+      <a href="http://www.w3hacks.com/" class="solid-cta-button-light w-100 d-block">Back to w3Hacks home</a>
+    </div>
+  </div>
+{% endblock %}

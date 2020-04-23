@@ -6,7 +6,7 @@ from datetime import datetime
 from pytz import timezone
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+# @login_required(login_url="http://www.w3hacks.com/login")
 def index_redirect(request):
     all_hackathons = Hackathon.objects.all()
 
@@ -36,7 +36,7 @@ def index_redirect(request):
 
     # If there isn't
     else:
-        return HttpResponse("No current or future hackathons going on!")
+        return render(request, "errors/no-hackathons.html")
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def index(request, hackathon_id):
