@@ -77,8 +77,8 @@ section {
 
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 30px;
 }
 
 .feature p {
@@ -109,6 +109,27 @@ section {
 
 .contact-info {
   text-align: right;
+}
+
+.contact-info-item {
+  margin: 15px 0;
+}
+
+.contact-info-item img {
+  width: 40px;
+  transform: translateY(-1px);
+}
+
+.contact-info-item span {
+  margin: 0 10px;
+}
+
+.contact-info-item a:hover {
+  color: white;
+}
+
+.contact-info-item-mobile {
+  display: none;
 }
 
 .copyright {

@@ -54,6 +54,15 @@
   .features {
     grid-gap: 30px !important;
   }
+
+  /* Making mobile contact info item visible */
+  .contact-info-item-mobile {
+    display: block !important;
+  }
+
+  .contact-info-item-desktop {
+    display: none !important;
+  }
 }
 
 
