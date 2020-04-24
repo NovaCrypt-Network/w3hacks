@@ -1,38 +1,30 @@
 .exercises {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 50px;
-}
-
-.exercise-link:hover {
-  text-decoration: none;
+  grid-gap: 30px;
 }
 
 .exercise {
-  border-radius: 5px;
-  background-color: var(--color-primary);
-  transition: all .3s;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-gap: 15px;
+
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.1);
+  border-radius: 7px;
+  transition: all .2s;
 }
 
-.exercise * {
-  color: white;
-}
-
-.exercise:hover {
-  transform: rotate(5deg);
-}
-
-.exercise-img img {
+.exercise-icon {
   width: 100%;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 }
 
-.exercise-body {
-  padding: 10px;
+.exercise-link, .exercise-link:hover {
+  color: black;
+  text-decoration: none;
 }
 
-.exercise-body p {
-  line-height: 130%;
-  font-size: 15px;
+.exercise-link:hover > .exercise {
+  background-color: #eee;
 }
