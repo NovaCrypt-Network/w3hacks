@@ -11,19 +11,22 @@
       <div class="hackathons mt-4">
         {% for hackathon in future_hackathons %}
           <div class="hackathon">
-            <h3>{{ hackathon.title }}</h3>
+            <img class="hackathon-icon" src="{% static 'img/icons/competition-light.svg' %}" alt="">
             <div>
-              <strong>Type:</strong> {{ hackathon.type }}
+              <h3>{{ hackathon.title }}</h3>
+              <div>
+                <strong>Type:</strong> {{ hackathon.type }}
+              </div>
+              <div>
+                <strong>Date:</strong> {{ hackathon.start_date }} - {{ hackathon.end_date }}
+              </div>
+              <p>
+                <strong>Description:</strong> {{ hackathon.description }}
+              </p>
+              <a class="view-hackathon" href="http://hackathon.w3hacks.com/{{ hackathon.id }}/">
+                <img src="{% static 'img/icons/out.png'%}" alt="">
+              </a>
             </div>
-            <div>
-              <strong>Date:</strong> {{ hackathon.start_date }} - {{ hackathon.end_date }}
-            </div>
-            <p>
-              <strong>Description:</strong> {{ hackathon.description }}
-            </p>
-            <a class="view-hackathon" href="http://hackathon.w3hacks.com/{{ hackathon.id }}/">
-              <img src="{% static 'img/out.png'%}" alt="">
-            </a>
           </div>
         {% endfor %}
       </div>

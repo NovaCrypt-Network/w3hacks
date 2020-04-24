@@ -23,7 +23,7 @@
                 <img src="{{ competitor.profile_picture.url }}" alt="" class="competitor-img">
               </div>
             {% else %}
-              <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
+              <img src="{% static 'img/icons/user.png' %}" alt="" class="competitor-img">
             {% endif %}
             <h5 class="mt-3">
               <a class="competitor-link" href="/{{ hackathon.id }}/profile/{{ competitor.id }}/">{{ competitor.user.first_name }} {{ competitor.user.last_name }}</a>

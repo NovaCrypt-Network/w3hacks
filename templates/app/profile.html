@@ -20,7 +20,7 @@
               <img class="profile-picture" src="{{ profile.profile_picture.url }}" alt="">
             </div>
           {% else %}
-            <img class="profile-picture" src="{% static 'img/user.png' %}" alt="">
+            <img class="profile-picture" src="{% static 'img/icons/user.png' %}" alt="">
           {% endif %}
         </div>
         <div class="profile-header-main-right">
@@ -28,7 +28,7 @@
             <span>{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
             {% if request.user.profile == profile %}
               <a style="float: right;" href="/edit-profile/{{ request.user.id }}/">
-                <img style="width: 25px;" src="{% static 'img/edit.png' %}" alt="">
+                <img style="width: 25px;" src="{% static 'img/icons/edit.png' %}" alt="">
               </a>
             {% endif %}
           </h1>
@@ -116,7 +116,7 @@
           {% if achievements %}
             {% for achievement in achievements %}
               <div class="achievement">
-                <img src="{% static 'img/achievement.png' %}" alt="">
+                <img src="{% static 'img/icons/achievement.png' %}" alt="">
                 <div>
                   <h5>{{ achievement.title }}</h5>
                   <p>{{ achievement.description }}</p>
@@ -160,7 +160,7 @@
                   <h5>{{ exercise.project_exercise.name }}</h5>
                   <p>{{ exercise.project_exercise.description }}</p>
                   <a class="view-exercise-link" class="view-exercise-link" href="/exercises/project-exercises/exercise/?id={{ exercise.project_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
                   </a>
                 </div>
               {% endfor %}
@@ -179,7 +179,7 @@
                   <h5>{{ exercise.quiz_exercise.name }}</h5>
                   <p>{{ exercise.quiz_exercise.description }}</p>
                   <a class="view-exercise-link" href="/exercises/quiz-exercises/exercise/?id={{ exercise.quiz_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
                   </a>
                 </div>
               {% endfor %}
@@ -198,7 +198,7 @@
                   <h5>{{ exercise.fix_the_code_exercise.name }}</h5>
                   <p>{{ exercise.fix_the_code_exercise.description }}</p>
                   <a class="view-exercise-link" href="/exercises/mini-exercises/fix-the-code-exercises/exercise/?id={{ exercise.fix_the_code_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
                   </a>
                 </div>
               {% endfor %}
@@ -217,7 +217,7 @@
                   <h5>{{ exercise.brainteaser_exercise.name }}</h5>
                   <p>{{ exercise.brainteaser_exercise.description }}</p>
                   <a class="view-exercise-link" href="/exercises/mini-exercises/brainteaser-exercises/exercise/?id={{ exercise.brainteaser_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
                   </a>
                 </div>
               {% endfor %}
@@ -236,7 +236,7 @@
                   <h5>{{ exercise.visualization_exercise.name }}</h5>
                   <p>{{ exercise.visualization_exercise.description }}</p>
                   <a class="view-exercise-link" href="/exercises/mini-exercises/visualization-exercises/exercise/?id={{ exercise.visualization_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
                   </a>
                 </div>
               {% endfor %}
@@ -255,7 +255,7 @@
                   <h5>{{ exercise.refactor_exercise.name }}</h5>
                   <p>{{ exercise.refactor_exercise.description }}</p>
                   <a class="view-exercise-link" href="/exercises/mini-exercises/refactor-exercises/exercise/?id={{ exercise.refactor_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
                   </a>
                 </div>
               {% endfor %}
@@ -274,7 +274,7 @@
                   <h5>{{ exercise.teaching_exercise.name }}</h5>
                   <p>{{ exercise.teaching_exercise.description }}</p>
                   <a class="view-exercise-link" href="/exercises/mini-exercises/teaching-exercises/exercise/?id={{ exercise.teaching_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
                   </a>
                 </div>
               {% endfor %}
@@ -293,7 +293,7 @@
                   <h5>{{ exercise.github_exercise.name }}</h5>
                   <p>{{ exercise.github_exercise.description }}</p>
                   <a class="view-exercise-link" href="/exercises/mini-exercises/github-exercises/exercise/?id={{ exercise.github_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
                   </a>
                 </div>
               {% endfor %}
@@ -312,7 +312,7 @@
                   <h5>{{ exercise.research_exercise.name }}</h5>
                   <p>{{ exercise.research_exercise.description }}</p>
                   <a class="view-exercise-link" href="/exercises/mini-exercises/research-exercises/exercise/?id={{ exercise.research_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
                   </a>
                 </div>
               {% endfor %}

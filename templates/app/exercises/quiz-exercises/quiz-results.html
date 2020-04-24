@@ -32,19 +32,19 @@
               <!-- You chose the correct answer -->
               {% if result.correct_answer == result.user_answer == answer %}
                 <div class="answer">
-                  <img class="quiz-result-icon" src="{% static 'img/correct.png' %}" alt=""> <span>{{ answer }}</span>
+                  <img class="quiz-result-icon" src="{% static 'img/icons/correct.png' %}" alt=""> <span>{{ answer }}</span>
                 </div>
 
               <!-- This is the correct answer -->
               {% elif result.correct_answer == answer %}
                 <div class="answer">
-                  <img class="quiz-result-icon" src="{% static 'img/correct.png' %}" alt=""> <span>{{ answer }}</span>
+                  <img class="quiz-result-icon" src="{% static 'img/icons/correct.png' %}" alt=""> <span>{{ answer }}</span>
                 </div>
 
               <!-- This is your answer -->
               {% elif result.user_answer == answer %}
                 <div class="answer">
-                  <img class="quiz-result-icon" src="{% static 'img/incorrect.png' %}" alt=""> <span>{{ answer }}</span>
+                  <img class="quiz-result-icon" src="{% static 'img/icons/incorrect.png' %}" alt=""> <span>{{ answer }}</span>
                 </div>
 
               <!-- This is just an answer -->

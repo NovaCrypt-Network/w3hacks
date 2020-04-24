@@ -7,6 +7,10 @@
 .hackathon {
   position: relative;
 
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-gap: 15px;
+
   background-color: var(--color-primary);
   padding: 10px;
   border-radius: 5px;
@@ -14,6 +18,10 @@
 
 .hackathon * {
   color: white;
+}
+
+.hackathon-icon {
+  width: 50px;
 }
 
 .hackathon-statistics {
