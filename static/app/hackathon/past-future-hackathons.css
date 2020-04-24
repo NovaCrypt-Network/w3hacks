@@ -5,6 +5,8 @@
 }
 
 .hackathon {
+  position: relative;
+
   background-color: var(--color-primary);
   padding: 10px;
   border-radius: 5px;
@@ -18,4 +20,14 @@
   display: grid;
   grid-template-columns: repeat(2, 50%);
   margin-top: 10px;
+}
+
+.view-hackathon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.view-hackathon img {
+  width: 30px;
 }
