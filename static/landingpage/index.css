@@ -72,6 +72,7 @@ section {
 
 .about-description {
   font-size: 20px;
+  color: #464646;
 }
 
 .features {
@@ -80,8 +81,16 @@ section {
   grid-gap: 50px;
 }
 
-.feature small {
+.feature p {
   font-size: 14px;
+  margin-left: 52.5px;
+  color: #464646;
+}
+
+.feature-icon {
+  width: 40px;
+  margin-right: 5px;
+  transform: translateY(-4px);
 }
 
 .contact {
