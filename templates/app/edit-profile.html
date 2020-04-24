@@ -38,7 +38,7 @@
           </div>
           <div class="form-input-group">
             <label>Birthday:</label><br>
-            <input class="ghost-input-dark" type="date" name="birthday" value="{{ profile.birthday }}">
+            <input id="birthday" class="ghost-input-dark" type="date" name="birthday" value="{{ birthday|date:'Y-m-d'}}">
           </div>
           <div class="form-input-group">
             <label>Profile Picture:</label><br>

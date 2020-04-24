@@ -249,7 +249,8 @@ def edit_profile(request, user_id):
 
     return render(request, "app/edit-profile.html", context={
         "profile": profile,
-        "skills": ",".join(profile.skills)
+        "skills": ",".join(profile.skills),
+        "birthday": profile.birthday
     })
 
 
