@@ -158,9 +158,13 @@ def profile(request, user_id):
     completed_github_exercises = list(profile.completed_github_exercises.all())
     completed_research_exercises = list(profile.completed_research_exercises.all())
 
+    skills = None
+    if profile.skills:
+        skills = ",".join(profile.skills)
+
     return render(request, "app/profile.html", context={
         "profile": profile,
-        "skills": ",".join(profile.skills),
+        "skills": skills,
         "past_hackathons": past_hackathons,
         "achievements": achievements,
         "completed_project_exercises": completed_project_exercises,
@@ -246,10 +250,13 @@ def edit_profile(request, user_id):
 
         return HttpResponseRedirect("/profile/" + str(user.id))
 
+    skills = None
+    if profile.skills:
+        skills = ",".join(profile.skills)
 
     return render(request, "app/edit-profile.html", context={
         "profile": profile,
-        "skills": ",".join(profile.skills),
+        "skills": skills,
         "birthday": profile.birthday
     })
 

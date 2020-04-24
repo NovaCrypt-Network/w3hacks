@@ -156,7 +156,9 @@ def quiz_results(request):
 
     # Grabbing completed quiz exercise
     if models.CompletedQuizExercise.objects.filter(quiz_exercise=quiz_exercise).exists():
-        completed_quiz_exercise = models.CompletedQuizExercise.objects.get(quiz_exercise=quiz_exercise)
+        for completed_exercise in models.CompletedQuizExercise.objects.filter(quiz_exercise=quiz_exercise):
+            if completed_exercise in list(request.user.profile.completed_quiz_exercises.all()):
+                completed_quiz_exercise = completed_exercise
     else:
         return HttpResponse("You haven't completed this quiz yet.")
 

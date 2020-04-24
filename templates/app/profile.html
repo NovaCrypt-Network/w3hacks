@@ -6,7 +6,12 @@
 {% endblock %}
 {% block body %}
   <div class="body-container container">
-    <h1 class="heading-secondary">Profile</h1>
+    <h1 class="heading-secondary">
+      {% if profile == request.user.profile %}
+        My
+      {% endif %}
+       Profile
+    </h1>
     <div class="profile-header">
       <div class="profile-header-main">
         <div class="profile-header-main-left">
@@ -70,33 +75,33 @@
         </div>
       </div>
       <div class="profile-header-right">
-        <div class="profile-element">
-          {% if profile.education %}
+        {% if profile.education %}
+          <div class="profile-element">
             <small>Education</small><br>
             <p>{{ profile.education }}</p>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
 
-        <div class="profile-element">
-          {% if profile.birthday %}
+        {% if profile.birthday %}
+          <div class="profile-element">
             <small>Birthday</small><br>
             <p>{{ profile.birthday }}</p>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
 
-        <div class="profile-element">
-          {% if profile.location %}
+        {% if profile.location %}
+          <div class="profile-element">
             <small>Location</small><br>
             <p>{{ profile.location }}</p>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
 
-        <div class="profile-element">
-          {% if skills %}
+        {% if skills %}
+          <div class="profile-element">
             <small>Skills</small><br>
             <p>{{ skills }}</p>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
 
         <div class="profile-element">
           <small>Joined</small>
@@ -150,9 +155,9 @@
           <h3 class="heading-fourth">Project Exercises</h3>
           {% if completed_project_exercises %}
             <div class="exercises">
-              {% for exericse in completed_project_exercises %}
+              {% for exercise in completed_project_exercises %}
                 <div class="exercise">
-                  <h3>{{ exercise.project_exercise.name }}</h3>
+                  <h5>{{ exercise.project_exercise.name }}</h5>
                   <p>{{ exercise.project_exercise.description }}</p>
                   <a class="view-exercise-link" class="view-exercise-link" href="/exercises/project-exercises/exercise/?id={{ exercise.project_exercise.id }}">
                     <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
@@ -173,7 +178,7 @@
                 <div class="exercise">
                   <h5>{{ exercise.quiz_exercise.name }}</h5>
                   <p>{{ exercise.quiz_exercise.description }}</p>
-                  <a class="view-exercise-link" href="/exercises/quiz-exercises/exercise/quiz-results/?id={{ exercise.quiz_exercise.id }}">
+                  <a class="view-exercise-link" href="/exercises/quiz-exercises/exercise/?id={{ exercise.quiz_exercise.id }}">
                     <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
                   </a>
                 </div>
