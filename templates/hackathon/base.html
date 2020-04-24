@@ -26,7 +26,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-target">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto" style="display: flex; align-items: center;">
               <li class="nav-item">
                   <a class="nav-link" href="/{{ hackathon.id }}/">Home</a>
               </li>
@@ -42,8 +42,22 @@
               <li class="nav-item">
                   <a class="nav-link" href="/{{ hackathon.id }}/submit/">Submit</a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="http://app.w3hacks.com">Back to app.w3hacks.com</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                  {% if request.user.profile.profile_picture %}
+                    <div class="image-cropper" style="border-width: 2px;">
+                      <img style="width: 35px" src="{{ request.user.profile.profile_picture.url }}" alt="">
+                    </div>
+                  {% else %}
+                    <img style="width: 35px" src="{% static 'img/user.png' %}" alt="">
+                  {% endif %}
+                </a>
+                <div class="dropdown-menu">
+                  <a href="/profile/{{ request.user.id }}" class="dropdown-item">View Profile</a>
+                  <a href="/edit-profile/{{ request.user.id }}" class="dropdown-item">Edit Profile</a>
+                  <div class="dropdown-divider"></div>
+                  <a href="http://app.w3hacks.com" class="dropdown-item">Back to App</a>
+                </div>
               </li>
           </ul>
         </div>

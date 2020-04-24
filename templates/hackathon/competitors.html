@@ -19,11 +19,15 @@
         {% for competitor in competitors %}
           <div class="competitor">
             {% if competitor.profile_picture %}
-              <img src="{{ competitor.profile_picture.url }}" alt="" class="competitor-img">
+              <div class="image-cropper">
+                <img src="{{ competitor.profile_picture.url }}" alt="" class="competitor-img">
+              </div>
             {% else %}
               <img src="{% static 'img/user.png' %}" alt="" class="competitor-img">
             {% endif %}
-            <h5>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</h5>
+            <h5 class="mt-3">
+              <a class="competitor-link" href="/profile/{{ competitor.id }}/">{{ competitor.user.first_name }} {{ competitor.user.last_name }}</a>
+            </h5>
           </div>
         {% endfor %}
       </div>

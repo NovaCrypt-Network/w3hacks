@@ -1,0 +1,322 @@
+{% extends 'hackathon/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks Hackathon - w3Hacks User Profile</title>
+  <link rel="stylesheet" href="{% static 'app/profile.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="body-container container">
+    <h1 class="heading-secondary">Profile</h1>
+    <div class="profile-header">
+      <div class="profile-header-main">
+        <div class="profile-header-main-left">
+          {% if profile.profile_picture %}
+            <div class="image-cropper">
+              <img class="profile-picture" src="{{ profile.profile_picture.url }}" alt="">
+            </div>
+          {% else %}
+            <img class="profile-picture" src="{% static 'img/user.png' %}" alt="">
+          {% endif %}
+        </div>
+        <div class="profile-header-main-right">
+          <h1>
+            <span>{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
+            {% if request.user.profile == profile %}
+              <a style="float: right;" href="/edit-profile/{{ request.user.id }}/">
+                <img style="width: 25px;" src="{% static 'img/edit.png' %}" alt="">
+              </a>
+            {% endif %}
+          </h1>
+          <p class="profile-description mt-3">
+            <i>{{ profile.biography }}</i>
+          </p>
+          <div class="social-links mt-3">
+            {% if profile.linkedin_profile %}
+              <a target="_" href="{{ profile.linkedin_profile }}">
+                <img src="{% static 'img/icons/social-media/linkedin.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+            {% if profile.github_profile %}
+              <a target="_" href="{{ profile.github_profile }}">
+                <img src="{% static 'img/icons/social-media/github.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+            {% if profile.twitter_profile %}
+              <a target="_" href="{{ profile.twitter_profile }}">
+                <img src="{% static 'img/icons/social-media/twitter.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+            {% if profile.instagram_profile %}
+              <a target="_" href="{{ profile.instagram_profile }}">
+                <img src="{% static 'img/icons/social-media/instagram.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+            {% if profile.facebook_profile %}
+              <a target="_" href="{{ profile.facebook_profile }}">
+                <img src="{% static 'img/icons/social-media/facebook.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+            {% if profile.twitch_profile %}
+              <a target="_" href="{{ profile.twitch_profile }}">
+                <img src="{% static 'img/icons/social-media/twitch.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+            {% if profile.personal_website %}
+              <a target="_" href="{{ profile.personal_website }}">
+                <img src="{% static 'img/icons/social-media/personal-website.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="profile-header-right">
+        <div class="profile-element">
+          {% if profile.education %}
+            <small>Education</small><br>
+            <p>{{ profile.education }}</p>
+          {% endif %}
+        </div>
+
+        <div class="profile-element">
+          {% if profile.birthday %}
+            <small>Birthday</small><br>
+            <p>{{ profile.birthday }}</p>
+          {% endif %}
+        </div>
+
+        <div class="profile-element">
+          {% if profile.location %}
+            <small>Location</small><br>
+            <p>{{ profile.location }}</p>
+          {% endif %}
+        </div>
+
+        <div class="profile-element">
+          {% if skills %}
+            <small>Skills</small><br>
+            <p>{{ skills }}</p>
+          {% endif %}
+        </div>
+
+        <div class="profile-element">
+          <small>Joined</small>
+          <p>{{ profile.joined_date }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <div class="achievement-container">
+        <h1 class="heading-tertiary">Achievements</h1>
+        <div class="achievements">
+          {% if achievements %}
+            {% for achievement in achievements %}
+              <div class="achievement">
+                <img src="{% static 'img/achievement.png' %}" alt="">
+                <div>
+                  <h5>{{ achievement.title }}</h5>
+                  <p>{{ achievement.description }}</p>
+                  <small>{{ achievement.credits }} credits</small>
+                  <small>{{ achievement.ranking_points }} ranking points</small>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <small>No achievements completed yet!</small>
+          {% endif %}
+        </div>
+      </div>
+      <div class="hackathon-container">
+        <h1 class="heading-tertiary">Hackathons</h1>
+        <div class="hackathons">
+          {% if past_hackathons %}
+            <ul>
+              {% for hackathon in past_hackathons %}
+                <li>
+                  <a href="http://hackathon.w3hacks.com/{{ hackathon.id }}/">{{ hackathon.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <small>No hackathons competed in yet!</small>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <div class="project-container">
+        <h1 class="heading-tertiary">Completed Exercises</h1>
+
+        <div class="exercise-type">
+          <h3 class="heading-fourth">Project Exercises</h3>
+          {% if completed_project_exercises %}
+            <div class="exercises">
+              {% for exericse in completed_project_exercises %}
+                <div class="exercise">
+                  <h3>{{ exercise.project_exercise.name }}</h3>
+                  <p>{{ exercise.project_exercise.description }}</p>
+                  <a class="view-exercise-link" class="view-exercise-link" href="/exercises/project-exercises/exercise/?id={{ exercise.project_exercise.id }}">
+                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>No completed project exercises yet!</small>
+          {% endif %}
+        </div>
+
+        <div class="exercise-type">
+          <h3 class="heading-fourth">Quiz Exercises</h3>
+          {% if completed_quiz_exercises %}
+            <div class="exercises">
+              {% for exercise in completed_quiz_exercises %}
+                <div class="exercise">
+                  <h5>{{ exercise.quiz_exercise.name }}</h5>
+                  <p>{{ exercise.quiz_exercise.description }}</p>
+                  <a class="view-exercise-link" href="/exercises/quiz-exercises/exercise/quiz-results/?id={{ exercise.quiz_exercise.id }}">
+                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>No completed quiz exercises yet!</small>
+          {% endif %}
+        </div>
+
+        <div class="exercise-type">
+          <h3 class="heading-fourth">Fix The Code Exercises</h3>
+          {% if completed_fix_the_code_exercises %}
+            <div class="exercises">
+              {% for exercise in completed_fix_the_code_exercises %}
+                <div class="exercise">
+                  <h5>{{ exercise.fix_the_code_exercise.name }}</h5>
+                  <p>{{ exercise.fix_the_code_exercise.description }}</p>
+                  <a class="view-exercise-link" href="/exercises/mini-exercises/fix-the-code-exercises/exercise/?id={{ exercise.fix_the_code_exercise.id }}">
+                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>No completed quiz exercises yet!</small>
+          {% endif %}
+        </div>
+
+        <div class="exercise-type">
+          <h3 class="heading-fourth">BrainTeaser Exercises</h3>
+          {% if completed_brainteaser_exercises %}
+            <div class="exercises">
+              {% for exercise in completed_brainteaser_exercises %}
+                <div class="exercise">
+                  <h5>{{ exercise.brainteaser_exercise.name }}</h5>
+                  <p>{{ exercise.brainteaser_exercise.description }}</p>
+                  <a class="view-exercise-link" href="/exercises/mini-exercises/brainteaser-exercises/exercise/?id={{ exercise.brainteaser_exercise.id }}">
+                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>No completed brainteaser exercises yet!</small>
+          {% endif %}
+        </div>
+
+        <div class="exercise-type">
+          <h3 class="heading-fourth">Visualization Exercises</h3>
+          {% if completed_visualization_exercises %}
+            <div class="exercises">
+              {% for exercise in completed_visualization_exercises %}
+                <div class="exercise">
+                  <h5>{{ exercise.visualization_exercise.name }}</h5>
+                  <p>{{ exercise.visualization_exercise.description }}</p>
+                  <a class="view-exercise-link" href="/exercises/mini-exercises/visualization-exercises/exercise/?id={{ exercise.visualization_exercise.id }}">
+                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>No completed visualization exercises yet!</small>
+          {% endif %}
+        </div>
+
+        <div class="exercise-type">
+          <h3 class="heading-fourth">Refactoring Exercises</h3>
+          {% if completed_refactor_exercises %}
+            <div class="exercises">
+              {% for exercise in completed_refactor_exercises %}
+                <div class="exercise">
+                  <h5>{{ exercise.refactor_exercise.name }}</h5>
+                  <p>{{ exercise.refactor_exercise.description }}</p>
+                  <a class="view-exercise-link" href="/exercises/mini-exercises/refactor-exercises/exercise/?id={{ exercise.refactor_exercise.id }}">
+                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>No completed refactor exercises yet!</small>
+          {% endif %}
+        </div>
+
+        <div class="exercise-type">
+          <h3 class="heading-fourth">Teaching Exercises</h3>
+          {% if completed_teaching_exercises %}
+            <div class="exercises">
+              {% for exercise in completed_teaching_exercises %}
+                <div class="exercise">
+                  <h5>{{ exercise.teaching_exercise.name }}</h5>
+                  <p>{{ exercise.teaching_exercise.description }}</p>
+                  <a class="view-exercise-link" href="/exercises/mini-exercises/teaching-exercises/exercise/?id={{ exercise.teaching_exercise.id }}">
+                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>No completed teaching exercises yet!</small>
+          {% endif %}
+        </div>
+
+        <div class="exercise-type">
+          <h3 class="heading-fourth">Git/GitHub Exercises</h3>
+          {% if completed_github_exercises %}
+            <div class="exercises">
+              {% for exercise in completed_github_exercises %}
+                <div class="exercise">
+                  <h5>{{ exercise.github_exercise.name }}</h5>
+                  <p>{{ exercise.github_exercise.description }}</p>
+                  <a class="view-exercise-link" href="/exercises/mini-exercises/github-exercises/exercise/?id={{ exercise.github_exercise.id }}">
+                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>No completed github exercises yet!</small>
+          {% endif %}
+        </div>
+
+        <div class="exercise-type">
+          <h3 class="heading-fourth">Research Exercises</h3>
+          {% if completed_research_exercises %}
+            <div class="exercises">
+              {% for exercise in completed_research_exercises %}
+                <div class="exercise">
+                  <h5>{{ exercise.research_exercise.name }}</h5>
+                  <p>{{ exercise.research_exercise.description }}</p>
+                  <a class="view-exercise-link" href="/exercises/mini-exercises/research-exercises/exercise/?id={{ exercise.research_exercise.id }}">
+                    <img class="view-exercise-icon" src="{% static 'img/out.png' %}" alt="">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small>No completed research exercises yet!</small>
+          {% endif %}
+        </div>
+      </div>
+      <div class="hackathon-container"></div>
+  </div>
+{% endblock %}
