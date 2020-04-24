@@ -78,7 +78,8 @@ def index(request, hackathon_id):
         "user_is_competitor": user_is_competitor,
         "hackathon_already_started": hackathon_already_started,
         "hackathon_already_ended": hackathon_already_ended,
-        "start_datetime": start_datetime
+        "start_datetime": start_datetime,
+        "end_datetime": end_datetime
     })
 
 
@@ -100,7 +101,7 @@ def schedule(request, hackathon_id):
     hackathon = Hackathon.objects.get(id=hackathon_id)
 
     # Grabbing ScheduleEvents
-    schedule_events = list(hackathon.schedule.all())
+    schedule_events = list(hackathon.schedule.all().order_by("scheduled_datetime"))
 
     return render(request, "hackathon/schedule.html", context={
         "schedule_events": schedule_events,
@@ -231,7 +232,9 @@ def awards(request, hackathon_id):
 
 # Profile views
 @login_required(login_url="http://www.w3hacks.com/login")
-def profile(request, user_id):
+def profile(request, hackathon_id, user_id):
+    hackathon = Hackathon.objects.get(id=hackathon_id)
+
     # Getting current user
     if User.objects.filter(id=user_id).exists():
         user = User.objects.get(id=user_id)
@@ -259,6 +262,7 @@ def profile(request, user_id):
     completed_research_exercises = list(profile.completed_research_exercises.all())
 
     return render(request, "hackathon/profile.html", context={
+        "hackathon": hackathon,
         "profile": profile,
         "skills": ",".join(profile.skills),
         "past_hackathons": past_hackathons,
@@ -276,7 +280,9 @@ def profile(request, user_id):
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
-def edit_profile(request, user_id):
+def edit_profile(request, hackathon_id, user_id):
+    hackathon = Hackathon.objects.get(id=hackathon_id)
+
     # Getting current user
     if User.objects.filter(id=user_id).exists():
         user = User.objects.get(id=user_id)
@@ -344,10 +350,11 @@ def edit_profile(request, user_id):
         user.save()
         profile.save()
 
-        return HttpResponseRedirect("/profile/" + str(user.id))
+        return HttpResponseRedirect(f"/{hackathon.id}/profile/" + str(user.id))
 
 
     return render(request, "hackathon/edit-profile.html", context={
+        "hackathon": hackathon,
         "profile": profile,
         "skills": ",".join(profile.skills)
     })

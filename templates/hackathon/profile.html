@@ -6,7 +6,12 @@
 {% endblock %}
 {% block body %}
   <div class="body-container container">
-    <h1 class="heading-secondary">Profile</h1>
+    <h1 class="heading-secondary">
+      {% if profile == request.user.profile %}
+        My
+      {% endif %}
+       Profile
+    </h1>
     <div class="profile-header">
       <div class="profile-header-main">
         <div class="profile-header-main-left">
@@ -22,7 +27,7 @@
           <h1>
             <span>{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
             {% if request.user.profile == profile %}
-              <a style="float: right;" href="/edit-profile/{{ request.user.id }}/">
+              <a style="float: right;" href="/{{ hackathon.id }}/edit-profile/{{ request.user.id }}/">
                 <img style="width: 25px;" src="{% static 'img/edit.png' %}" alt="">
               </a>
             {% endif %}

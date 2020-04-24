@@ -16,17 +16,19 @@
   <div class="body-container container">
     <table>
       <tr>
+        <th>Datetime</th>
         <th>Event Title</th>
         <th>Event Description</th>
         <th>Link</th>
       </tr>
       {% for event in schedule_events %}
         <tr>
+          <td>{{ event.scheduled_datetime }}</td>
           <td>{{ event.title }}</td>
           <td>{{ event.description}}</td>
           <td>
-            {% if event.link %}
-              <a href="{{ event.event_link.link }}">{{ event.event_link.title }}</a>
+            {% if event.event_link %}
+              <a href="{{ event.event_link.link }}" target="_">{{ event.event_link.title }}</a>
             {% else %}
               <p>None</p>
             {% endif %}

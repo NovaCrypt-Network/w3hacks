@@ -91,9 +91,11 @@
           <p>
             <strong>Hackathon End Date:</strong> <span id="end-date"></span>
           </p>
-          <p>
-            <strong>Hackathon starts in:</strong> <span id="pageTimer"></span>
-          </p>
+          {% if not hackathon_already_ended %}
+            <p>
+              <strong>Hackathon starts in:</strong> <span id="pageTimer"></span>
+            </p>
+          {% endif %}
         </div>
       </div>
     </div>
