@@ -57,7 +57,7 @@
                   <a class="nav-link" data-toggle="dropdown" href="#">
                     {% if request.user.profile.profile_picture %}
                       <div class="image-cropper" style="border-width: 2px;">
-                        <img style="width: 35px" src="{{ profile.profile_picture.url }}" alt="">
+                        <img style="width: 35px" src="{{ request.user.profile.profile_picture.url }}" alt="">
                       </div>
                     {% else %}
                       <img style="width: 35px" src="{% static 'img/user.png' %}" alt="">

@@ -11,8 +11,8 @@ urlpatterns = [
     url("^(?P<hackathon_id>[^/]+)/submissions/$", views.submissions, name="submissions"),
     url("^(?P<hackathon_id>[^/]+)/submit/$", views.submit, name="submit"),
     url("^(?P<hackathon_id>[^/]+)/awards/$", views.awards, name="awards"),
-    url("^profile/(?P<user_id>[^/]+)/$", views.profile, name="profile"),
-    url("^edit-profile/(?P<user_id>[^/]+)/$", views.edit_profile, name="edit_profile"),
+    url("^(?P<hackathon_id>[^/]+)/profile/(?P<user_id>[^/]+)/$", views.profile, name="profile"),
+    url("^(?P<hackathon_id>[^/]+)/edit-profile/(?P<user_id>[^/]+)/$", views.edit_profile, name="edit_profile"),
 ]
 
 urlpatterns += [
