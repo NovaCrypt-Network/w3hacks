@@ -160,6 +160,7 @@ def profile(request, user_id):
 
     return render(request, "app/profile.html", context={
         "profile": profile,
+        "skills": ",".join(profile.skills),
         "past_hackathons": past_hackathons,
         "achievements": achievements,
         "completed_project_exercises": completed_project_exercises,
@@ -247,7 +248,8 @@ def edit_profile(request, user_id):
 
 
     return render(request, "app/edit-profile.html", context={
-        "profile": profile
+        "profile": profile,
+        "skills": ",".join(profile.skills)
     })
 
 

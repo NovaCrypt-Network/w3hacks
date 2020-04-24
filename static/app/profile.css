@@ -1,7 +1,7 @@
 .profile-header {
   display: grid;
   grid-template-columns: 70% 30%;
-  height: 200px;
+  height: 250px;
   margin-top: 30px;
 
   border: 3px solid var(--color-primary);
@@ -105,4 +105,14 @@
 
 .view-exercise-icon {
   width: 20px;
+}
+
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 25px);
+  grid-gap: 17.5px;
+}
+
+.social-link-icon {
+  width: 100%;
 }

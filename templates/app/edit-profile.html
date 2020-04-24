@@ -14,51 +14,55 @@
         <div>
           <div class="form-input-group">
             <label>First Name *:</label><br>
-            <input class="form-control" type="text" name="first-name" value="{{ profile.user.first_name }}" placeholder="First Name" required>
+            <input class="ghost-input-dark" type="text" name="first-name" value="{{ profile.user.first_name }}" required>
           </div>
           <div class="form-input-group">
             <label>Last Name *:</label><br>
-            <input class="form-control" type="text" name="last-name" value="{{ profile.user.last_name }}" placeholder="Last Name" required>
+            <input class="ghost-input-dark" type="text" name="last-name" value="{{ profile.user.last_name }}" required>
           </div>
           <div class="form-input-group">
             <label>Email *:</label><br>
-            <input class="form-control" type="email" name="email" value="{{ profile.user.email }}" placeholder="Email" required>
+            <input class="ghost-input-dark" type="email" name="email" value="{{ profile.user.email }}" required>
           </div>
           <div class="form-input-group">
             <label>Username *:</label><br>
-            <input class="form-control" type="text" name="username" value="{{ profile.user.username }}" placeholder="Username" required>
+            <input class="ghost-input-dark" type="text" name="username" value="{{ profile.user.username }}" required>
           </div>
           <div class="form-input-group">
             <label>Biography:</label><br>
             {% if profile.biography %}
-              <textarea class="form-control" type="text" name="biography" placeholder="Biography">{{ profile.biography }}</textarea>
+              <textarea class="ghost-input-dark" type="text" name="biography">{{ profile.biography }}</textarea>
             {% else %}
-              <textarea class="form-control" type="text" name="biography" placeholder="Biography"></textarea>
+              <textarea class="ghost-input-dark" type="text" name="biography"></textarea>
             {% endif %}
           </div>
           <div class="form-input-group">
             <label>Birthday:</label><br>
-            <input class="form-control" type="date" name="birthday" value="{{ profile.birthday }}" placeholder="Birthday">
+            <input class="ghost-input-dark" type="date" name="birthday" value="{{ profile.birthday }}">
           </div>
           <div class="form-input-group">
             <label>Profile Picture:</label><br>
-            <input type="file" name="profile-picture" value="{{ profile.profile_picture }}" placeholder="Profile Picture">
+            <input type="file" name="profile-picture" id="file" class="inputfile" data-multiple-caption="{count} files selected" accept="image/*" />
+            <label for="file">
+              <img class="file-upload-icon" src="{% static 'img/file-upload.svg' %}" alt="">
+              <span>Choose a file</span>
+            </label>
           </div>
           <div class="form-input-group">
             <label>Skills:</label><br>
-            {% if profile.skills %}
-              <input class="form-control" type="text" name="skills" value="{{ profile.skills }}" placeholder="Skills">
+            {% if skills %}
+              <input class="ghost-input-dark" type="text" name="skills" value="{{ skills }}">
             {% else %}
-              <input class="form-control" type="text" name="skills" placeholder="Skills">
+              <input class="ghost-input-dark" type="text" name="skills">
             {% endif %}
           </div>
 
           <div class="form-input-group">
             <label>Location:</label><br>
             {% if profile.location %}
-              <input class="form-control" type="text" name="location" value="{{ profile.location }}" placeholder="Location">
+              <input class="ghost-input-dark" type="text" name="location" value="{{ profile.location }}">
             {% else %}
-              <input class="form-control" type="text" name="location" placeholder="Location">
+              <input class="ghost-input-dark" type="text" name="location">
             {% endif %}
           </div>
         </div>
@@ -66,9 +70,9 @@
           <div class="form-input-group">
             <label>Education:</label><br>
             {% if profile.education %}
-              <input class="form-control" type="text" name="education" value="{{ profile.education }}" placeholder="Education">
+              <input class="ghost-input-dark" type="text" name="education" value="{{ profile.education }}">
             {% else %}
-              <input class="form-control" type="text" name="education" placeholder="Education">
+              <input class="ghost-input-dark" type="text" name="education">
             {% endif %}
           </div>
 
@@ -76,57 +80,57 @@
           <div class="form-input-group">
             <label>GitHub:</label><br>
             {% if profile.github_profile %}
-              <input class="form-control" type="url" name="github-profile" value="{{ profile.github_profile }}" placeholder="GitHub Profile Link">
+              <input class="ghost-input-dark" type="url" name="github-profile" value="{{ profile.github_profile }}" >
             {% else %}
-              <input class="form-control" type="url" name="github-profile" placeholder="GitHub Profile Link">
+              <input class="ghost-input-dark" type="url" name="github-profile" >
             {% endif %}
           </div>
           <div class="form-input-group">
             <label>LinkedIn:</label><br>
             {% if profile.linkedin_profile %}
-              <input class="form-control" type="url" name="linkedin-profile" value="{{ profile.linkedin_profile }}" placeholder="LinkedIn Profile Link">
+              <input class="ghost-input-dark" type="url" name="linkedin-profile" value="{{ profile.linkedin_profile }}">
             {% else %}
-              <input class="form-control" type="url" name="linkedin-profile" placeholder="LinkedIn Profile Link">
+              <input class="ghost-input-dark" type="url" name="linkedin-profile">
             {% endif %}
           </div>
           <div class="form-input-group">
             <label>Twitter:</label><br>
             {% if profile.twitter_profile %}
-              <input class="form-control" type="url" name="twitter-profile" value="{{ profile.twitter_profile }}" placeholder="Twitter Profile Link">
+              <input class="ghost-input-dark" type="url" name="twitter-profile" value="{{ profile.twitter_profile }}">
             {% else %}
-              <input class="form-control" type="url" name="twitter-profile" placeholder="Twitter Profile Link">
+              <input class="ghost-input-dark" type="url" name="twitter-profile">
             {% endif %}
           </div>
           <div class="form-input-group">
             <label>Instagram:</label><br>
             {% if profile.instagram_profile %}
-              <input class="form-control" type="url" name="instagram-profile" value="{{ profile.instagram_profile }}" placeholder="Instagram Profile Link">
+              <input class="ghost-input-dark" type="url" name="instagram-profile" value="{{ profile.instagram_profile }}">
             {% else %}
-              <input class="form-control" type="url" name="instagram-profile" placeholder="Instagram Profile Link">
+              <input class="ghost-input-dark" type="url" name="instagram-profile">
             {% endif %}
           </div>
           <div class="form-input-group">
             <label>Facebook:</label><br>
             {% if profile.facebook_profile %}
-              <input class="form-control" type="url" name="facebook-profile" value="{{ profile.facebook_profile }}" placeholder="Facebook Profile Link">
+              <input class="ghost-input-dark" type="url" name="facebook-profile" value="{{ profile.facebook_profile }}">
             {% else %}
-              <input class="form-control" type="url" name="facebook-profile" placeholder="Facebook Profile Link">
+              <input class="ghost-input-dark" type="url" name="facebook-profile">
             {% endif %}
           </div>
           <div class="form-input-group">
             <label>Twitch:</label><br>
             {% if profile.twitch_profile %}
-              <input class="form-control" type="url" name="twitch-profile" value="{{ profile.twitch_profile }}" placeholder="Twitch Profile Link">
+              <input class="ghost-input-dark" type="url" name="twitch-profile" value="{{ profile.twitch_profile }}">
             {% else %}
-              <input class="form-control" type="url" name="twitch-profile" placeholder="Twitch Profile Link">
+              <input class="ghost-input-dark" type="url" name="twitch-profile">
             {% endif %}
           </div>
           <div class="form-input-group">
             <label>Personal Website:</label><br>
             {% if profile.personal_website %}
-              <input class="form-control" type="url" name="personal-website" value="{{ profile.personal_website }}" placeholder="Personal Website">
+              <input class="ghost-input-dark" type="url" name="personal-website" value="{{ profile.personal_website }}">
             {% else %}
-              <input class="form-control" type="url" name="personal-website" placeholder="Personal Website">
+              <input class="ghost-input-dark" type="url" name="personal-website">
             {% endif %}
           </div>
         </div>
@@ -137,4 +141,5 @@
       </div>
     </form>
   </div>
+  <script src="{% static 'js/file-upload.js' %}" charset="utf-8"></script>
 {% endblock %}

@@ -208,6 +208,14 @@ p {
   cursor: pointer; /* "hand" cursor */
 }
 
+.image-cropper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 5px solid var(--color-primary-light);
+}
+
 
 @media (max-width: 1000px) {
   .breadcrumbs {
