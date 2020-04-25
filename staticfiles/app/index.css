@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(to right bottom, rgba(0,0,0,.7), rgba(0,0,0,.7)), url("../img/w3hacks-app-background-image.png");
+  background-image: linear-gradient(to right bottom, rgba(0,0,0,.7), rgba(0,0,0,.7)), url("../img/images/w3hacks-app-background-image.png");
   background-position: center center;
   /* background-size: 100% auto; */
   background-size: cover;

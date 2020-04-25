@@ -12,7 +12,7 @@ nav {
 
 header {
   background-color: var(--color-primary);
-  height: 75vh;
+  min-height: 75vh;
 }
 
 section {
@@ -51,18 +51,46 @@ section {
 
 .header-image {
   width: 100%;
-  /* transform: scale(0.9); */
   background-image: url("../img/blobs/blob2.svg"), url("../img/blobs/blob1.svg"), url("../img/blobs/blob3.svg");
+  /* background-image: url("../img/blobs/blob1.svg"), url("../img/blobs/blob2.svg"); */
 }
 
 .container {
   height: 100%;
 }
 
-.questions {
+.about-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+  align-items: center;
+}
+
+.about-image {
+  width: 100%;
+}
+
+.about-description {
+  font-size: 20px;
+  color: #464646;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 30px;
+}
+
+.feature p {
+  font-size: 14px;
+  margin-left: 52.5px;
+  color: #464646;
+}
+
+.feature-icon {
+  width: 40px;
+  margin-right: 5px;
+  transform: translateY(-4px);
 }
 
 .contact {
@@ -81,6 +109,27 @@ section {
 
 .contact-info {
   text-align: right;
+}
+
+.contact-info-item {
+  margin: 15px 0;
+}
+
+.contact-info-item img {
+  width: 40px;
+  transform: translateY(-1px);
+}
+
+.contact-info-item span {
+  margin: 0 10px;
+}
+
+.contact-info-item a:hover {
+  color: white;
+}
+
+.contact-info-item-mobile {
+  display: none;
 }
 
 .copyright {

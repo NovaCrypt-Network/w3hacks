@@ -37,8 +37,8 @@ p {
 }
 
 .solid-cta-button {
-  border: 2px solid var(--color-primary-light);
-  background-color: var(--color-primary-light);
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-primary);
   padding: 10px 15px;
   border-radius: 4px;
   color: white;
@@ -49,8 +49,8 @@ p {
 
 .solid-cta-button:hover {
   text-decoration: none;
-  border: 2px solid var(--color-primary);
-  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary-light);
+  background-color: var(--color-primary-light);
   color: white;
 }
 
@@ -82,7 +82,7 @@ p {
 }
 
 .ghost-input-light::placeholder {
-  color: white;
+  color: #ddd;
 }
 
 .ghost-input-light:focus {
@@ -94,20 +94,20 @@ p {
   display: block;
   width: 100%;
   background-color: transparent;
-  border: 2px solid var(--color-primary-light);
+  border: 2px solid var(--color-primary);
   border-radius: 4px;
   padding: 10px 15px;
   transition: all .2s;
 }
 
 .ghost-input-dark::placeholder {
-  color: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .ghost-input-dark:focus {
   outline: none;
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
+  border: 2px solid var(--color-primary-light);
+  color: var(--color-primary-light);
 }
 
 .cta-buttons {
@@ -118,7 +118,7 @@ p {
 }
 
 .body-container {
-  padding: 30px 0;
+  padding: 50px 0;
 }
 
 .center-container {
@@ -148,6 +148,79 @@ p {
 .heading-fourth {
   font-size: 30px;
   font-weight: bold;
+}
+
+
+/* BREADCRUMBS */
+.breadcrumbs {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.breadcrumb-item {
+  list-style: none;
+}
+
+.breadcrumb-link {
+  color: var(--color-primary-light);
+  text-decoration: underline;
+}
+
+.breadcrumb-link:hover {
+  color: var(--color-primary);
+}
+
+
+/* FILE UPLOAD */
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 20px;
+    color: white;
+    background-color: var(--color-primary);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 4px;
+    transition: all .2s;
+}
+
+.file-upload-icon {
+  margin-right: 5px;
+  transform: translateY(-1px);
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: var(--color-primary-light);
+}
+
+.inputfile + label {
+  cursor: pointer; /* "hand" cursor */
+}
+
+.image-cropper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 5px solid var(--color-primary-light);
+}
+
+
+@media (max-width: 1000px) {
+  .breadcrumbs {
+    display: none;
+  }
 }
 
 

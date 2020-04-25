@@ -5,19 +5,23 @@
 }
 
 @media (max-width: 1200px) {
-  /* Fixing the header (getting rid of image and grid) */
+  /* Fixing the header and about section (getting rid of image and grid) */
   header {
-    height: auto !important;
+    min-height: auto !important;
     padding: 50px 0;
   }
 
-  .header-grid {
+  .header-grid, .about-grid {
     grid-template-columns: repeat(1, 1fr) !important;
     width: 100%;
   }
 
-  .header-image {
+  .header-image, .about-image {
     display: none;
+  }
+
+  .about {
+    margin-bottom: 50px;
   }
 }
 
@@ -45,6 +49,20 @@
   .contact-info {
     text-align: left !important;
   }
+
+  /* Lessening gap between features */
+  .features {
+    grid-gap: 30px !important;
+  }
+
+  /* Making mobile contact info item visible */
+  .contact-info-item-mobile {
+    display: block !important;
+  }
+
+  .contact-info-item-desktop {
+    display: none !important;
+  }
 }
 
 
@@ -62,5 +80,10 @@
   /* Adding padding to bottom of contact section */
   .contact {
     padding-bottom: 40px !important;
+  }
+
+  /* Making about description font smaller */
+  .about-description {
+    font-size: 17.5px !important;
   }
 }
