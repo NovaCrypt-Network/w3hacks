@@ -51,7 +51,6 @@ class Profile(models.Model):
     completed_github_exercises = models.ManyToManyField("CompletedGitHubExercise", blank=True) # List of completed github exercises
     completed_research_exercises = models.ManyToManyField("CompletedResearchExercise", blank=True) # List of completed research exercises
 
-    achievements = models.ManyToManyField("Achievement", blank=True) # List of achievements achieved by the user
     joined_date = models.DateField(default=date.today()) # The date when the user joined w3Hacks
     credits = models.IntegerField(default=0) # The number of credits the user has
     overall_ranking_points = models.IntegerField(default=0) # The overall ranking points the user has
@@ -109,17 +108,6 @@ class Hackathon(models.Model):
 ####################
 ## PROFILE MODELS ##
 ####################
-
-# For user profile achievements
-class Achievement(models.Model):
-    name = models.CharField(max_length=50) # Name of the achievement
-    requirement = models.TextField() # Requirement to achieve the achievement
-    credits = models.IntegerField() # Number of credits earned when achieved
-    ranking_points = models.IntegerField() # Number of ranking points earned when achieved
-
-    def __str__(self):
-        return self.name
-
 
 # For 'Themes' section of Hackathon
 class Theme(models.Model):

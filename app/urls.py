@@ -5,7 +5,6 @@ from . import views
 
 urlpatterns = [
     url("^$", views.index, name="index"),
-    url("^achievements/$", views.achievements, name="achievements"),
     url("^leaderboards/$", views.leaderboards, name="leaderboards"),
 
     # Activities URL routes

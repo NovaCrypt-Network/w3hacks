@@ -110,47 +110,8 @@
       </div>
     </div>
     <div class="profile-body">
-      <div class="achievement-container">
-        <h1 class="heading-tertiary">Achievements</h1>
-        <div class="achievements">
-          {% if achievements %}
-            {% for achievement in achievements %}
-              <div class="achievement">
-                <img src="{% static 'img/icons/achievement.png' %}" alt="">
-                <div>
-                  <h5>{{ achievement.title }}</h5>
-                  <p>{{ achievement.description }}</p>
-                  <small>{{ achievement.credits }} credits</small>
-                  <small>{{ achievement.ranking_points }} ranking points</small>
-                </div>
-              </div>
-            {% endfor %}
-          {% else %}
-            <small>No achievements completed yet!</small>
-          {% endif %}
-        </div>
-      </div>
-      <div class="hackathon-container">
-        <h1 class="heading-tertiary">Hackathons</h1>
-        <div class="hackathons">
-          {% if past_hackathons %}
-            <ul>
-              {% for hackathon in past_hackathons %}
-                <li>
-                  <a href="http://hackathon.w3hacks.com/{{ hackathon.id }}/">{{ hackathon.title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% else %}
-            <small>No hackathons competed in yet!</small>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-    <div class="profile-body">
       <div class="project-container">
         <h1 class="heading-tertiary">Completed Exercises</h1>
-
         <div class="exercise-type">
           <h3 class="heading-fourth">Project Exercises</h3>
           {% if completed_project_exercises %}
@@ -322,6 +283,23 @@
           {% endif %}
         </div>
       </div>
-      <div class="hackathon-container"></div>
+      <div class="profile-body">
+        <div class="hackathon-container">
+          <h1 class="heading-tertiary">Hackathons</h1>
+          <div class="hackathons">
+            {% if past_hackathons %}
+              <ul>
+                {% for hackathon in past_hackathons %}
+                  <li>
+                    <a href="http://hackathon.w3hacks.com/{{ hackathon.id }}/">{{ hackathon.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <small>No hackathons competed in yet!</small>
+            {% endif %}
+          </div>
+        </div>
+      </div>
   </div>
 {% endblock %}
