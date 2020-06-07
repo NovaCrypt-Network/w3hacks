@@ -1,0 +1,67 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks App - {{ exercise.name }}</title>
+  <link rel="stylesheet" href="{% static 'home/exercises/mini-exercises/mini-exercise-type.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="body-container container">
+    <h1 class="heading-tertiary">Teaching Exercise: {{ exercise.name }}</h1>
+    {% if user_already_completed_mini_exercise %}
+      <div class="completed-container">
+        <strong>You already completed this exercise!</strong>
+        <p>
+          Submitted Teaching Exercise Link: <a href="{{ completed_teaching_exercise.teaching_exercise_link }}" target="_">{{ completed_teaching_exercise.teaching_exercise_link }}</a>
+        </p>
+        {% if completed_project_exercise.score %}
+          <p>Score: {{ completed_project_exercise.score }}/10</p>
+        {% else %}
+          <p><strong>This project hasn't been scored yet!</strong></p>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="information mt-4">
+        <h3 class="heading-fourth">Exercise Information</h3>
+        <p>
+          <strong>Description:</strong> {{ exercise.description }}
+        </p>
+        <p>
+          <strong>Topic:</strong> {{ exercise.topic.name }}
+        </p>
+        <p>
+          <strong>Difficulty Level:</strong> {{ exercise.difficulty_level.name }}
+        </p>
+
+        {% if exercise.prerequisites %}
+          <div class="prerequisites mt-3">
+            <h4>Pre-Requisites</h4>
+            <ul class="ml-5">
+              {% for prerequisite in exercise.prerequisites %}
+                <li>{{ prerequisite }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+        {% if resources %}
+          <div class="resource mt-3">
+            <h4>Resources</h4>
+            <ul class="ml-5">
+              {% for resource in resources %}
+                <li><a href="{{ resource.link }}" target="_">{{ resource.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="submit mt-4">
+        <h3 class="heading-fourth">Submit</h3>
+        <form enctype="multipart/form-data" method="post">
+          {% csrf_token %}
+          <input class="ghost-input-dark d-inline-block w-auto" type="url" name="teaching-exercise-link" placeholder="Finished Teaching Exercise Link">
+          <input class="solid-cta-button" type="submit" value="Submit">
+        </form>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

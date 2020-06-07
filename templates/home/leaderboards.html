@@ -1,0 +1,27 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks App - w3Hacks User Leaderboards</title>
+  <link rel="stylesheet" href="{% static 'home/leaderboards.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="body-container container">
+    <h1 class="heading-secondary">Leaderboards</h1>
+    <table class="mt-4">
+      <tr>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Ranking Points</th>
+      </tr>
+      {% for profile in overall_rankings %}
+        <tr>
+          <td>
+            <a href="/profile/{{ profile.user.id }}">{{ profile.user.username }}</a>
+          </td>
+          <td>{{ profile.user.first_name }} {{ profile.user.last_name }}</td>
+          <td>{{ profile.overall_ranking_points }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

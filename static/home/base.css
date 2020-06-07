@@ -1,0 +1,34 @@
+body {
+  background-color: #eee;
+  min-height: 100vh;
+}
+
+.waves {
+  position: relative;
+  height: 250px;
+}
+
+.flip {
+  transform: rotate(180deg);
+  top: -5px;
+}
+
+.no-flip {
+  bottom: 0;
+}
+
+.wave {
+  position: absolute;
+}
+
+nav {
+  background-color: var(--color-primary);
+}
+
+.dropdown-toggle::after {
+  vertical-align: .06em !important;
+}
+
+.completed-container, .completed-container > * {
+  margin-top: 15px;
+}

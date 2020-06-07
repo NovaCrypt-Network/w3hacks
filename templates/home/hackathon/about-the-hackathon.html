@@ -1,0 +1,37 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks App - About the w3Hacks Hackathon</title>
+  <link rel="stylesheet" href="{% static 'home/hackathon/about-the-hackathon.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="body-container container">
+    <h1 class="heading-secondary">About the w3Hacks Hackathon</h1>
+    <div class="faqs mt-4">
+      <div class="faq">
+        <h3 class="heading-fourth">What is this hackathon for?</h3>
+        <p>
+          The w3Hacks hackathon is a consistent virtual event that allows w3Hacks users to use their existing knowledge and knowledge gained from our exercises to build projects, showcase them, and possibly win something!
+        </p>
+      </div>
+      <div class="faq">
+        <h3 class="heading-fourth">Who can compete?</h3>
+        <p>
+          Our hackathon is for any w3Hacks user! Anyone can simple go to the hackathon they want to compete in and RSVP with 1 click of a button! Doesn't matter how old you are or your previous education/background.
+        </p>
+      </div>
+      <div class="faq">
+        <h3 class="heading-fourth">What do I get?</h3>
+        <p>
+          If you compete well enough, any w3Hacks hackathon competitor can win any of the prizes listed on the respective hackathon page! Some prizes are generic, and some cater to those who follow the themes/technologies.
+        </p>
+      </div>
+      <div class="faq">
+        <h3 class="heading-fourth">How can I benefit?</h3>
+        <p>
+          Besides the prizes and the easy signups, hackathons in general are a great way to practice your knowledge and learn something new! And the w3Hacks hackathon allows your to experience that from the comfort of your own home.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

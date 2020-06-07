@@ -30,14 +30,18 @@ def index(request):
         email_body = f"From: {name}\nEmail: {email}\n\n{message}"
         EmailMessage("w3Hacks Contact Us", email_body, to=["calix.huang1@gmail.com"]).send()
 
-        return render(request, "landingpage/index.html", context={
+        return render(request, "home/index.html", context={
             "message": "Message sent!"
         })
 
     if request.user.is_authenticated:
-        return render(request, "app/index.html")
+        return render(request, "home/index.html")
     else:
-        return render(request, "landingpage/index.html")
+        return render(request, "home/landingpage.html")
+
+
+def contact(request):
+    return render(request, "home/contact.html")
 
 
 def user_login(request):
@@ -56,19 +60,19 @@ def user_login(request):
 
             else: # User has an inactive account
                 # Re-render page with error message
-                return render(request, "landingpage/login.html", context={
+                return render(request, "home/login.html", context={
                     "message": "User account has been deactivated. Please register again.",
                     "status": "bad"
                 })
 
         else: # Invalid credentials
             # Re-render page with error message
-            return render(request, "landingpage/login.html", context={
+            return render(request, "home/login.html", context={
                 "message": "Invalid credentials.",
                 "status": "bad"
             })
 
-    return render(request, "landingpage/login.html")
+    return render(request, "home/login.html")
 
 
 def register(request):
@@ -134,7 +138,7 @@ def register(request):
             user.save()
             profile.save()
         except IntegrityError:
-            return render(request, "landingpage/register.html", context={
+            return render(request, "home/register.html", context={
                 "message": "Username and/or email is already taken. Please double check.",
                 "status": "bad",
                 "today": str(date.today())
@@ -145,7 +149,7 @@ def register(request):
 
         return HttpResponseRedirect("/")
 
-    return render(request, "landingpage/register.html", context={
+    return render(request, "home/register.html", context={
         "today": str(date.today())
     })
 
@@ -170,7 +174,7 @@ def leaderboards(request):
         { "text": "Leaderboards", "link": "/leaderboards/"}
     ]
 
-    return render(request, "app/leaderboards.html", context={
+    return render(request, "home/leaderboards.html", context={
         "overall_rankings": overall_rankings,
         "project_rankings": project_rankings,
         "quiz_rankings": quiz_rankings,
@@ -188,7 +192,7 @@ def exercises(request):
         { "text": "Exercises", "link": "/exercises/"}
     ]
 
-    return render(request, "app/exercises/exercises.html", context={
+    return render(request, "home/exercises/exercises.html", context={
         "breadcrumbs": breadcrumbs
     })
 
@@ -202,7 +206,7 @@ def about_the_hackathon(request):
         { "text": "About The Hackathon", "link": "/about-the-hackathon/"}
     ]
 
-    return render(request, "app/hackathon/about-the-hackathon.html", context={
+    return render(request, "home/hackathon/about-the-hackathon.html", context={
         "breadcrumbs": breadcrumbs
     })
 
@@ -223,7 +227,7 @@ def past_hackathons(request):
         { "text": "Past Hackathons", "link": "/past-hackathons/"}
     ]
 
-    return render(request, "app/hackathon/past-hackathons.html", context={
+    return render(request, "home/hackathon/past-hackathons.html", context={
         "past_hackathons": past_hackathons,
         "breadcrumbs": breadcrumbs
     })
@@ -245,7 +249,7 @@ def future_hackathons(request):
         { "text": "Future Hackathons", "link": "/future-hackathons/"}
     ]
 
-    return render(request, "app/hackathon/future-hackathons.html", context={
+    return render(request, "home/hackathon/future-hackathons.html", context={
         "future_hackathons": future_hackathons,
         "breadcrumbs": breadcrumbs
     })
@@ -281,7 +285,7 @@ def profile(request, user_id):
     if profile.skills:
         skills = ",".join(profile.skills)
 
-    return render(request, "app/profile.html", context={
+    return render(request, "home/profile.html", context={
         "profile": profile,
         "skills": skills,
         "past_hackathons": past_hackathons,
@@ -372,7 +376,7 @@ def edit_profile(request, user_id):
     if profile.skills:
         skills = ",".join(profile.skills)
 
-    return render(request, "app/edit-profile.html", context={
+    return render(request, "home/edit-profile.html", context={
         "profile": profile,
         "skills": skills,
         "birthday": profile.birthday

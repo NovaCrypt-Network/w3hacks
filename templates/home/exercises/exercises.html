@@ -1,0 +1,46 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks App - All Exercises</title>
+  <link rel="stylesheet" href="{% static 'home/exercises/exercises.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="container body-container">
+    <h1 class="heading-secondary">Exercises</h1>
+    <div class="exercises mt-4">
+      <a href="project-exercises/" class="exercise-link">
+        <div class="exercise">
+          <img src="{% static 'img/icons/project.svg' %}" alt="" class="exercise-icon">
+          <div class="exercise-content">
+            <h5>Project Exercises</h5>
+            <p>
+              Learn new technologies by creating new projects and put them on your portfolio!
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="quiz-exercises/" class="exercise-link">
+        <div class="exercise">
+          <img src="{% static 'img/icons/quiz.svg' %}" alt="" class="exercise-icon">
+          <div class="exercise-content">
+            <h5>Quiz Exercises</h5>
+            <p>
+              Test your knowledge through quizzes and learn from your mistakes!
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="mini-exercises/" class="exercise-link">
+        <div class="exercise">
+          <img src="{% static 'img/icons/mini-exercise.svg' %}" alt="" class="exercise-icon">
+          <div class="exercise-content">
+            <h5>Mini Exercises</h5>
+            <p>
+              Learn real-world skills and get better at them by completing mini exercises!
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+{% endblock %}

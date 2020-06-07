@@ -1,0 +1,62 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks App - Quiz Results</title>
+  <link rel="stylesheet" href="{% static 'home/exercises/quiz-exercises/quiz-results.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="body-container container">
+    <h1 class="heading-tertiary">Quiz Results: {{ quiz_exercise.name }}</h1>
+
+    <!-- STATISTICS -->
+    <div class="statistics mt-4">
+      <h3 class="heading-fourth">Statistics</h3>
+      <strong>Score: </strong> {{ completed_quiz_exercise.number_of_correct_answers }}/{{ completed_quiz_exercise.number_of_questions }}
+    </div>
+
+    <!-- QUESTIONS -->
+    <div class="results mt-4">
+      <h3 class="heading-fourth">Questions</h3>
+      {% for result in results %}
+        <div class="result mt-3">
+          <h5>
+            {{ result.question }}
+            {% if result.got_this_correct %}
+              <small>(1 point)</small>
+            {% else %}
+              <small>(0 points)</small>
+            {% endif %}
+          </h5>
+          <div class="results-answers">
+            {% for answer in result.answers %}
+              <!-- You chose the correct answer -->
+              {% if result.correct_answer == result.user_answer == answer %}
+                <div class="answer">
+                  <img class="quiz-result-icon" src="{% static 'img/icons/correct.png' %}" alt=""> <span>{{ answer }}</span>
+                </div>
+
+              <!-- This is the correct answer -->
+              {% elif result.correct_answer == answer %}
+                <div class="answer">
+                  <img class="quiz-result-icon" src="{% static 'img/icons/correct.png' %}" alt=""> <span>{{ answer }}</span>
+                </div>
+
+              <!-- This is your answer -->
+              {% elif result.user_answer == answer %}
+                <div class="answer">
+                  <img class="quiz-result-icon" src="{% static 'img/icons/incorrect.png' %}" alt=""> <span>{{ answer }}</span>
+                </div>
+
+              <!-- This is just an answer -->
+              {% else %}
+                <div class="answer">
+                  <input type="radio" disabled> <span>{{ answer }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

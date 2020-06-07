@@ -1,0 +1,135 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks</title>
+  <link rel="stylesheet" href="{% static 'home/landingpage.css' %}">
+  <meta name="description" content="w3Hacks is an online platform where anyone can learn how to code! Whether you're a seasoned programmer or a semi-beginner, everyone has something to learn here! We reinforce and teach good, real-world programming skills that are used in the software engineering industry, and crucial skills for any developer to know whether they're making a solo project or working with others!">
+{% endblock %}
+{% block body %}
+  <header>
+    <div class="container">
+      <div class="header-grid">
+        <div class="text-left">
+          <h1 class="heading-primary text-left">Learn by doing.</h1>
+          <h4 style="color: #ddd;" class="mb-3">w3Hacks is a platform where anyone can learn to code through real-world practices.</h4>
+          <div class="cta-buttons">
+            <button onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'});" class="ghost-cta-button">Learn More</button>
+            <a class="solid-cta-button-light" href="/register/">Start Learning!</a>
+          </div>
+        </div>
+        <img class="header-image" src="{% static 'img/images/index-image.png' %}" alt="w3Hacks Header Illustration">
+      </div>
+    </div>
+  </header>
+  <div class="waves">
+    <img class="wave flip" src="{% static 'img/waves/wave3.svg' %}">
+    <img class="wave flip" src="{% static 'img/waves/wave2.svg' %}">
+    <img class="wave flip" src="{% static 'img/waves/wave1.svg' %}">
+  </div>
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <img class="about-image" src="{% static 'img/images/about-image.png' %}" alt="w3Hacks About Illustration">
+        <div class="info">
+          <h1 class="heading-secondary text-left">About w3Hacks</h1>
+          <p class="about-description mb-4">
+            w3Hacks is an online platform where anyone can learn how to code! Whether you're a seasoned programmer or a semi-beginner, everyone has something to learn here! We reinforce and teach good, real-world programming skills that are used in the software engineering industry, and crucial skills for any developer to know whether they're making a solo project or working with others!
+          </p>
+          <a href="/register/" class="solid-cta-button w-100 d-block">Sign up today!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="why" id="why">
+    <div class="container">
+      <h1 class="heading-secondary text-left">Why w3Hacks?</h1>
+      <div class="features mt-4">
+        <div class="feature">
+          <h3>
+            <img class="feature-icon" src="{% static 'img/icons/suitcase.svg' %}" alt="w3Hacks Icon">
+            Real-World Preparation
+          </h3>
+          <p>
+            We provide real-world exercises that help you build skills that are used heavily in the software engineering industry. w3Hacks is the only resource that teachings industry-level skills, and we give <strong>tons</strong> resources to help you learn those skills.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>
+            <img class="feature-icon" src="{% static 'img/icons/medal.svg' %}" alt="w3Hacks Icon">
+            Virtual Hackathons
+          </h3>
+          <p>
+            We allow our users to express their creativity, as well as showcase their abilities through virtual hackathons. We consistently hold virtual hackathons where all of our users can participate in, no matter the skill level or age of the competitor.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>
+            <img class="feature-icon" src="{% static 'img/icons/help.svg' %}" alt="w3Hacks Icon">
+            Help On-Demand
+          </h3>
+          <p>
+            Programming is hard. So that's why we provide help and guidance on demand. We have a Discord server that anyone can join filled with other users and mentors, and we are completely open for technical questions on your projects or specific exercises!
+          </p>
+        </div>
+        <div class="feature">
+          <h3>
+            <img class="feature-icon" src="{% static 'img/icons/competition.svg' %}" alt="w3Hacks Icon">
+            Friendly Competition
+          </h3>
+          <p>
+            For those who like a little competition, we rank our users by the amount of exercises they complete and hackathons they win, but as well as the quality of their projects/exercises. You are also rewarded credits for hackathons and completed exercises!
+          </p>
+        </div>
+        <div class="feature">
+          <h3>
+            <img class="feature-icon" src="{% static 'img/icons/free.svg' %}" alt="w3Hacks Icon">
+            Completely Free!
+          </h3>
+          <p>
+            Programming is a skill that everyone should know, so we don't want it to be costly to your wallet. w3Hacks is completely free to use, and there are no limits! No premium memberships, no commitments, and no cost!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="waves">
+    <img class="wave no-flip" src="{% static 'img/waves/wave3.svg' %}">
+    <img class="wave no-flip" src="{% static 'img/waves/wave2.svg' %}">
+    <img class="wave no-flip" src="{% static 'img/waves/wave1.svg' %}">
+  </div>
+  <section class="contact">
+    <div class="container mb-5">
+      <h1 class="heading-secondary text-left">Contact</h1>
+      <div class="contact-grid">
+        <div class="contact-form">
+          <h3 class="heading-fourth">Send us a message!</h3>
+          <form class="mt-3" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <input class="ghost-input-light mb-3" type="text" name="name" placeholder="Name" required>
+            <input class="ghost-input-light mb-3" type="email" name="email" placeholder="Email" required>
+            <textarea class="ghost-input-light mb-3" name="message" rows="5" placeholder="Message" required></textarea>
+            <input class="solid-cta-button-light w-100" type="submit" value="Contact Us!">
+          </form>
+        </div>
+        <div class="contact-info">
+          <h3 class="heading-fourth">Other contact information</h3>
+          <p>
+            Please feel free to reach out to us at any time! We try to respond to all emails and messages within 24-48 hours.
+          </p>
+          <div class="contact-info-item contact-info-item-desktop">
+            <span><a href="mailto:hello@launchtechllc.com">hello@launchtechllc.com</a></span>
+            <img src="{% static 'img/icons/email-light.svg' %}" alt="w3Hacks Email">
+          </div>
+
+          <div class="contact-info-item contact-info-item-mobile">
+            <img src="{% static 'img/icons/email-light.svg' %}" alt="w3Hacks Email">
+            <span><a href="mailto:hello@launchtechllc.com">hello@launchtechllc.com</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="text-center copyright">
+    <small>&copy; 2020 <a href="https://www.launchtechllc.com/" target="_">Launch Tech LLC</a>. All rights reserved.</small>
+  </div>
+{% endblock %}
