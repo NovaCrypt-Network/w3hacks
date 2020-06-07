@@ -43,9 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # External apps
-    'landingpage',
+    'home',
     'api',
-    'app',
     'hackathon',
     'links',
     'main',
