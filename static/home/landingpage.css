@@ -15,10 +15,6 @@ header {
   min-height: 75vh;
 }
 
-section {
-  padding: 50px;
-}
-
 .header-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -78,24 +74,6 @@ section {
   width: 40px;
   margin-right: 5px;
   transform: translateY(-4px);
-}
-
-.footer {
-  background-color: var(--color-primary);
-}
-
-.footer * {
-  color: white;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 50px;
-}
-
-.footer-grid ul {
-  list-style: none;
 }
 
 .copyright {

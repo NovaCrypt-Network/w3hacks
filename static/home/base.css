@@ -3,6 +3,10 @@ body {
   min-height: 100vh;
 }
 
+section {
+  padding: 50px;
+}
+
 .waves {
   position: relative;
   height: 250px;
@@ -31,4 +35,22 @@ nav {
 
 .completed-container, .completed-container > * {
   margin-top: 15px;
+}
+
+.footer {
+  background-color: var(--color-primary);
+}
+
+.footer * {
+  color: white;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 50px;
+}
+
+.footer-grid ul {
+  list-style: none;
 }
