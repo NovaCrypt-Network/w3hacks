@@ -41,7 +41,7 @@ def quiz_exercises(request):
             "link": None
         })
 
-    return render(request, "app/exercises/quiz-exercises/quiz-exercises.html", context={
+    return render(request, "home/exercises/quiz-exercises/quiz-exercises.html", context={
         "topics": topics,
         "exercises": quiz_exercises,
         "topic": specific_topic,
@@ -73,7 +73,7 @@ def quiz_exercise(request):
         { "text": quiz_exercise.name, "link": None }
     ]
 
-    return render(request, "app/exercises/quiz-exercises/quiz-exercise.html", context={
+    return render(request, "home/exercises/quiz-exercises/quiz-exercise.html", context={
         "exercise": quiz_exercise,
         "resources": list(quiz_exercise.resources.all()),
         "breadcrumbs": breadcrumbs
@@ -121,7 +121,7 @@ def take_quiz(request):
             user_already_taken_quiz = True
 
 
-    return render(request, "app/exercises/quiz-exercises/take-quiz.html", context={
+    return render(request, "home/exercises/quiz-exercises/take-quiz.html", context={
         "quiz": quiz_exercise,
         "breadcrumbs": breadcrumbs,
         "questions": questions,
@@ -180,7 +180,7 @@ def quiz_results(request):
 
     # results = json.dumps(results)
 
-    return render(request, "app/exercises/quiz-exercises/quiz-results.html", context={
+    return render(request, "home/exercises/quiz-exercises/quiz-results.html", context={
         "quiz_exercise": quiz_exercise,
         "completed_quiz_exercise": completed_quiz_exercise,
         "breadcrumbs": breadcrumbs,

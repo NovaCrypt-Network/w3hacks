@@ -13,7 +13,7 @@ def mini_exercises(request):
         { "text": "Mini Exercises", "link": None }
     ]
 
-    return render(request, "app/exercises/mini-exercises/mini-exercises.html", context={
+    return render(request, "home/exercises/mini-exercises/mini-exercises.html", context={
         "breadcrumbs": breadcrumbs
     })
 
@@ -56,14 +56,14 @@ def fix_the_code_exercises(request):
         })
 
 
-    return render(request, "app/exercises/mini-exercises/fix-the-code-exercises.html", context={
+    return render(request, "home/exercises/mini-exercises/fix-the-code-exercises.html", context={
         "topics": topics,
         "breadcrumbs": breadcrumbs,
         "exercises": fix_the_code_exercises,
         "topic": specific_topic
     })
 
-    return render(request, "app/exercises/mini-exercises/fix-the-code-exercises.html")
+    return render(request, "home/exercises/mini-exercises/fix-the-code-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -119,7 +119,7 @@ def fix_the_code_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/exercises/mini-exercises/fix-the-code-exercise.html", context={
+    return render(request, "home/exercises/mini-exercises/fix-the-code-exercise.html", context={
         "exercise": fix_the_code_exercise,
         "resources": list(fix_the_code_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
@@ -166,14 +166,14 @@ def brainteaser_exercises(request):
             "link": None
         })
 
-    return render(request, "app/exercises/mini-exercises/brainteaser-exercises.html", context={
+    return render(request, "home/exercises/mini-exercises/brainteaser-exercises.html", context={
         "topics": topics,
         "exercises": brainteaser_exercises,
         "breadcrumbs": breadcrumbs,
         "topic": specific_topic
     })
 
-    return render(request, "app/exercises/mini-exercises/brainteaser-exercises.html")
+    return render(request, "home/exercises/mini-exercises/brainteaser-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -229,7 +229,7 @@ def brainteaser_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/exercises/mini-exercises/brainteaser-exercise.html", context={
+    return render(request, "home/exercises/mini-exercises/brainteaser-exercise.html", context={
         "exercise": brainteaser_exercise,
         "resources": list(brainteaser_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
@@ -276,14 +276,14 @@ def visualization_exercises(request):
             "link": None,
         })
 
-    return render(request, "app/exercises/mini-exercises/visualization-exercises.html", context={
+    return render(request, "home/exercises/mini-exercises/visualization-exercises.html", context={
         "topics": topics,
         "exercises": visualization_exercises,
         "breadcrumbs": breadcrumbs,
         "topic": specific_topic
     })
 
-    return render(request, "app/exercises/mini-exercises/visualization-exercises.html")
+    return render(request, "home/exercises/mini-exercises/visualization-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -339,7 +339,7 @@ def visualization_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/exercises/mini-exercises/visualization-exercise.html", context={
+    return render(request, "home/exercises/mini-exercises/visualization-exercise.html", context={
         "exercise": visualization_exercise,
         "resources": list(visualization_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
@@ -386,14 +386,14 @@ def refactor_exercises(request):
             "link": None
         })
 
-    return render(request, "app/exercises/mini-exercises/refactor-exercises.html", context={
+    return render(request, "home/exercises/mini-exercises/refactor-exercises.html", context={
         "topics": topics,
         "exercises": refactor_exercises,
         "topic": specific_topic,
         "breadcrumbs": breadcrumbs
     })
 
-    return render(request, "app/exercises/mini-exercises/refactor-exercises.html")
+    return render(request, "home/exercises/mini-exercises/refactor-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -450,7 +450,7 @@ def refactor_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/exercises/mini-exercises/refactor-exercise.html", context={
+    return render(request, "home/exercises/mini-exercises/refactor-exercise.html", context={
         "exercise": refactor_exercise,
         "resources": list(refactor_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
@@ -497,7 +497,7 @@ def teaching_exercises(request):
             "link": None
         })
 
-    return render(request, "app/exercises/mini-exercises/teaching-exercises.html", context={
+    return render(request, "home/exercises/mini-exercises/teaching-exercises.html", context={
         "topics": topics,
         "exercises": teaching_exercises,
         "topic": specific_topic,
@@ -559,7 +559,7 @@ def teaching_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/exercises/mini-exercises/teaching-exercise.html", context={
+    return render(request, "home/exercises/mini-exercises/teaching-exercise.html", context={
         "exercise": teaching_exercise,
         "resources": list(teaching_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
@@ -606,14 +606,14 @@ def github_exercises(request):
             "link": None
         })
 
-    return render(request, "app/exercises/mini-exercises/github-exercises.html", context={
+    return render(request, "home/exercises/mini-exercises/github-exercises.html", context={
         "topics": topics,
         "exercises": github_exercises,
         "breadcrumbs": breadcrumbs,
         "topic": specific_topic
     })
 
-    return render(request, "app/exercises/mini-exercises/github-exercises.html")
+    return render(request, "home/exercises/mini-exercises/github-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -670,7 +670,7 @@ def github_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/exercises/mini-exercises/github-exercise.html", context={
+    return render(request, "home/exercises/mini-exercises/github-exercise.html", context={
         "exercise": github_exercise,
         "resources": list(github_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,
@@ -717,14 +717,14 @@ def research_exercises(request):
             "link": None
         })
 
-    return render(request, "app/exercises/mini-exercises/research-exercises.html", context={
+    return render(request, "home/exercises/mini-exercises/research-exercises.html", context={
         "topics": topics,
         "exercises": research_exercises,
         "breadcrumbs": breadcrumbs,
         "topic": specific_topic
     })
 
-    return render(request, "app/exercises/mini-exercises/research-exercises.html")
+    return render(request, "home/exercises/mini-exercises/research-exercises.html")
 
 
 @login_required(login_url="http://www.w3hacks.com/login")
@@ -781,7 +781,7 @@ def research_exercise(request):
             user_already_completed_mini_exercise = True
 
 
-    return render(request, "app/exercises/mini-exercises/research-exercise.html", context={
+    return render(request, "home/exercises/mini-exercises/research-exercise.html", context={
         "exercise": research_exercise,
         "resources": list(research_exercise.resources.all()),
         "user_already_completed_mini_exercise": user_already_completed_mini_exercise,

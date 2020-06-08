@@ -11,7 +11,6 @@ urlpatterns = [
     url("^contact/$", views.contact, name="contact"),
     url("^login/$", views.user_login, name="login"),
     url("^register/$", views.register, name="register"),
-
     url("^leaderboards/$", views.leaderboards, name="leaderboards"),
 
     # Activities URL routes

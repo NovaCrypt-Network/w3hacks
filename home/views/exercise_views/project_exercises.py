@@ -41,7 +41,7 @@ def project_exercises(request):
         })
 
 
-    return render(request, "app/exercises/project-exercises/project-exercises.html", context={
+    return render(request, "home/exercises/project-exercises/project-exercises.html", context={
         "topics": topics,
         "exercises": project_exercises,
         "topic": specific_topic,
@@ -103,7 +103,7 @@ def project_exercise(request):
             user_already_completed_project = True
 
 
-    return render(request, "app/exercises/project-exercises/project-exercise.html", context={
+    return render(request, "home/exercises/project-exercises/project-exercise.html", context={
         "exercise": project_exercise,
         "resources": list(project_exercise.resources.all()),
         "user_already_completed_project": user_already_completed_project,
