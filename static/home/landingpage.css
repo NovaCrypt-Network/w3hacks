@@ -80,43 +80,22 @@ section {
   transform: translateY(-4px);
 }
 
-.contact {
+.footer {
   background-color: var(--color-primary);
 }
 
-.contact * {
+.footer * {
   color: white;
 }
 
-.contact-grid {
+.footer-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 100px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 50px;
 }
 
-.contact-info {
-  text-align: right;
-}
-
-.contact-info-item {
-  margin: 15px 0;
-}
-
-.contact-info-item img {
-  width: 40px;
-  transform: translateY(-1px);
-}
-
-.contact-info-item span {
-  margin: 0 10px;
-}
-
-.contact-info-item a:hover {
-  color: white;
-}
-
-.contact-info-item-mobile {
-  display: none;
+.footer-grid ul {
+  list-style: none;
 }
 
 .copyright {

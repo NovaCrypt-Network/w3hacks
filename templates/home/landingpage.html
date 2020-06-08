@@ -88,38 +88,33 @@
     <img class="wave no-flip" src="{% static 'img/waves/wave2.svg' %}">
     <img class="wave no-flip" src="{% static 'img/waves/wave1.svg' %}">
   </div>
-  <section class="contact">
+  <section class="footer">
     <div class="container mb-5">
-      <!-- <div class="contact-grid">
-        <div class="contact-form">
-          <h3 class="heading-fourth">Send us a message!</h3>
-          <form class="mt-3" enctype="multipart/form-data" method="post">
-            {% csrf_token %}
-            <input class="ghost-input-light mb-3" type="text" name="name" placeholder="Name" required>
-            <input class="ghost-input-light mb-3" type="email" name="email" placeholder="Email" required>
-            <textarea class="ghost-input-light mb-3" name="message" rows="5" placeholder="Message" required></textarea>
-            <input class="solid-cta-button-light w-100" type="submit" value="Contact Us!">
-          </form>
-        </div>
-        <div class="contact-info">
-          <h3 class="heading-fourth">Other contact information</h3>
-          <p>
-            Please feel free to reach out to us at any time! We try to respond to all emails and messages within 24-48 hours.
-          </p>
-          <div class="contact-info-item contact-info-item-desktop">
-            <span><a href="mailto:hello@launchtechllc.com">hello@launchtechllc.com</a></span>
-            <img src="{% static 'img/icons/email-light.svg' %}" alt="w3Hacks Email">
-          </div>
-
-          <div class="contact-info-item contact-info-item-mobile">
-            <img src="{% static 'img/icons/email-light.svg' %}" alt="w3Hacks Email">
-            <span><a href="mailto:hello@launchtechllc.com">hello@launchtechllc.com</a></span>
-          </div>
-        </div>
-      </div> -->
-
       <div class="footer-grid">
-        div.
+        <div class="navigate">
+          <h3>Navigate</h3>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/login/">Login</a></li>
+            <li><a href="/register/">Register</a></li>
+          </ul>
+        </div>
+        <div class="launchtechllc">
+          <h3>Launch Tech LLC</h3>
+          <ul>
+            <li><a href="https://www.launchtechllc.com/" target="_blank">Website</a></li>
+            <li><a href="https://www.launchtechllc.com/about" target="_blank">Our Team</a></li>
+            <li><a href="https://www.launchtechllc.com/projects" target="_blank">Other Products</a></li>
+          </ul>
+        </div>
+        <div class="contact">
+          <h3>Contact us!</h3>
+          <ul>
+            <li><a href="mailto:hello@w3hacks.com">hello@w3hacks.com</a></li>
+            <li><a href="/contact/">Contact Page</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
