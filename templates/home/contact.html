@@ -2,10 +2,34 @@
 {% load static %}
 {% block head %}
   <title>w3Hacks - Contact us!</title>
-  <link rel="stylesheet" href="{% static 'home/contact.css' %}">
+  <link rel="stylesheet" href="{% static 'home/login-register.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="container">
-    <h1>Contact us!</h1>
+<style>
+  input, textarea {
+    color: black;
+  }
+</style>
+  <div class="waves">
+    <img class="wave flip" src="{% static 'img/waves/wave6.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave5.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave4.svg' %}" alt="">
+  </div>
+  <div class="container py-5">
+    <h1 class="heading-secondary mb-4">Contact us!</h1>
+    <form action="https://formspree.io/hello@launchtechllc.com" method="post">
+      {% csrf_token %}
+      <label>Name:</label>
+      <input class="ghost-input-dark mb-3" type="text" name="Name" placeholder="Name" required>
+      <label>Email:</label>
+      <input class="ghost-input-dark mb-3" type="email" name="Email" placeholder="Email" required>
+      <label>Message:</label>
+      <textarea class="ghost-input-dark mb-3" name="Message" rows="5" placeholder="Message"></textarea>
+      <div class="text-center">
+        <input class="solid-cta-button w-100" type="submit" value="Contact us!">
+        <br>
+        <small>Don't have an account? <a href="/register/">Register Here</a></small>
+      </div>
+    </form>
   </div>
 {% endblock %}
