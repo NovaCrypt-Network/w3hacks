@@ -36,6 +36,23 @@ p {
   background-color: white;
 }
 
+.ghost-cta-button-dark {
+  border: 2px solid var(--color-primary);
+  background-color: transparent;
+  padding: 10px 15px;
+  border-radius: 4px;
+  color: var(--color-primary);
+  transition: all .2s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.ghost-cta-button-dark:hover {
+  color: white;
+  text-decoration: none;
+  background-color: var(--color-primary);
+}
+
 .solid-cta-button {
   border: 2px solid var(--color-primary);
   background-color: var(--color-primary);

@@ -29,7 +29,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=50, null=True, blank=True) # OPTIONAL: The area around where the user lives
     profile_picture = models.ImageField(null=True, blank=True) # OPTIONAL: A profile picture for the user
     skills = ArrayField(models.CharField(max_length=50), null=True, blank=True) # OPTIONAL: An array of the user's skills
-    plan = models.ForeignKey("Plan", on_delete=models.PROTECT, null=True, blank=True) # The type of plan the user is on: Classic, Pro, Premium
+    # plan = models.ForeignKey("Plan", on_delete=models.PROTECT) # The type of plan the user is on: Classic, Pro, Premium
 
     github_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's GitHub profile
     linkedin_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's LinkedIn profile
@@ -124,8 +124,8 @@ class Plan(models.Model):
     description = models.TextField() # Description of plan
 
     # RESTRICTIONS
-    max_num_exercises = models.IntegerField() # Maximum number of exercises a user is allowed to complete
-    max_num_hackathons = models.IntegerField() # Maximum number of hackathons a user is allowed to participate in
+    max_num_exercises = models.IntegerField(null=True, blank=True) # Maximum number of exercises a user is allowed to complete
+    max_num_hackathons = models.IntegerField(null=True, blank=True) # Maximum number of hackathons a user is allowed to participate in
 
     def __str__(self):
         return self.title

@@ -84,20 +84,21 @@ def register(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
-        # # Grabbing custom profile data
-        # biography = request.POST.get("biography")
-        # birthday = request.POST.get("birthday")
-        # education = request.POST.get("education")
-        # skills = request.POST.get("skills").split(",")
-        #
-        # # Social Links
-        # github_profile = request.POST.get("github-profile")
-        # linkedin_profile = request.POST.get("linkedin-profile")
-        # twitter_profile = request.POST.get("twitter-profile")
-        # instagram_profile = request.POST.get("instagram-profile")
-        # facebook_profile = request.POST.get("facebook-profile")
-        # twitch_profile = request.POST.get("twitch-profile")
-        # personal_website = request.POST.get("personal-website")
+        # Grabbing custom profile data
+        biography = request.POST.get("biography")
+        location = request.POST.get("location")
+        birthday = request.POST.get("birthday")
+        education = request.POST.get("education")
+        skills = request.POST.get("skills").split(",")
+
+        # Social Links
+        github_profile = request.POST.get("github-profile")
+        linkedin_profile = request.POST.get("linkedin-profile")
+        twitter_profile = request.POST.get("twitter-profile")
+        instagram_profile = request.POST.get("instagram-profile")
+        facebook_profile = request.POST.get("facebook-profile")
+        twitch_profile = request.POST.get("twitch-profile")
+        personal_website = request.POST.get("personal-website")
 
         # Creating the user
         user = User(
@@ -111,25 +112,26 @@ def register(request):
         # Creating the custom profile
         profile = models.Profile(
             user=user,
-            # biography=biography,
-            # education=education,
-            # skills=skills,
-            # github_profile=github_profile,
-            # linkedin_profile=linkedin_profile,
-            # twitter_profile=twitter_profile,
-            # instagram_profile=instagram_profile,
-            # facebook_profile=facebook_profile,
-            # twitch_profile=twitch_profile,
-            # personal_website=personal_website
+            biography=biography,
+            location=location,
+            education=education,
+            skills=skills,
+            github_profile=github_profile,
+            linkedin_profile=linkedin_profile,
+            twitter_profile=twitter_profile,
+            instagram_profile=instagram_profile,
+            facebook_profile=facebook_profile,
+            twitch_profile=twitch_profile,
+            personal_website=personal_website
         )
 
-        # # To avoid 'Invalid Date Format' error for empty birthday
-        # if birthday:
-        #     profile.birthday = birthday
+        # To avoid 'Invalid Date Format' error for empty birthday
+        if birthday:
+            profile.birthday = birthday
 
-        # # Checking if they provided picture
-        # if 'profile-picture' in request.FILES:
-        #     profile.profile_picture = request.FILES['profile-picture']
+        # Checking if they provided picture
+        if 'profile-picture' in request.FILES:
+            profile.profile_picture = request.FILES['profile-picture']
 
 
         # Only save models when no errors have blocked registration

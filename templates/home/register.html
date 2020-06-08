@@ -20,84 +20,126 @@
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
 
-      <!-- Django User fields -->
-      <div>
-        <label>First Name: *</label><br>
-        <input class="ghost-input-dark mb-3" type="text" name="first-name" placeholder="First Name" required>
-      </div>
-      <div>
-        <label>Last Name: *</label><br>
-        <input class="ghost-input-dark mb-3" type="text" name="last-name" placeholder="Last Name" required>
-      </div>
-      <div>
-        <label>Email: *</label><br>
-        <input class="ghost-input-dark mb-3" type="email" name="email" placeholder="Email" required>
-      </div>
-      <div>
-        <label>Username: *</label><br>
-        <input class="ghost-input-dark mb-3" type="text" name="username" placeholder="Username" required>
-      </div>
-      <div>
-        <label>Password: *</label><br>
-        <input class="ghost-input-dark mb-3" type="password" name="password" placeholder="Password" required>
+      <!-- One "tab" for each step in the form: -->
+      <div class="tab">
+        <h3>Basic Information:</h3>
+        <div>
+          <label>First Name: *</label><br>
+          <input class="ghost-input-dark mb-3" type="text" name="first-name" placeholder="First Name" required>
+        </div>
+        <div>
+          <label>Last Name: *</label><br>
+          <input class="ghost-input-dark mb-3" type="text" name="last-name" placeholder="Last Name" required>
+        </div>
+        <div>
+          <label>Email: *</label><br>
+          <input class="ghost-input-dark mb-3" type="email" name="email" placeholder="Email" required>
+        </div>
       </div>
 
-      <!-- Custom profile fields -->
-      <!-- <div>
-        <label>Biography:</label><br>
-        <textarea name="biography" rows="5" placeholder="Biography"></textarea>
+      <div class="tab">
+        <h3>User Information:</h3>
+        <div>
+          <label>Username: *</label><br>
+          <input class="ghost-input-dark mb-3" type="text" name="username" placeholder="Username" required>
+        </div>
+        <div>
+          <label>Password: *</label><br>
+          <input class="ghost-input-dark mb-3" type="password" name="password" placeholder="Password" required>
+        </div>
       </div>
-      <div>
-        <label>Birthday:</label><br>
-        <input type="date" name="birthday" placeholder="Birthday" max="{{today}}">
-      </div>
-      <div>
-        <label>Education:</label><br>
-        <input type="text" name="education" placeholder="Education">
-      </div>
-      <div>
-        <label>Profile Picture:</label><br>
-        <input type="file" name="profile-picture" placeholder="Profile Picture" accept="image/png, image/jpeg, image/jpg">
-      </div>
-      <div>
-        <label>Skills: (separate each by comma no space)</label><br>
-        <input type="text" name="skills" placeholder="Skills">
-      </div> -->
 
-      <!-- Social Links -->
-      <!-- <div class="form-input-group">
-        <label>GitHub:</label><br>
-        <input type="url" name="github-profile" placeholder="GitHub Profile Link">
+      <div class="tab">
+        <h3>Extra Information: (OPTIONAL)</h3>
+        <div class="form-input-group">
+          <label>Biography:</label><br>
+          <textarea class="ghost-input-dark" type="text" name="biography"></textarea>
+        </div>
+        <div class="form-input-group">
+          <label>Birthday:</label><br>
+          <input id="birthday" class="ghost-input-dark" type="date" name="birthday" value="{{ birthday|date:'Y-m-d'}}">
+        </div>
+        <div class="form-input-group">
+          <label>Profile Picture:</label><br>
+          <input type="file" name="profile-picture" id="file" class="inputfile" data-multiple-caption="{count} files selected" accept="image/*" />
+          <label for="file">
+            <img class="file-upload-icon" src="{% static 'img/icons/file-upload.svg' %}" alt="">
+            <span>Choose a file</span>
+          </label>
+        </div>
+        <div class="form-input-group">
+          <label>Skills:</label><br>
+          <input class="ghost-input-dark" type="text" name="skills">
+        </div>
+
+        <div class="form-input-group">
+          <label>Location:</label><br>
+          <input class="ghost-input-dark" type="text" name="location">
+        </div>
+
+        <div class="form-input-group">
+          <label>Education:</label><br>
+          <input class="ghost-input-dark" type="text" name="education">
+        </div>
+
+        <!-- Social Links -->
+        <div class="form-input-group">
+          <label>GitHub:</label><br>
+          <input class="ghost-input-dark" type="url" name="github-profile" >
+        </div>
+        <div class="form-input-group">
+          <label>LinkedIn:</label><br>
+          <input class="ghost-input-dark" type="url" name="linkedin-profile">
+        </div>
+        <div class="form-input-group">
+          <label>Twitter:</label><br>
+          <input class="ghost-input-dark" type="url" name="twitter-profile">
+        </div>
+        <div class="form-input-group">
+          <label>Instagram:</label><br>
+          <input class="ghost-input-dark" type="url" name="instagram-profile">
+        </div>
+        <div class="form-input-group">
+          <label>Facebook:</label><br>
+          <input class="ghost-input-dark" type="url" name="facebook-profile">
+        </div>
+        <div class="form-input-group">
+          <label>Twitch:</label><br>
+          <input class="ghost-input-dark" type="url" name="twitch-profile">
+        </div>
+        <div class="form-input-group">
+          <label>Personal Website:</label><br>
+          <input class="ghost-input-dark" type="url" name="personal-website">
+        </div>
       </div>
-      <div class="form-input-group">
-        <label>LinkedIn:</label><br>
-        <input type="url" name="linkedin-profile" placeholder="LinkedIn Profile Link">
+
+      <div class="tab">
+        <h3>Plan:</h3>
+        <h1>Choose a freaking plan</h1>
       </div>
-      <div class="form-input-group">
-        <label>Twitter:</label><br>
-        <input type="url" name="twitter-profile" placeholder="Twitter Profile Link">
+
+      <!-- Circles which indicates the steps of the form: -->
+      <div style="text-align:center">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
       </div>
-      <div class="form-input-group">
-        <label>Instagram:</label><br>
-        <input type="url" name="instagram-profile" placeholder="Instagram Profile Link">
-      </div>
-      <div class="form-input-group">
-        <label>Facebook:</label><br>
-        <input type="url" name="facebook-profile" placeholder="Facebook Profile Link">
-      </div>
-      <div class="form-input-group">
-        <label>Twitch:</label><br>
-        <input type="url" name="twitch-profile" placeholder="Twitch Profile Link">
-      </div>
-      <div class="form-input-group">
-        <label>Personal Website:</label><br>
-        <input type="url" name="personal-website" placeholder="Personal Website">
-      </div> -->
 
       <div class="text-center">
-        <input class="solid-cta-button w-100" type="submit" value="Register">
+        <div class="row mt-3">
+          <div class="col">
+            <button class="ghost-cta-button-dark w-100" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+          </div>
+          <div class="col">
+            <button class="solid-cta-button w-100" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+            <input id="registerBtn" class="solid-cta-button w-100" type="submit" value="Register">
+          </div>
+        </div>
         <small>Already have an account? <a href="/login/">Login Here</a></small>
       </div>
     </form>
   </div>
+  <script src="{% static 'js/register-form.js' %}" charset="utf-8"></script>
+  <script src="{% static 'js/file-upload.js' %}" charset="utf-8"></script>
 {% endblock %}
