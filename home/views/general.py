@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
@@ -153,6 +153,92 @@ def register(request):
     return render(request, "home/register.html", context={
         "today": str(date.today())
     })
+
+import stripe
+stripe.api_key = '		sk_test_51Gsz1LJ09tuJBIN8ddJzUkQVXasV78S53uCYVBPbyi57RWhIbvdIsoWYZqZpQyEOAYy4h21aBrJkGqDkCexk3Jto00YQ08b88v'
+
+def test_register(request):
+    return render(request, "home/test-register.html")
+
+
+def create_customer(request):
+    print("create customer")
+    try:
+        customer = stripe.Customer.create(
+            email=request.POST.get("email")
+        )
+        print(customer)
+        return JsonResponse(customer)
+    except Exception as e:
+        return JsonResponse(e)
+
+
+def create_subscription(request):
+    print("create subscription")
+    if request.method == "POST":
+        try:
+            # Attach the payment method to the customer
+            stripe.PaymentMethod.attach(
+                request.POST.get("paymentMethodId"),
+                customer=request.POST.get("customerId"),
+            )
+            # Set the default payment method on the customer
+            stripe.Customer.modify(
+                request.POST.get("customerId"),
+                invoice_settings={
+                    'default_payment_method': request.POST.get("paymentMethodId"),
+                },
+            )
+
+            # Create the subscription
+            subscription = stripe.Subscription.create(
+                customer=request.POST.get("paymentMethodId"),
+                items=[
+                    {
+                        'price': 'price_1GszrXJ09tuJBIN8nkxZgFMK'
+                    }
+                ],
+                expand=['latest_invoice.payment_intent'],
+            )
+
+            print(subscription)
+
+            return JsonResponse(subscription)
+        except Exception as e:
+            return JsonResponse(e)
+
+
+def retry_invoice(request):
+    try:
+        stripe.PaymentMethod.attach(
+            request.POST.get("paymentMethodId"),
+            customer=request.POST.get("customerId"),
+        )
+        # Set the default payment method on the customer
+        stripe.Customer.modify(
+            request.POST.get("customerId"),
+            invoice_settings={
+                'default_payment_method': request.POST.get("paymentMethodId"),
+            },
+        )
+
+        invoice = stripe.Invoice.retrieve(
+            request.POST.get("invoiceId"),
+            expand=['payment_intent'],
+        )
+
+        return JsonResponse(invoice)
+    except Exception as e:
+        return JsonResponse(e)
+
+
+def cancel_subscription(request):
+    data = request.POST
+    try:
+        deletedSubscription = stripe.Subscription.delete(data.get("subscriptionId"))
+        return JsonResponse(deletedSubscription)
+    except Exception as e:
+        return JsonResponse(e)
 
 
 def user_logout(request):

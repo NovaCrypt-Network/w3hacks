@@ -11,6 +11,11 @@ urlpatterns = [
     url("^contact/$", views.contact, name="contact"),
     url("^login/$", views.user_login, name="login"),
     url("^register/$", views.register, name="register"),
+    url("^test-register/$", views.test_register, name="test_register"),
+    url("^create-customer/$", views.create_customer, name="create_customer"),
+    url("^create-subscription/$", views.create_subscription, name="create_subscription"),
+    url("^retry-invoice/$", views.retry_invoice, name="retry_invoice"),
+    url("^cancel-subscription/$", views.cancel_subscription, name="cancel_subscription"),
     url("^leaderboards/$", views.leaderboards, name="leaderboards"),
 
     # Activities URL routes
