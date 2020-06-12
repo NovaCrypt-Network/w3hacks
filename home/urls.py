@@ -12,6 +12,7 @@ urlpatterns = [
     url("^login/$", views.user_login, name="login"),
     url("^register/$", views.register, name="register"),
     url("^pricing/$", views.pricing, name="pricing"),
+    url("^create-customer/$", views.create_customer_and_subscription, name="create_customer_and_subscription"),
     # url("^create-customer/$", views.create_customer, name="create_customer"),
     # url("^create-subscription/$", views.create_subscription, name="create_subscription"),
     # url("^retry-invoice/$", views.retry_invoice, name="retry_invoice"),

@@ -17,6 +17,9 @@
       {% for product in products %}
         <div class="col">
           <div class="card p-3">
+            <input type="radio" name="plan" value="{{ product.id }}"
+              {% if product.metadata.name == "Free Plan" %} checked {% endif %}
+            >
             <h3 class="card-title">{{ product.name }}</h3>
             {% for plan in product.plan_set.all %}
               <div>
@@ -28,5 +31,76 @@
         </div>
       {% endfor %}
     </div>
+    <form id="subscription-form" action="/create-customer" method="post">
+      {% csrf_token %}
+      <div id="card-element" class="MyCardElement py-4">
+
+      </div>
+
+      <div id="card-errors" role="alert"></div>
+      <input class="solid-cta-button w-100 mt-3" type="submit" value="Submit">
+    </form>
   </div>
+  <script>
+    var stripe = Stripe('pk_test_51Gsz1LJ09tuJBIN8YyGQvzegwfNv8DdcQ9Inl8MdU0YNaUBjdE8CEdJyLR5mOFpaS7lV5EJ10NMTqVcnAaig409U00S9DuVBjA');
+    var elements = stripe.elements();
+
+    var style = {
+      base: {
+        color: "#32325d",
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: "antialiased",
+        fontSize: "16px",
+        "::placeholder": {
+          color: "#aab7c4"
+        }
+      },
+      invalid: {
+        color: "#fa755a",
+        iconColor: "#fa755a"
+      }
+    };
+
+    const createCustomerUrl = "/create-customer";
+    var cardElement = elements.create("card", { style: style });
+    cardElement.mount("#card-element");
+
+    cardElement.on('change', showCardError)
+
+    function showCardError(event) {
+      let displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    }
+
+    function stripePaymentMethodHandler(result, email) {
+      if (result.error) {
+        // Show error in payment form
+      } else {
+        const paymentParams = {
+            email: email,
+            plan_id: document.querySelector("input[name=plan]").value,
+            payment_method: result.paymentMethod.id,
+        };
+        fetch(createCustomerUrl, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken'),
+          },
+          credentials: 'same-origin',
+          body: JSON.stringify(paymentParams),
+        }).then(function(response) {
+          return response.json();
+        }).then(function(result) {
+          // todo: check and process subscription status based on the response
+        }).catch(function (error) {
+          // more error handling
+        });
+      }
+    };
+  </script>
 {% endblock %}

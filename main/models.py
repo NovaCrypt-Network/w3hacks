@@ -21,6 +21,18 @@ User._meta.get_field('email')._unique = True
 
 # An extension off of the default User model
 class Profile(models.Model):
+    # STRIPE
+    customer = models.ForeignKey(
+        'djstripe.Customer', null=True, blank=True,
+        help_text=("The user's Stripe Customer object, if it exists"),
+        on_delete=models.PROTECT
+    )
+    subscription = models.ForeignKey(
+        'djstripe.Subscription', null=True, blank=True,
+        help_text=("The user's Stripe Subscription object, if it exists"),
+        on_delete=models.PROTECT
+    )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile", unique=True) # Extending from default User class
     status = models.CharField(max_length=20, null=True, blank=True) # OPTIONAL: A quick status that the user may update
     biography = models.TextField(max_length=200, null=True, blank=True) # OPTIONAL: A description of the user

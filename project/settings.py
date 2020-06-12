@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'djstripe',
-    
+
     # External apps
     'home',
     'api',
