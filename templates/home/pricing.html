@@ -1,0 +1,32 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - Test Stripe Registration</title>
+  <link rel="stylesheet" href="{% static 'home/login-register.css' %}">
+  <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+{% block body %}
+  <div class="waves">
+    <img class="wave flip" src="{% static 'img/waves/wave6.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave5.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave4.svg' %}" alt="">
+  </div>
+  <div class="container">
+    <h1 class="heading-secondary mb-4">Pricing</h1>
+    <div class="row">
+      {% for product in products %}
+        <div class="col">
+          <div class="card p-3">
+            <h3 class="card-title">{{ product.name }}</h3>
+            {% for plan in product.plan_set.all %}
+              <div>
+                <p class="heading">{{ plan.nickname }}</p>
+                <p>{{ plan.human_readable_price }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

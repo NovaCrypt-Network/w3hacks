@@ -43,6 +43,14 @@ def contact(request):
     return render(request, "home/contact.html")
 
 
+from djstripe.models import Product
+
+def pricing(request):
+    return render(request, "home/pricing.html", context={
+        "products": Product.objects.all()
+    })
+
+
 def user_login(request):
     if request.method == "POST":
         username = request.POST.get("username")

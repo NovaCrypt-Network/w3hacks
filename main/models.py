@@ -4,6 +4,7 @@ from django.db import models
 from datetime import date, datetime
 import random
 import string
+import attr
 
 # ALL IDs MUST BE 8 CHARACTERS LONG
 def generate_id():
@@ -12,7 +13,6 @@ def generate_id():
 # Making the default Django user's username and email unique
 User._meta.get_field('username')._unique = True
 User._meta.get_field('email')._unique = True
-
 
 
 ####################
