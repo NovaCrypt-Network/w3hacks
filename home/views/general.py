@@ -158,8 +158,7 @@ import stripe
 stripe.api_key = '		sk_test_51Gsz1LJ09tuJBIN8ddJzUkQVXasV78S53uCYVBPbyi57RWhIbvdIsoWYZqZpQyEOAYy4h21aBrJkGqDkCexk3Jto00YQ08b88v'
 
 def test_register(request):
-    return render(request, "home/test-register.html")
-
+    return render(request, "home/test-register2.html")
 
 def create_customer(request):
     print("create customer")
@@ -171,7 +170,6 @@ def create_customer(request):
         return JsonResponse(customer)
     except Exception as e:
         return JsonResponse(e)
-
 
 def create_subscription(request):
     print("create subscription")
@@ -207,7 +205,6 @@ def create_subscription(request):
         except Exception as e:
             return JsonResponse(e)
 
-
 def retry_invoice(request):
     try:
         stripe.PaymentMethod.attach(
@@ -230,7 +227,6 @@ def retry_invoice(request):
         return JsonResponse(invoice)
     except Exception as e:
         return JsonResponse(e)
-
 
 def cancel_subscription(request):
     data = request.POST

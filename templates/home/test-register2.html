@@ -1,0 +1,31 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - Test Stripe Registration</title>
+  <link rel="stylesheet" href="{% static 'home/login-register.css' %}">
+  <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+{% block body %}
+<style>
+  input, textarea {
+    color: black;
+  }
+</style>
+  <div class="waves">
+    <img class="wave flip" src="{% static 'img/waves/wave6.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave5.svg' %}" alt="">
+    <img class="wave flip" src="{% static 'img/waves/wave4.svg' %}" alt="">
+  </div>
+  <div class="container">
+    <h1 class="heading-secondary mb-4">Test Register</h1>
+    <form onsubmit="createCustomer()" id="subscription-form" method="post">
+      {% csrf_token %}
+      <div id="card-element" class="MyCardElement">
+
+      </div>
+
+      <div id="card-errors" role="alert"></div>
+      <input class="solid-cta-button w-100 mt-3" type="submit" value="Submit">
+    </form>
+  </div>
+{% endblock %}
