@@ -21,6 +21,9 @@ def handler500(request, *args, **argv):
 
 
 def index(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/dashboard/")
+
     if request.method == "POST":
         name = request.POST.get("name")
         email = request.POST.get("email")
@@ -33,11 +36,7 @@ def index(request):
             "message": "Message sent!"
         })
 
-    return render(request, "home/landingpage.html")
-
-
-def dashboard(request):
-    return render(request, "home/dashboard.html")
+    return render(request, "home/index.html")
 
 
 def contact(request):
@@ -45,6 +44,9 @@ def contact(request):
 
 
 def user_login(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/dashboard/")
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -56,7 +58,7 @@ def user_login(request):
             if user.is_active: # User is active
                 # Log the user in
                 login(request, user)
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/dashboard/")
 
             else: # User has an inactive account
                 # Re-render page with error message
@@ -76,6 +78,9 @@ def user_login(request):
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/dashboard/")
+
     if request.method == "POST":
         # Grabbing all pieces of form POST data
         # Grabbing default Django User data
@@ -155,95 +160,18 @@ def register(request):
         "today": str(date.today())
     })
 
-import stripe
-stripe.api_key = '		sk_test_51Gsz1LJ09tuJBIN8ddJzUkQVXasV78S53uCYVBPbyi57RWhIbvdIsoWYZqZpQyEOAYy4h21aBrJkGqDkCexk3Jto00YQ08b88v'
-
-def test_register(request):
-    return render(request, "home/test-register2.html")
-
-def create_customer(request):
-    print("create customer")
-    try:
-        customer = stripe.Customer.create(
-            email=request.POST.get("email")
-        )
-        print(customer)
-        return JsonResponse(customer)
-    except Exception as e:
-        return JsonResponse(e)
-
-def create_subscription(request):
-    print("create subscription")
-    if request.method == "POST":
-        try:
-            # Attach the payment method to the customer
-            stripe.PaymentMethod.attach(
-                request.POST.get("paymentMethodId"),
-                customer=request.POST.get("customerId"),
-            )
-            # Set the default payment method on the customer
-            stripe.Customer.modify(
-                request.POST.get("customerId"),
-                invoice_settings={
-                    'default_payment_method': request.POST.get("paymentMethodId"),
-                },
-            )
-
-            # Create the subscription
-            subscription = stripe.Subscription.create(
-                customer=request.POST.get("paymentMethodId"),
-                items=[
-                    {
-                        'price': 'price_1GszrXJ09tuJBIN8nkxZgFMK'
-                    }
-                ],
-                expand=['latest_invoice.payment_intent'],
-            )
-
-            print(subscription)
-
-            return JsonResponse(subscription)
-        except Exception as e:
-            return JsonResponse(e)
-
-def retry_invoice(request):
-    try:
-        stripe.PaymentMethod.attach(
-            request.POST.get("paymentMethodId"),
-            customer=request.POST.get("customerId"),
-        )
-        # Set the default payment method on the customer
-        stripe.Customer.modify(
-            request.POST.get("customerId"),
-            invoice_settings={
-                'default_payment_method': request.POST.get("paymentMethodId"),
-            },
-        )
-
-        invoice = stripe.Invoice.retrieve(
-            request.POST.get("invoiceId"),
-            expand=['payment_intent'],
-        )
-
-        return JsonResponse(invoice)
-    except Exception as e:
-        return JsonResponse(e)
-
-def cancel_subscription(request):
-    data = request.POST
-    try:
-        deletedSubscription = stripe.Subscription.delete(data.get("subscriptionId"))
-        return JsonResponse(deletedSubscription)
-    except Exception as e:
-        return JsonResponse(e)
-
 
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect("/")
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
+def dashboard(request):
+    return render(request, "home/dashboard.html")
+
+
+@login_required(login_url="/login/")
 def leaderboards(request):
     all_profiles = models.Profile.objects.all()
 
@@ -268,7 +196,7 @@ def leaderboards(request):
 
 
 # Activities views
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def exercises(request):
     # Creating breadcrumbs
     breadcrumbs = [
@@ -282,7 +210,7 @@ def exercises(request):
 
 
 # Hackathon views
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def about_the_hackathon(request):
     # Creating breadcrumbs
     breadcrumbs = [
@@ -295,7 +223,7 @@ def about_the_hackathon(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def past_hackathons(request):
     all_hackathons = models.Hackathon.objects.all()
 
@@ -317,7 +245,7 @@ def past_hackathons(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def future_hackathons(request):
     all_hackathons = models.Hackathon.objects.all()
 
