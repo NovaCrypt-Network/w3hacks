@@ -21,18 +21,6 @@ User._meta.get_field('email')._unique = True
 
 # An extension off of the default User model
 class Profile(models.Model):
-    # STRIPE
-    customer = models.ForeignKey(
-        'djstripe.Customer', null=True, blank=True,
-        help_text=("The user's Stripe Customer object, if it exists"),
-        on_delete=models.PROTECT
-    )
-    subscription = models.ForeignKey(
-        'djstripe.Subscription', null=True, blank=True,
-        help_text=("The user's Stripe Subscription object, if it exists"),
-        on_delete=models.PROTECT
-    )
-
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile", unique=True) # Extending from default User class
     status = models.CharField(max_length=20, null=True, blank=True) # OPTIONAL: A quick status that the user may update
     biography = models.TextField(max_length=200, null=True, blank=True) # OPTIONAL: A description of the user
@@ -41,7 +29,6 @@ class Profile(models.Model):
     location = models.CharField(max_length=50, null=True, blank=True) # OPTIONAL: The area around where the user lives
     profile_picture = models.ImageField(null=True, blank=True) # OPTIONAL: A profile picture for the user
     skills = ArrayField(models.CharField(max_length=50), null=True, blank=True) # OPTIONAL: An array of the user's skills
-    # plan = models.ForeignKey("Plan", on_delete=models.PROTECT) # The type of plan the user is on: Classic, Pro, Premium
 
     github_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's GitHub profile
     linkedin_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's LinkedIn profile
@@ -129,21 +116,6 @@ class Theme(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Plan(models.Model):
-    title = models.CharField(max_length=20) # Name of plan
-    description = models.TextField() # Description of plan
-
-    # RESTRICTIONS
-    max_num_exercises = models.IntegerField(null=True, blank=True) # Maximum number of exercises a user is allowed to complete
-    max_num_hackathons = models.IntegerField(null=True, blank=True) # Maximum number of hackathons a user is allowed to participate in
-
-    def __str__(self):
-        return self.title
-
-
-#############################################################################################################################
 
 
 #####################

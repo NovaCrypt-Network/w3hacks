@@ -32,16 +32,6 @@ ALLOWED_HOSTS = ["*"]
 
 # SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
-# Application definition
-
-# ENVIRONMENT VARIABLES
-# STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", "	pk_test_51Gsz1LJ09tuJBIN8YyGQvzegwfNv8DdcQ9Inl8MdU0YNaUBjdE8CEdJyLR5mOFpaS7lV5EJ10NMTqVcnAaig409U00S9DuVBjA")
-STRIPE_TEST_PUBLIC_KEY = "pk_test_51Gsz1LJ09tuJBIN8YyGQvzegwfNv8DdcQ9Inl8MdU0YNaUBjdE8CEdJyLR5mOFpaS7lV5EJ10NMTqVcnAaig409U00S9DuVBjA"
-# STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "	sk_test_51Gsz1LJ09tuJBIN8ddJzUkQVXasV78S53uCYVBPbyi57RWhIbvdIsoWYZqZpQyEOAYy4h21aBrJkGqDkCexk3Jto00YQ08b88v")
-STRIPE_TEST_SECRET_KEY = "sk_test_51Gsz1LJ09tuJBIN8ddJzUkQVXasV78S53uCYVBPbyi57RWhIbvdIsoWYZqZpQyEOAYy4h21aBrJkGqDkCexk3Jto00YQ08b88v"
-STRIPE_LIVE_MODE = False
-DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djstripe',
 
     # External apps
     'home',

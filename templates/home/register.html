@@ -20,7 +20,6 @@
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
 
-      <!-- One "tab" for each step in the form: -->
       <div class="tab">
         <h3>Basic Information:</h3>
         <div>
@@ -49,95 +48,7 @@
         </div>
       </div>
 
-      <div class="tab">
-        <h3>Extra Information: (OPTIONAL)</h3>
-        <div class="form-input-group">
-          <label>Biography:</label><br>
-          <textarea class="ghost-input-dark" type="text" name="biography"></textarea>
-        </div>
-        <div class="form-input-group">
-          <label>Birthday:</label><br>
-          <input id="birthday" class="ghost-input-dark" type="date" name="birthday" value="{{ birthday|date:'Y-m-d'}}">
-        </div>
-        <div class="form-input-group">
-          <label>Profile Picture:</label><br>
-          <input type="file" name="profile-picture" id="file" class="inputfile" data-multiple-caption="{count} files selected" accept="image/*" />
-          <label for="file">
-            <img class="file-upload-icon" src="{% static 'img/icons/file-upload.svg' %}" alt="">
-            <span>Choose a file</span>
-          </label>
-        </div>
-        <div class="form-input-group">
-          <label>Skills:</label><br>
-          <input class="ghost-input-dark" type="text" name="skills">
-        </div>
-
-        <div class="form-input-group">
-          <label>Location:</label><br>
-          <input class="ghost-input-dark" type="text" name="location">
-        </div>
-
-        <div class="form-input-group">
-          <label>Education:</label><br>
-          <input class="ghost-input-dark" type="text" name="education">
-        </div>
-
-        <!-- Social Links -->
-        <div class="form-input-group">
-          <label>GitHub:</label><br>
-          <input class="ghost-input-dark" type="url" name="github-profile" >
-        </div>
-        <div class="form-input-group">
-          <label>LinkedIn:</label><br>
-          <input class="ghost-input-dark" type="url" name="linkedin-profile">
-        </div>
-        <div class="form-input-group">
-          <label>Twitter:</label><br>
-          <input class="ghost-input-dark" type="url" name="twitter-profile">
-        </div>
-        <div class="form-input-group">
-          <label>Instagram:</label><br>
-          <input class="ghost-input-dark" type="url" name="instagram-profile">
-        </div>
-        <div class="form-input-group">
-          <label>Facebook:</label><br>
-          <input class="ghost-input-dark" type="url" name="facebook-profile">
-        </div>
-        <div class="form-input-group">
-          <label>Twitch:</label><br>
-          <input class="ghost-input-dark" type="url" name="twitch-profile">
-        </div>
-        <div class="form-input-group">
-          <label>Personal Website:</label><br>
-          <input class="ghost-input-dark" type="url" name="personal-website">
-        </div>
-      </div>
-
-      <div class="tab">
-        <h3>Plan:</h3>
-        <h1>Choose a freaking plan</h1>
-      </div>
-
-      <!-- Circles which indicates the steps of the form: -->
-      <div style="text-align:center">
-        <span class="step"></span>
-        <span class="step"></span>
-        <span class="step"></span>
-        <span class="step"></span>
-      </div>
-
-      <div class="text-center">
-        <div class="row mt-3">
-          <div class="col">
-            <button class="ghost-cta-button-dark w-100" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-          </div>
-          <div class="col">
-            <button class="solid-cta-button w-100" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-            <input id="registerBtn" class="solid-cta-button w-100" type="submit" value="Register">
-          </div>
-        </div>
-        <small>Already have an account? <a href="/login/">Login Here</a></small>
-      </div>
+      <input id="registerBtn" class="solid-cta-button w-100" type="submit" value="Register">
     </form>
   </div>
   <script src="{% static 'js/register-form.js' %}" charset="utf-8"></script>
