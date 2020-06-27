@@ -33,10 +33,11 @@ def index(request):
             "message": "Message sent!"
         })
 
-    if request.user.is_authenticated:
-        return render(request, "home/index.html")
-    else:
-        return render(request, "home/landingpage.html")
+    return render(request, "home/landingpage.html")
+
+
+def dashboard(request):
+    return render(request, "home/dashboard.html")
 
 
 def contact(request):
