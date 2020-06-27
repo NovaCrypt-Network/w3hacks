@@ -45,6 +45,7 @@ def contact(request):
 
 from djstripe.models import Product
 import stripe
+from django.conf import settings
 
 def pricing(request):
     return render(request, "home/pricing.html", context={
@@ -63,12 +64,12 @@ def create_customer_and_subscription(request):
     }
     """
     # parse request, extract details, and verify assumptions
-    request_body = json.loads(request.body.decode('utf-8'))
+    request_body = request.POST
     email = request_body['email']
     assert request.user.email == email
     payment_method = request_body['payment_method']
     plan_id = request_body['plan_id']
-    stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
+    stripe.api_key = settings.STRIPE_SECRET_KEY
 
     # first sync payment method to local DB to workaround
     # https://github.com/dj-stripe/dj-stripe/issues/1125
