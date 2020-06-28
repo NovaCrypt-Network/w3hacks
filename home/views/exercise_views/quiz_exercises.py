@@ -36,16 +36,11 @@ def quiz_exercise(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-
-    # Grabbing topic for breadcrumbs
-    topic = quiz_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" },
-        { "text": topic.name, "link": "/exercises/quiz-exercises/?topic=" + topic.searchable_name },
         { "text": quiz_exercise.name, "link": None }
     ]
 
