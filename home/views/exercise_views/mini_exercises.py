@@ -32,32 +32,8 @@ def fix_the_code_exercises(request):
         { "text": "Fix The Code", "link": "/exercises/mini-exercises/fix-the-code-exercises/" }
     ]
 
-    if request.GET.get("topic"):
-        topic = request.GET.get("topic")
-
-        # Iterating through project exercises to find ones that are in the topic
-        iterable_fix_the_code_exercises = fix_the_code_exercises
-        fix_the_code_exercises = []
-        for fix_the_code_exercise in iterable_fix_the_code_exercises:
-            if fix_the_code_exercise.topic.searchable_name == topic:
-                fix_the_code_exercises.append(fix_the_code_exercise)
-
-        # Check to see if topic exists
-        if models.Topic.objects.filter(searchable_name=topic).exists():
-            # Topic object to pass into template
-            specific_topic = models.Topic.objects.get(searchable_name=topic)
-        else:
-            return render(request, "errors/topic-does-not-exist.html")
-
-        # Adding topic breadcrumb if exists
-        breadcrumbs.append({
-            "text": specific_topic.name,
-            "link": None
-        })
-
 
     return render(request, "home/exercises/mini-exercises/fix-the-code-exercises.html", context={
-        "topics": topics,
         "breadcrumbs": breadcrumbs,
         "exercises": fix_the_code_exercises,
         "topic": specific_topic
@@ -77,17 +53,12 @@ def fix_the_code_exercise(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-
-    # Grabbing topic for breadcrumbs
-    topic = fix_the_code_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
         { "text": "Fix The Code", "link": "/exercises/mini-exercises/fix-the-code-exercises/" },
-        { "text": topic.name, "link": "/exercises/mini-exercises/fix-the-code-exercises/?topic=" + topic.searchable_name },
         { "text": fix_the_code_exercise.name, "link": None }
     ]
 
@@ -143,31 +114,7 @@ def brainteaser_exercises(request):
         { "text": "Brain Teaser", "link": "/exercises/mini-exercises/brainteaser-exercises/" }
     ]
 
-    if request.GET.get("topic"):
-        topic = request.GET.get("topic")
-
-        # Iterating through project exercises to find ones that are in the topic
-        iterable_brainteaser_exercises = brainteaser_exercises
-        brainteaser_exercises = []
-        for brainteaser_exercise in iterable_brainteaser_exercises:
-            if brainteaser_exercise.topic.searchable_name == topic:
-                brainteaser_exercises.append(brainteaser_exercise)
-
-        # Check to see if topic exists
-        if models.Topic.objects.filter(searchable_name=topic).exists():
-            # Topic object to pass into template
-            specific_topic = models.Topic.objects.get(searchable_name=topic)
-        else:
-            return render(request, "errors/topic-does-not-exist.html")
-
-        # Adding topic breadcrumb if exists
-        breadcrumbs.append({
-            "text": specific_topic.name,
-            "link": None
-        })
-
     return render(request, "home/exercises/mini-exercises/brainteaser-exercises.html", context={
-        "topics": topics,
         "exercises": brainteaser_exercises,
         "breadcrumbs": breadcrumbs,
         "topic": specific_topic
@@ -187,17 +134,12 @@ def brainteaser_exercise(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-
-    # Grabbing topic for breadcrumbs
-    topic = brainteaser_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
         { "text": "Brain Teaser", "link": "/exercises/mini-exercises/brainteaser-exercises/" },
-        { "text": topic.name, "link": "/exercises/mini-exercises/brainteaser-exercises/?topic=" + topic.searchable_name },
         { "text": brainteaser_exercise.name, "link": None }
     ]
 
@@ -253,31 +195,7 @@ def visualization_exercises(request):
         { "text": "Visualize It!", "link": "/exercises/mini-exercises/visualization-exercises/" }
     ]
 
-    if request.GET.get("topic"):
-        topic = request.GET.get("topic")
-
-        # Iterating through project exercises to find ones that are in the topic
-        iterable_visualization_exercises = visualization_exercises
-        visualization_exercises = []
-        for visualization_exercise in iterable_visualization_exercises:
-            if visualization_exercise.topic.searchable_name == topic:
-                visualization_exercises.append(visualization_exercise)
-
-        # Check to see if topic exists
-        if models.Topic.objects.filter(searchable_name=topic).exists():
-            # Topic object to pass into template
-            specific_topic = models.Topic.objects.get(searchable_name=topic)
-        else:
-            return render(request, "errors/topic-does-not-exist.html")
-
-        # Adding topic breadcrumb if exists
-        breadcrumbs.append({
-            "text": specific_topic.name,
-            "link": None,
-        })
-
     return render(request, "home/exercises/mini-exercises/visualization-exercises.html", context={
-        "topics": topics,
         "exercises": visualization_exercises,
         "breadcrumbs": breadcrumbs,
         "topic": specific_topic
@@ -297,17 +215,12 @@ def visualization_exercise(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-
-    # Grabbing topic for breadcrumbs
-    topic = visualization_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
         { "text": "Visualize It!", "link": "/exercises/mini-exercises/visualization-exercises/" },
-        { "text": topic.name, "link": "/exercises/mini-exercises/visualization-exercises/?topic=" + topic.searchable_name },
         { "text": visualization_exercise.name, "link": None }
     ]
 
@@ -363,31 +276,7 @@ def refactor_exercises(request):
         { "text": "Refactor It!", "link": "/exercises/mini-exercises/refactor-exercises/" }
     ]
 
-    if request.GET.get("topic"):
-        topic = request.GET.get("topic")
-
-        # Iterating through project exercises to find ones that are in the topic
-        iterable_refactor_exercises = refactor_exercises
-        refactor_exercises = []
-        for refactor_exercise in iterable_refactor_exercises:
-            if refactor_exercise.topic.searchable_name == topic:
-                refactor_exercises.append(refactor_exercise)
-
-        # Check to see if topic exists
-        if models.Topic.objects.filter(searchable_name=topic).exists():
-            # Topic object to pass into template
-            specific_topic = models.Topic.objects.get(searchable_name=topic)
-        else:
-            return render(request, "errors/topic-does-not-exist.html")
-
-        # Adding topic breadcrumb if exists
-        breadcrumbs.append({
-            "text": specific_topic.name,
-            "link": None
-        })
-
     return render(request, "home/exercises/mini-exercises/refactor-exercises.html", context={
-        "topics": topics,
         "exercises": refactor_exercises,
         "topic": specific_topic,
         "breadcrumbs": breadcrumbs
@@ -407,17 +296,12 @@ def refactor_exercise(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-
-    # Grabbing topic for breadcrumbs
-    topic = refactor_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
         { "text": "Refactor It!", "link": "/exercises/mini-exercises/refactor-exercises/" },
-        { "text": topic.name, "link": "/exercises/mini-exercises/refactor-exercises/?topic=" + topic.searchable_name },
         { "text": refactor_exercise.name, "link": None }
     ]
 
@@ -474,31 +358,7 @@ def teaching_exercises(request):
         { "text": "Teach It!", "link": "/exercises/mini-exercises/teaching-exercises/" }
     ]
 
-    if request.GET.get("topic"):
-        topic = request.GET.get("topic")
-
-        # Iterating through project exercises to find ones that are in the topic
-        iterable_teaching_exercises = teaching_exercises
-        teaching_exercises = []
-        for teaching_exercise in iterable_teaching_exercises:
-            if teaching_exercise.topic.searchable_name == topic:
-                teaching_exercises.append(teaching_exercise)
-
-        # Check to see if topic exists
-        if models.Topic.objects.filter(searchable_name=topic).exists():
-            # Topic object to pass into template
-            specific_topic = models.Topic.objects.get(searchable_name=topic)
-        else:
-            return render(request, "errors/topic-does-not-exist.html")
-
-        # Adding topic breadcrumb if exists
-        breadcrumbs.append({
-            "text": specific_topic.name,
-            "link": None
-        })
-
     return render(request, "home/exercises/mini-exercises/teaching-exercises.html", context={
-        "topics": topics,
         "exercises": teaching_exercises,
         "topic": specific_topic,
         "breadcrumbs": breadcrumbs,
@@ -516,17 +376,12 @@ def teaching_exercise(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-
-    # Grabbing topic for breadcrumbs
-    topic = teaching_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
         { "text": "Teach It!", "link": "/exercises/mini-exercises/teaching-exercises/" },
-        { "text": topic.name, "link": "/exercises/mini-exercises/teaching-exercises/?topic=" + topic.searchable_name },
         { "text": teaching_exercise.name, "link": None }
     ]
 
@@ -583,31 +438,7 @@ def github_exercises(request):
         { "text": "Git/GitHub", "link": "/exercises/mini-exercises/github-exercises/" }
     ]
 
-    if request.GET.get("topic"):
-        topic = request.GET.get("topic")
-
-        # Iterating through project exercises to find ones that are in the topic
-        iterable_github_exercises = github_exercises
-        github_exercises = []
-        for github_exercise in iterable_github_exercises:
-            if github_exercise.topic.searchable_name == topic:
-                github_exercises.append(github_exercise)
-
-        # Check to see if topic exists
-        if models.Topic.objects.filter(searchable_name=topic).exists():
-            # Topic object to pass into template
-            specific_topic = models.Topic.objects.get(searchable_name=topic)
-        else:
-            return render(request, "errors/topic-does-not-exist.html")
-
-        # Adding topic breadcrumb if exists
-        breadcrumbs.append({
-            "text": specific_topic.name,
-            "link": None
-        })
-
     return render(request, "home/exercises/mini-exercises/github-exercises.html", context={
-        "topics": topics,
         "exercises": github_exercises,
         "breadcrumbs": breadcrumbs,
         "topic": specific_topic
@@ -627,17 +458,12 @@ def github_exercise(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-
-    # Grabbing topic for breadcrumbs
-    topic = github_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
         { "text": "Git/GitHub", "link": "/exercises/mini-exercises/github-exercises/" },
-        { "text": topic.name, "link": "/exercises/mini-exercises/github-exercises/?topic=" + topic.searchable_name },
         { "text": github_exercise.name, "link": None }
     ]
 
@@ -694,31 +520,7 @@ def research_exercises(request):
         { "text": "Research It!", "link": "/exercises/mini-exercises/research-exercises/" }
     ]
 
-    if request.GET.get("topic"):
-        topic = request.GET.get("topic")
-
-        # Iterating through project exercises to find ones that are in the topic
-        iterable_research_exercises = research_exercises
-        research_exercises = []
-        for research_exercise in iterable_research_exercises:
-            if research_exercise.topic.searchable_name == topic:
-                research_exercises.append(research_exercise)
-
-        # Check to see if topic exists
-        if models.Topic.objects.filter(searchable_name=topic).exists():
-            # Topic object to pass into template
-            specific_topic = models.Topic.objects.get(searchable_name=topic)
-        else:
-            return render(request, "errors/topic-does-not-exist.html")
-
-        # Adding topic breadcrumb if exists
-        breadcrumbs.append({
-            "text": specific_topic.name,
-            "link": None
-        })
-
     return render(request, "home/exercises/mini-exercises/research-exercises.html", context={
-        "topics": topics,
         "exercises": research_exercises,
         "breadcrumbs": breadcrumbs,
         "topic": specific_topic
@@ -738,17 +540,12 @@ def research_exercise(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-
-    # Grabbing topic for breadcrumbs
-    topic = research_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Mini Exercises", "link": "/exercises/mini-exercises/" },
         { "text": "Research It!", "link": "/exercises/mini-exercises/research-exercises/" },
-        { "text": topic.name, "link": "/exercises/mini-exercises/research-exercises/?topic=" + topic.searchable_name },
         { "text": research_exercise.name, "link": None }
     ]
 
