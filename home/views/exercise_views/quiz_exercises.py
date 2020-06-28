@@ -5,7 +5,7 @@ from main import models
 import json
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def quiz_exercises(request):
     topics = models.Topic.objects.all()
     quiz_exercises = models.QuizExercise.objects.all()
@@ -18,38 +18,14 @@ def quiz_exercises(request):
         { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" }
     ]
 
-    if request.GET.get("topic"):
-        topic = request.GET.get("topic")
-
-        # Iterating through project exercises to find ones that are in the topic
-        iterable_quiz_exercises = quiz_exercises
-        quiz_exercises = []
-        for quiz_exercise in iterable_quiz_exercises:
-            if quiz_exercise.topic.searchable_name == topic:
-                quiz_exercises.append(quiz_exercise)
-
-        # Check to see if topic exists
-        if models.Topic.objects.filter(searchable_name=topic).exists():
-            # Topic object to pass into template
-            specific_topic = models.Topic.objects.get(searchable_name=topic)
-        else:
-            return render(request, "errors/topic-does-not-exist.html")
-
-        # Adding topic breadcrumb if exists
-        breadcrumbs.append({
-            "text": specific_topic.name,
-            "link": None
-        })
-
     return render(request, "home/exercises/quiz-exercises/quiz-exercises.html", context={
-        "topics": topics,
         "exercises": quiz_exercises,
         "topic": specific_topic,
         "breadcrumbs": breadcrumbs
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def quiz_exercise(request):
     quiz_id = request.GET.get("id")
     if quiz_id:
@@ -80,7 +56,7 @@ def quiz_exercise(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def take_quiz(request):
     quiz_id = request.GET.get("id")
     if quiz_id:
@@ -129,7 +105,7 @@ def take_quiz(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def quiz_results(request):
     # Grabbing quiz from query parameters
     quiz_id = request.GET.get("id")

@@ -6,7 +6,7 @@ from datetime import datetime, date
 from main import models
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def profile(request, user_id):
     # Getting current user
     if User.objects.filter(id=user_id).exists():
@@ -51,7 +51,7 @@ def profile(request, user_id):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def edit_profile(request, user_id):
     # Getting current user
     if User.objects.filter(id=user_id).exists():

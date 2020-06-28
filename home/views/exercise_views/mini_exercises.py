@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from main import models
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def mini_exercises(request):
     # Creating breadcrumbs
     breadcrumbs = [
@@ -18,7 +18,7 @@ def mini_exercises(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def fix_the_code_exercises(request):
     topics = models.Topic.objects.all()
     fix_the_code_exercises = models.FixTheCodeExercise.objects.all()
@@ -66,7 +66,7 @@ def fix_the_code_exercises(request):
     return render(request, "home/exercises/mini-exercises/fix-the-code-exercises.html")
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def fix_the_code_exercise(request):
     fix_the_code_exercise_id = request.GET.get("id")
     if fix_the_code_exercise_id:
@@ -129,7 +129,7 @@ def fix_the_code_exercise(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def brainteaser_exercises(request):
     topics = models.Topic.objects.all()
     brainteaser_exercises = models.BrainTeaserExercise.objects.all()
@@ -176,7 +176,7 @@ def brainteaser_exercises(request):
     return render(request, "home/exercises/mini-exercises/brainteaser-exercises.html")
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def brainteaser_exercise(request):
     brainteaser_exercise_id = request.GET.get("id")
     if brainteaser_exercise_id:
@@ -239,7 +239,7 @@ def brainteaser_exercise(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def visualization_exercises(request):
     topics = models.Topic.objects.all()
     visualization_exercises = models.VisualizationExercise.objects.all()
@@ -286,7 +286,7 @@ def visualization_exercises(request):
     return render(request, "home/exercises/mini-exercises/visualization-exercises.html")
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def visualization_exercise(request):
     visualization_exercise_id = request.GET.get("id")
     if visualization_exercise_id:
@@ -349,7 +349,7 @@ def visualization_exercise(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def refactor_exercises(request):
     topics = models.Topic.objects.all()
     refactor_exercises = models.RefactorExercise.objects.all()
@@ -396,7 +396,7 @@ def refactor_exercises(request):
     return render(request, "home/exercises/mini-exercises/refactor-exercises.html")
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def refactor_exercise(request):
     refactor_exercise_id = request.GET.get("id")
     if refactor_exercise_id:
@@ -460,7 +460,7 @@ def refactor_exercise(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def teaching_exercises(request):
     topics = models.Topic.objects.all()
     teaching_exercises = models.TeachingExercise.objects.all()
@@ -505,7 +505,7 @@ def teaching_exercises(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def teaching_exercise(request):
     teaching_exercise_id = request.GET.get("id")
     if teaching_exercise_id:
@@ -569,7 +569,7 @@ def teaching_exercise(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def github_exercises(request):
     topics = models.Topic.objects.all()
     github_exercises = models.GitHubExercise.objects.all()
@@ -616,7 +616,7 @@ def github_exercises(request):
     return render(request, "home/exercises/mini-exercises/github-exercises.html")
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def github_exercise(request):
     github_exercise_id = request.GET.get("id")
     if github_exercise_id:
@@ -680,7 +680,7 @@ def github_exercise(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def research_exercises(request):
     topics = models.Topic.objects.all()
     research_exercises = models.ResearchExercise.objects.all()
@@ -727,7 +727,7 @@ def research_exercises(request):
     return render(request, "home/exercises/mini-exercises/research-exercises.html")
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def research_exercise(request):
     research_exercise_id = request.GET.get("id")
     if research_exercise_id:

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from main import models
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def project_exercises(request):
     project_exercises = models.ProjectExercise.objects.all()
     specific_topic = None
@@ -24,7 +24,7 @@ def project_exercises(request):
     })
 
 
-@login_required(login_url="http://www.w3hacks.com/login")
+@login_required(login_url="/login/")
 def project_exercise(request):
     message = None
     project_id = request.GET.get("id")
