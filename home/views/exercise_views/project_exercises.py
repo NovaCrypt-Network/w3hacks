@@ -6,7 +6,6 @@ from main import models
 
 @login_required(login_url="http://www.w3hacks.com/login")
 def project_exercises(request):
-    topics = models.Topic.objects.all()
     project_exercises = models.ProjectExercise.objects.all()
     specific_topic = None
 
@@ -17,32 +16,8 @@ def project_exercises(request):
         { "text": "Project Exercises", "link": "/exercises/project-exercises/" }
     ]
 
-    if request.GET.get("topic"):
-        topic = request.GET.get("topic")
-
-        # Iterating through project exercises to find ones that are in the topic
-        iterable_project_exercises = project_exercises
-        project_exercises = []
-        for project_exercise in iterable_project_exercises:
-            if project_exercise.topic.searchable_name == topic:
-                project_exercises.append(project_exercise)
-
-        # Check to see if topic exists
-        if models.Topic.objects.filter(searchable_name=topic).exists():
-            # Topic object to pass into template
-            specific_topic = models.Topic.objects.get(searchable_name=topic)
-        else:
-            return render(request, "errors/topic-does-not-exist.html")
-
-        # Adding topic breadcrumb if exists
-        breadcrumbs.append({
-            "text": specific_topic.name,
-            "link": None
-        })
-
 
     return render(request, "home/exercises/project-exercises/project-exercises.html", context={
-        "topics": topics,
         "exercises": project_exercises,
         "topic": specific_topic,
         "breadcrumbs": breadcrumbs
