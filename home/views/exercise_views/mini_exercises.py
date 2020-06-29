@@ -20,7 +20,6 @@ def mini_exercises(request):
 
 @login_required(login_url="/login/")
 def fix_the_code_exercises(request):
-    topics = models.Topic.objects.all()
     fix_the_code_exercises = models.FixTheCodeExercise.objects.all()
     specific_topic = None
 
@@ -102,7 +101,6 @@ def fix_the_code_exercise(request):
 
 @login_required(login_url="/login/")
 def brainteaser_exercises(request):
-    topics = models.Topic.objects.all()
     brainteaser_exercises = models.BrainTeaserExercise.objects.all()
     specific_topic = None
 
@@ -183,7 +181,6 @@ def brainteaser_exercise(request):
 
 @login_required(login_url="/login/")
 def visualization_exercises(request):
-    topics = models.Topic.objects.all()
     visualization_exercises = models.VisualizationExercise.objects.all()
     specific_topic = None
 
@@ -264,7 +261,6 @@ def visualization_exercise(request):
 
 @login_required(login_url="/login/")
 def refactor_exercises(request):
-    topics = models.Topic.objects.all()
     refactor_exercises = models.RefactorExercise.objects.all()
     specific_topic = None
 
@@ -346,7 +342,6 @@ def refactor_exercise(request):
 
 @login_required(login_url="/login/")
 def teaching_exercises(request):
-    topics = models.Topic.objects.all()
     teaching_exercises = models.TeachingExercise.objects.all()
     specific_topic = None
 
@@ -426,7 +421,6 @@ def teaching_exercise(request):
 
 @login_required(login_url="/login/")
 def github_exercises(request):
-    topics = models.Topic.objects.all()
     github_exercises = models.GitHubExercise.objects.all()
     specific_topic = None
 
@@ -508,7 +502,6 @@ def github_exercise(request):
 
 @login_required(login_url="/login/")
 def research_exercises(request):
-    topics = models.Topic.objects.all()
     research_exercises = models.ResearchExercise.objects.all()
     specific_topic = None
 

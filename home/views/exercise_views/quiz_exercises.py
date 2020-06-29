@@ -7,7 +7,6 @@ import json
 
 @login_required(login_url="/login/")
 def quiz_exercises(request):
-    topics = models.Topic.objects.all()
     quiz_exercises = models.QuizExercise.objects.all()
     specific_topic = None
 
