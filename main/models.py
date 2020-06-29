@@ -11,8 +11,8 @@ def generate_id():
     return ''.join([random.choice(string.ascii_letters + string.digits) for n in range(8)])
 
 # Making the default Django user's username and email unique
-User._meta.get_field('username')._unique = True
-User._meta.get_field('email')._unique = True
+# User._meta.get_field('username')._unique = True
+# User._meta.get_field('email')._unique = True
 
 
 ####################
@@ -121,6 +121,19 @@ class Theme(models.Model):
 #####################
 ## EXERCISE MODELS ##
 #####################
+
+IMPLEMENTATION_CHOICES = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+)
+
+class Implementation(models.Model):
+    name = models.CharField(max_length=50) # Name of the implementation (easy, medium, hard)
+    searchable_name = models.CharField(max_length=50) # Name of the difficulty level that will be added into the query parameter
+    type = models.CharField(max_length=50, choices=IMPLEMENTATION_CHOICES)
+
+    def __str__(self):
+        return self.name
 
 
 class DifficultyLevel(models.Model):
