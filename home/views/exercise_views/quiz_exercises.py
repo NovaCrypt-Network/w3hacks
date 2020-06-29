@@ -62,15 +62,11 @@ def take_quiz(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-    # Grabbing topic for breadcrumbs
-    topic = quiz_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" },
-        { "text": topic.name, "link": "/exercises/quiz-exercises/?topic=" + topic.searchable_name },
         { "text": quiz_exercise.name, "link": "/exercises/quiz-exercises/exercise/?id=" + quiz_exercise.id },
         { "text": "Take Quiz", "link": None }
     ]
@@ -112,15 +108,11 @@ def quiz_results(request):
     else:
         return render(request, "errors/exercise-does-not-exist.html")
 
-    # Grabbing topic for breadcrumbs
-    topic = quiz_exercise.topic
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
         { "text": "Exercises", "link": "/exercises/" },
         { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" },
-        { "text": topic.name, "link": "/exercises/quiz-exercises/?topic=" + topic.searchable_name },
         { "text": quiz_exercise.name, "link": "/exercises/quiz-exercises/exercise/?id=" + quiz_exercise.id },
         { "text": "Quiz Results", "link": None }
     ]
