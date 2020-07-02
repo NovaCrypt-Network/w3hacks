@@ -43,10 +43,17 @@ def quiz_exercise(request):
         { "text": quiz_exercise.name, "link": None }
     ]
 
+    # Checking to see if user already took this quiz
+    user_already_taken_quiz = False
+    for completed_quiz_exercise in list(request.user.profile.completed_quiz_exercises.all()):
+        if completed_quiz_exercise.quiz_exercise == quiz_exercise:
+            user_already_taken_quiz = True
+
     return render(request, "home/exercises/quiz-exercises/quiz-exercise.html", context={
         "exercise": quiz_exercise,
         "resources": list(quiz_exercise.resources.all()),
-        "breadcrumbs": breadcrumbs
+        "breadcrumbs": breadcrumbs,
+        "user_already_taken_quiz": user_already_taken_quiz
     })
 
 

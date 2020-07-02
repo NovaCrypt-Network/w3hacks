@@ -39,8 +39,16 @@
       {% endif %}
     </div>
 
-    <div class="submit mt-4">
-      <a class="solid-cta-button" href="take-quiz/?id={{ exercise.id }}" target="_">Take the Quiz!</a>
-    </div>
+    {% if user_already_taken_quiz %}
+      <h1 class="heading-tertiary">{{ quiz.name }}</h1>
+      <div class="mb-4">
+        <strong>You have already taken this quiz.</strong>
+      </div>
+      <a href="quiz-results/?id={{ exercise.id }}" class="solid-cta-button">See Results</a>
+    {% else %}
+      <div class="submit mt-4">
+        <a class="solid-cta-button" href="take-quiz/?id={{ exercise.id }}" target="_">Take the Quiz!</a>
+      </div>
+    {% endif %}
   </div>
 {% endblock %}
