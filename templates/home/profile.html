@@ -149,140 +149,8 @@
             <small>No completed quiz exercises yet!</small>
           {% endif %}
         </div>
-
-        <div class="exercise-type">
-          <h3 class="heading-fourth">Fix The Code Exercises</h3>
-          {% if completed_fix_the_code_exercises %}
-            <div class="exercises">
-              {% for exercise in completed_fix_the_code_exercises %}
-                <div class="exercise">
-                  <h5>{{ exercise.fix_the_code_exercise.name }}</h5>
-                  <p>{{ exercise.fix_the_code_exercise.description }}</p>
-                  <a class="view-exercise-link" href="/exercises/mini-exercises/fix-the-code-exercises/exercise/?id={{ exercise.fix_the_code_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          {% else %}
-            <small>No completed quiz exercises yet!</small>
-          {% endif %}
-        </div>
-
-        <div class="exercise-type">
-          <h3 class="heading-fourth">BrainTeaser Exercises</h3>
-          {% if completed_brainteaser_exercises %}
-            <div class="exercises">
-              {% for exercise in completed_brainteaser_exercises %}
-                <div class="exercise">
-                  <h5>{{ exercise.brainteaser_exercise.name }}</h5>
-                  <p>{{ exercise.brainteaser_exercise.description }}</p>
-                  <a class="view-exercise-link" href="/exercises/mini-exercises/brainteaser-exercises/exercise/?id={{ exercise.brainteaser_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          {% else %}
-            <small>No completed brainteaser exercises yet!</small>
-          {% endif %}
-        </div>
-
-        <div class="exercise-type">
-          <h3 class="heading-fourth">Visualization Exercises</h3>
-          {% if completed_visualization_exercises %}
-            <div class="exercises">
-              {% for exercise in completed_visualization_exercises %}
-                <div class="exercise">
-                  <h5>{{ exercise.visualization_exercise.name }}</h5>
-                  <p>{{ exercise.visualization_exercise.description }}</p>
-                  <a class="view-exercise-link" href="/exercises/mini-exercises/visualization-exercises/exercise/?id={{ exercise.visualization_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          {% else %}
-            <small>No completed visualization exercises yet!</small>
-          {% endif %}
-        </div>
-
-        <div class="exercise-type">
-          <h3 class="heading-fourth">Refactoring Exercises</h3>
-          {% if completed_refactor_exercises %}
-            <div class="exercises">
-              {% for exercise in completed_refactor_exercises %}
-                <div class="exercise">
-                  <h5>{{ exercise.refactor_exercise.name }}</h5>
-                  <p>{{ exercise.refactor_exercise.description }}</p>
-                  <a class="view-exercise-link" href="/exercises/mini-exercises/refactor-exercises/exercise/?id={{ exercise.refactor_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          {% else %}
-            <small>No completed refactor exercises yet!</small>
-          {% endif %}
-        </div>
-
-        <div class="exercise-type">
-          <h3 class="heading-fourth">Teaching Exercises</h3>
-          {% if completed_teaching_exercises %}
-            <div class="exercises">
-              {% for exercise in completed_teaching_exercises %}
-                <div class="exercise">
-                  <h5>{{ exercise.teaching_exercise.name }}</h5>
-                  <p>{{ exercise.teaching_exercise.description }}</p>
-                  <a class="view-exercise-link" href="/exercises/mini-exercises/teaching-exercises/exercise/?id={{ exercise.teaching_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          {% else %}
-            <small>No completed teaching exercises yet!</small>
-          {% endif %}
-        </div>
-
-        <div class="exercise-type">
-          <h3 class="heading-fourth">Git/GitHub Exercises</h3>
-          {% if completed_github_exercises %}
-            <div class="exercises">
-              {% for exercise in completed_github_exercises %}
-                <div class="exercise">
-                  <h5>{{ exercise.github_exercise.name }}</h5>
-                  <p>{{ exercise.github_exercise.description }}</p>
-                  <a class="view-exercise-link" href="/exercises/mini-exercises/github-exercises/exercise/?id={{ exercise.github_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          {% else %}
-            <small>No completed github exercises yet!</small>
-          {% endif %}
-        </div>
-
-        <div class="exercise-type">
-          <h3 class="heading-fourth">Research Exercises</h3>
-          {% if completed_research_exercises %}
-            <div class="exercises">
-              {% for exercise in completed_research_exercises %}
-                <div class="exercise">
-                  <h5>{{ exercise.research_exercise.name }}</h5>
-                  <p>{{ exercise.research_exercise.description }}</p>
-                  <a class="view-exercise-link" href="/exercises/mini-exercises/research-exercises/exercise/?id={{ exercise.research_exercise.id }}">
-                    <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          {% else %}
-            <small>No completed research exercises yet!</small>
-          {% endif %}
-        </div>
       </div>
+
       <div class="profile-body">
         <div class="hackathon-container">
           <h1 class="heading-tertiary">Hackathons</h1>
@@ -301,5 +169,6 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
 {% endblock %}

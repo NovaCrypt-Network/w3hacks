@@ -43,13 +43,6 @@ class Profile(models.Model):
 
     completed_project_exercises = models.ManyToManyField("CompletedProjectExercise", blank=True) # List of completed project exercises
     completed_quiz_exercises = models.ManyToManyField("CompletedQuizExercise", blank=True) # List of completed quiz exercises
-    completed_fix_the_code_exercises = models.ManyToManyField("CompletedFixTheCodeExercise", blank=True) # List of completed fix_the_code exercises
-    completed_brainteaser_exercises = models.ManyToManyField("CompletedBrainTeaserExercise", blank=True) # List of completed brainteaser exercises
-    completed_visualization_exercises = models.ManyToManyField("CompletedVisualizationExercise", blank=True) # List of completed visualization exercises
-    completed_refactor_exercises = models.ManyToManyField("CompletedRefactorExercise", blank=True) # List of completed refactor exercises
-    completed_teaching_exercises = models.ManyToManyField("CompletedTeachingExercise", blank=True) # List of completed teaching exercises
-    completed_github_exercises = models.ManyToManyField("CompletedGitHubExercise", blank=True) # List of completed github exercises
-    completed_research_exercises = models.ManyToManyField("CompletedResearchExercise", blank=True) # List of completed research exercises
 
     joined_date = models.DateField(default=date.today()) # The date when the user joined w3Hacks
     credits = models.IntegerField(default=0) # The number of credits the user has
@@ -138,15 +131,6 @@ class ProjectImplementation(models.Model):
         return self.name
 
 
-class MiniImplementation(models.Model):
-    name = models.CharField(max_length=50) # Name of the implementation (easy, medium, hard)
-    searchable_name = models.CharField(max_length=50) # Name of the difficulty level that will be added into the query parameter
-    type = models.CharField(max_length=50, choices=IMPLEMENTATION_CHOICES)
-
-    def __str__(self):
-        return self.name
-
-
 class DifficultyLevel(models.Model):
     name = models.CharField(max_length=50) # Name of the difficulty level (easy, medium, hard)
     searchable_name = models.CharField(max_length=50) # Name of the difficulty level that will be added into the query parameter
@@ -223,179 +207,6 @@ class CompletedQuizExercise(models.Model):
         return "Completed Quiz Exercise: " + self.quiz_exercise.name
 
 
-##########################
-## MINI-EXERCISE MODELS ##
-##########################
-
-class FixTheCodeExercise(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for fix the code mini-exercise
-    name = models.CharField(max_length=50) # Name of the fix the code mini exercise
-    description = models.TextField() # Description of the fix the code mini exercise
-    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
-    implementation = models.ForeignKey("MiniImplementation", on_delete=models.PROTECT) # The language/framework the mini exercise will be completed in
-    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this fix the code mini exercise
-    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this fix the code mini exercise
-    repl_link = models.CharField(max_length=100) # Link to repl.it the user will use
-
-    def __str__(self):
-        return self.name
-
-
-class CompletedFixTheCodeExercise(models.Model):
-    fix_the_code_exercise = models.ForeignKey("FixTheCodeExercise", on_delete=models.PROTECT) # The mini exercise taken
-    repl_link = models.CharField(max_length=100) # Link to completed repl
-    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
-
-    def __str__(self):
-        return "Completed Fix the Code Exercise: " + self.fix_the_code_exercise.name
-
-
-class BrainTeaserExercise(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for the mini-exercise
-    name = models.CharField(max_length=50) # Name of the mini exercise
-    description = models.TextField() # Description of the mini exercise
-    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
-    implementation = models.ForeignKey("MiniImplementation", on_delete=models.PROTECT) # The language/framework the mini exercise will be completed in
-    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
-    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
-    repl_link = models.CharField(max_length=100) # Link to the repl the user will use
-
-    def __str__(self):
-        return self.name
-
-
-class CompletedBrainTeaserExercise(models.Model):
-    brainteaser_exercise = models.ForeignKey("BrainTeaserExercise", on_delete=models.PROTECT) # The mini exercise taken
-    repl_link = models.CharField(max_length=100) # Link to completed repl
-    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
-
-    def __str__(self):
-        return "Completed Brain Teaser Exercise: " + self.brainteaser_exercise.name
-
-
-class RefactorExercise(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for the mini-exercise
-    name = models.CharField(max_length=50) # Name of the mini exercise
-    description = models.TextField() # Description of the mini exercise
-    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
-    implementation = models.ForeignKey("MiniImplementation", on_delete=models.PROTECT) # The language/framework the mini exercise will be completed in
-    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
-    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
-    repl_link = models.CharField(max_length=100) # Link to the repl the user will use
-
-    def __str__(self):
-        return self.name
-
-
-class CompletedRefactorExercise(models.Model):
-    refactor_exercise = models.ForeignKey("RefactorExercise", on_delete=models.PROTECT) # The mini exercise taken
-    repl_link = models.CharField(max_length=100) # Link to completed repl
-    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
-
-    def __str__(self):
-        return "Completed Refactor Exercise: " + self.refactor_exercise.name
-
-
-class VisualizationExercise(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for the mini-exercise
-    name = models.CharField(max_length=50) # Name of the mini exercise
-    description = models.TextField() # Description of the mini exercise
-    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
-    implementation = models.ForeignKey("MiniImplementation", on_delete=models.PROTECT) # The tool the mini exercise will be completed in
-    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
-    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
-
-    def __str__(self):
-        return self.name
-
-
-class CompletedVisualizationExercise(models.Model):
-    visualization_exercise = models.ForeignKey("VisualizationExercise", on_delete=models.PROTECT) # The mini exercise taken
-    visualization_file = models.FileField() # File for draw.io visualization
-    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
-
-    def __str__(self):
-        return "Completed Visualization Exercise: " + self.visualization_exercise.name
-
-
-class TeachingExercise(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for the mini-exercise
-    name = models.CharField(max_length=50) # Name of the mini exercise
-    description = models.TextField() # Description of the mini exercise
-    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
-    formats = ArrayField(models.CharField(max_length=50), null=True, blank=True) # The formats available to submit (Video, Document)
-    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
-    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
-
-    def __str__(self):
-        return self.name
-
-
-class CompletedTeachingExercise(models.Model):
-    teaching_exercise = models.ForeignKey("TeachingExercise", on_delete=models.PROTECT) # The mini exercise taken
-    teaching_exercise_link = models.CharField(max_length=200) # Link to completed exercise (YouTube video, Google Docs link)
-    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
-
-    def __str__(self):
-        return "Completed Teaching Exercise: " + self.teaching_exercise.name
-
-
-class GitHubExercise(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for the mini-exercise
-    name = models.CharField(max_length=50) # Name of the mini exercise
-    description = models.TextField() # Description of the mini exercise
-    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
-    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
-    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
-
-    def __str__(self):
-        return self.name
-
-
-class CompletedGitHubExercise(models.Model):
-    github_exercise = models.ForeignKey("GitHubExercise", on_delete=models.PROTECT) # The mini exercise taken
-    github_exercise_link = models.CharField(max_length=200) # Link to completed exercise (PR or Issue link)
-    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
-
-    def __str__(self):
-        return "Completed GitHub Exercise: " + self.github_exercise.name
-
-
-class ResearchExercise(models.Model):
-    id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for the mini-exercise
-    name = models.CharField(max_length=50) # Name of the mini exercise
-    description = models.TextField() # Description of the mini exercise
-    difficulty_level = models.ForeignKey("DifficultyLevel", on_delete=models.PROTECT) # The difficulty level of the exercise
-    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this mini exercise
-    resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this mini exercise
-    error = models.TextField(null=True, blank=True) # OPTIONAL: Error to research about
-
-    def __str__(self):
-        return self.name
-
-
-class CompletedResearchExercise(models.Model):
-    research_exercise = models.ForeignKey("ResearchExercise", on_delete=models.PROTECT) # The mini exercise taken
-    research_link = models.CharField(max_length=200) # Link to completed exercise (StackOverflow or documentation link)
-    score = models.IntegerField(null=True, blank=True) # Score for how good the mini exercise completion is from 1-10
-
-    def __str__(self):
-        return "Completed Research Exercise: " + self.research_exercise.name
-
-
-# For 'Resources' section of Hackathon
-class ResourceLink(models.Model):
-    title = models.CharField(max_length=50) # String to be shown on display
-    url_extension = models.CharField(max_length=50, unique=True) # String for url extension
-    link = models.CharField(max_length=200) # Actual link URL
-
-    def __str__(self):
-        return self.title
-
-
-#############################################################################################################################
-
-
 ######################
 ## HACKATHON MODELS ##
 ######################
@@ -417,6 +228,16 @@ class ScheduleEvent(models.Model):
     description = models.TextField(max_length=300) # Description of the event
     scheduled_datetime = models.DateTimeField(null=True, blank=True) # When the event is scheduled
     event_link = models.ForeignKey("ResourceLink", on_delete=models.CASCADE, null=True, blank=True) # OPTIONAL: Link for the event
+
+    def __str__(self):
+        return self.title
+
+
+# For 'Resources' section of Hackathon
+class ResourceLink(models.Model):
+    title = models.CharField(max_length=50) # String to be shown on display
+    url_extension = models.CharField(max_length=50, unique=True) # String for url extension
+    link = models.CharField(max_length=200) # Actual link URL
 
     def __str__(self):
         return self.title
