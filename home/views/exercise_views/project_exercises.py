@@ -44,33 +44,41 @@ def project_exercise(request):
         { "text": project_exercise.name, "link": None }
     ]
 
-
     # Sending in completed project exercise in case user already completed it
     completed_project_exercise = None
 
+    # Checking if user already completed project
+    user_already_completed_project = False
+    for iterated_completed_project_exercise in list(request.user.profile.completed_project_exercises.all()):
+        if iterated_completed_project_exercise.project_exercise == project_exercise:
+            user_already_completed_project = True
+            completed_project_exercise = iterated_completed_project_exercise
 
     # Receiving the submitted github link for the exercise
     if request.method == "POST":
         github_link = request.POST.get("github-link")
 
         # Creating completed project exercise with no score
-        completed_project_exercise = models.CompletedProjectExercise(project_exercise=project_exercise, github_link=github_link)
-        completed_project_exercise.save()
+        if completed_project_exercise:
+            completed_project_exercise.github_link = github_link
+            completed_project_exercise.score = None
+            completed_project_exercise.feedback = None
+            completed_project_exercise.save()
 
-        # Adding completed project to user
-        current_user_profile = request.user.profile
-        current_user_profile.completed_project_exercises.add(completed_project_exercise)
-        current_user_profile.save()
+            # Sending user a message
+            message = "Project resubmitted successfully!"
 
-        # Sending user a message
-        message = "Project submitted successfully!"
+        else:
+            completed_project_exercise = models.CompletedProjectExercise(project_exercise=project_exercise, github_link=github_link)
+            completed_project_exercise.save()
 
+            # Adding completed project to user
+            current_user_profile = request.user.profile
+            current_user_profile.completed_project_exercises.add(completed_project_exercise)
+            current_user_profile.save()
 
-    # Checking if user already completed project
-    user_already_completed_project = False
-    for completed_project_exercise in list(request.user.profile.completed_project_exercises.all()):
-        if completed_project_exercise.project_exercise == project_exercise:
-            user_already_completed_project = True
+            # Sending user a message
+            message = "Project submitted successfully!"
 
 
     return render(request, "home/exercises/project-exercises/project-exercise.html", context={

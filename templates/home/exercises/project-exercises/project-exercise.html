@@ -10,8 +10,17 @@
       <div class="completed-container">
         <strong>You already completed this project!</strong>
         <p>GitHub Link: <a href="{{ completed_project_exercise.github_link }}" target="_">{{ completed_project_exercise.github_link }}</a> (check this for updates on your project!)</p>
-        {% if completed_project_exercise.score %}
+        {% if completed_project_exercise.score and completed_project_exercise.feedback %}
           <p>Score: {{ completed_project_exercise.score }}/10</p>
+          <p>Feedback: {{ completed_project_exercise.feedback }}</p>
+          <div class="submit mt-4">
+            <h3 class="heading-fourth">Resubmit</h3>
+            <form enctype="multipart/form-data" method="post">
+              {% csrf_token %}
+              <input class="ghost-input-dark d-inline-block w-auto" type="url" name="github-link" placeholder="GitHub Link">
+              <input class="solid-cta-button" type="submit" value="Submit project">
+            </form>
+          </div>
         {% else %}
           <p><strong>This project hasn't been scored yet!</strong></p>
         {% endif %}
@@ -23,7 +32,7 @@
           <strong>Description:</strong> {{ exercise.description }}
         </p>
         <p>
-          <strong>Topic:</strong> {{ exercise.topic.name }}
+          <strong>Implementation:</strong> {{ exercise.implementation.name }}
         </p>
         <p>
           <strong>Difficulty Level:</strong> {{ exercise.difficulty_level.name }}
