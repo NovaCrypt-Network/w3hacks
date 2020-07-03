@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - Links</title>
+  <link rel="stylesheet" href="{% static 'home/leaderboards.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="container py-5">
+    <h1 class="heading-secondary">Links</h1>
+    <table class="mt-4">
+      <tr>
+        <th>Name</th>
+        <th>Link</th>
+      </tr>
+      {% for link in links %}
+        <tr>
+          <td>{{ link.title }}</td>
+          <td>
+            <a href="/{{ link.url_extension }}">links.w3hacks.com/{{ link.url_extension }}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}
