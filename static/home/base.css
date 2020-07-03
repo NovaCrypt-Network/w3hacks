@@ -1,8 +1,7 @@
 @import "./breadcrumbs.css";
 
-body {
-  background-color: #eee;
-  min-height: 100vh;
+nav {
+  background-color: var(--color-primary);
 }
 
 section {
@@ -22,46 +21,6 @@ section {
   position: absolute;
 }
 
-nav {
-  background-color: var(--color-primary);
-}
-
 .dropdown-toggle::after {
   vertical-align: .06em !important;
-}
-
-.completed-container, .completed-container > * {
-  margin-top: 15px;
-}
-
-.footer {
-  background-color: var(--color-primary);
-}
-
-.footer * {
-  color: white;
-}
-
-.footer *:hover {
-  color: white;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 50px;
-}
-
-.footer-grid ul {
-  list-style: none;
-}
-
-.social-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 30px);
-  grid-gap: 10px;
-}
-
-.social-links img {
-  width: 100%;
 }

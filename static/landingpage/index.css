@@ -25,6 +25,19 @@ header {
   margin: 0 auto;
 }
 
+@media (max-width: 1000px) {
+  /* Fixing the header and about section (getting rid of image and grid) */
+  header {
+    min-height: auto !important;
+    padding: 50px 0;
+  }
+
+  .header-grid, .about-grid {
+    padding-top: 0 !important;
+    grid-template-columns: repeat(auto-fill, 100%) !important;
+  }
+}
+
 /* ABOUT */
 .about-grid {
   display: grid;
@@ -36,6 +49,12 @@ header {
 .about-description {
   font-size: 17.5px;
   color: #464646;
+}
+
+@media (max-width: 1000px) {
+  .about {
+    margin-bottom: 50px;
+  }
 }
 
 /* FEATURES */

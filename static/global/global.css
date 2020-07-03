@@ -15,8 +15,18 @@
   font-family: Manrope;
 }
 
+body {
+  background-color: #eee;
+}
+
 .body-container {
   padding: 50px 0;
+}
+
+@media (max-width: 800px) {
+  .body-container {
+    padding: 30px 10px 10px 10px !important;
+  }
 }
 
 .image-cropper {
@@ -27,8 +37,35 @@
   border: 5px solid var(--color-primary-light);
 }
 
-@media (max-width: 800px) {
-  .body-container {
-    padding: 30px 10px 10px 10px !important;
-  }
+/* FOOTER */
+.footer {
+  background-color: var(--color-primary);
+}
+
+.footer * {
+  color: white;
+}
+
+.footer *:hover {
+  color: white;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 50px;
+}
+
+.footer-grid ul {
+  list-style: none;
+}
+
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 30px);
+  grid-gap: 10px;
+}
+
+.social-links img {
+  width: 100%;
 }
