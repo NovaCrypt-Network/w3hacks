@@ -51,15 +51,6 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">w3Hacks Hackathon</a>
-                    <div class="dropdown-menu">
-                      <a href="/about-the-hackathon/" class="dropdown-item">About the Hackathon</a>
-                      <a href="/past-hackathons/" class="dropdown-item">Past Hackathons</a>
-                      <a href="/future-hackathons/" class="dropdown-item">Future Hackathons</a>
-                      <a href="http://hackathon.w3hacks.com" class="dropdown-item">Compete in the Hackathon!</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
                   <a class="nav-link" data-toggle="dropdown" href="#">
                     {% if request.user.profile.profile_picture %}
                       <div class="image-cropper" style="border-width: 2px;">
@@ -108,21 +99,24 @@
     <section class="footer mt-5">
       <div class="container mb-5">
         <div class="footer-grid">
-          <div class="navigate">
-            <h3>Navigate</h3>
+          <div>
+            <h3>Resources</h3>
             <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/contact/">Contact</a></li>
-              <li><a href="/login/">Login</a></li>
-              <li><a href="/register/">Register</a></li>
+              <li><a href="#">Events</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Tutorials</a></li>
+              <li><a href="#">Links</a></li>
+              <li><a href="#">Courses</a></li>
+              <li><a href="#">Join the Community!</a></li>
             </ul>
           </div>
-          <div class="launchtechllc">
-            <h3>Launch Tech LLC</h3>
+          <div>
+            <h3>About</h3>
             <ul>
-              <li><a href="https://www.launchtechllc.com/" target="_blank">Website</a></li>
-              <li><a href="https://www.launchtechllc.com/about" target="_blank">Our Team</a></li>
-              <li><a href="https://www.launchtechllc.com/projects" target="_blank">Other Products</a></li>
+              <li><a href="#">Launch Tech LLC</a></li>
+              <li><a href="#">Open Source</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Partners</a></li>
             </ul>
           </div>
           <div class="contact">

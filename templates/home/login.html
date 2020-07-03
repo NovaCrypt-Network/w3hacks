@@ -10,13 +10,8 @@
     color: black;
   }
 </style>
-  <div class="waves">
-    <img class="wave flip" src="{% static 'img/waves/wave6.svg' %}" alt="">
-    <img class="wave flip" src="{% static 'img/waves/wave5.svg' %}" alt="">
-    <img class="wave flip" src="{% static 'img/waves/wave4.svg' %}" alt="">
-  </div>
-  <div class="container">
-    <h1 class="heading-secondary mb-4">Login</h1>
+  <div class="container py-5">
+    <h1 class="heading-secondary">Login</h1>
     <form method="post">
       {% csrf_token %}
       <label>Username:</label>
