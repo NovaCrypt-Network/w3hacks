@@ -1,0 +1,26 @@
+.breadcrumbs {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.breadcrumb-item {
+  list-style: none;
+}
+
+.breadcrumb-link {
+  color: var(--color-primary-light);
+  text-decoration: underline;
+}
+
+.breadcrumb-link:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 1000px) {
+  .breadcrumbs {
+    display: none;
+  }
+}
