@@ -56,3 +56,9 @@ header {
   margin-right: 5px;
   transform: translateY(-4px);
 }
+
+/* WAVES */
+.waves {
+  position: relative;
+  height: 200px;
+}

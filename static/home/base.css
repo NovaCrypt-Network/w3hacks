@@ -9,11 +9,6 @@ section {
   padding: 50px;
 }
 
-.waves {
-  position: relative;
-  height: 250px;
-}
-
 .flip {
   transform: rotate(180deg);
   top: -5px;
