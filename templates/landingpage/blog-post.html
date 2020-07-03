@@ -1,0 +1,26 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - Blog</title>
+  <link rel="stylesheet" href="{% static 'landingpage/blog.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="waves">
+    <img class="wave flip" src="{% static 'img/waves/wave6.svg' %}">
+    <img class="wave flip" src="{% static 'img/waves/wave5.svg' %}">
+    <img class="wave flip" src="{% static 'img/waves/wave4.svg' %}">
+  </div>
+  <div class="container py-5 mt-5">
+    <h1>{{ blog.title }}</h1>
+    <p>{{ blog.date_posted }}</p>
+
+    <div id="markdown"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" charset="utf-8"></script>
+  <script>
+    const converter = new showdown.Converter();
+    const markdown = document.getElementById("markdown");
+    const html = converter.makeHtml(`{{ blog.body }}`);
+    markdown.innerHTML = html;
+  </script>
+{% endblock %}

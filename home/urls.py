@@ -8,11 +8,15 @@ from hackathon import views as hackathonViews
 urlpatterns = [
     url('admin/', admin.site.urls),
     url("^$", views.index, name="index"),
-    url("^dashboard/$", views.dashboard, name="dashboard"),
     url("^contact/$", views.contact, name="contact"),
+    url("^blog/$", views.blog, name="blog"),
+    url("^blog/(?P<blog_url>[^/]+)$", views.blog_post, name="blog_post"),
     url("^login/$", views.user_login, name="login"),
     url("^register/$", views.register, name="register"),
+
+    # Portal routes
     url("^leaderboards/$", views.leaderboards, name="leaderboards"),
+    url("^dashboard/$", views.dashboard, name="dashboard"),
 
     # Activities URL routes
     url("^exercises/$", views.exercises, name="exercises"),

@@ -1,0 +1,27 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - Blog</title>
+  <link rel="stylesheet" href="{% static 'landingpage/blog.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="waves">
+    <img class="wave flip" src="{% static 'img/waves/wave6.svg' %}">
+    <img class="wave flip" src="{% static 'img/waves/wave5.svg' %}">
+    <img class="wave flip" src="{% static 'img/waves/wave4.svg' %}">
+  </div>
+  <div class="container py-5">
+    <h1 class="heading-secondary mb-4">Blog</h1>
+    <div class="blogs">
+      {% for blog in blogs %}
+        <a href="/blog/{{ blog.url_extension }}">
+          <div class="blog">
+            <h3>{{ blog.title }}</h3>
+            <p>{{ blog.date_posted }}</p>
+            <small>{{ blog.preview }}</small>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

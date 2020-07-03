@@ -1,0 +1,17 @@
+/* WAVES */
+.waves {
+  position: relative;
+  height: 125px;
+}
+
+.blogs {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.blog {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 15px;
+  width: 100%;
+}
