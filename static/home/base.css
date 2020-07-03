@@ -45,6 +45,10 @@ nav {
   color: white;
 }
 
+.footer *:hover {
+  color: white;
+}
+
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -53,4 +57,14 @@ nav {
 
 .footer-grid ul {
   list-style: none;
+}
+
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 30px);
+  grid-gap: 10px;
+}
+
+.social-links img {
+  width: 100%;
 }
