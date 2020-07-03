@@ -2,7 +2,7 @@ body {
   position: relative;
 }
 
-nav, header {
+header {
   background-color: var(--color-primary);
 }
 
