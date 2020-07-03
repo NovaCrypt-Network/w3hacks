@@ -36,11 +36,11 @@ def index(request):
             "message": "Message sent!"
         })
 
-    return render(request, "home/index.html")
+    return render(request, "landingpage/index.html")
 
 
 def contact(request):
-    return render(request, "home/contact.html")
+    return render(request, "landingpage/contact.html")
 
 
 def user_login(request):
@@ -74,7 +74,7 @@ def user_login(request):
                 "status": "bad"
             })
 
-    return render(request, "home/login.html")
+    return render(request, "landingpage/login.html")
 
 
 def register(request):
@@ -156,7 +156,7 @@ def register(request):
 
         return HttpResponseRedirect("/")
 
-    return render(request, "home/register.html", context={
+    return render(request, "landingpage/register.html", context={
         "today": str(date.today())
     })
 
