@@ -1,7 +1,7 @@
 # GENERAL VIEWS
-from .general import *
+from .app import *
 from .profile import *
-from .blog import *
+from .landingpage import *
 
 # EXTERNAL EXERCISE VIEWS
 from .exercise_views.project_exercises import *

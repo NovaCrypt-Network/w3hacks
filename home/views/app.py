@@ -20,29 +20,6 @@ def handler500(request, *args, **argv):
     return render(request, "errors/500.html")
 
 
-def index(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect("/dashboard/")
-
-    if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        message = request.POST.get("message")
-
-        email_body = f"From: {name}\nEmail: {email}\n\n{message}"
-        EmailMessage("w3Hacks Contact Us", email_body, to=["calix.huang1@gmail.com"]).send()
-
-        return render(request, "home/index.html", context={
-            "message": "Message sent!"
-        })
-
-    return render(request, "landingpage/index.html")
-
-
-def contact(request):
-    return render(request, "landingpage/contact.html")
-
-
 def user_login(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect("/dashboard/")

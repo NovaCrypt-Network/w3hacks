@@ -1,0 +1,30 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - News</title>
+  <link rel="stylesheet" href="{% static 'landingpage/blog.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" charset="utf-8"></script>
+{% endblock %}
+{% block body %}
+  <div class="container py-5">
+    <h1 class="heading-secondary mb-4">w3Hacks News and Updates</h1>
+    <div class="updates">
+      {% for update in updates %}
+        <div class="update">
+          <h3>{{ update.title }}</h3>
+          <small>{{ update.date_posted }}</small>
+          <p id="markdown">{{ update.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <script>
+    const converter = new showdown.Converter();
+    const updates = document.querySelectorAll("#markdown");
+
+    for (update of updates) {
+      let html = converter.makeHtml(update.innerHTML);
+      update.innerHTML = html;
+    }
+  </script>
+{% endblock %}
