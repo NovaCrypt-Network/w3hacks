@@ -1,0 +1,24 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - Events</title>
+  <link rel="stylesheet" href="{% static 'landingpage/events.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="container py-5">
+    <a href="/events/">&larr; Back to events</a>
+    <div class="text-center">
+      <h1>{{ event.title }}</h1>
+      <p>{{ event.datetime }}</p>
+    </div>
+
+    <p id="markdown">{{ event.body }}</p>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" charset="utf-8"></script>
+  <script>
+    const converter = new showdown.Converter();
+    const markdown = document.getElementById("markdown");
+    const html = converter.makeHtml(`{{ event.body }}`);
+    markdown.innerHTML = html;
+  </script>
+{% endblock %}

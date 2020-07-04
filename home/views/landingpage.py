@@ -43,6 +43,17 @@ def events(request):
     })
 
 
+def event(request, event_url):
+    if models.Event.objects.filter(url_extension=event_url).exists():
+        event = models.Event.objects.get(url_extension=event_url)
+        return render(request, "landingpage/event.html", context={
+            "event": event
+        })
+
+    else:
+        return render(request, "errors/event-does-not-exist.html")    
+
+
 def news(request):
     updates = models.NewsUpdate.objects.all().order_by('-date_posted')
     return render(request, "landingpage/news.html", context={
