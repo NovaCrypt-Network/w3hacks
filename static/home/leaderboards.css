@@ -1,3 +1,19 @@
+.hackers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+  width: 500px;
+  margin: 50px auto;
+}
+
+.hacker {
+  text-align: center;
+}
+
+.image-cropper, img {
+  width: 100%;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
