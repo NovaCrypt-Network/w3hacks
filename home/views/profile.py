@@ -7,10 +7,10 @@ from main import models
 
 
 @login_required(login_url="/login/")
-def profile(request, user_id):
+def profile(request, username):
     # Getting current user
-    if User.objects.filter(id=user_id).exists():
-        user = User.objects.get(id=user_id)
+    if User.objects.filter(username=username).exists():
+        user = User.objects.get(username=username)
     else:
         return render(request, "errors/user-does-not-exist.html")
 
@@ -38,10 +38,10 @@ def profile(request, user_id):
 
 
 @login_required(login_url="/login/")
-def edit_profile(request, user_id):
+def edit_profile(request, username):
     # Getting current user
-    if User.objects.filter(id=user_id).exists():
-        user = User.objects.get(id=user_id)
+    if User.objects.filter(username=username).exists():
+        user = User.objects.get(username=username)
     else:
         return render(request, "errors/user-does-not-exist.html")
 
@@ -117,7 +117,7 @@ def edit_profile(request, user_id):
                 "today": str(date.today())
             })
 
-        return HttpResponseRedirect("/profile/" + str(user.id))
+        return HttpResponseRedirect("/@" + user.username)
 
     skills = None
     if profile.skills:

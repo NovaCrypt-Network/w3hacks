@@ -65,8 +65,8 @@
                     {% endif %}
                   </a>
                   <div class="dropdown-menu">
-                    <a href="/profile/{{ request.user.id }}" class="dropdown-item">View Profile</a>
-                    <a href="/edit-profile/{{ request.user.id }}" class="dropdown-item">Edit Profile</a>
+                    <a href="/@{{ request.user.username }}" class="dropdown-item">View Profile</a>
+                    <a href="/@{{ request.user.username }}/edit" class="dropdown-item">Edit Profile</a>
                     <div class="dropdown-divider"></div>
                     <a href="/logout/" class="dropdown-item">Log out</a>
                   </div>

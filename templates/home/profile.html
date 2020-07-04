@@ -27,7 +27,7 @@
           <h1>
             <span>{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
             {% if request.user.profile == profile %}
-              <a style="float: right;" href="/edit-profile/{{ request.user.id }}/">
+              <a style="float: right;" href="/@{{ request.user.username }}/edit">
                 <img style="width: 25px;" src="{% static 'img/icons/edit.png' %}" alt="">
               </a>
             {% endif %}

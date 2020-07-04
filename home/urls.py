@@ -39,8 +39,8 @@ urlpatterns = [
     url("^future-hackathons/$", views.future_hackathons, name="future_hackathons"),
 
     # Profile views
-    url("^profile/(?P<user_id>[^/]+)/$", views.profile, name="profile"),
-    url("^edit-profile/(?P<user_id>[^/]+)/$", views.edit_profile, name="edit_profile"),
+    url("^@(?P<username>[^/]+)/$", views.profile, name="profile"),
+    url("^@(?P<username>[^/]+)/edit/$", views.edit_profile, name="edit_profile"),
     url("^logout/$", views.user_logout, name="logout"),
 
     # API views

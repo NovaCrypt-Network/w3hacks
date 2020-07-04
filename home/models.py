@@ -26,6 +26,7 @@ EVENT_CHOICES = (
     ('Codeathon', 'Codeathon'),
     ('Challenge', 'Challenge'),
     ('Workshop', 'Workshop'),
+    ('Showcase', 'Showcase'),
 )
 
 class Event(models.Model):
