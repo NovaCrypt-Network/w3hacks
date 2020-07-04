@@ -111,12 +111,7 @@ def dashboard(request):
 
 @login_required(login_url="/login/")
 def leaderboards(request):
-    all_profiles = models.Profile.objects.all()
-
-    overall_rankings = sorted(all_profiles, key=lambda x: x.overall_ranking_points)
-    project_rankings = sorted(all_profiles, key=lambda x: x.project_ranking_points)
-    quiz_rankings = sorted(all_profiles, key=lambda x: x.quiz_ranking_points)
-    exercise_rankings = sorted(all_profiles, key=lambda x: x.exercise_ranking_points)
+    profiles = models.Profile.objects.all().order_by("-ranking_points")
 
     # Creating breadcrumbs
     breadcrumbs = [
@@ -125,10 +120,7 @@ def leaderboards(request):
     ]
 
     return render(request, "home/leaderboards.html", context={
-        "overall_rankings": overall_rankings,
-        "project_rankings": project_rankings,
-        "quiz_rankings": quiz_rankings,
-        "exercise_rankings": exercise_rankings,
+        "profiles": profiles,
         "breadcrumbs": breadcrumbs
     })
 

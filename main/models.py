@@ -45,12 +45,7 @@ class Profile(models.Model):
     completed_quiz_exercises = models.ManyToManyField("CompletedQuizExercise", blank=True) # List of completed quiz exercises
 
     joined_date = models.DateField(default=date.today()) # The date when the user joined w3Hacks
-    credits = models.IntegerField(default=0) # The number of credits the user has
-    overall_ranking_points = models.IntegerField(default=0) # The overall ranking points the user has
-    hackathon_ranking_points = models.IntegerField(default=0) # The hackathon ranking points the user has
-    project_ranking_points = models.IntegerField(default=0) # The project ranking points the user has
-    quiz_ranking_points = models.IntegerField(default=0) # The quiz ranking points the user has
-    exercise_ranking_points = models.IntegerField(default=0) # The exercise ranking points the user has
+    ranking_points = models.IntegerField(default=0) # The overall ranking points the user has
 
     def __str__(self):
         return self.user.username

@@ -13,13 +13,13 @@
         <th>Name</th>
         <th>Ranking Points</th>
       </tr>
-      {% for profile in overall_rankings %}
+      {% for profile in profiles %}
         <tr>
           <td>
             <a href="/@{{ profile.user.username }}">@{{ profile.user.username }}</a>
           </td>
           <td>{{ profile.user.first_name }} {{ profile.user.last_name }}</td>
-          <td>{{ profile.overall_ranking_points }}</td>
+          <td>{{ profile.ranking_points }}</td>
         </tr>
       {% endfor %}
     </table>
