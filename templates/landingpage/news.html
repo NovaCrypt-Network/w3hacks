@@ -3,7 +3,6 @@
 {% block head %}
   <title>w3Hacks - News</title>
   <link rel="stylesheet" href="{% static 'landingpage/blog.css' %}">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" charset="utf-8"></script>
 {% endblock %}
 {% block body %}
   <div class="container py-5">
@@ -18,6 +17,7 @@
       {% endfor %}
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" charset="utf-8"></script>
   <script>
     const converter = new showdown.Converter();
     const updates = document.querySelectorAll("#markdown");

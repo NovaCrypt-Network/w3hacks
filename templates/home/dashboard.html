@@ -5,7 +5,56 @@
   <link rel="stylesheet" href="{% static 'home/dashboard.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="container">
-    <h1 class="heading-primary">Dashboard</h1>
+  <div class="body-container container">
+    <h1 class="heading-secondary">Dashboard</h1>
+    <div class="dashboard mt-4">
+      <div class="left">
+        <div class="welcome">
+          <h3>Hey there {{ request.user.first_name }} {{ request.user.last_name }}!</h3>
+        </div>
+      </div>
+      <div class="right">
+        <div class="panel news">
+          <h3>News</h3>
+          <div class="updates">
+            {% for update in updates %}
+              <div class="update">
+                <strong>{{ update.title }}</strong> - <small>{{ update.date_posted }}</small>
+                <span id="markdown">{{ update.body }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="panel upcoming-events">
+          <h3>Upcoming events</h3>
+          <div class="events">
+            {% if upcoming_events %}
+              <div class="events">
+                {% for event in upcoming_events %}
+                  <a href="/events/{{ event.url_extension }}">
+                    <div class="event">
+                      [<span>{{ event.type  }}</span>] <strong>{{ event.title }}</strong> - <strong>{{ event.datetime }}</strong>
+                      <p>{{ event.preview }}</p>
+                    </div>
+                  </a>
+                {% endfor %}
+              </div>
+            {% else %}
+              <small>No upcoming events!</small>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" charset="utf-8"></script>
+  <script>
+    const converter = new showdown.Converter();
+    const updates = document.querySelectorAll("#markdown");
+
+    for (update of updates) {
+      let html = converter.makeHtml(update.innerHTML);
+      update.innerHTML = html;
+    }
+  </script>
 {% endblock %}

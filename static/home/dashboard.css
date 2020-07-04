@@ -1,0 +1,40 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-gap: 25px;
+}
+
+.panel {
+  background-color: white;
+  padding: 15px;
+  border-radius: 7.5px;
+  box-shadow: 0 5px 30px rgba(0,0,0,.15);
+  color: black;
+  margin-bottom: 25px;
+}
+
+.updates, .events {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.update, .event {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  color: black;
+  transition: all .1s;
+}
+
+.event:hover {
+  background-color: #ddd;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.update *, .event * {
+  margin: 0;
+}

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.db import IntegrityError
 from main import models
+from home import models as homeModels
 from datetime import datetime, date
 import json
 
@@ -106,7 +107,14 @@ def user_logout(request):
 
 @login_required(login_url="/login/")
 def dashboard(request):
-    return render(request, "home/dashboard.html")
+    updates = homeModels.NewsUpdate.objects.all().order_by('-date_posted')
+
+    upcoming_events = homeModels.Event.objects.all().order_by("-datetime")
+
+    return render(request, "home/dashboard.html", context={
+        "updates": updates,
+        "upcoming_events": upcoming_events
+    })
 
 
 @login_required(login_url="/login/")
