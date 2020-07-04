@@ -12,6 +12,7 @@ urlpatterns = [
     url("^team/$", views.team, name="team"),
     url("^join/$", views.join, name="join"),
     url("^news/$", views.news, name="news"),
+    url("^events/$", views.events, name="events"),
     url("^blog/$", views.blog, name="blog"),
     url("^blog/(?P<blog_url>[^/]+)$", views.blog_post, name="blog_post"),
     url("^login/$", views.user_login, name="login"),

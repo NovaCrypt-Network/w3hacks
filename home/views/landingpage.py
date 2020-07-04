@@ -36,6 +36,13 @@ def join(request):
     return render(request, "landingpage/join.html")
 
 
+def events(request):
+    events = models.Event.objects.all().order_by('-datetime')
+    return render(request, "landingpage/events.html", context={
+        "events": events
+    })
+
+
 def news(request):
     updates = models.NewsUpdate.objects.all().order_by('-date_posted')
     return render(request, "landingpage/news.html", context={

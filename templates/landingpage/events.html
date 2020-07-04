@@ -1,0 +1,22 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - Events</title>
+  <link rel="stylesheet" href="{% static 'landingpage/events.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="container py-5">
+    <h1 class="heading-secondary mb-4">Events!</h1>
+    <div class="events-grid">
+      {% for event in events %}
+        <a href="/events/{{ event.url_extension }}">
+          <div class="event">
+            <h3>{{ event.title }}</h3>
+            <small>{{ event.datetime }}</small>
+            <p>{{ event.preview }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
