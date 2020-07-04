@@ -10,6 +10,7 @@ urlpatterns = [
     url("^$", views.index, name="index"),
     url("^contact/$", views.contact, name="contact"),
     url("^team/$", views.team, name="team"),
+    url("^join/$", views.join, name="join"),
     url("^news/$", views.news, name="news"),
     url("^blog/$", views.blog, name="blog"),
     url("^blog/(?P<blog_url>[^/]+)$", views.blog_post, name="blog_post"),
