@@ -9,6 +9,7 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url("^$", views.index, name="index"),
     url("^contact/$", views.contact, name="contact"),
+    url("^team/$", views.team, name="team"),
     url("^news/$", views.news, name="news"),
     url("^blog/$", views.blog, name="blog"),
     url("^blog/(?P<blog_url>[^/]+)$", views.blog_post, name="blog_post"),

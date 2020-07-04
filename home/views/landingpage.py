@@ -28,6 +28,10 @@ def contact(request):
     return render(request, "landingpage/contact.html")
 
 
+def team(request):
+    return render(request, "landingpage/team.html")
+
+
 def news(request):
     updates = models.NewsUpdate.objects.all().order_by('-date_posted')
     return render(request, "landingpage/news.html", context={

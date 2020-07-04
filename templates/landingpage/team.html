@@ -1,0 +1,20 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - Team</title>
+  <link rel="stylesheet" href="{% static 'landingpage/team.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="container py-5">
+    <h1 class="heading-secondary mb-4">Meet the Team!</h1>
+    <div class="team-grid">
+      <div class="member">
+        <div class="image-cropper">
+          <img src="{% static 'img/people/calix.jpg' %}" alt="Calix Huang">
+        </div>
+        <h3>Calix Huang</h3>
+        <p>Founder and Creator</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
