@@ -51,7 +51,7 @@ def event(request, event_url):
         })
 
     else:
-        return render(request, "errors/event-does-not-exist.html")    
+        return render(request, "errors/event-does-not-exist.html")
 
 
 def news(request):

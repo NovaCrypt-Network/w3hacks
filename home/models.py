@@ -21,9 +21,17 @@ class BlogPost(models.Model):
         return self.title
 
 
+EVENT_CHOICES = (
+    ('Hackathon', 'Hackathon'),
+    ('Codeathon', 'Codeathon'),
+    ('Challenge', 'Challenge'),
+    ('Workshop', 'Workshop'),
+)
+
 class Event(models.Model):
     url_extension = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
+    type = models.CharField(max_length=50, choices=EVENT_CHOICES)
     preview = models.TextField()
     body = models.TextField()
     datetime = models.DateTimeField(default=datetime.now())
