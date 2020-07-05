@@ -9,11 +9,11 @@ form {
   height: 125px;
 }
 
-.password-errors {
+.errorlist {
   list-style: none;
 }
 
-.password-errors li {
+.errorlist li {
   color: red;
   font-size: 12.5px;
 }

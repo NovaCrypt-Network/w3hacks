@@ -31,7 +31,7 @@
         <label>Password: *</label><br>
         <input class="ghost-input-dark mb-3" type="password" name="password" placeholder="Password" required>
         {% if errors %}
-          <ul class="password-errors">
+          <ul class="errorlist">
             {% for error in errors %}
               <li>{{ error }}</li>
             {% endfor %}
