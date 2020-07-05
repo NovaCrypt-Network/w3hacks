@@ -6,6 +6,35 @@
 {% block body %}
   <div class="body-container container">
     <h1 class="heading-tertiary">Project Exercise: {{ exercise.name }}</h1>
+    <div class="information mt-4">
+      <p id="markdown"></p>
+      <p>
+        <strong>Implementation:</strong> {{ exercise.implementation.name }}
+      </p>
+      <p>
+        <strong>Difficulty Level:</strong> {{ exercise.difficulty_level.name }}
+      </p>
+      {% if exercise.prerequisites %}
+        <div class="prerequisites mt-3">
+          <h4>Pre-Requisites</h4>
+          <ul class="ml-5">
+            {% for prerequisite in exercise.prerequisites %}
+              <li>{{ prerequisite }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      {% if resources %}
+        <div class="resource mt-3">
+          <h4>Resources</h4>
+          <ul class="ml-5">
+            {% for resource in resources %}
+              <li><a href="{{ resource.link }}" target="_">{{ resource.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
     {% if user_already_completed_project %}
       <div class="completed-container">
         <strong>You already completed this project!</strong>
@@ -26,39 +55,6 @@
         {% endif %}
       </div>
     {% else %}
-      <div class="information mt-4">
-        <h3 class="heading-fourth">Exercise Information</h3>
-        <p>
-          <strong>Description:</strong> {{ exercise.description }}
-        </p>
-        <p>
-          <strong>Implementation:</strong> {{ exercise.implementation.name }}
-        </p>
-        <p>
-          <strong>Difficulty Level:</strong> {{ exercise.difficulty_level.name }}
-        </p>
-        {% if exercise.prerequisites %}
-          <div class="prerequisites mt-3">
-            <h4>Pre-Requisites</h4>
-            <ul class="ml-5">
-              {% for prerequisite in exercise.prerequisites %}
-                <li>{{ prerequisite }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-        {% if resources %}
-          <div class="resource mt-3">
-            <h4>Resources</h4>
-            <ul class="ml-5">
-              {% for resource in resources %}
-                <li><a href="{{ resource.link }}" target="_">{{ resource.title }}</a></li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-      </div>
-
       <div class="submit mt-4">
         <h3 class="heading-fourth">Submit</h3>
         <form enctype="multipart/form-data" method="post">
@@ -69,4 +65,11 @@
       </div>
     {% endif %}
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" charset="utf-8"></script>
+  <script>
+    const converter = new showdown.Converter();
+    const markdown = document.getElementById("markdown");
+    const html = converter.makeHtml(`{{ exercise.description }}`);
+    markdown.innerHTML = html;
+  </script>
 {% endblock %}

@@ -7,13 +7,7 @@
   <div class="body-container container">
     <h1 class="heading-tertiary">Quiz Exercise: {{ exercise.name }}</h1>
     <div class="information mt-4">
-      <h3 class="heading-fourth">Exercise Information</h3>
-      <p>
-        <strong>Description:</strong> {{ exercise.description }}
-      </p>
-      <p>
-        <strong>Topic:</strong> {{ exercise.topic.name }}
-      </p>
+      <p id="markdown"></p>
       <p>
         <strong>Difficulty Level:</strong> {{ exercise.difficulty_level.name }}
       </p>
@@ -51,4 +45,11 @@
       </div>
     {% endif %}
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" charset="utf-8"></script>
+  <script>
+    const converter = new showdown.Converter();
+    const markdown = document.getElementById("markdown");
+    const html = converter.makeHtml(`{{ exercise.description }}`);
+    markdown.innerHTML = html;
+  </script>
 {% endblock %}
