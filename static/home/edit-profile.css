@@ -8,6 +8,7 @@
   flex-wrap: wrap;
   border: 2px solid var(--color-primary) !important;
   margin-bottom: 0 !important;
+  padding: 10px 15px !important;
 }
 
 .bootstrap-tagsinput .tag {
