@@ -96,10 +96,14 @@
           </div>
         {% endif %}
 
-        {% if skills %}
+        {% if profile.skills %}
           <div class="profile-element">
             <small>Skills</small><br>
-            <p>{{ skills }}</p>
+            <div class="skills">
+              {% for skill in profile.skills %}
+                <span class="skill">{{ skill }}</span>
+              {% endfor %}
+            </div>
           </div>
         {% endif %}
 

@@ -24,13 +24,8 @@ def profile(request, username):
     completed_project_exercises = list(profile.completed_project_exercises.all())
     completed_quiz_exercises = list(profile.completed_quiz_exercises.all())
 
-    skills = None
-    if profile.skills:
-        skills = ",".join(profile.skills)
-
     return render(request, "home/profile.html", context={
         "profile": profile,
-        "skills": skills,
         "past_hackathons": past_hackathons,
         "completed_project_exercises": completed_project_exercises,
         "completed_quiz_exercises": completed_quiz_exercises,

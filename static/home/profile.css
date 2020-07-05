@@ -47,6 +47,21 @@
   margin-top: 20px;
 }
 
+.skills {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.skill {
+  background-color: var(--color-primary);
+  padding: 2.5px 5px;
+  border-radius: 3px;
+  color: white;
+  margin: 2.5px 5px 2.5px 0;
+  font-size: 13px;
+}
+
 .achievements {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
