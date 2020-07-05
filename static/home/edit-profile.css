@@ -1,3 +1,18 @@
 .form-input-group {
   margin-top: 15px;
 }
+
+.bootstrap-tagsinput {
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 2px solid var(--color-primary) !important;
+  margin-bottom: 0 !important;
+}
+
+.bootstrap-tagsinput .tag {
+  background-color: var(--color-primary);
+  padding: 5px;
+  border-radius: 3px;
+  margin: 2.5px 5px 2.5px 0 !important;
+}
