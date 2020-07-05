@@ -47,10 +47,11 @@ def edit_profile(request, username):
     profile = models.Profile.objects.get(user=user)
 
     # Checking to see if current user is the one editing profile
-    if user == request.user:
-        pass
-    else:
-        return HttpResponse("You do not have permission to modify this profile.")
+    if user != request.user:
+        return render(request, "errors/does-not-exist.html", context={
+            "title": "Permission Error",
+            "content": "We're sorry, but you don't have permission to modify this profile. Only the logged in user of this account has permission to modify any of the content of their profile."
+        })
 
     if request.method == "POST":
         # Grabbing all pieces of form POST data
