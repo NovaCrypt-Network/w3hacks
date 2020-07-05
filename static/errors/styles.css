@@ -7,7 +7,6 @@ body {
 }
 
 .content-body {
-  height: 70vh;
   background-color: var(--color-primary);
 }
 
