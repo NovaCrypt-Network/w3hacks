@@ -30,6 +30,13 @@
       <div>
         <label>Password: *</label><br>
         <input class="ghost-input-dark mb-3" type="password" name="password" placeholder="Password" required>
+        {% if errors %}
+          <ul class="password-errors">
+            {% for error in errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </div>
 
       <input id="registerBtn" class="solid-cta-button w-100" type="submit" value="Register">

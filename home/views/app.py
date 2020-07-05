@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
@@ -80,6 +82,15 @@ def register(request):
             email=email,
             username=username
         )
+
+        # Validate password
+        try:
+            validate_password(password, user)
+        except ValidationError as e:
+            return render(request, "landingpage/register.html", context={
+                "errors": e
+            })
+
         user.set_password(password) # Setting the password separately for encryption
 
         # Creating the custom profile
@@ -100,9 +111,7 @@ def register(request):
 
         return HttpResponseRedirect("/")
 
-    return render(request, "landingpage/register.html", context={
-        "today": str(date.today())
-    })
+    return render(request, "landingpage/register.html")
 
 
 def user_logout(request):
