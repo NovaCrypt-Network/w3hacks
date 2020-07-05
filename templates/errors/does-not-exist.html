@@ -1,14 +1,15 @@
 {% extends 'errors/base.html' %}
 {% load static %}
 {% block head %}
-  <title>w3hacks - Topic Not Found</title>
+  <title>w3hacks - {{ title }}</title>
+  <link rel="stylesheet" href="{% static 'landingpage/index.css' %}">
 {% endblock %}
 {% block body %}
   <div class="body-container container">
     <div class="message">
-      <h1 class="heading-secondary text-left">Topic Not Found</h1>
+      <h1 class="heading-secondary text-left">{{ title }}</h1>
       <p class="my-4">
-        We're sorry, but the topic you searched for does not exist! Please go back to your previous page, or double-check your URL.
+        {{ content }}
         <br><br>
         If you really think this is an issue, please feel free to <a href="http://www.w3hacks.com/contact/">contact us</a> and we will get back to you within 24-48 hours!
       </p>

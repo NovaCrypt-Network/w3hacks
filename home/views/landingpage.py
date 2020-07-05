@@ -51,7 +51,10 @@ def event(request, event_url):
         })
 
     else:
-        return render(request, "errors/event-does-not-exist.html")
+        return render(request, "errors/does-not-exist.html", context={
+            "title": "Event doesn't exist!",
+            "content": "We're sorry, but we couldn't find the event you were looking for! It has either been removed, or you have navigated to the wrong page. Please go back to the previous page if possible."
+        })
 
 
 def news(request):
@@ -75,4 +78,7 @@ def blog_post(request, blog_url):
         })
 
     else:
-        return render(request, "errors/blog-does-not-exist.html")
+        return render(request, "errors/does-not-exist.html", context={
+            "title": "Blog post doesn't exist!",
+            "content": "We're sorry, but we couldn't find the blog post you were looking for! It has either been removed, or you have navigated to the wrong page. Please go back to the previous page if possible."
+        })

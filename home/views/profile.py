@@ -38,7 +38,10 @@ def edit_profile(request, username):
     if User.objects.filter(username=username).exists():
         user = User.objects.get(username=username)
     else:
-        return render(request, "errors/user-does-not-exist.html")
+        return render(request, "errors/does-not-exist", context={
+            "title": "User doesn't exist!",
+            "content": "We're sorry, but we couldn't find the user you were looking for! That user has either been removed, or never existed in the first place. Please go back to the previous page if possible."
+        })
 
     # Getting profile from current user
     profile = models.Profile.objects.get(user=user)

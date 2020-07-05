@@ -32,9 +32,15 @@ def project_exercise(request):
         if models.ProjectExercise.objects.filter(id=project_id).exists():
             project_exercise = models.ProjectExercise.objects.get(id=project_id)
         else:
-            return render(request, "errors/exercise-does-not-exist.html")
+            return render(request, "errors/does-not-exist.html", context={
+                "title": "Project exercise doesn't exist!",
+                "content": "We're sorry, but we couldn't find the project exercise you were looking for! It has either been removed, or you have navigated to the wrong page. Please go back to the previous page if possible."
+            })
     else:
-        return render(request, "errors/exercise-does-not-exist.html")
+        return render(request, "errors/does-not-exist.html", context={
+            "title": "Project exercise doesn't exist!",
+            "content": "We're sorry, but we couldn't find the project exercise you were looking for! It has either been removed, or you have navigated to the wrong page. Please go back to the previous page if possible."
+        })
 
     # Creating breadcrumbs
     breadcrumbs = [
