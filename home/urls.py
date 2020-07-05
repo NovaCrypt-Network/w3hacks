@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.conf import settings
 from django.views.static import serve
 from . import views as views
@@ -45,6 +45,8 @@ urlpatterns = [
 
     # API views
     url("create-completed-quiz-exercise/$", views.create_completed_quiz_exercise, name="create_completed_quiz_exercise"),
+
+    url('^', include('django.contrib.auth.urls')),
 
     # # Hackathon views
     # url("^(?P<hackathon_id>[^/]+)/$", hackathonViews.index, name="index"),

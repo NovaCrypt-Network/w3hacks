@@ -33,8 +33,6 @@ ALLOWED_HOSTS = ["*"]
 SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -42,6 +40,8 @@ INSTALLED_APPS = [
 
     # External apps
     'home',
+    'django.contrib.admin',
+    'django.contrib.auth',
     'api',
     'hackathon',
     'links',

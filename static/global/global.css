@@ -23,6 +23,18 @@ body {
   padding: 50px 0;
 }
 
+.thin-container {
+  padding: 50px 0;
+  width: 350px;
+  margin: auto;
+}
+
+@media (max-width: 500px) {
+  .thin-container {
+    width: 90% !important;
+  }
+}
+
 @media (max-width: 800px) {
   .body-container {
     padding: 30px 10px 10px 10px !important;
