@@ -22,6 +22,7 @@ def handler500(request, *args, **argv):
 
 
 def user_login(request):
+    next_url = request.GET.get("next")
     if request.user.is_authenticated:
         return HttpResponseRedirect("/dashboard/")
 
@@ -36,7 +37,11 @@ def user_login(request):
             if user.is_active: # User is active
                 # Log the user in
                 login(request, user)
-                return HttpResponseRedirect("/dashboard/")
+
+                if next_url:
+                    return HttpResponseRedirect(next_url)
+                else:
+                    return HttpResponseRedirect("/dashboard/")
 
             else: # User has an inactive account
                 # Re-render page with error message
