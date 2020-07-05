@@ -52,7 +52,7 @@ def user_login(request):
 
         else: # Invalid credentials
             # Re-render page with error message
-            return render(request, "home/login.html", context={
+            return render(request, "landingpage/login.html", context={
                 "message": "Invalid credentials.",
                 "status": "bad"
             })
@@ -90,7 +90,7 @@ def register(request):
             user.save()
             profile.save()
         except IntegrityError:
-            return render(request, "home/register.html", context={
+            return render(request, "landingpage/register.html", context={
                 "message": "Username and/or email is already taken. Please double check.",
                 "status": "bad"
             })
