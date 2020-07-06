@@ -26,8 +26,8 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 SECRET_KEY = "test"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # External apps
     'home',
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'api',

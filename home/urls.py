@@ -6,7 +6,6 @@ from . import views as views
 from hackathon import views as hackathonViews
 
 urlpatterns = [
-    url('admin/', admin.site.urls),
     url("^$", views.index, name="index"),
     url("^contact/$", views.contact, name="contact"),
     url("^team/$", views.team, name="team"),
