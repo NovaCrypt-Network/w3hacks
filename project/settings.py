@@ -9,7 +9,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 if "runserver" in sys.argv:
     DEBUG = True
-    SECRET_KEY = "test"
+    SECRET_KEY = "dev"
 else:
     DEBUG = False
     SECRET_KEY = os.environ.get("SECRET_KEY")

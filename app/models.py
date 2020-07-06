@@ -178,7 +178,7 @@ class CompletedQuizExercise(models.Model):
     number_of_questions = models.IntegerField() # Number of questions in the quiz
 
     def __str__(self):
-        return "Completed Quiz Exercise: " + self.quiz_exercise.name
+        return "COMPLETED: " + self.quiz_exercise.name
 
 
 ######################
