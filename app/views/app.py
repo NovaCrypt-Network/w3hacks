@@ -23,6 +23,21 @@ def handler500(request, *args, **argv):
     return render(request, "errors/500.html")
 
 
+def index(request):
+    return HttpResponseRedirect("/dashboard/")
+
+@login_required(login_url="/login/")
+def dashboard(request):
+    updates = homeModels.NewsUpdate.objects.all().order_by('-date_posted')
+
+    upcoming_events = homeModels.Event.objects.all().order_by("-datetime")
+
+    return render(request, "app/dashboard.html", context={
+        "updates": updates,
+        "upcoming_events": upcoming_events
+    })
+
+
 def user_login(request):
     next_url = request.GET.get("next")
     if request.user.is_authenticated:
@@ -47,7 +62,7 @@ def user_login(request):
 
             else: # User has an inactive account
                 # Re-render page with error message
-                return render(request, "home/login.html", context={
+                return render(request, "app/login.html", context={
                     "message": "User account has been deactivated. Please register again.",
                     "status": "bad"
                 })
@@ -121,18 +136,6 @@ def user_logout(request):
 
 
 @login_required(login_url="/login/")
-def dashboard(request):
-    updates = homeModels.NewsUpdate.objects.all().order_by('-date_posted')
-
-    upcoming_events = homeModels.Event.objects.all().order_by("-datetime")
-
-    return render(request, "home/dashboard.html", context={
-        "updates": updates,
-        "upcoming_events": upcoming_events
-    })
-
-
-@login_required(login_url="/login/")
 def leaderboards(request):
     profiles = models.Profile.objects.all().order_by("-ranking_points")
 
@@ -145,7 +148,7 @@ def leaderboards(request):
         { "text": "Leaderboards", "link": "/leaderboards/"}
     ]
 
-    return render(request, "home/leaderboards.html", context={
+    return render(request, "app/leaderboards.html", context={
         "top_3_hackers": top_3_hackers,
         "profiles": profiles,
         "breadcrumbs": breadcrumbs
@@ -161,7 +164,7 @@ def exercises(request):
         { "text": "Exercises", "link": "/exercises/"}
     ]
 
-    return render(request, "home/exercises/exercises.html", context={
+    return render(request, "app/exercises/exercises.html", context={
         "breadcrumbs": breadcrumbs
     })
 
@@ -175,7 +178,7 @@ def about_the_hackathon(request):
         { "text": "About The Hackathon", "link": "/about-the-hackathon/"}
     ]
 
-    return render(request, "home/hackathon/about-the-hackathon.html", context={
+    return render(request, "app/hackathon/about-the-hackathon.html", context={
         "breadcrumbs": breadcrumbs
     })
 
@@ -196,7 +199,7 @@ def past_hackathons(request):
         { "text": "Past Hackathons", "link": "/past-hackathons/"}
     ]
 
-    return render(request, "home/hackathon/past-hackathons.html", context={
+    return render(request, "app/hackathon/past-hackathons.html", context={
         "past_hackathons": past_hackathons,
         "breadcrumbs": breadcrumbs
     })
@@ -218,7 +221,7 @@ def future_hackathons(request):
         { "text": "Future Hackathons", "link": "/future-hackathons/"}
     ]
 
-    return render(request, "home/hackathon/future-hackathons.html", context={
+    return render(request, "app/hackathon/future-hackathons.html", context={
         "future_hackathons": future_hackathons,
         "breadcrumbs": breadcrumbs
     })

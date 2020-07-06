@@ -24,7 +24,7 @@ def profile(request, username):
     completed_project_exercises = list(profile.completed_project_exercises.all())
     completed_quiz_exercises = list(profile.completed_quiz_exercises.all())
 
-    return render(request, "home/profile.html", context={
+    return render(request, "app/profile.html", context={
         "profile": profile,
         "past_hackathons": past_hackathons,
         "completed_project_exercises": completed_project_exercises,
@@ -79,7 +79,7 @@ def edit_profile(request, username):
 
         # Check if username/email is used
         if (User.objects.filter(email=email).exists() and email != request.user.email) or (User.objects.filter(username=username).exists() and username != request.user.username):
-            return render(request, "home/edit-profile.html", context={
+            return render(request, "app/edit-profile.html", context={
                 "message": "Username and/or email is already taken. Please double check.",
                 "status": "bad",
                 "profile": profile
@@ -118,4 +118,4 @@ def edit_profile(request, username):
 
         return HttpResponseRedirect("/@" + user.username)
 
-    return render(request, "home/edit-profile.html", context={ "profile": profile })
+    return render(request, "app/edit-profile.html", context={ "profile": profile })

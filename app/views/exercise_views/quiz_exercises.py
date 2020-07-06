@@ -17,7 +17,7 @@ def quiz_exercises(request):
         { "text": "Quiz Exercises", "link": "/exercises/quiz-exercises/" }
     ]
 
-    return render(request, "home/exercises/quiz-exercises/quiz-exercises.html", context={
+    return render(request, "app/exercises/quiz-exercises/quiz-exercises.html", context={
         "exercises": quiz_exercises,
         "topic": specific_topic,
         "breadcrumbs": breadcrumbs
@@ -49,7 +49,7 @@ def quiz_exercise(request):
         if completed_quiz_exercise.quiz_exercise == quiz_exercise:
             user_already_taken_quiz = True
 
-    return render(request, "home/exercises/quiz-exercises/quiz-exercise.html", context={
+    return render(request, "app/exercises/quiz-exercises/quiz-exercise.html", context={
         "exercise": quiz_exercise,
         "resources": list(quiz_exercise.resources.all()),
         "breadcrumbs": breadcrumbs,
@@ -94,7 +94,7 @@ def take_quiz(request):
             user_already_taken_quiz = True
 
 
-    return render(request, "home/exercises/quiz-exercises/take-quiz.html", context={
+    return render(request, "app/exercises/quiz-exercises/take-quiz.html", context={
         "quiz": quiz_exercise,
         "breadcrumbs": breadcrumbs,
         "questions": questions,
@@ -149,7 +149,7 @@ def quiz_results(request):
 
     # results = json.dumps(results)
 
-    return render(request, "home/exercises/quiz-exercises/quiz-results.html", context={
+    return render(request, "app/exercises/quiz-exercises/quiz-results.html", context={
         "quiz_exercise": quiz_exercise,
         "completed_quiz_exercise": completed_quiz_exercise,
         "breadcrumbs": breadcrumbs,

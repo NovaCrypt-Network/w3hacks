@@ -17,7 +17,7 @@ def project_exercises(request):
     ]
 
 
-    return render(request, "home/exercises/project-exercises/project-exercises.html", context={
+    return render(request, "app/exercises/project-exercises/project-exercises.html", context={
         "exercises": project_exercises,
         "topic": specific_topic,
         "breadcrumbs": breadcrumbs
@@ -87,7 +87,7 @@ def project_exercise(request):
             message = "Project submitted successfully!"
 
 
-    return render(request, "home/exercises/project-exercises/project-exercise.html", context={
+    return render(request, "app/exercises/project-exercises/project-exercise.html", context={
         "exercise": project_exercise,
         "resources": list(project_exercise.resources.all()),
         "user_already_completed_project": user_already_completed_project,
