@@ -10,10 +10,6 @@ import attr
 def generate_id():
     return ''.join([random.choice(string.ascii_letters + string.digits) for n in range(8)])
 
-# Making the default Django user's username and email unique
-User._meta.get_field('username')._unique = True
-User._meta.get_field('email')._unique = True
-
 
 ####################
 ## GENERAL MODELS ##
