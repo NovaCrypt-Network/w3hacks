@@ -17,6 +17,9 @@ def profile(request, username):
     # Getting profile from current user
     profile = models.Profile.objects.get(user=user)
 
+    # Grabbing all projects
+    projects = list(profile.projects.all())
+
     # Grabbing all past hackathons for current user
     past_hackathons = list(profile.past_hackathons.all())
 
@@ -26,6 +29,7 @@ def profile(request, username):
 
     return render(request, "app/profile.html", context={
         "profile": profile,
+        "projects": projects,
         "past_hackathons": past_hackathons,
         "completed_project_exercises": completed_project_exercises,
         "completed_quiz_exercises": completed_quiz_exercises,
@@ -118,4 +122,104 @@ def edit_profile(request, username):
 
         return HttpResponseRedirect("/@" + user.username)
 
-    return render(request, "app/edit-profile.html", context={ "profile": profile })
+    skills = ",".join(profile.skills)
+
+    return render(request, "app/edit-profile.html", context={ "profile": profile, "skills": skills })
+
+
+@login_required(login_url="/login/")
+def submit_project(request, username):
+    # Getting current user
+    if User.objects.filter(username=username).exists():
+        user = User.objects.get(username=username)
+    else:
+        return render(request, "errors/does-not-exist", context={
+            "title": "User doesn't exist!",
+            "content": "We're sorry, but we couldn't find the user you were looking for! That user has either been removed, or never existed in the first place. Please go back to the previous page if possible."
+        })
+
+    # Getting profile from current user
+    profile = models.Profile.objects.get(user=user)
+
+    # Checking to see if current user is the one editing profile
+    if user != request.user:
+        return render(request, "errors/does-not-exist.html", context={
+            "title": "Permission Error",
+            "content": "We're sorry, but you don't have permission to submit a project for this user. Only the logged in user of this account has permission to submit a project for themselves."
+        })
+
+    if request.method == "POST":
+        # Grabbing all pieces of form POST data
+        # Grabbing default Django User data
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        technologies_used = request.POST.get("technologies-used").split(",")
+        github_link = request.POST.get("github-link")
+        website = request.POST.get("website")
+        video_link = request.POST.get("video-link")
+
+        project = models.Project(
+            name=name,
+            description=description,
+            technologies_used=technologies_used,
+            github_link=github_link,
+            website=website,
+            video_link=video_link,
+            creator=request.user.profile,
+        )
+        project.save()
+
+        request.user.profile.projects.add(project)
+
+        return HttpResponseRedirect("/@" + user.username)
+
+    return render(request, "app/submit-project.html")
+
+
+@login_required(login_url="/login/")
+def edit_project(request, username):
+    # Getting current user
+    if User.objects.filter(username=username).exists():
+        user = User.objects.get(username=username)
+    else:
+        return render(request, "errors/does-not-exist", context={
+            "title": "User doesn't exist!",
+            "content": "We're sorry, but we couldn't find the user you were looking for! That user has either been removed, or never existed in the first place. Please go back to the previous page if possible."
+        })
+
+    # Getting profile from id
+    project_id = request.GET.get("id")
+    project = models.Project.objects.get(id=project_id)
+
+    # Checking to see if current user is the one editing profile
+    if user != request.user:
+        return render(request, "errors/does-not-exist.html", context={
+            "title": "Permission Error",
+            "content": "We're sorry, but you don't have permission to edit this project. Only the logged in user of this account has permission to modify any of the content of their profile."
+        })
+
+    if request.method == "POST":
+        # Grabbing all pieces of form POST data
+        # Grabbing default Django User data
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        technologies_used = request.POST.get("technologies-used").split(",")
+        github_link = request.POST.get("github-link")
+        website = request.POST.get("website")
+        video_link = request.POST.get("video-link")
+
+        # Updating profile
+        project.name = name
+        project.description = description
+        project.technologies_used = technologies_used
+        project.github_link = github_link
+        project.website = website
+        project.video_link = video_link
+
+        project.save()
+
+        return HttpResponseRedirect("/@" + user.username)
+
+    technologies_used = ",".join(project.technologies_used)
+
+    return render(request, "app/edit-project.html", context={ "project": project, "technologies_used": technologies_used })

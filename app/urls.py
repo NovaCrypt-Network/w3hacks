@@ -8,12 +8,13 @@ from hackathon import views as hackathonViews
 urlpatterns = [
     url("admin/", admin.site.urls),
     url("^$", views.index, name="index"),
-    url("^login/$", views.user_login, name="login"),
     url("^register/$", views.register, name="register"),
+    url("^login/$", views.user_login, name="login"),
+    url("^logout/$", views.user_logout, name="logout"),
 
     # Portal routes
-    url("^leaderboards/$", views.leaderboards, name="leaderboards"),
     url("^dashboard/$", views.dashboard, name="dashboard"),
+    url("^leaderboards/$", views.leaderboards, name="leaderboards"),
 
     # Activities URL routes
     url("^exercises/$", views.exercises, name="exercises"),
@@ -33,7 +34,8 @@ urlpatterns = [
     # Profile views
     url("^@(?P<username>[^/]+)/$", views.profile, name="profile"),
     url("^@(?P<username>[^/]+)/edit/$", views.edit_profile, name="edit_profile"),
-    url("^logout/$", views.user_logout, name="logout"),
+    url("^@(?P<username>[^/]+)/submit-project/$", views.submit_project, name="submit_project"),
+    url("^@(?P<username>[^/]+)/edit-project/$", views.edit_project, name="edit_project"),
 
     # API views
     url("create-completed-quiz-exercise/$", views.create_completed_quiz_exercise, name="create_completed_quiz_exercise"),

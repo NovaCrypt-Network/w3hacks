@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks App - Submit Project</title>
+  <link rel="stylesheet" href="{% static 'app/edit-profile.css' %}">
+  <link rel="stylesheet" href="{% static 'home/login-register.css' %}">
+  <link rel="stylesheet" href="https://getbootstrap.com/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
+{% endblock %}
+{% block body %}
+  <div class="body-container container">
+    <h1 class="heading-secondary">Submit Project</h1>
+    <form enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+
+      <div class="form-input-group">
+        <label>Name *:</label><br>
+        <input class="ghost-input-dark" type="text" name="name" placeholder="Name" required>
+      </div>
+
+      <div class="form-input-group">
+        <label>Description *:</label><br>
+        <textarea class="ghost-input-dark" type="text" name="description" placeholder="Description" rows="5" maxlength="200" required></textarea>
+      </div>
+
+      <div class="form-input-group">
+        <label>Technologies Used:</label><br>
+        <input class="skills-input" name="technologies-used" type="text" data-role="tagsinput" required>
+      </div>
+
+      <div class="form-input-group">
+        <label>GitHub Link:</label><br>
+        <input class="ghost-input-dark" type="url" name="github-link" placeholder="GitHub Link">
+      </div>
+
+      <div class="form-input-group">
+        <label>Website:</label><br>
+        <input class="ghost-input-dark" type="url" name="website" placeholder="Website">
+      </div>
+
+      <div class="form-input-group">
+        <label>Video Link:</label><br>
+        <input class="ghost-input-dark" type="url" name="video-link" placeholder="Video Link">
+      </div>
+
+      <input class="solid-cta-button mt-4 w-100" type="submit" value="Edit Project">
+    </form>
+  </div>
+  <script src="{% static 'js/file-upload.js' %}" charset="utf-8"></script>
+{% endblock %}

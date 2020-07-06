@@ -49,19 +49,19 @@ class Profile(models.Model):
 # Project model for each project
 class Project(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for project
-    title = models.CharField(max_length=50) # Name of the project
+    name = models.CharField(max_length=50) # Name of the project
     description = models.TextField(max_length=500) # Description of the project
     project_image = models.ImageField(null=True, blank=True) # OPTIONAL: Image of the project
     technologies_used = ArrayField(models.CharField(max_length=30), null=True, blank=True) # OPTIONAL: Array of technologies used for the project
     github_link = models.CharField(max_length=200, null=True, blank=True) # OPTIONAL: Link to the project on GitHub
-    project_link = models.CharField(max_length=200, null=True, blank=True) # OPTIONAL: Link to the project if hosted on the app store or Internet
+    website = models.CharField(max_length=200, null=True, blank=True) # OPTIONAL: Link to the project if hosted on the app store or Internet
     video_link = models.CharField(max_length=200, null=True, blank=True) # OPTIONAL: Link to a video of project demo
     extra_files = ArrayField(models.FileField(), null=True, blank=True) # OPTIONAL: Array of extra files to submit along with project
     creator = models.ForeignKey("Profile", on_delete=models.PROTECT) # Creator of project
     likes = models.IntegerField(null=True, default=0) # Number of likes on project
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 # Model for each hackathon, current or not

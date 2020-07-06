@@ -7,14 +7,13 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
-if "runserver" in sys.argv:
-    DEBUG = True
-    SECRET_KEY = "dev"
-else:
-    DEBUG = False
-    SECRET_KEY = os.environ.get("SECRET_KEY")
-    SESSION_COOKIE_DOMAIN = ".w3hacks.com"
+DEBUG = True
+# DEBUG = False
 
+# SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "dev"
+
+# SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 ALLOWED_HOSTS = ["*"]
 
