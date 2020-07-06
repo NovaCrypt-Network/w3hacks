@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-# SESSION_COOKIE_DOMAIN = ".w3hacks.com"
+SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 INSTALLED_APPS = [
     'django.contrib.contenttypes',
