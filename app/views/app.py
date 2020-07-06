@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.db import IntegrityError
-from . import models
+from app import models
 from home import models as homeModels
 from datetime import datetime, date
 import json
