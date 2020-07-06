@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
-from main.models import Hackathon, Project, Profile
-from main import models
+from app.models import Hackathon, Project, Profile
+from app import models
 from django.contrib.auth.models import User
 from datetime import datetime
 from pytz import timezone
