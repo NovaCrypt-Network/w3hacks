@@ -23,7 +23,7 @@ def join(request):
 
 def events(request):
     events = models.Event.objects.all().order_by('-datetime')
-    return render(request, "home/events.html", context={
+    return render(request, "home/events/events.html", context={
         "events": events
     })
 
@@ -31,7 +31,7 @@ def events(request):
 def event(request, event_url):
     if models.Event.objects.filter(url_extension=event_url).exists():
         event = models.Event.objects.get(url_extension=event_url)
-        return render(request, "home/event.html", context={
+        return render(request, "home/events/event.html", context={
             "event": event
         })
 
@@ -51,14 +51,14 @@ def news(request):
 
 def blog(request):
     blogs = models.BlogPost.objects.all().order_by('-date_posted')
-    return render(request, "home/blog.html", context={
+    return render(request, "home/blog/blog.html", context={
         "blogs": blogs,
     })
 
 def blog_post(request, blog_url):
     if models.BlogPost.objects.filter(url_extension=blog_url).exists():
         blog = models.BlogPost.objects.get(url_extension=blog_url)
-        return render(request, "home/blog-post.html", context={
+        return render(request, "home/blog/blog-post.html", context={
             "blog": blog
         })
 
