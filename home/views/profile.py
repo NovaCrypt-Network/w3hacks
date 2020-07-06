@@ -77,13 +77,20 @@ def edit_profile(request, username):
         twitch_profile = request.POST.get("twitch-profile")
         personal_website = request.POST.get("personal-website")
 
+        # Check if username/email is used
+        if (User.objects.filter(email=email).exists() and email != request.user.email) or (User.objects.filter(username=username).exists() and username != request.user.username):
+            return render(request, "home/edit-profile.html", context={
+                "message": "Username and/or email is already taken. Please double check.",
+                "status": "bad",
+                "profile": profile
+            })
+
         # Updating user
         user = User.objects.get(id=request.user.id)
         user.first_name = first_name
         user.last_name = last_name
         user.email = email
         user.username = username
-
 
         # Updating profile
         profile = models.Profile.objects.get(user=request.user)
@@ -106,24 +113,9 @@ def edit_profile(request, username):
         if 'profile-picture' in request.FILES:
             profile.profile_picture = request.FILES['profile-picture']
 
-        try:
-            user.save()
-            profile.save()
-        except IntegrityError:
-            return render(request, "home/edit-profile.html", context={
-                "message": "Username and/or email is already taken. Please double check.",
-                "status": "bad",
-                "today": str(date.today())
-            })
+        user.save()
+        profile.save()
 
         return HttpResponseRedirect("/@" + user.username)
 
-    skills = None
-    if profile.skills:
-        skills = ",".join(profile.skills)
-
-    return render(request, "home/edit-profile.html", context={
-        "profile": profile,
-        "skills": skills,
-        "birthday": profile.birthday
-    })
+    return render(request, "home/edit-profile.html", context={ "profile": profile })
