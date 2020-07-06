@@ -67,6 +67,50 @@
   font-size: 13px;
 }
 
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 15px;
+}
+
+.project-heading {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+}
+
+.project-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 25px);
+  grid-gap: 5px;
+}
+
+.project-links img {
+  width: 100%;
+}
+
+.project-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  background-color: white;
+  padding: 2.5px 5px;
+  border-radius: 3px;
+  color: black;
+  margin: 5px 5px 0 0;
+  font-size: 12.5px;
+}
+
+.project {
+  background-color: var(--color-primary-light);
+  padding: 15px;
+  border-radius: 8px;
+  color: white;
+}
+
 .exercise-type {
   /* margin-top: 30px; */
 }

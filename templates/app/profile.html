@@ -28,7 +28,7 @@
             <span>{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
             {% if request.user.profile == profile %}
               <a style="float: right;" href="/@{{ request.user.username }}/edit">
-                <img style="width: 25px;" src="{% static 'img/icons/edit.png' %}" alt="">
+                <img style="width: 25px;" src="{% static 'img/icons/edit.svg' %}" alt="">
               </a>
             {% endif %}
           </h1>
@@ -126,24 +126,32 @@
                 <h5>{{ project.name }}</h5>
                 <div class="project-links">
                   {% if project.github_link %}
-                    <a target="_blank" href="{{ project.github_link }}">GitHub</a>
+                    <a target="_blank" href="{{ project.github_link }}">
+                      <img src="{% static 'img/icons/social-media/github-light.svg' %}">
+                    </a>
                   {% endif %}
                   {% if project.website %}
-                    <a target="_blank" href="{{ project.website }}">Website</a>
+                    <a target="_blank" href="{{ project.website }}">
+                      <img src="{% static 'img/icons/social-media/personal-website-light.svg' %}">
+                    </a>
                   {% endif %}
                   {% if project.video_link %}
-                    <a target="_blank" href="{{ project.video_link }}">Video</a>
+                    <a target="_blank" href="{{ project.video_link }}">
+                      <img src="{% static 'img/icons/social-media/github-light.svg' %}">
+                    </a>
                   {% endif %}
                   {% if request.user.profile == profile %}
-                    <a href="/@{{ profile.user.username }}/edit-project?id={{ project.id }}">Edit</a>
+                    <a href="/@{{ profile.user.username }}/edit-project?id={{ project.id }}">
+                      <img src="{% static 'img/icons/edit-light.svg' %}">
+                    </a>
                   {% endif %}
                 </div>
               </div>
               <small>{{ project.description }}</small>
               {% if project.technologies_used %}
-                <div class="tags">
-                  {% for technology in technologies_used %}
-                    <span class="tag">{{ technology }}</span>
+                <div class="project-tags">
+                  {% for technology in project.technologies_used %}
+                    <span class="project-tag">{{ technology }}</span>
                   {% endfor %}
                 </div>
               {% endif %}
