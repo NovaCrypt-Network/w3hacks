@@ -33,7 +33,11 @@
       </div>
       <div class="form-input-group">
         <label>Biography:</label><br>
-        <textarea class="ghost-input-dark" type="text" name="biography" placeholder="Biography" rows="5" maxlength="200">{{ profile.biography }}</textarea>
+        {% if profile.biography %}
+          <textarea class="ghost-input-dark" type="text" name="biography" placeholder="Biography" rows="5" maxlength="200">{{ profile.biography }}</textarea>
+        {% else %}
+          <textarea class="ghost-input-dark" type="text" name="biography" placeholder="Biography" rows="5" maxlength="200"></textarea>
+        {% endif %}
       </div>
       <div class="form-input-group">
         <label>Birthday:</label><br>
@@ -53,7 +57,11 @@
       </div>
       <div class="form-input-group">
         <label>Education:</label><br>
-        <input class="ghost-input-dark" type="text" name="education" placeholder="Education" value="{{ profile.education }}">
+        {% if profile.education %}
+          <input class="ghost-input-dark" type="text" name="education" placeholder="Education" value="{{ profile.education }}">
+        {% else %}
+          <input class="ghost-input-dark" type="text" name="education" placeholder="Education">
+        {% endif %}
       </div>
 
       <div class="form-input-group">
