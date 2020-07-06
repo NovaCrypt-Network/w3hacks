@@ -4,7 +4,6 @@ from django.db import models
 from datetime import date, datetime
 import random
 import string
-import attr
 
 # ALL IDs MUST BE 8 CHARACTERS LONG
 def generate_id():
@@ -81,22 +80,6 @@ class Hackathon(models.Model):
     resources = models.ManyToManyField("ResourceLink", blank=True) # List of resource links for hackathon
     competitors = models.ManyToManyField("Profile", blank=True) # List of competitor profiles; can be empty in beginning
     submissions = models.ManyToManyField("Project", blank=True) # List of project submissions; can be empty in beginning
-
-    def __str__(self):
-        return self.title
-
-
-#############################################################################################################################
-
-
-####################
-## PROFILE MODELS ##
-####################
-
-# For 'Themes' section of Hackathon
-class Theme(models.Model):
-    title = models.CharField(max_length=50) # Name of the theme
-    description = models.TextField(max_length=300) # Description of the theme
 
     def __str__(self):
         return self.title
@@ -201,6 +184,14 @@ class CompletedQuizExercise(models.Model):
 ######################
 ## HACKATHON MODELS ##
 ######################
+
+# For 'Themes' section of Hackathon
+class Theme(models.Model):
+    title = models.CharField(max_length=50) # Name of the theme
+    description = models.TextField(max_length=300) # Description of the theme
+
+    def __str__(self):
+        return self.title
 
 # For each award for Hackathon
 class Award(models.Model):

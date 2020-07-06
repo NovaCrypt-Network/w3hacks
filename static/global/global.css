@@ -41,6 +41,15 @@ body {
   }
 }
 
+.errorlist {
+  list-style: none;
+}
+
+.errorlist li {
+  color: red;
+  font-size: 12.5px;
+}
+
 .image-cropper {
   width: 100%;
   position: relative;
