@@ -7,13 +7,13 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
-# SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY = "dev"
+SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = "dev"
 
-# SESSION_COOKIE_DOMAIN = ".w3hacks.com"
+SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 ALLOWED_HOSTS = ["*"]
 
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # Auth apps
     'django.contrib.admin',
     'django.contrib.auth',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -108,20 +109,26 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = 'w3hacks'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+DEFAULT_FILE_STORAGE = 'project.storage_backends.MediaStorage'
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, 'static'),
 ]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-
-# Media Files
-MEDIA_DIR = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = '/media/'
 
 # Email Information
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
