@@ -7,7 +7,7 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
-production = False
+production = True
 
 if production:
     DEBUG = False

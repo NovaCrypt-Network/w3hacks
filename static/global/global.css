@@ -5,14 +5,14 @@
 
 @font-face {
   font-family: "Manrope";
-  src: url("https://w3hacks.s3-us-west-2.amazonaws.com/static/fonts/Manrope.ttf") format("truetype");
+  src: url("../fonts/Manrope.ttf") format("truetype");
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Manrope cursive;
+  font-family: Manrope;
 }
 
 body {
