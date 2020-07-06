@@ -27,58 +27,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar-target">
           <ul class="navbar-nav ml-auto" style="display: flex; align-items: center;">
-              {% if not request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news/">News</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/blog/">Blog</a>
-                </li>
-              {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
-                </li>
-              {% endif %}
-              {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/leaderboards/">Leaderboards</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Exercises</a>
-                    <div class="dropdown-menu">
-                      <a href="/exercises/" class="dropdown-item">Exercises</a>
-                      <a href="/exercises/project-exercises/" class="dropdown-item">Project Exercises</a>
-                      <a href="/exercises/quiz-exercises/" class="dropdown-item">Quiz Exercises</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link" data-toggle="dropdown" href="#">
-                    {% if request.user.profile.profile_picture %}
-                      <div class="image-cropper" style="border-width: 2px;">
-                        <img style="width: 35px" src="{{ request.user.profile.profile_picture.url }}" alt="">
-                      </div>
-                    {% else %}
-                      <img style="width: 35px" src="{% static 'img/icons/user.png' %}" alt="">
-                    {% endif %}
-                  </a>
-                  <div class="dropdown-menu">
-                    <a href="/@{{ request.user.username }}" class="dropdown-item">View Profile</a>
-                    <a href="/@{{ request.user.username }}/edit" class="dropdown-item">Edit Profile</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="/logout/" class="dropdown-item">Log out</a>
-                  </div>
-                </li>
-              {% else %}
-                <li class="nav-item mr-2">
-                    <a class="nav-link" href="/login/">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-light text-dark d-inline-block" href="/register/">Register!</a>
-                </li>
-              {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/news/">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/blog/">Blog</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="https://app.w3hacks.com/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-light text-dark d-inline-block" href="https://app.w3hacks.com/register/">Register!</a>
+            </li>
           </ul>
         </div>
       </div>
