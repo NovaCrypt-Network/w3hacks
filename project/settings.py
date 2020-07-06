@@ -1,4 +1,5 @@
 import os
+import sys
 import whitenoise
 import dj_database_url
 
@@ -6,15 +7,16 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
-# SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY = "test"
+if "runserver" in sys.argv:
+    DEBUG = True
+    SECRET_KEY = "test"
+else:
+    DEBUG = False
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
-# DEBUG = True
-DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-
-SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 
 INSTALLED_APPS = [
     'django.contrib.contenttypes',
