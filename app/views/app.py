@@ -69,12 +69,12 @@ def user_login(request):
 
         else: # Invalid credentials
             # Re-render page with error message
-            return render(request, "landingpage/login.html", context={
+            return render(request, "app/login.html", context={
                 "message": "Invalid credentials.",
                 "status": "bad"
             })
 
-    return render(request, "landingpage/login.html")
+    return render(request, "app/login.html")
 
 
 def register(request):
@@ -92,7 +92,7 @@ def register(request):
 
         # Check if username/email is used
         if User.objects.filter(email=email).exists() or User.objects.filter(username=username).exists():
-            return render(request, "landingpage/register.html", context={
+            return render(request, "app/register.html", context={
                 "message": "Username and/or email is already taken. Please double check.",
                 "status": "bad"
             })
@@ -110,7 +110,7 @@ def register(request):
         try:
             validate_password(password, user)
         except ValidationError as e:
-            return render(request, "landingpage/register.html", context={
+            return render(request, "app/register.html", context={
                 "errors": e
             })
 
@@ -127,12 +127,12 @@ def register(request):
 
         return HttpResponseRedirect("/")
 
-    return render(request, "landingpage/register.html")
+    return render(request, "app/register.html")
 
 
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("https://w3hacks.com/")
 
 
 @login_required(login_url="/login/")

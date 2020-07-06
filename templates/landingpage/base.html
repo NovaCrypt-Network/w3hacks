@@ -27,7 +27,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar-target">
           <ul class="navbar-nav ml-auto" style="display: flex; align-items: center;">
-              {% if request.user.is_authenticated %}
+              {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/news/">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">Blog</a>
+                </li>
+              {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="/dashboard">Dashboard</a>
                 </li>
