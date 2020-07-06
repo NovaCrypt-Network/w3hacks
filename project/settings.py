@@ -44,10 +44,8 @@ INSTALLED_APPS = [
     'app',
     'django.contrib.admin',
     'django.contrib.auth',
-    'api',
     'hackathon',
     'links',
-    'main',
 ]
 
 MIDDLEWARE = [
