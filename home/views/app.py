@@ -75,6 +75,14 @@ def register(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
+        # Check if username/email is used
+        if User.objects.filter(email=email).exists() or User.objects.filter(username=username).exists():
+            return render(request, "landingpage/register.html", context={
+                "message": "Username and/or email is already taken. Please double check.",
+                "status": "bad"
+            })
+
+
         # Creating the user
         user = User(
             first_name=first_name,
@@ -97,15 +105,8 @@ def register(request):
         profile = models.Profile(user=user)
 
         # Only save models when no errors have blocked registration
-        try:
-            user.save()
-            profile.save()
-        except IntegrityError:
-            return render(request, "landingpage/register.html", context={
-                "message": "Username and/or email is already taken. Please double check.",
-                "status": "bad"
-            })
-
+        user.save()
+        profile.save()
 
         login(request, user) # Logging the user in
 
