@@ -42,8 +42,12 @@ def event(request, event_url):
         })
 
 
-def news(request):
-    updates = models.NewsUpdate.objects.all().order_by('-date_posted')
-    return render(request, "home/news.html", context={
-        "updates": updates
-    })
+# LEGAL PAGES
+def terms_of_service(request):
+    return render(request, "home/legal/terms-of-service.html")
+
+def privacy_policy(request):
+    return render(request, "home/legal/privacy-policy.html")
+
+def code_of_conduct(request):
+    return render(request, "home/legal/code-of-conduct.html")
