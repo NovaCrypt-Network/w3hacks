@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from main.models import ResourceLink
+from app.models import ResourceLink
 
 def index(request):
     links = ResourceLink.objects.all()
