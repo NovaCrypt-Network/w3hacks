@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: "Manrope";
-  src: url("https://w3hacks.s3-us-west-2.amazonaws.com/static/fonts/Manrope.ttf") format("truetype");
+  src: url("../fonts/Manrope.ttf") format("truetype");
 }
 
 * {

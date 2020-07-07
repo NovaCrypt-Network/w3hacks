@@ -3,6 +3,7 @@
 {% block head %}
   <title>w3Hacks - Blog</title>
   <link rel="stylesheet" href="{% static 'home/blog.css' %}">
+  <meta name="description" content="{{ blog.preview }}">
 {% endblock %}
 {% block body %}
   <div class="container py-5">
