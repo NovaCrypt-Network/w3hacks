@@ -21,6 +21,10 @@ def join(request):
     return render(request, "home/join.html")
 
 
+def faqs(request):
+    return render(request, "home/faqs.html")
+
+
 def events(request):
     events = models.Event.objects.all().order_by('-datetime')
     return render(request, "home/events/events.html", context={

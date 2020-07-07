@@ -1,0 +1,33 @@
+.accordion {
+  border: 2px solid #ccc;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: all .2s;
+  margin-bottom: 10px;
+}
+
+.accordion h4 {
+  margin-bottom: 0;
+}
+
+.accordion:after {
+  content: '\02795';
+  font-size: 1.5rem;
+  color: #888;
+  float: right;
+}
+
+.accordion:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,.15);
+}
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.panel p {
+  margin-bottom: 0;
+}

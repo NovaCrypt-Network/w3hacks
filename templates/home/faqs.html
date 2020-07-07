@@ -1,0 +1,66 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+  <title>w3Hacks - Contact us!</title>
+  <link rel="stylesheet" href="{% static 'home/faqs.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="container py-5">
+    <h1 class="heading-secondary mb-4">Frequently Asked Questions</h1>
+    <div class="accordion" onclick="extend(this)">
+      <div>
+        <h4>Title</h4>
+      </div>
+      <div class="panel">
+        <br/>
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="accordion" onclick="extend(this)">
+      <div>
+        <h4>Title</h4>
+      </div>
+      <div class="panel">
+        <br/>
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="accordion" onclick="extend(this)">
+      <div>
+        <h4>Title</h4>
+      </div>
+      <div class="panel">
+        <br/>
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="accordion" onclick="extend(this)">
+      <div>
+        <h4>Title</h4>
+      </div>
+      <div class="panel">
+        <br/>
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="accordion" onclick="extend(this)">
+      <div>
+        <h4>Title</h4>
+      </div>
+      <div class="panel">
+        <br/>
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function extend(event) {
+      const panel = event.querySelector(".panel");
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    }
+  </script>
+{% endblock %}

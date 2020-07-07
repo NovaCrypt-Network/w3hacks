@@ -10,6 +10,7 @@ urlpatterns = [
     url("^contact/$", views.contact, name="contact"),
     url("^team/$", views.team, name="team"),
     url("^join/$", views.join, name="join"),
+    url("^faqs/$", views.faqs, name="faqs"),
     url("^events/$", views.events, name="events"),
     url("^events/(?P<event_url>[^/]+)$", views.event, name="event"),
 
