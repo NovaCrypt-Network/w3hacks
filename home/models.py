@@ -10,17 +10,6 @@ class NewsUpdate(models.Model):
         return self.title
 
 
-class BlogPost(models.Model):
-    url_extension = models.CharField(max_length=100)
-    title = models.CharField(max_length=100)
-    preview = models.TextField()
-    body = models.TextField()
-    date_posted = models.DateField(default=date.today())
-
-    def __str__(self):
-        return self.title
-
-
 EVENT_CHOICES = (
     ('Hackathon', 'Hackathon'),
     ('Codeathon', 'Codeathon'),

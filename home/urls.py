@@ -13,8 +13,6 @@ urlpatterns = [
     url("^news/$", views.news, name="news"),
     url("^events/$", views.events, name="events"),
     url("^events/(?P<event_url>[^/]+)$", views.event, name="event"),
-    url("^blog/$", views.blog, name="blog"),
-    url("^blog/(?P<blog_url>[^/]+)$", views.blog_post, name="blog_post"),
 ]
 
 urlpatterns += [

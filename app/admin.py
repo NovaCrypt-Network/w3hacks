@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.apps import apps
 from app import models as app_models
 from home import models as home_models
+from blog import models as blog_models
 
 models_list = [
     # App Models
@@ -15,8 +16,10 @@ models_list = [
 
     # Home models
     home_models.NewsUpdate,
-    home_models.BlogPost,
     home_models.Event,
+
+    # Blog models
+    blog_models.BlogPost,
 ]
 
 for model in models_list:

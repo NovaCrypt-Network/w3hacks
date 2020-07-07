@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'app',
     'hackathon',
     'links',
+    'blog',
 
     # Auth apps
     'django.contrib.admin',
