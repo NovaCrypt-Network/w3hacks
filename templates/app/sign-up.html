@@ -1,12 +1,12 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block head %}
-  <title>w3Hacks - Register and Join the w3Hacks Portal!</title>
+  <title>w3Hacks - Sign up and Join the w3Hacks Portal!</title>
   <link rel="stylesheet" href="{% static 'home/login-register.css' %}">
 {% endblock %}
 {% block body %}
   <div class="container py-5">
-    <h1 class="heading-secondary">Register</h1>
+    <h1 class="heading-secondary">Sign up!</h1>
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
 

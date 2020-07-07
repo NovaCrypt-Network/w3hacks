@@ -63,7 +63,7 @@ def user_login(request):
             else: # User has an inactive account
                 # Re-render page with error message
                 return render(request, "app/login.html", context={
-                    "message": "User account has been deactivated. Please register again.",
+                    "message": "User account has been deactivated. Please sign up again.",
                     "status": "bad"
                 })
 
@@ -77,7 +77,7 @@ def user_login(request):
     return render(request, "app/login.html")
 
 
-def register(request):
+def sign_up(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect("/dashboard/")
 
@@ -92,7 +92,7 @@ def register(request):
 
         # Check if username/email is used
         if User.objects.filter(email=email).exists() or User.objects.filter(username=username).exists():
-            return render(request, "app/register.html", context={
+            return render(request, "app/sign-up.html", context={
                 "message": "Username and/or email is already taken. Please double check.",
                 "status": "bad"
             })
@@ -110,7 +110,7 @@ def register(request):
         try:
             validate_password(password, user)
         except ValidationError as e:
-            return render(request, "app/register.html", context={
+            return render(request, "app/sign-up.html", context={
                 "errors": e
             })
 
@@ -127,7 +127,7 @@ def register(request):
 
         return HttpResponseRedirect("/")
 
-    return render(request, "app/register.html")
+    return render(request, "app/sign-up.html")
 
 
 def user_logout(request):
