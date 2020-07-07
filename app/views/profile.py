@@ -27,7 +27,7 @@ def profile(request, username):
     completed_project_exercises = list(profile.completed_project_exercises.all())
     completed_quiz_exercises = list(profile.completed_quiz_exercises.all())
 
-    return render(request, "app/profile.html", context={
+    return render(request, "app/profile/profile.html", context={
         "profile": profile,
         "projects": projects,
         "past_hackathons": past_hackathons,
@@ -83,7 +83,7 @@ def edit_profile(request, username):
 
         # Check if username/email is used
         if (User.objects.filter(email=email).exists() and email != request.user.email) or (User.objects.filter(username=username).exists() and username != request.user.username):
-            return render(request, "app/edit-profile.html", context={
+            return render(request, "app/profile/edit-profile.html", context={
                 "message": "Username and/or email is already taken. Please double check.",
                 "status": "bad",
                 "profile": profile
@@ -124,7 +124,7 @@ def edit_profile(request, username):
 
     skills = ",".join(profile.skills)
 
-    return render(request, "app/edit-profile.html", context={ "profile": profile, "skills": skills })
+    return render(request, "app/profile/edit-profile.html", context={ "profile": profile, "skills": skills })
 
 
 @login_required(login_url="/login/")
@@ -173,7 +173,7 @@ def submit_project(request, username):
 
         return HttpResponseRedirect("/@" + user.username)
 
-    return render(request, "app/submit-project.html")
+    return render(request, "app/profile/submit-project.html")
 
 
 @login_required(login_url="/login/")
@@ -222,4 +222,4 @@ def edit_project(request, username):
 
     technologies_used = ",".join(project.technologies_used)
 
-    return render(request, "app/edit-project.html", context={ "project": project, "technologies_used": technologies_used })
+    return render(request, "app/profile/edit-project.html", context={ "project": project, "technologies_used": technologies_used })
