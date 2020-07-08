@@ -1,3 +1,5 @@
+@import "https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap";
+
 :root {
   --color-primary-light: #00376e;
   --color-primary: #00203FFF;
@@ -5,16 +7,11 @@
   --color-secondary-dark: #dbbe00;
 }
 
-@font-face {
-  font-family: "Manrope";
-  src: url("../fonts/Manrope.ttf") format("truetype");
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Manrope;
+  font-family: Ubuntu;
 }
 
 body {
