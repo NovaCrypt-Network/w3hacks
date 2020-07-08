@@ -8,18 +8,24 @@
 {% block body %}
   <div class="container py-5">
     <h1 class="heading-secondary mb-4">Events!</h1>
-    <div class="events-grid">
-      {% for event in events %}
-        <a href="/events/{{ event.url_extension }}">
-          <div class="event">
-            <h3>{{ event.title }}</h3>
-            <small>{{ event.type  }}</small>
-            <br>
-            <strong>{{ event.datetime }}</strong>
-            <p>{{ event.preview }}</p>
-          </div>
-        </a>
-      {% endfor %}
-    </div>
+    {% if events %}
+      <div class="events-grid">
+        {% for event in events %}
+          <a href="/events/{{ event.url_extension }}">
+            <div class="event">
+              <h3>{{ event.title }}</h3>
+              <small>{{ event.type  }}</small>
+              <br>
+              <strong>{{ event.datetime }}</strong>
+              <p>{{ event.preview }}</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="text-center">
+        <small>No events yet!</small>
+      </div>
+    {% endif %}
   </div>
 {% endblock %}
