@@ -17,6 +17,15 @@
   .waves {
     height: 100px !important;
   }
+
+  /* Mobile and Desktop image display */
+  .mobile-image {
+    display: block !important;
+  }
+
+  .desktop-image {
+    display: none !important;
+  }
 }
 
 

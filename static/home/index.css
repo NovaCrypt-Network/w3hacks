@@ -20,7 +20,7 @@ header {
   color: white;
 }
 
-.header-image, .about-image {
+.header-image {
   width: 75%;
   margin: 0 auto;
 }
@@ -35,6 +35,10 @@ header {
   .header-grid, .about-grid {
     padding-top: 0 !important;
     grid-template-columns: repeat(auto-fill, 100%) !important;
+  }
+
+  .header-image {
+    display: none;
   }
 }
 
@@ -69,6 +73,17 @@ header {
 .feature img {
   width: 60%;
   margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+  .feature {
+    grid-template-columns: repeat(auto-fill, 100%) !important;
+    grid-gap: 15px;
+  }
+
+  .feature img {
+    width: 75%;
+  }
 }
 
 .sign-up-form {
