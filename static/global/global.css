@@ -26,6 +26,14 @@ section {
   padding: 50px;
 }
 
+.navbar-brand img {
+  width: 100px;
+}
+
+.footer img {
+  width: 65%;
+}
+
 .mobile-image {
   display: none;
 }

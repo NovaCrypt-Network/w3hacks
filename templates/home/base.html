@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'img/logos/w3hacks-cut.png' %}">
     <link rel="stylesheet" href="{% static 'global/queries.css' %}">
     <link rel="stylesheet" href="{% static 'global/global.css' %}">
     <link rel="stylesheet" href="{% static 'global/components.css' %}">
@@ -15,7 +16,9 @@
   <body>
     <nav class="navbar navbar-expand-sm navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="/">w3Hacks</a>
+        <a class="navbar-brand" href="/">
+          <img src="{% static 'img/logos/w3hacks.png' %}" alt="w3Hacks Logo">
+        </a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-target">
           <span class="navbar-toggler-icon"></span>
         </button>
