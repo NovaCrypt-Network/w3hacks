@@ -7,8 +7,9 @@
   <script src="{% static 'external/loading-bar.js' %}" charset="utf-8"></script>
 {% endblock %}
 {% block body %}
-  <div class="body-container container">
+  <div class="thin-container">
     {% if user_already_taken_quiz %}
+      <strong>Take Quiz:</strong>
       <h1 class="heading-tertiary">{{ quiz.name }}</h1>
       <div class="mb-4">
         <strong>You have already taken this quiz.</strong>
@@ -20,10 +21,12 @@
         <p><strong id="question"></strong></p>
         <ul id="answers"></ul>
 
-        <button class="solid-cta-button" onclick="getQuestion(false)">Next Question</button>
+        <div class="text-right">
+          <button class="solid-cta-button" onclick="getQuestion(false)">Next Question</button>
 
-        <div class="mt-2">
-          <small id="question-count"></small>
+          <div>
+            <small id="question-count"></small>
+          </div>
         </div>
       </div>
 
@@ -31,7 +34,6 @@
         // Initalizing variables passed from server here for external JS
         let questions = {{ questions|safe }};
         const quiz_id = "{{ quiz.id }}";
-        console.log(quiz_id);
       </script>
       <script src="{% static 'js/take-quiz.js' %}" charset="utf-8"></script>
     {% endif %}

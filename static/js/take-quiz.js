@@ -31,7 +31,15 @@ function getQuestion(onInit) {
 
   // End of quiz
   if (question == undefined) {
-    quizContainer.innerHTML = "<div class='mb-4'><strong>Congratulations! You finished the quiz!</strong></div><div><a class='solid-cta-button' href='../quiz-results/?id=" + quiz_id + "'>See Results</a></div>";
+    quizContainer.innerHTML = `
+      <div class='mb-4'>
+        <strong>Congratulations! You finished the quiz!</strong>
+        <p>Click below to see your results, and get feedback on what you should work on in the future!</p>
+      </div>
+      <div>
+        <a class='solid-cta-button' href='../quiz-results/?id=" + quiz_id + "'>See Results</a>
+      </div>
+    `;
 
     // Creating completed quiz exercise
     fetch("/create-completed-quiz-exercise/", {

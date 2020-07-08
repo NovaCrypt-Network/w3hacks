@@ -5,8 +5,9 @@
   <link rel="stylesheet" href="{% static 'app/exercises/quiz-exercises/quiz-results.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="body-container container">
-    <h1 class="heading-tertiary">Quiz Results: {{ quiz_exercise.name }}</h1>
+  <div class="thin-container">
+    <strong>Quiz Results:</strong>
+    <h1 class="heading-tertiary">{{ quiz_exercise.name }}</h1>
 
     <!-- STATISTICS -->
     <div class="statistics mt-4">
@@ -57,6 +58,8 @@
           </div>
         </div>
       {% endfor %}
+
+      <a class="solid-cta-button w-100 d-block mt-3" href="/exercises/quiz-exercises/exercise?id={{ completed_quiz_exercise.quiz_exercise.id }}">Back to exercise</a>
     </div>
   </div>
 {% endblock %}

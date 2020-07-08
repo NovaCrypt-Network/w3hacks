@@ -38,6 +38,7 @@
 }
 
 .ghost-cta-button {
+  display: inline-block;
   border: 2px solid white;
   background-color: transparent;
   padding: 10px 15px;
@@ -55,6 +56,7 @@
 }
 
 .ghost-cta-button-dark {
+  display: inline-block;
   border: 2px solid var(--color-primary);
   background-color: transparent;
   padding: 10px 15px;
@@ -72,6 +74,7 @@
 }
 
 .solid-cta-button {
+  display: inline-block;
   border: 2px solid var(--color-primary);
   background-color: var(--color-primary);
   padding: 10px 15px;
@@ -90,6 +93,7 @@
 }
 
 .solid-cta-button-light {
+  display: inline-block;
   border: 2px solid var(--color-secondary);
   background-color: var(--color-secondary);
   padding: 10px 15px;
