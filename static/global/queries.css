@@ -23,7 +23,7 @@
 @media (max-width: 600px) {
   /* Removing padding from sections  */
   section {
-    padding: 0 !important;
+    padding: 50px 0 !important;
   }
 
   /* Fixing centered collapsed navbar */
