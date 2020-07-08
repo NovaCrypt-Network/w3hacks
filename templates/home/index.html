@@ -22,71 +22,70 @@
     </div>
   </header>
   <img class="wave flip" src="{% static 'img/waves/wave.svg' %}">
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <img class="about-image" src="{% static 'img/images/code-type.svg' %}">
-        <div class="info">
-          <h1 class="heading-secondary text-left">About w3Hacks</h1>
-          <p class="about-description mb-4">
-            w3Hacks is an online platform where anyone can learn how to code! Whether you're a seasoned programmer or a semi-beginner, everyone has something to learn here!
-            <br><br>
-            We reinforce and teach good, real-world programming skills that are used in the software engineering industry, and crucial skills for any developer to know whether they're making a solo project or working with others!
-          </p>
-          <div class="cta-buttons">
-            <a href="/logoin/" class="ghost-cta-button-dark">Login</a>
-            <a href="/register/" class="solid-cta-button">Sign up today!</a>
-          </div>
-        </div>
-      </div>
+
+  <div class="container">
+    <div class="medium-container">
+      <p class="quote">
+        w3Hacks is an online platform for anyone to learn industry-level software engineering skills through project-based learning, trial and error, and getting their hands dirty in code.
+      </p>
     </div>
-  </section>
-  <section class="why" id="why">
+  </div>
+
+  <section id="features">
     <div class="container">
-      <h1 class="heading-secondary text-left">Why w3Hacks?</h1>
-      <div class="features mt-4">
-        <div class="feature">
-          <h3>
-            <img class="feature-icon" src="{% static 'img/icons/suitcase.svg' %}">
-            Real-World Preparation
-          </h3>
+      <h1 class="heading-secondary">Features</h1>
+      <div class="feature">
+        <div>
+          <h3>Title</h3>
           <p>
-            We provide real-world exercises that help you build skills that are used heavily in the software engineering industry. w3Hacks is the only resource that teachings industry-level skills, and we give <strong>tons</strong> resources to help you learn those skills.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
         </div>
-        <div class="feature">
-          <h3>
-            <img class="feature-icon" src="{% static 'img/icons/medal.svg' %}">
-            Virtual Hackathons
-          </h3>
+        <img src="{% static 'img/illustrations/project2.svg' %}">
+      </div>
+      <div class="feature">
+        <img src="{% static 'img/illustrations/event2.svg' %}">
+        <div>
+          <h3>Title</h3>
           <p>
-            We allow our users to express their creativity, as well as showcase their abilities through virtual hackathons. We consistently hold virtual hackathons where all of our users can participate in, no matter the skill level or age of the competitor.
-          </p>
-        </div>
-        <div class="feature">
-          <h3>
-            <img class="feature-icon" src="{% static 'img/icons/help.svg' %}">
-            Help On-Demand
-          </h3>
-          <p>
-            Programming is hard. So that's why we provide help and guidance on demand. We have a Discord server that anyone can join filled with other users and mentors, and we are completely open for technical questions on your projects or specific exercises!
-          </p>
-        </div>
-        <div class="feature">
-          <h3>
-            <img class="feature-icon" src="{% static 'img/icons/competition.svg' %}">
-            Friendly Competition
-          </h3>
-          <p>
-            For those who like a little competition, we rank our users by the amount of exercises they complete and hackathons they win, but as well as the quality of their projects/exercises. You are also rewarded credits for hackathons and completed exercises!
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
         </div>
       </div>
+      <div class="feature">
+        <div>
+          <h3>Title</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+        <img src="{% static 'img/illustrations/community.svg' %}">
+      </div>
     </div>
   </section>
-  <!-- <div class="waves">
-    <img class="wave no-flip" src="{% static 'img/waves/wave3.svg' %}">
-    <img class="wave no-flip" src="{% static 'img/waves/wave2.svg' %}">
-    <img class="wave no-flip" src="{% static 'img/waves/wave1.svg' %}">
-  </div> -->
+
+  <div class="wave-container">
+    <section id="join">
+      <div class="container">
+        <div class="small-container sign-up-form text-center">
+          <h1 class="heading-tertiary mb-4">Sign up today!</h1>
+          <form action="https://app.w3hacks.com/sign-up/" method="post">
+            {% csrf_token %}
+            <div class="split">
+              <input class="ghost-input-dark" type="text" name="first-name" placeholder="First Name" required>
+              <input class="ghost-input-dark" type="text" name="last-name" placeholder="Last Name" required>
+            </div>
+
+            <input class="ghost-input-dark" type="email" name="email" placeholder="Email">
+            <input class="ghost-input-dark" type="text" name="username" placeholder="Username">
+            <input class="ghost-input-dark" type="password" name="password" placeholder="Password">
+
+            <input class="solid-cta-button w-100" type="submit" value="Sign up!">
+            <small>Already have an account? <a href="https://app.w3hacks.com/login/">Login</a></small>
+          </form>
+        </div>
+      </div>
+    </section>
+    <img src="{% static 'img/waves/wave2.svg' %}">
+  </div>
 {% endblock %}

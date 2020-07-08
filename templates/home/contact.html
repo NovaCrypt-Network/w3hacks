@@ -7,20 +7,25 @@
 {% endblock %}
 {% block body %}
   <div class="container py-5">
-    <h1 class="heading-secondary mb-4">Contact us!</h1>
-    <form action="https://formspree.io/hello@launchtechllc.com" method="post">
-      {% csrf_token %}
-      <label>Name:</label>
-      <input class="ghost-input-dark mb-3" type="text" name="Name" placeholder="Name" required>
-      <label>Email:</label>
-      <input class="ghost-input-dark mb-3" type="email" name="Email" placeholder="Email" required>
-      <label>Message:</label>
-      <textarea class="ghost-input-dark mb-3" name="Message" rows="5" placeholder="Message"></textarea>
-      <div class="text-center">
-        <input class="solid-cta-button w-100" type="submit" value="Contact us!">
-        <br>
-        <small>Don't have an account? <a href="/register/">Register Here</a></small>
-      </div>
-    </form>
+    <div class="thin-container">
+      <h1 class="heading-secondary mb-4">Contact us!</h1>
+      <p>
+        Feel free to send us a message or an email! We try to respond within 24-48 hours of anyone sending us a message from any timezone.
+      </p>
+      <form action="https://formspree.io/hello@launchtechllc.com" method="post">
+        {% csrf_token %}
+        <label>Name:</label>
+        <input class="ghost-input-dark mb-3" type="text" name="Name" placeholder="Name" required>
+        <label>Email:</label>
+        <input class="ghost-input-dark mb-3" type="email" name="Email" placeholder="Email" required>
+        <label>Message:</label>
+        <textarea class="ghost-input-dark mb-3" name="Message" rows="5" placeholder="Message"></textarea>
+        <div class="text-center">
+          <input class="solid-cta-button w-100" type="submit" value="Contact us!">
+          <br>
+          <small>Don't have an account? <a href="/register/">Register Here</a></small>
+        </div>
+      </form>
+    </div>
   </div>
 {% endblock %}

@@ -50,8 +50,25 @@ section {
   margin: auto;
 }
 
+.small-container {
+  padding: 50px 0;
+  width: 500px;
+  margin: auto;
+}
+
 @media (max-width: 500px) {
-  .thin-container {
+  .thin-container, .small-container {
+    width: 90% !important;
+  }
+}
+
+.medium-container {
+  width: 800px;
+  margin: auto;
+}
+
+@media (max-width: 900px) {
+  .medium-container {
     width: 90% !important;
   }
 }

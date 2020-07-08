@@ -38,46 +38,52 @@ header {
   }
 }
 
-/* ABOUT */
-.about-grid {
+/* QUOTE */
+.quote {
+  text-align: center;
+  font-size: 22.5px;
+  font-weight: bold;
+  border-top: 1px solid var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
+  padding: 25px 0;
+}
+
+.wave-container {
+  position: relative;
+}
+
+.wave-container > img {
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+}
+
+.feature {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 50px;
   align-items: center;
+  padding: 50px 0;
 }
 
-.about-description {
-  font-size: 17.5px;
-  color: #464646;
+.feature img {
+  width: 60%;
+  margin: 0 auto;
 }
 
-@media (max-width: 1000px) {
-  .about {
-    margin-bottom: 50px;
-  }
+.sign-up-form {
+  background-color: rgba(255, 255, 255, .8);
+  border-radius: 4px;
+  box-shadow: 0 5px 30px rgba(0,0,0,.15);
+  padding: 30px;
 }
 
-/* FEATURES */
-.features {
+.sign-up-form .split {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  grid-gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
 }
 
-.feature p {
-  font-size: 14px;
-  margin-left: 52.5px;
-  color: #464646;
-}
-
-.feature-icon {
-  width: 40px;
-  margin-right: 5px;
-  transform: translateY(-4px);
-}
-
-/* WAVES */
-.waves {
-  position: relative;
-  height: 200px;
+.sign-up-form form > * {
+  margin-bottom: 15px;
 }
