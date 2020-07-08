@@ -5,13 +5,12 @@
   <link rel="stylesheet" href="{% static 'home/events.css' %}">
 {% endblock %}
 {% block body %}
-  <div class="container py-5">
+  <div class="small-container">
     <a href="/events/">&larr; Back to events</a>
-    <div class="text-center">
+    <div class="text-center mb-5">
       <h1>{{ event.title }}</h1>
+      <p class="mb-0">{{ event.datetime }}</p>
       <small>{{ event.type  }}</small>
-      <p>{{ event.datetime }}</p>
-      <a href="{{ event.link }}">RSVP</a>
     </div>
 
     <p id="markdown">{{ event.body }}</p>

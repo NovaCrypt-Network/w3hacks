@@ -24,7 +24,6 @@ class Event(models.Model):
     type = models.CharField(max_length=50, choices=EVENT_CHOICES)
     preview = models.TextField()
     body = models.TextField()
-    link = models.CharField(max_length=200)
     datetime = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
