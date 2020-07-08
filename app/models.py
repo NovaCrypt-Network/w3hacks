@@ -118,10 +118,10 @@ DIFFICULTY_LEVEL_CHOICES = (
 class ProjectExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for project exercises
     name = models.CharField(max_length=50) # Name of the project
+    preview = models.TextField(max_length=100) # Text preview of exercise
     description = models.TextField() # Description of the project
     implementation = models.ForeignKey("ProjectImplementation", on_delete=models.PROTECT) # The language/framework the project will be completed in
     difficulty_level = models.CharField(max_length=50, choices=DIFFICULTY_LEVEL_CHOICES) # The difficulty level of the exercise
-    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this project
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this project
 
     def __str__(self):
@@ -148,9 +148,9 @@ class CompletedProjectExercise(models.Model):
 class QuizExercise(models.Model):
     id = models.CharField(primary_key=True, max_length=8, unique=True, default=generate_id) # Unique ID for quiz exercise
     name = models.CharField(max_length=50) # Name of the quiz
+    preview = models.TextField(max_length=100) # Text preview of exercise
     description = models.TextField() # Description of the quiz
     difficulty_level = models.CharField(max_length=50, choices=DIFFICULTY_LEVEL_CHOICES) # The difficulty level of the exercise
-    prerequisites = ArrayField(models.CharField(max_length=50), null=True, blank=True) # List of string prerequisites needed for this quiz
     resources = models.ManyToManyField("ResourceLink", blank=True) # Resources for this quiz
     questions = models.ManyToManyField("QuizQuestion") # Questions for this quiz
 

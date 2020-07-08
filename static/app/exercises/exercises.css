@@ -17,6 +17,10 @@
   border: 2px solid var(--color-primary);
 }
 
+.exercise p {
+  margin-bottom: 0 !important;
+}
+
 .exercise-icon {
   width: 100%;
 }
