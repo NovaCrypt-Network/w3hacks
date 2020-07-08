@@ -46,3 +46,30 @@
 .exercise-icon {
   width: 100%;
 }
+
+.exercise-section {
+  border: 2px solid var(--color-primary);
+  background-color: white;
+  padding: 15px;
+  border-radius: 7.5px;
+  box-shadow: 0 5px 30px rgba(0,0,0,.15);
+  color: black;
+  margin-bottom: 25px;
+}
+
+.information {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 25px;
+}
+
+.information ul, ol {
+  padding-left: 30px;
+}
+
+@media (max-width: 500px) {
+  .information {
+    grid-template-columns: repeat(auto-fill, 100%);
+    grid-gap: 15px;
+  }
+}

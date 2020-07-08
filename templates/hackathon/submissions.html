@@ -22,17 +22,17 @@
             <h3>{{ user_submission.title }}</h3>
             <div class="submission-btns">
               {% if user_submission.video_link %}
-                <a href="{{ user_submission.video_link }}" target="_">
+                <a href="{{ user_submission.video_link }}" target="_blank">
                   <img class="submission-btn" src="{% static 'img/icons/icons/video.png' %}" alt="">
                 </a>
               {% endif %}
               {% if user_submission.github_link %}
-                <a href="{{ user_submission.github_link }}" target="_">
+                <a href="{{ user_submission.github_link }}" target="_blank">
                   <img class="submission-btn" src="{% static 'img/icons/github.svg' %}" alt="">
                 </a>
               {% endif %}
               {% if user_submission.project_link %}
-                <a href="{{ user_submission.project_link }}" target="_">
+                <a href="{{ user_submission.project_link }}" target="_blank">
                   <img class="submission-btn" src="{% static 'img/icons/out.png' %}" alt="">
                 </a>
               {% endif %}
@@ -58,17 +58,17 @@
             <h3>{{ submission.title }}</h3>
             <div class="submission-btns">
               {% if submission.video_link %}
-                <a href="{{ submission.video_link }}" target="_">
+                <a href="{{ submission.video_link }}" target="_blank">
                   <img class="submission-btn" src="{% static 'img/icons/icons/video.png' %}" alt="">
                 </a>
               {% endif %}
               {% if submission.github_link %}
-                <a href="{{ submission.github_link }}" target="_">
+                <a href="{{ submission.github_link }}" target="_blank">
                   <img class="submission-btn" src="{% static 'img/icons/github.svg' %}" alt="">
                 </a>
               {% endif %}
               {% if submission.project_link %}
-                <a href="{{ submission.project_link }}" target="_">
+                <a href="{{ submission.project_link }}" target="_blank">
                   <img class="submission-btn" src="{% static 'img/icons/out.png' %}" alt="">
                 </a>
               {% endif %}

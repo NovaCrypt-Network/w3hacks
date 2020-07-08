@@ -86,7 +86,7 @@ section {
 
 @media (max-width: 800px) {
   .body-container {
-    padding: 30px 10px 10px 10px !important;
+    padding: 20px !important;
   }
 }
 

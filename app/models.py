@@ -105,9 +105,9 @@ class ProjectImplementation(models.Model):
         return self.name
 
 DIFFICULTY_LEVEL_CHOICES = (
-    ('E', 'Easy'),
-    ('M', 'Medium'),
-    ('H', 'Hard'),
+    ('Easy', 'Easy'),
+    ('Medium', 'Medium'),
+    ('Hard', 'Hard'),
 )
 
 

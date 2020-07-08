@@ -28,7 +28,7 @@
           <td>{{ event.description}}</td>
           <td>
             {% if event.event_link %}
-              <a href="{{ event.event_link.link }}" target="_">{{ event.event_link.title }}</a>
+              <a href="{{ event.event_link.link }}" target="_blank">{{ event.event_link.title }}</a>
             {% else %}
               <p>None</p>
             {% endif %}

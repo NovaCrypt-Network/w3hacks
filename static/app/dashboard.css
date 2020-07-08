@@ -5,6 +5,7 @@
 }
 
 .panel {
+  border: 2px solid var(--color-primary);
   background-color: white;
   padding: 15px;
   border-radius: 7.5px;
