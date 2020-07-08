@@ -91,6 +91,7 @@ header {
   border-radius: 4px;
   box-shadow: 0 5px 30px rgba(0,0,0,.15);
   padding: 30px;
+  border: 2px solid var(--color-primary);
 }
 
 .sign-up-form .split {
