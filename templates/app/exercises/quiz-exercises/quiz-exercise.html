@@ -6,9 +6,12 @@
 {% endblock %}
 {% block body %}
   <div class="body-container container">
-    <h1 class="heading-tertiary">Quiz Exercise: {{ exercise.name }} <span class="tag">{{ exercise.difficulty_level }}</span></h1>
+    <h1 class="heading-tertiary">Quiz Exercise: {{ exercise.name }}</h1>
     <div class="information mt-5">
       <div class="exercise-section">
+        <p>
+          <strong>Difficulty Level:</strong> {{ exercise.difficulty_level }}
+        </p>
         <p id="markdown"></p>
       </div>
       <div>
