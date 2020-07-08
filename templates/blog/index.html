@@ -14,17 +14,15 @@
       </p>
     </div>
   </div>
-  <div class="container py-5">
-    <div class="blogs">
-      {% for blog in blogs %}
-        <a href="/blog/{{ blog.url_extension }}">
-          <div class="blog">
-            <h3>{{ blog.title }}</h3>
-            <p>{{ blog.date_posted }}</p>
-            <small>{{ blog.preview }}</small>
-          </div>
-        </a>
-      {% endfor %}
-    </div>
+  <div class="small-container">
+    {% for blog in blogs %}
+      <a href="/blog/{{ blog.url_extension }}">
+        <div class="blog">
+          <h3>{{ blog.title }}</h3>
+          <p>{{ blog.date_posted }}</p>
+          <small>{{ blog.preview }}</small>
+        </div>
+      </a>
+    {% endfor %}
   </div>
 {% endblock %}
