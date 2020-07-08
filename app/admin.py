@@ -8,9 +8,11 @@ models_list = [
     # App Models
     app_models.Profile,
     app_models.Project,
+    app_models.ProjectImplementation,
     app_models.ProjectExercise,
     app_models.CompletedProjectExercise,
     app_models.QuizExercise,
+    app_models.QuizQuestion,
     app_models.CompletedQuizExercise,
     app_models.ResourceLink,
 
