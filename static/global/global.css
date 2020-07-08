@@ -36,10 +36,6 @@ section {
   bottom: 0;
 }
 
-.wave {
-  position: absolute;
-}
-
 .dropdown-toggle::after {
   vertical-align: .06em !important;
 }
