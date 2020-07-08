@@ -6,8 +6,15 @@
   <meta name="description" content="Check out the w3Hacks blog! We write about technology, software engineering, programming, and how you can get started in the industry with w3Hacks!">
 {% endblock %}
 {% block body %}
+  <div style="background-color: #eee">
+    <div class="small-container text-center">
+      <h1 class="heading-secondary">w3Hacks Blog</h1>
+      <p>
+        Read all about technology, software engineering, programming, how you can get started in the industry with w3Hacks, as well as how to take advantage of w3Hacks the best!
+      </p>
+    </div>
+  </div>
   <div class="container py-5">
-    <h1 class="heading-secondary mb-4">Blog</h1>
     <div class="blogs">
       {% for blog in blogs %}
         <a href="/blog/{{ blog.url_extension }}">
