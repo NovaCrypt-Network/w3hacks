@@ -90,8 +90,8 @@
 }
 
 .solid-cta-button-light {
-  border: 2px solid white;
-  background-color: white;
+  border: 2px solid var(--color-secondary);
+  background-color: var(--color-secondary);
   padding: 10px 15px;
   border-radius: 4px;
   color: black !important;
@@ -102,8 +102,8 @@
 
 .solid-cta-button-light:hover {
   text-decoration: none;
-  border: 2px solid #ccc;
-  background-color: #ccc;
+  border: 2px solid var(--color-secondary-dark);
+  background-color: var(--color-secondary-dark);
 }
 
 
