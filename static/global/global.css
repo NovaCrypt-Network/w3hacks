@@ -95,7 +95,7 @@ section {
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  border: 5px solid var(--color-primary-light);
+  border: 5px solid var(--color-secondary);
 }
 
 /* FOOTER */
