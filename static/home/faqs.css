@@ -1,5 +1,5 @@
 .accordion {
-  border: 2px solid #ccc;
+  border: 2px solid var(--color-primary);
   cursor: pointer;
   padding: 10px 15px;
   border-radius: 4px;
@@ -8,13 +8,14 @@
 }
 
 .accordion h4 {
+  display: inline;
   margin-bottom: 0;
 }
 
-.accordion:after {
+.accordion h4:after {
   content: '\02795';
   font-size: 1.5rem;
-  color: #888;
+  color: var(--color-primary);
   float: right;
 }
 
