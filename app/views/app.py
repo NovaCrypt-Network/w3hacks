@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -76,7 +77,7 @@ def user_login(request):
 
     return render(request, "app/login.html")
 
-
+@csrf_exempt
 def sign_up(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect("/dashboard/")
