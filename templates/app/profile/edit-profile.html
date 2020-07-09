@@ -65,51 +65,59 @@
       </div>
 
       <div class="form-input-group">
-        <label>GitHub:</label><br>
-        {% if profile.github_profile %}
-          <input class="ghost-input-dark" type="url" name="github-profile" placeholder="GitHub Profile" value="{{ profile.github_profile }}" >
+        <label>Facebook:</label><br>
+        {% if profile.facebook_profile %}
+          <input class="ghost-input-dark" type="url" name="facebook-profile" placeholder="https://www.facebook.com/..." value="{{ profile.facebook_profile }}">
         {% else %}
-          <input class="ghost-input-dark" type="url" name="github-profile" placeholder="GitHub Profile" >
-        {% endif %}
-      </div>
-      <div class="form-input-group">
-        <label>LinkedIn:</label><br>
-        {% if profile.linkedin_profile %}
-          <input class="ghost-input-dark" type="url" name="linkedin-profile" placeholder="LinkedIn Profile" value="{{ profile.linkedin_profile }}">
-        {% else %}
-          <input class="ghost-input-dark" type="url" name="linkedin-profile" placeholder="LinkedIn Profile">
-        {% endif %}
-      </div>
-      <div class="form-input-group">
-        <label>Twitter:</label><br>
-        {% if profile.twitter_profile %}
-          <input class="ghost-input-dark" type="url" name="twitter-profile" placeholder="Twitter Profile" value="{{ profile.twitter_profile }}">
-        {% else %}
-          <input class="ghost-input-dark" type="url" name="twitter-profile" placeholder="Twitter Profile">
+          <input class="ghost-input-dark" type="url" name="facebook-profile" placeholder="https://www.facebook.com/...">
         {% endif %}
       </div>
       <div class="form-input-group">
         <label>Instagram:</label><br>
         {% if profile.instagram_profile %}
-          <input class="ghost-input-dark" type="url" name="instagram-profile" placeholder="Instagram Profile" value="{{ profile.instagram_profile }}">
+          <input class="ghost-input-dark" type="url" name="instagram-profile" placeholder="https://www.instagram.com/..." value="{{ profile.instagram_profile }}">
         {% else %}
-          <input class="ghost-input-dark" type="url" name="instagram-profile" placeholder="Instagram Profile">
+          <input class="ghost-input-dark" type="url" name="instagram-profile" placeholder="https://www.instagram.com/...">
         {% endif %}
       </div>
       <div class="form-input-group">
-        <label>Facebook:</label><br>
-        {% if profile.facebook_profile %}
-          <input class="ghost-input-dark" type="url" name="facebook-profile" placeholder="Facebook Profile" value="{{ profile.facebook_profile }}">
+        <label>LinkedIn:</label><br>
+        {% if profile.linkedin_profile %}
+          <input class="ghost-input-dark" type="url" name="linkedin-profile" placeholder="https://www.linkedin.com/in/..." value="{{ profile.linkedin_profile }}">
         {% else %}
-          <input class="ghost-input-dark" type="url" name="facebook-profile" placeholder="Facebook Profile">
+          <input class="ghost-input-dark" type="url" name="linkedin-profile" placeholder="https://www.linkedin.com/in/...">
         {% endif %}
       </div>
       <div class="form-input-group">
-        <label>Twitch:</label><br>
-        {% if profile.twitch_profile %}
-          <input class="ghost-input-dark" type="url" name="twitch-profile" placeholder="Twitch Profile" value="{{ profile.twitch_profile }}">
+        <label>Twitter:</label><br>
+        {% if profile.twitter_profile %}
+          <input class="ghost-input-dark" type="url" name="twitter-profile" placeholder="https://twitter.com/..." value="{{ profile.twitter_profile }}">
         {% else %}
-          <input class="ghost-input-dark" type="url" name="twitch-profile" placeholder="Twitch Profile">
+          <input class="ghost-input-dark" type="url" name="twitter-profile" placeholder="https://twitter.com/...">
+        {% endif %}
+      </div>
+      <div class="form-input-group">
+        <label>GitHub:</label><br>
+        {% if profile.github_profile %}
+          <input class="ghost-input-dark" type="url" name="github-profile" placeholder="https://github.com/..." value="{{ profile.github_profile }}" >
+        {% else %}
+          <input class="ghost-input-dark" type="url" name="github-profile" placeholder="https://github.com/..." >
+        {% endif %}
+      </div>
+      <div class="form-input-group">
+        <label>YouTube:</label><br>
+        {% if profile.youtube_profile %}
+          <input class="ghost-input-dark" type="url" name="youtube-profile" placeholder="https://www.youtube.com/channel/..." value="{{ profile.youtube_profile }}" >
+        {% else %}
+          <input class="ghost-input-dark" type="url" name="youtube-profile" placeholder="https://www.youtube.com/channel/..." >
+        {% endif %}
+      </div>
+      <div class="form-input-group">
+        <label>Medium:</label><br>
+        {% if profile.medium_profile %}
+          <input class="ghost-input-dark" type="url" name="medium-profile" placeholder="https://medium.com/..." value="{{ profile.medium_profile }}" >
+        {% else %}
+          <input class="ghost-input-dark" type="url" name="medium-profile" placeholder="https://medium.com/..." >
         {% endif %}
       </div>
       <div class="form-input-group">

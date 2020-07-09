@@ -69,12 +69,13 @@ def edit_profile(request, username):
         skills = request.POST.get("skills").split(",")
 
         # Social Links
-        github_profile = request.POST.get("github-profile")
+        facebook_profile = request.POST.get("facebook-profile")
+        instagram_profile = request.POST.get("instagram-profile")
         linkedin_profile = request.POST.get("linkedin-profile")
         twitter_profile = request.POST.get("twitter-profile")
-        instagram_profile = request.POST.get("instagram-profile")
-        facebook_profile = request.POST.get("facebook-profile")
-        twitch_profile = request.POST.get("twitch-profile")
+        github_profile = request.POST.get("github-profile")
+        youtube_profile = request.POST.get("youtube-profile")
+        medium_profile = request.POST.get("medium-profile")
         personal_website = request.POST.get("personal-website")
 
         # Check if username/email is used
@@ -97,12 +98,13 @@ def edit_profile(request, username):
         profile.biography = biography
         profile.education = education
         profile.skills = skills
-        profile.github_profile = github_profile
+        profile.facebook_profile = facebook_profile
+        profile.instagram_profile = instagram_profile
         profile.linkedin_profile = linkedin_profile
         profile.twitter_profile = twitter_profile
-        profile.instagram_profile = instagram_profile
-        profile.facebook_profile = facebook_profile
-        profile.twitch_profile = twitch_profile
+        profile.github_profile = github_profile
+        profile.youtube_profile = youtube_profile
+        profile.medium_profile = medium_profile
         profile.personal_website = personal_website
 
         # To avoid 'Invalid Date Format' error for empty birthday

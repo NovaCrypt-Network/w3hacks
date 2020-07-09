@@ -36,19 +36,9 @@
             <i>{{ profile.biography }}</i>
           </p>
           <div class="social-links mt-3">
-            {% if profile.linkedin_profile %}
-              <a target="_blank" href="{{ profile.linkedin_profile }}">
-                <img src="{% static 'img/icons/social-media/linkedin.svg' %}" alt="" class="social-link-icon">
-              </a>
-            {% endif %}
-            {% if profile.github_profile %}
-              <a target="_blank" href="{{ profile.github_profile }}">
-                <img src="{% static 'img/icons/social-media/github.svg' %}" alt="" class="social-link-icon">
-              </a>
-            {% endif %}
-            {% if profile.twitter_profile %}
-              <a target="_blank" href="{{ profile.twitter_profile }}">
-                <img src="{% static 'img/icons/social-media/twitter.svg' %}" alt="" class="social-link-icon">
+            {% if profile.facebook_profile %}
+              <a target="_blank" href="{{ profile.facebook_profile }}">
+                <img src="{% static 'img/icons/social-media/facebook.svg' %}" alt="" class="social-link-icon">
               </a>
             {% endif %}
             {% if profile.instagram_profile %}
@@ -56,14 +46,29 @@
                 <img src="{% static 'img/icons/social-media/instagram.svg' %}" alt="" class="social-link-icon">
               </a>
             {% endif %}
-            {% if profile.facebook_profile %}
-              <a target="_blank" href="{{ profile.facebook_profile }}">
-                <img src="{% static 'img/icons/social-media/facebook.svg' %}" alt="" class="social-link-icon">
+            {% if profile.linkedin_profile %}
+              <a target="_blank" href="{{ profile.linkedin_profile }}">
+                <img src="{% static 'img/icons/social-media/linkedin.svg' %}" alt="" class="social-link-icon">
               </a>
             {% endif %}
-            {% if profile.twitch_profile %}
-              <a target="_blank" href="{{ profile.twitch_profile }}">
-                <img src="{% static 'img/icons/social-media/twitch.svg' %}" alt="" class="social-link-icon">
+            {% if profile.twitter_profile %}
+              <a target="_blank" href="{{ profile.twitter_profile }}">
+                <img src="{% static 'img/icons/social-media/twitter.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+            {% if profile.github_profile %}
+              <a target="_blank" href="{{ profile.github_profile }}">
+                <img src="{% static 'img/icons/social-media/github.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+            {% if profile.youtube_profile %}
+              <a target="_blank" href="{{ profile.youtube_profile }}">
+                <img src="{% static 'img/icons/social-media/youtube.svg' %}" alt="" class="social-link-icon">
+              </a>
+            {% endif %}
+            {% if profile.medium_profile %}
+              <a target="_blank" href="{{ profile.medium_profile }}">
+                <img src="{% static 'img/icons/social-media/medium.svg' %}" alt="" class="social-link-icon">
               </a>
             {% endif %}
             {% if profile.personal_website %}
