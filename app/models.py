@@ -25,15 +25,15 @@ class Profile(models.Model):
     profile_picture = models.ImageField(null=True, blank=True) # OPTIONAL: A profile picture for the user
     skills = ArrayField(models.CharField(max_length=50), null=True, blank=True) # OPTIONAL: An array of the user's skills
 
-    github_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's GitHub profile
+    facebook_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Facebook profile
+    instagram_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Instagram profile
     linkedin_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's LinkedIn profile
     twitter_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Twitter profile
-    instagram_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Instagram profile
-    facebook_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Facebook profile
-    twitch_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Twitch profile
+    github_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's GitHub profile
+    youtube_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's YouTube profile
+    medium_profile = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's Medium profile
     personal_website = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: Link to user's personal website
 
-    past_hackathons = models.ManyToManyField("Hackathon", blank=True) # OPTIONAL: A lit of past w3Hacks hackathons that the user has competed in
     projects = models.ManyToManyField("Project", blank=True) # List of projects created by user
 
     completed_project_exercises = models.ManyToManyField("CompletedProjectExercise", blank=True) # List of completed project exercises

@@ -20,9 +20,6 @@ def profile(request, username):
     # Grabbing all projects
     projects = list(profile.projects.all())
 
-    # Grabbing all past hackathons for current user
-    past_hackathons = list(profile.past_hackathons.all())
-
     # Grabbing all completed exercises
     completed_project_exercises = list(profile.completed_project_exercises.all())
     completed_quiz_exercises = list(profile.completed_quiz_exercises.all())
@@ -30,7 +27,6 @@ def profile(request, username):
     return render(request, "app/profile/profile.html", context={
         "profile": profile,
         "projects": projects,
-        "past_hackathons": past_hackathons,
         "completed_project_exercises": completed_project_exercises,
         "completed_quiz_exercises": completed_quiz_exercises,
     })
@@ -122,7 +118,9 @@ def edit_profile(request, username):
 
         return HttpResponseRedirect("/@" + user.username)
 
-    skills = ",".join(profile.skills)
+    skills = None
+    if profile.skills:
+        skills = ",".join(profile.skills)
 
     return render(request, "app/profile/edit-profile.html", context={ "profile": profile, "skills": skills })
 
@@ -220,6 +218,8 @@ def edit_project(request, username):
 
         return HttpResponseRedirect("/@" + user.username)
 
-    technologies_used = ",".join(project.technologies_used)
+    technologies_used = None
+    if project.technologies_used:
+        technologies_used = ",".join(project.technologies_used)
 
     return render(request, "app/profile/edit-project.html", context={ "project": project, "technologies_used": technologies_used })
