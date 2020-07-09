@@ -65,6 +65,15 @@
       </div>
 
       <div class="form-input-group">
+        <label>Location:</label><br>
+        {% if profile.location %}
+          <input id="autocomplete" maxlength="200" class="ghost-input-dark" type="text" name="location" placeholder="Location" value="{{ profile.location.name }}">
+        {% else %}
+          <input id="autocomplete" class="ghost-input-dark" type="text" name="location" placeholder="Location">
+        {% endif %}
+      </div>
+
+      <div class="form-input-group">
         <label>Facebook:</label><br>
         {% if profile.facebook_profile %}
           <input class="ghost-input-dark" type="url" name="facebook-profile" placeholder="https://www.facebook.com/..." value="{{ profile.facebook_profile }}">
@@ -133,4 +142,9 @@
     </form>
   </div>
   <script src="{% static 'js/file-upload.js' %}" charset="utf-8"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&libraries=places"></script>
+  <script>
+    var input = document.getElementById('autocomplete');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+  </script>
 {% endblock %}

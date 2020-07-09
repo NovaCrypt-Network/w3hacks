@@ -20,8 +20,8 @@ class Profile(models.Model):
     status = models.CharField(max_length=20, null=True, blank=True) # OPTIONAL: A quick status that the user may update
     biography = models.TextField(max_length=200, null=True, blank=True) # OPTIONAL: A description of the user
     birthday = models.DateField(null=True, blank=True) # OPTIONAL: The birthday of the user
+    location = models.ForeignKey("Location", on_delete=models.CASCADE, null=True, blank=True) # OPTIONAL: The location of the user
     education = models.CharField(max_length=100, null=True, blank=True) # OPTIONAL: The current/past education of the user
-    location = models.CharField(max_length=50, null=True, blank=True) # OPTIONAL: The area around where the user lives
     profile_picture = models.ImageField(null=True, blank=True) # OPTIONAL: A profile picture for the user
     skills = ArrayField(models.CharField(max_length=50), null=True, blank=True) # OPTIONAL: An array of the user's skills
 
@@ -83,6 +83,15 @@ class Hackathon(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Location(models.Model):
+    name = models.CharField(max_length=200) # Name of the location
+    lat = models.IntegerField() # Latitude
+    lng = models.IntegerField() # Longitude
+
+    def __str__(self):
+        return self.name
 
 
 #####################

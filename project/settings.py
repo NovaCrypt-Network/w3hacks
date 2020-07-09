@@ -7,7 +7,7 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
-production = True
+production = False
 
 if production:
     DEBUG = False
@@ -16,6 +16,9 @@ if production:
 else:
     DEBUG = True
     SECRET_KEY = "dev"
+
+# GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+GOOGLE_API_KEY = "AIzaSyBw21BPcqF8LLyBkq_ocEtTw473OCmImtk"
 
 ALLOWED_HOSTS = ["*"]
 

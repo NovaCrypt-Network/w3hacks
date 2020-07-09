@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.conf import settings
 from datetime import datetime, date
 from app import models
+import requests
 
 
 @login_required(login_url="/login/")
@@ -65,6 +67,7 @@ def edit_profile(request, username):
         # Grabbing custom profile data
         biography = request.POST.get("biography")
         birthday = request.POST.get("birthday")
+        locationName = request.POST.get("location")
         education = request.POST.get("education")
         skills = request.POST.get("skills").split(",")
 
@@ -86,6 +89,16 @@ def edit_profile(request, username):
                 "profile": profile
             })
 
+        # Creating location object if exists
+        response = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={locationName}&key={settings.GOOGLE_API_KEY}")
+
+        location = models.Location(name=locationName)
+        if response.json()["results"][0]:
+            location.lat = response.json()["results"][0]["geometry"]["location"]["lat"]
+            location.lng = response.json()["results"][0]["geometry"]["location"]["lng"]
+
+        location.save()
+
         # Updating user
         user = User.objects.get(id=request.user.id)
         user.first_name = first_name
@@ -96,6 +109,7 @@ def edit_profile(request, username):
         # Updating profile
         profile = models.Profile.objects.get(user=request.user)
         profile.biography = biography
+        profile.location = location
         profile.education = education
         profile.skills = skills
         profile.facebook_profile = facebook_profile
@@ -124,7 +138,11 @@ def edit_profile(request, username):
     if profile.skills:
         skills = ",".join(profile.skills)
 
-    return render(request, "app/profile/edit-profile.html", context={ "profile": profile, "skills": skills })
+    return render(request, "app/profile/edit-profile.html", context={
+        "profile": profile,
+        "skills": skills,
+        "google_api_key": settings.GOOGLE_API_KEY
+    })
 
 
 @login_required(login_url="/login/")
