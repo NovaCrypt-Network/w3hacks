@@ -93,7 +93,7 @@ def edit_profile(request, username):
         response = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={locationName}&key={settings.GOOGLE_API_KEY}")
 
         location = models.Location(name=locationName)
-        if response.json()["results"][0]:
+        if response.json()["results"]:
             location.lat = response.json()["results"][0]["geometry"]["location"]["lat"]
             location.lng = response.json()["results"][0]["geometry"]["location"]["lng"]
 
