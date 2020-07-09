@@ -10,7 +10,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 production = True
 
 if production:
-    DEBUG = True
+    DEBUG = False
     SECRET_KEY = os.environ.get("SECRET_KEY")
     SESSION_COOKIE_DOMAIN = ".w3hacks.com"
 else:

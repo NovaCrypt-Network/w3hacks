@@ -81,12 +81,14 @@
       </div>
       <div class="profile-header-right">
         {% if profile.location %}
-          <div class="profile-element">
-            <small>Location</small><br>
-            <p>{{ profile.location }}</p>
-          </div>
+          {% if profile.location.name %}
+            <div class="profile-element">
+              <small>Location</small><br>
+              <p>{{ profile.location.name }}</p>
+            </div>
+          {% endif %}
         {% endif %}
-        
+
         {% if profile.education %}
           <div class="profile-element">
             <small>Education</small><br>
