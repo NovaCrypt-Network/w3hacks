@@ -116,7 +116,9 @@
     <div class="profile-body">
       <h1 class="heading-tertiary">
         Projects
-        <a class="solid-cta-button submit-project" href="/@{{ profile.user.username }}/submit-project">Submit Project</a>
+        {% if request.user.profile == profile %}
+          <a class="solid-cta-button submit-project" href="/@{{ profile.user.username }}/submit-project">Submit Project</a>
+        {% endif %}
       </h1>
       {% if projects %}
         <div class="projects-grid">
