@@ -87,8 +87,8 @@ class Hackathon(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length=200) # Name of the location
-    lat = models.IntegerField() # Latitude
-    lng = models.IntegerField() # Longitude
+    lat = models.IntegerField(null=True, blank=True) # Latitude
+    lng = models.IntegerField(null=True, blank=True) # Longitude
 
     def __str__(self):
         return self.name
