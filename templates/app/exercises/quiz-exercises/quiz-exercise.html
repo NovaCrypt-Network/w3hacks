@@ -16,18 +16,19 @@
       </div>
       <div>
         <div class="exercise-section">
-          {% if resources %}
-            <div class="resource">
-              <h4>Resources</h4>
+          <div class="resource">
+            <h4>Resources</h4>
+            {% if resources %}
               <ul>
                 {% for resource in resources %}
                   <li><a href="{{ resource.link }}" target="_blank">{{ resource.title }}</a></li>
                 {% endfor %}
               </ul>
-            </div>
-          {% endif %}
+            {% else %}
+              <small>No resources for this exercise!</small>
+            {% endif %}
+          </div>
         </div>
-
         <div class="exercise-section">
           {% if user_already_taken_quiz %}
             <h1 class="heading-tertiary">{{ quiz.name }}</h1>
