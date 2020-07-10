@@ -20,7 +20,9 @@
               <img class="profile-picture" src="{{ profile.profile_picture.url }}" alt="">
             </div>
           {% else %}
-            <img class="profile-picture" src="{% static 'img/icons/user.png' %}" alt="">
+            <div class="image-cropper">
+              <img class="profile-picture" src="{% static 'img/icons/user.png' %}" alt="">
+            </div>
           {% endif %}
         </div>
         <div class="profile-header-main-right">

@@ -99,12 +99,10 @@ section {
   font-size: 12.5px;
 }
 
-.image-cropper {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
+.image-cropper img {
   border: 5px solid var(--color-secondary);
+  object-fit: cover;
+  border-radius: 50% !important;
 }
 
 /* FOOTER */

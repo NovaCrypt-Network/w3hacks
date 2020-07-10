@@ -90,14 +90,16 @@ def edit_profile(request, username):
             })
 
         # Creating location object if exists
-        response = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={locationName}&key={settings.GOOGLE_API_KEY}")
+        location = None
+        if locationName:
+            response = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={locationName}&key={settings.GOOGLE_API_KEY}")
 
-        location = models.Location(name=locationName)
-        if response.json()["results"]:
-            location.lat = response.json()["results"][0]["geometry"]["location"]["lat"]
-            location.lng = response.json()["results"][0]["geometry"]["location"]["lng"]
+            location = models.Location(name=locationName)
+            if response.json()["results"]:
+                location.lat = response.json()["results"][0]["geometry"]["location"]["lat"]
+                location.lng = response.json()["results"][0]["geometry"]["location"]["lng"]
 
-        location.save()
+            location.save()
 
         # Updating user
         user = User.objects.get(id=request.user.id)
