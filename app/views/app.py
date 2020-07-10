@@ -140,9 +140,6 @@ def user_logout(request):
 def leaderboards(request):
     profiles = models.Profile.objects.all().order_by("-ranking_points")
 
-    top_3_hackers = profiles[:3]
-    profiles = profiles[3:]
-
     # Creating breadcrumbs
     breadcrumbs = [
         { "text": "Home", "link": "/" },
@@ -150,7 +147,6 @@ def leaderboards(request):
     ]
 
     return render(request, "app/leaderboards.html", context={
-        "top_3_hackers": top_3_hackers,
         "profiles": profiles,
         "breadcrumbs": breadcrumbs
     })
