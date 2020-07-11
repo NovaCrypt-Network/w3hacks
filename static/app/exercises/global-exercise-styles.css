@@ -4,6 +4,12 @@
   grid-gap: 15px;
 }
 
+@media (max-width: 600px) {
+  .exercises {
+    grid-template-columns: repeat(auto-fill, 100%);
+  }
+}
+
 .exercise {
   display: grid;
   grid-template-columns: 50px 1fr;

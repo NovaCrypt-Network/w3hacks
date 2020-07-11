@@ -9,7 +9,6 @@
   <div class="body-container container">
     <h1 class="heading-secondary">Quiz Exercises</h1>
     {% if exercises %}
-      <h3 class="heading-tertiary">Exercises</h3>
       <div class="exercises">
         {% for exercise in exercises %}
           <a class="exercise-link" href="exercise/?id={{ exercise.id }}">

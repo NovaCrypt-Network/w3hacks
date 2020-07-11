@@ -4,6 +4,12 @@
   grid-gap: 25px;
 }
 
+@media (max-width: 600px) {
+  .dashboard {
+    grid-template-columns: repeat(auto-fill, 100%);
+  }
+}
+
 .panel {
   border: 2px solid var(--color-primary);
   background-color: white;

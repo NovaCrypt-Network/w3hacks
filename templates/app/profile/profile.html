@@ -3,6 +3,7 @@
 {% block head %}
   <title>w3Hacks App - w3Hacks User Profile</title>
   <link rel="stylesheet" href="{% static 'app/profile.css' %}">
+  <link rel="stylesheet" href="{% static 'app/exercises/global-exercise-styles.css' %}">
 {% endblock %}
 {% block body %}
   <div class="body-container container">
@@ -173,19 +174,21 @@
         <small>No projects yet!</small>
       {% endif %}
 
-      <h1 class="heading-tertiary">Completed Exercises</h1>
-      <div class="exercise-type">
+      <h1 class="heading-tertiary mt-4">Completed Exercises</h1>
+      <div class="exercise-type mt-4">
         <h3 class="heading-fourth">Project Exercises</h3>
         {% if completed_project_exercises %}
           <div class="exercises">
             {% for exercise in completed_project_exercises %}
-              <div class="exercise">
-                <h5>{{ exercise.project_exercise.name }}</h5>
-                <p>{{ exercise.project_exercise.description }}</p>
-                <a class="view-exercise-link" class="view-exercise-link" href="/exercises/project-exercises/exercise/?id={{ exercise.project_exercise.id }}">
-                  <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
-                </a>
-              </div>
+              <a class="exercise-link" href="/exercises/project-exercises/exercise/?id={{ exercise.project_exercise.id }}">
+                <div class="exercise">
+                  <img class="exercise-icon" src="{% static 'img/icons/project-light.svg' %}" alt="">
+                  <div class="exercise-info">
+                    <h5>{{ exercise.project_exercise.name }}</h5>
+                    <p>{{ exercise.project_exercise.preview }}</p>
+                  </div>
+                </div>
+              </a>
             {% endfor %}
           </div>
         {% else %}
@@ -193,18 +196,20 @@
         {% endif %}
       </div>
 
-      <div class="exercise-type">
+      <div class="exercise-type mt-4">
         <h3 class="heading-fourth">Quiz Exercises</h3>
         {% if completed_quiz_exercises %}
           <div class="exercises">
             {% for exercise in completed_quiz_exercises %}
-              <div class="exercise">
-                <h5>{{ exercise.quiz_exercise.name }}</h5>
-                <p>{{ exercise.quiz_exercise.description }}</p>
-                <a class="view-exercise-link" href="/exercises/quiz-exercises/exercise/?id={{ exercise.quiz_exercise.id }}">
-                  <img class="view-exercise-icon" src="{% static 'img/icons/out.png' %}" alt="">
-                </a>
-              </div>
+              <a class="exercise-link" href="/exercises/quiz-exercises/exercise/?id={{ exercise.quiz_exercise.id }}">
+                <div class="exercise">
+                  <img class="exercise-icon" src="{% static 'img/icons/quiz-light.svg' %}" alt="">
+                  <div class="exercise-info">
+                    <h5>{{ exercise.quiz_exercise.name }}</h5>
+                    <p>{{ exercise.quiz_exercise.preview }}</p>
+                  </div>
+                </div>
+              </a>
             {% endfor %}
           </div>
         {% else %}

@@ -22,6 +22,25 @@
 }
 
 
+@media (max-width: 600px) {
+  .heading-primary {
+    font-size: 50px;
+  }
+
+  .heading-secondary {
+    font-size: 40px;
+  }
+
+  .heading-tertiary {
+    font-size: 30px;
+  }
+
+  .heading-fourth {
+    font-size: 25px;
+  }
+}
+
+
 /* BUTTONS */
 .cta-buttons {
   width: 100%;

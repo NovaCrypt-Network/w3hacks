@@ -67,7 +67,7 @@ section {
   margin: auto;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .thin-container, .small-container {
     width: 90% !important;
   }
