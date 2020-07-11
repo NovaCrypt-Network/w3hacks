@@ -131,6 +131,10 @@ def edit_profile(request, username):
         if 'profile-picture' in request.FILES:
             profile.profile_picture = request.FILES['profile-picture']
 
+        # Turning off update_profile field on model 
+        if not profile.updated_profile:
+            profile.updated_profile = True
+
         user.save()
         profile.save()
 
