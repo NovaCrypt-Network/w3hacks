@@ -3,6 +3,7 @@
 {% block head %}
   <title>w3Hacks App</title>
   <link rel="stylesheet" href="{% static 'app/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'home/team.css' %}">
   <link rel="stylesheet" href="{% static 'app/exercises/global-exercise-styles.css' %}">
 {% endblock %}
 {% block body %}
@@ -11,9 +12,22 @@
     <div class="dashboard mt-4">
       <div class="left">
         <div class="panel welcome">
-          <h3>Hey there {{ request.user.first_name }} {{ request.user.last_name }}!</h3>
+          <h3>Hey {{ request.user.first_name }}! How are you?</h3>
+          <div class="member mt-3">
+            <div class="image-cropper">
+              <img style="width: 90px; height: 90px; border-width: 4px;" src="{{ request.user.profile.profile_picture.url }}" alt="">
+            </div>
+            <div class="member-info">
+              <h3>{{ request.user.first_name }} {{ request.user.last_name }}</h3>
+              <p>
+                <i style="color: grey">{{ request.user.profile.biography }}</i>
+              </p>
+            </div>
+          </div>
           {% if not request.user.profile.updated_profile %}
-            Have you customized your profile yet? <a href="/@{{ request.user.username }}/edit/">Update it now!</a>
+            <div class="mt-3">
+              Have you customized your profile yet? <a href="/@{{ request.user.username }}/edit/">Update it now!</a>
+            </div>
           {% endif %}
         </div>
 

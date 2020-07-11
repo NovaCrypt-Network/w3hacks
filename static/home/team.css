@@ -28,8 +28,3 @@
 .image-cropper, img {
   width: 100%;
 }
-
-.image-cropper {
-  margin-bottom: 15px;
-  border-width: 4px;
-}
