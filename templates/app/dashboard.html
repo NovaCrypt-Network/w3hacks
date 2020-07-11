@@ -14,9 +14,15 @@
         <div class="panel welcome">
           <h3>Hey {{ request.user.first_name }}! How are you?</h3>
           <div class="member mt-3">
-            <div class="image-cropper">
-              <img style="width: 90px; height: 90px; border-width: 4px;" src="{{ request.user.profile.profile_picture.url }}" alt="">
-            </div>
+            {% if request.user.profile.profile_picture %}
+              <div class="image-cropper">
+                <img style="width: 90px; height: 90px; border-width: 4px;" src="{{ request.user.profile.profile_picture.url }}" alt="">
+              </div>
+            {% else %}
+              <div class="image-cropper">
+                <img class="profile-picture" src="{% static 'img/icons/user.png' %}" alt="">
+              </div>
+            {% endif %}
             <div class="member-info">
               <h3>{{ request.user.first_name }} {{ request.user.last_name }}</h3>
               <p>
