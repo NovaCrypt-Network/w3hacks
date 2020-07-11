@@ -42,6 +42,8 @@ class Profile(models.Model):
     joined_date = models.DateField(default=date.today()) # The date when the user joined w3Hacks
     ranking_points = models.IntegerField(default=0) # The overall ranking points the user has
 
+    updated_profile = models.BooleanField(default=False) # Has the user updated their profile yet?
+
     def __str__(self):
         return self.user.username
 

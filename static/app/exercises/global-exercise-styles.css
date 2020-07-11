@@ -16,6 +16,10 @@
   height: 100%;
 }
 
+.exercise p {
+  margin-bottom: 0 !important;
+}
+
 .exercise:hover {
   background-color: var(--color-primary);
 }

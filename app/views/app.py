@@ -29,11 +29,18 @@ def index(request):
 
 @login_required(login_url="/login/")
 def dashboard(request):
+    exercises = models.ProjectExercise.objects.all()[:3]
+
+    completed_project_exercises = request.user.profile.completed_project_exercises.all()
+    currently_grading_exercises = [exercise for exercise in completed_project_exercises if exercise.score == None]
+
     updates = homeModels.NewsUpdate.objects.all().order_by('-date_posted')
 
     upcoming_events = homeModels.Event.objects.all().order_by("-datetime")
 
     return render(request, "app/dashboard.html", context={
+        "exercises": exercises,
+        "currently_grading_exercises": currently_grading_exercises,
         "updates": updates,
         "upcoming_events": upcoming_events
     })

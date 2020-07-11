@@ -3,20 +3,58 @@
 {% block head %}
   <title>w3Hacks App</title>
   <link rel="stylesheet" href="{% static 'app/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'app/exercises/global-exercise-styles.css' %}">
 {% endblock %}
 {% block body %}
   <div class="body-container container">
     <h1 class="heading-secondary">Dashboard</h1>
     <div class="dashboard mt-4">
       <div class="left">
-        <div class="welcome">
+        <div class="panel welcome">
           <h3>Hey there {{ request.user.first_name }} {{ request.user.last_name }}!</h3>
+          {% if not request.user.profile.updated_profile %}
+            Have you customized your profile yet? <a href="/@{{ request.user.username }}/edit/">Update it now!</a>
+          {% endif %}
+        </div>
+
+        {% if currently_grading_exercises %}
+          <div class="panel">
+            <h3>Currently being graded:</h3>
+            {% for completed_exercise in currently_grading_exercises %}
+              <a class="exercise-link" href="/exercises/project-exercises/exercise/?id={{ completed_exercise.project_exercise.id }}">
+                <div class="exercise mt-3">
+                  <img class="exercise-icon" src="{% static 'img/icons/project-light.svg' %}" alt="">
+                  <div class="exercise-info">
+                    <h5>{{ completed_exercise.project_exercise.name }}</h5>
+                    <p>{{ completed_exercise.project_exercise.preview }}</p>
+                  </div>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="panel">
+          <h3>
+            {% if request.user.profile.updated_profile %} Continue {% else %} Start {% endif %} Learning!
+          </h3>
+          {% for exercise in exercises %}
+            <a class="exercise-link" href="/exercises/project-exercises/exercise/?id={{ exercise.id }}">
+              <div class="exercise mt-3">
+                <img class="exercise-icon" src="{% static 'img/icons/project-light.svg' %}" alt="">
+                <div class="exercise-info">
+                  <h5>{{ exercise.name }}</h5>
+                  <p>{{ exercise.preview }}</p>
+                </div>
+              </div>
+            </a>
+          {% endfor %}
         </div>
       </div>
       <div class="right">
         <div class="panel news">
           <h3>News</h3>
-          <div class="updates">
+          <div class="updates mt-3">
             {% for update in updates %}
               <div class="update">
                 <strong>{{ update.title }}</strong> - <small>{{ update.date_posted }}</small>
@@ -27,7 +65,7 @@
         </div>
         <div class="panel upcoming-events">
           <h3>Upcoming events</h3>
-          <div class="events">
+          <div class="events mt-3">
             {% if upcoming_events %}
               <div class="events">
                 {% for event in upcoming_events %}
