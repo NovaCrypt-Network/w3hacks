@@ -68,6 +68,13 @@
     </div>
   </div>
   <script>
+    const accordion = document.querySelectorAll(".accordion, .h4"); //for switching plus/minus sign
+    	accordion.forEach(accordion => {
+    	accordion.addEventListener("click", event => {
+        	accordion.classList.toggle("active");
+        });
+    });
+    
     function extend(event) {
       const panel = event.querySelector(".panel");
       if (panel.style.maxHeight) {
