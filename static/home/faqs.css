@@ -19,6 +19,10 @@
   float: right;
 }
 
+.accordion.active h4:after{
+	content: '\02796';
+}
+
 .accordion:hover {
   box-shadow: 0 5px 15px rgba(0,0,0,.15);
 }

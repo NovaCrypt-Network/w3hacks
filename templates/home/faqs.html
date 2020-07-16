@@ -55,8 +55,26 @@
         </p>
       </div>
     </div>
+    <div class="accordion" onclick="extend(this)">
+        <div>
+          <h4>Have additional questions?</h4>
+        </div>
+        <div class="panel">
+          <br/>
+          <p>
+            You can <a href="https://w3hacks.com/contact/">contact us</a> for any other quesitons!!
+          </p>
+        </div>
+    </div>
   </div>
   <script>
+    const accordion = document.querySelectorAll(".accordion, .h4"); //for switching plus/minus sign
+    	accordion.forEach(accordion => {
+    	accordion.addEventListener("click", event => {
+        	accordion.classList.toggle("active");
+        });
+    });
+    
     function extend(event) {
       const panel = event.querySelector(".panel");
       if (panel.style.maxHeight) {
