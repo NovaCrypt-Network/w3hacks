@@ -28,4 +28,18 @@
       </div>
     {% endif %}
   </div>
+  <script>
+    //height of Events header and content
+    var eventHeaderHeight = document.querySelector('.heading-secondary').offsetHeight;
+    var eventContentHeight = document.querySelector('.text-center').offsetHeight;
+
+    //height for nav bar, footer, user's screen, Events body
+    const vH = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    var footerHeight = 304;
+    var headerHeight = 118;
+    var bodyHeight = vH - headerHeight - footerHeight - eventHeaderHeight - eventContentHeight -48;
+
+    //document.getElementsByClassName(".text-center").style.minHeight = "500px";
+    document.querySelectorAll(".text-center")[0].style.minHeight = bodyHeight + "px"; //change minHeight of Events content
+  </script>
 {% endblock %}
