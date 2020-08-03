@@ -19,6 +19,14 @@
         <th>Name</th>
         <th>Link</th>
       </tr>
+      <!-- <div class="dropdown">
+        <button onclick="filterDropDown()" class="dropbtn">Difficulty Level</button>
+        <div id="myDropdown" class="dropdown-content">
+          <button onclick="python()">Easy</button>
+          <button onclick="htmlCss()">Medium</button>
+          <input class="form-control py-2 border-right-0 border" type="search" name="id_exact" placeholder="Implementation Type..." />
+        </div>
+      </div> -->
       {% for link in links %}
         <tr>
           <td>{{ link.title }}</td>

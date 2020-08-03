@@ -8,6 +8,18 @@
 {% block body %}
   <div class="body-container container">
     <h1 class="heading-secondary">Project Exercises</h1>
+    <!-- <div class="dropdown">
+      <button onclick="filterDropDown()" class="dropbtn">Difficulty Level</button>
+      <div id="myDropdown" class="dropdown-content">
+          <button onclick="diff_easy()">Easy</button>
+          <button onclick="diff_medium()">Medium</button>
+          <button onclick="diff_hard()">Hard</button>
+          <a href="#about">Easy</a>
+          <a href="#base">Medium</a>
+          <a href="#blog">Hard</a>
+      </div>
+    </div> -->
+
     {% if exercises %}
       <div class="exercises">
         {% for exercise in exercises %}
@@ -28,4 +40,13 @@
       </div>
     {% endif %}
   </div>
+  <!-- <script>
+    function filterDropDown() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function diff_hard() {
+        document.querySelector(".cardOuter").style.display = 'none';
+    }
+  </script> -->
 {% endblock %}

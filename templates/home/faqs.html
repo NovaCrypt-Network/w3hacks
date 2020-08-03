@@ -62,7 +62,7 @@
         <div class="panel">
           <br/>
           <p>
-            You can <a href="https://w3hacks.com/contact/">contact us</a> for any other quesitons!!
+            You can <a href="https://w3hacks.com/contact/">contact us</a> for any other quesitons!
           </p>
         </div>
     </div>
@@ -83,5 +83,12 @@
         panel.style.maxHeight = panel.scrollHeight + "px";
       }
     }
+    
+    const vH = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    var footerHeight = 304;
+    var headerHeight = 118;
+    var bodyHeight = vH - headerHeight - footerHeight;
+    document.querySelectorAll(".medium-container")[0].style.minHeight = bodyHeight + "px"; //change minHeight of page content
+
   </script>
 {% endblock %}
