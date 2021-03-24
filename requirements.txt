@@ -29,7 +29,7 @@ PyYAML==3.13
 rcssmin==1.0.6
 requests==2.23.0
 rjsmin==1.1.0
-rsa==3.4.2
+rsa==4.1
 s3transfer==0.3.3
 six==1.14.0
 sqlparse==0.3.1
