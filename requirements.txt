@@ -8,7 +8,7 @@ chardet==3.0.4
 colorama==0.3.9
 dj-database-url==0.5.0
 dj-stripe==2.3.0
-Django==3.0.7
+Django==3.0.12
 django-appconf==1.0.4
 django-hosts==4.0
 django-storages==1.9.1
